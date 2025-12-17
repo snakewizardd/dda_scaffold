@@ -1,0 +1,28 @@
+# Exploratory agent identity configuration
+# Low rigidity response, weak identity pull, high openness
+
+identity_vector: null     # Will be initialized from task embedding
+
+# Identity parameters
+gamma: 0.5               # Weak identity pull (low stiffness)
+
+# Rigidity dynamics - stays flexible
+epsilon_0: 0.6           # High surprise threshold (tolerant)
+alpha: 0.05              # Slow rigidity change
+s: 0.3                   # Gradual sigmoid transition
+
+# Movement parameters
+k_base: 0.7              # Large base step size (bold)
+m: 1.5                   # High external pressure penetration
+
+# Initial state
+initial_rho: 0.0         # Start fully flexible
+
+description: |
+  An exploratory agent that:
+  - Tolerates surprise well (high ε₀)
+  - Has weak identity constraints (low γ)
+  - Takes large steps (high k_base)
+  - Highly responsive to environment (high m)
+
+  Suitable for discovery, creativity, and learning tasks.

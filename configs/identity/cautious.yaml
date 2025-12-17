@@ -1,0 +1,28 @@
+# Cautious agent identity configuration
+# High rigidity response to surprise, strong identity pull
+
+identity_vector: null     # Will be initialized from task embedding
+
+# Identity parameters
+gamma: 2.0               # Strong identity pull (high stiffness)
+
+# Rigidity dynamics - gets rigid easily
+epsilon_0: 0.2           # Low surprise threshold
+alpha: 0.2               # Fast rigidity increase
+s: 0.1                   # Sharp sigmoid transition
+
+# Movement parameters
+k_base: 0.3              # Small base step size (cautious)
+m: 0.5                   # Low external pressure penetration
+
+# Initial state
+initial_rho: 0.1         # Slightly elevated baseline rigidity
+
+description: |
+  A cautious agent that:
+  - Becomes rigid quickly when surprised (low ε₀)
+  - Has strong attachment to identity (high γ)
+  - Takes small steps (low k_base)
+  - Resists external influence (low m)
+
+  Suitable for high-stakes or safety-critical tasks.

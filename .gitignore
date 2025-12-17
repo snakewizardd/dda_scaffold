@@ -1,0 +1,63 @@
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+*.egg-info/
+
+# Claude / AI Toolkit
+.claude/
+.aitk/
+CLAUDE.md
+claude.md
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# IDEs
+.idea/
+.DS_Store
+
+# OS
+Thumbs.db
+
+# Data & Cache
+.cache/
+*.cache
+
+# Runtime ledger entries (regeneratable, large binaries)
+data/experiences/*.pkl.xz
+# Keep experiment logs for open science!
+# data/experiments/  ← COMMITTED for reproducibility
+
+# Prompt Logging Local - Handoff docs
+NEXT_PROMPT.md
+NEXT_PROMPT2.md
+NEXT_PROMPT3.md
+NEXT_PROMPT4.md

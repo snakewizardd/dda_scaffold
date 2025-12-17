@@ -1,0 +1,38 @@
+{"timestamp": 1765994810.210132, "elapsed": 0.004647016525268555, "event": "recovery_test_start", "personality": "cautious", "sequence_length": 8}
+{"timestamp": 1765994810.2264783, "elapsed": 0.020993471145629883, "event": "recovery_step", "personality": "cautious", "step": 1, "outcome_type": "normal", "pre_rho": 0.1, "post_rho": 0.1, "delta_rho": 0.0}
+{"timestamp": 1765994810.2284362, "elapsed": 0.022951364517211914, "event": "recovery_step", "personality": "cautious", "step": 2, "outcome_type": "negative_surprise", "pre_rho": 0.1, "post_rho": 0.1, "delta_rho": 0.0}
+{"timestamp": 1765994810.231045, "elapsed": 0.02556014060974121, "event": "recovery_step", "personality": "cautious", "step": 3, "outcome_type": "negative_surprise", "pre_rho": 0.1, "post_rho": 0.1, "delta_rho": 0.0}
+{"timestamp": 1765994810.231045, "elapsed": 0.02556014060974121, "event": "recovery_step", "personality": "cautious", "step": 4, "outcome_type": "negative_surprise", "pre_rho": 0.1, "post_rho": 0.1, "delta_rho": 0.0}
+{"timestamp": 1765994810.232598, "elapsed": 0.02711319923400879, "event": "recovery_step", "personality": "cautious", "step": 5, "outcome_type": "normal", "pre_rho": 0.1, "post_rho": 0.1, "delta_rho": 0.0}
+{"timestamp": 1765994810.2331445, "elapsed": 0.02765965461730957, "event": "recovery_step", "personality": "cautious", "step": 6, "outcome_type": "normal", "pre_rho": 0.1, "post_rho": 0.1, "delta_rho": 0.0}
+{"timestamp": 1765994810.2337308, "elapsed": 0.028245925903320312, "event": "recovery_step", "personality": "cautious", "step": 7, "outcome_type": "normal", "pre_rho": 0.1, "post_rho": 0.1, "delta_rho": 0.0}
+{"timestamp": 1765994810.2337308, "elapsed": 0.028245925903320312, "event": "recovery_step", "personality": "cautious", "step": 8, "outcome_type": "normal", "pre_rho": 0.1, "post_rho": 0.1, "delta_rho": 0.0}
+{"timestamp": 1765994810.2347665, "elapsed": 0.0292816162109375, "event": "recovery_test_end", "personality": "cautious", "peak_rho": 0.1, "final_rho": 0.1, "recovery_amount": 0.0, "recovery_pct": 0.0, "rho_history": [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]}
+{"timestamp": 1765994810.2368283, "elapsed": 0.03134346008300781, "event": "recovery_test_start", "personality": "exploratory", "sequence_length": 8}
+{"timestamp": 1765994810.2368283, "elapsed": 0.03134346008300781, "event": "recovery_step", "personality": "exploratory", "step": 1, "outcome_type": "normal", "pre_rho": 0.0, "post_rho": 0.0, "delta_rho": 0.0}
+{"timestamp": 1765994810.2368283, "elapsed": 0.03134346008300781, "event": "recovery_step", "personality": "exploratory", "step": 2, "outcome_type": "negative_surprise", "pre_rho": 0.0, "post_rho": 0.0, "delta_rho": 0.0}
+{"timestamp": 1765994810.2380507, "elapsed": 0.03256583213806152, "event": "recovery_step", "personality": "exploratory", "step": 3, "outcome_type": "negative_surprise", "pre_rho": 0.0, "post_rho": 0.0, "delta_rho": 0.0}
+{"timestamp": 1765994810.2390592, "elapsed": 0.03357434272766113, "event": "recovery_step", "personality": "exploratory", "step": 4, "outcome_type": "negative_surprise", "pre_rho": 0.0, "post_rho": 0.0, "delta_rho": 0.0}
+{"timestamp": 1765994810.2390592, "elapsed": 0.03357434272766113, "event": "recovery_step", "personality": "exploratory", "step": 5, "outcome_type": "normal", "pre_rho": 0.0, "post_rho": 0.0, "delta_rho": 0.0}
+{"timestamp": 1765994810.2390592, "elapsed": 0.03357434272766113, "event": "recovery_step", "personality": "exploratory", "step": 6, "outcome_type": "normal", "pre_rho": 0.0, "post_rho": 0.0, "delta_rho": 0.0}
+{"timestamp": 1765994810.2400594, "elapsed": 0.03457450866699219, "event": "recovery_step", "personality": "exploratory", "step": 7, "outcome_type": "normal", "pre_rho": 0.0, "post_rho": 0.0, "delta_rho": 0.0}
+{"timestamp": 1765994810.2405305, "elapsed": 0.035045623779296875, "event": "recovery_step", "personality": "exploratory", "step": 8, "outcome_type": "normal", "pre_rho": 0.0, "post_rho": 0.0, "delta_rho": 0.0}
+{"timestamp": 1765994810.2415326, "elapsed": 0.03604769706726074, "event": "recovery_test_end", "personality": "exploratory", "peak_rho": 0.0, "final_rho": 0.0, "recovery_amount": 0.0, "recovery_pct": 0.0, "rho_history": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}
+{"timestamp": 1765994812.251675, "elapsed": 2.046190023422241, "event": "divergence_step", "personality": "cautious", "step": 1, "outcome_type": "normal", "rho": 0.1}
+{"timestamp": 1765994812.2530873, "elapsed": 2.047602415084839, "event": "divergence_step", "personality": "cautious", "step": 2, "outcome_type": "negative_surprise", "rho": 0.1}
+{"timestamp": 1765994812.2540915, "elapsed": 2.0486066341400146, "event": "divergence_step", "personality": "cautious", "step": 3, "outcome_type": "negative_surprise", "rho": 0.1}
+{"timestamp": 1765994812.2554116, "elapsed": 2.0499267578125, "event": "divergence_step", "personality": "cautious", "step": 4, "outcome_type": "normal", "rho": 0.1}
+{"timestamp": 1765994812.2564964, "elapsed": 2.051011562347412, "event": "divergence_step", "personality": "cautious", "step": 5, "outcome_type": "normal", "rho": 0.1}
+{"timestamp": 1765994812.2603543, "elapsed": 2.0548694133758545, "event": "divergence_step", "personality": "exploratory", "step": 1, "outcome_type": "normal", "rho": 0.0}
+{"timestamp": 1765994812.2619016, "elapsed": 2.0564167499542236, "event": "divergence_step", "personality": "exploratory", "step": 2, "outcome_type": "negative_surprise", "rho": 0.0}
+{"timestamp": 1765994812.2639768, "elapsed": 2.0584919452667236, "event": "divergence_step", "personality": "exploratory", "step": 3, "outcome_type": "negative_surprise", "rho": 0.0}
+{"timestamp": 1765994812.2650347, "elapsed": 2.0595498085021973, "event": "divergence_step", "personality": "exploratory", "step": 4, "outcome_type": "normal", "rho": 0.0}
+{"timestamp": 1765994812.2660346, "elapsed": 2.060549736022949, "event": "divergence_step", "personality": "exploratory", "step": 5, "outcome_type": "normal", "rho": 0.0}
+{"timestamp": 1765994812.2670336, "elapsed": 2.0615487098693848, "event": "divergence_analysis", "cautious_peak": 0.1, "exploratory_peak": 0.0, "ratio": 100000.00000000001}
+{"timestamp": 1765994814.283919, "elapsed": 4.078434228897095, "event": "protection_test_start", "threshold": 0.7}
+{"timestamp": 1765994814.2872484, "elapsed": 4.081763505935669, "event": "protection_step", "step": 1, "pre_rho": 0.1, "post_rho": 0.1, "in_protect": false}
+{"timestamp": 1765994814.2890973, "elapsed": 4.083612442016602, "event": "protection_step", "step": 2, "pre_rho": 0.1, "post_rho": 0.1, "in_protect": false}
+{"timestamp": 1765994814.2901871, "elapsed": 4.084702253341675, "event": "protection_step", "step": 3, "pre_rho": 0.1, "post_rho": 0.1, "in_protect": false}
+{"timestamp": 1765994814.2912402, "elapsed": 4.085755348205566, "event": "protection_step", "step": 4, "pre_rho": 0.1, "post_rho": 0.1, "in_protect": false}
+{"timestamp": 1765994814.2951598, "elapsed": 4.089674949645996, "event": "protection_step", "step": 5, "pre_rho": 0.1, "post_rho": 0.1, "in_protect": false}
+{"timestamp": 1765994814.2972577, "elapsed": 4.091772794723511, "event": "protection_test_end", "peak_rho": 0.1, "protect_mode_entered": false, "protect_mode_step": null, "rho_history": [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]}
