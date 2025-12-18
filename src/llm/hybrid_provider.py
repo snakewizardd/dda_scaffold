@@ -22,6 +22,7 @@ from dataclasses import dataclass
 import asyncio
 import re
 import httpx
+import json
 
 
 # =============================================================================
@@ -66,25 +67,33 @@ class PersonalityParams:
             "cautious": {"temp_range": (0.1, 0.5), "top_p_range": (0.5, 0.8)},
             "balanced": {"temp_range": (0.3, 0.9), "top_p_range": (0.7, 0.95)},
             "exploratory": {"temp_range": (0.7, 1.4), "top_p_range": (0.85, 1.0)},
+            "polymath": {"temp_range": (0.4, 0.7), "top_p_range": (0.8, 0.95)}, # Superhuman range
         }
         
         profile = profiles.get(personality_type, profiles["balanced"])
         
-        # Rigidity interpolation: high ρ → lower end of range
-        # This is the key insight: rigidity constrains cognitive exploration
         temp_low, temp_high = profile["temp_range"]
         top_p_low, top_p_high = profile["top_p_range"]
         
-        # Inverted interpolation: rho=0 → high end, rho=1 → low end
+        # Inverted interpolation: rho=0 -> high end, rho=1 -> low end
         openness = 1.0 - rho
         
+        # SUPERHUMAN LOGIC:
+        # If 'polymath', High Rigidity = High Precision (Low Temp) BUT High Creativity in phrasing (High Penalty).
+        # We want the agent to be "Conceptually Rigid" but "Rhetorically Flexible".
+        if personality_type == "polymath":
+             freq_penalty = 0.5 + (1.0 * rho) # Penalty INCREASES strongly with Rigidity (max 1.5)
+             pres_penalty = 0.2 + (0.5 * rho) # Presence also increases
+        else:
+             # Default "Collapse" behavior for primitive agents
+             freq_penalty = 0.5 * openness
+             pres_penalty = 0.3 * openness
+
         return cls(
             temperature=temp_low + openness * (temp_high - temp_low),
             top_p=top_p_low + openness * (top_p_high - top_p_low),
-            # High rigidity → allow repetition (safe patterns)
-            frequency_penalty=0.5 * openness,
-            # Low rigidity → encourage novelty
-            presence_penalty=0.3 * openness,
+            frequency_penalty=freq_penalty,
+            presence_penalty=pres_penalty,
         )
 
 
@@ -103,7 +112,7 @@ class HybridProvider:
         lm_studio_model: str = "openai/gpt-oss-20b",
         ollama_url: str = "http://localhost:11434",
         embed_model: str = "nomic-embed-text",
-        timeout: float = 120.0
+        timeout: float = 300.0
     ):
         self.lm_studio_url = lm_studio_url.rstrip("/")
         self.lm_studio_model = lm_studio_model
@@ -182,15 +191,102 @@ class HybridProvider:
         if seed is not None:
             payload["seed"] = seed
         
-        async with httpx.AsyncClient(timeout=self.timeout) as client:
-            response = await client.post(
-                f"{self.lm_studio_url}/v1/chat/completions",
-                json=payload
-            )
-            response.raise_for_status()
-            data = response.json()
+        try:
+            async with httpx.AsyncClient(timeout=self.timeout) as client:
+                response = await client.post(
+                    f"{self.lm_studio_url}/v1/chat/completions",
+                    json=payload
+                )
+                response.raise_for_status()
+                data = response.json()
+                
+            return data["choices"][0]["message"]["content"]
             
-        return data["choices"][0]["message"]["content"]
+        except httpx.ReadTimeout:
+            raise TimeoutError(f"Model generation timed out after {self.timeout}s. Is the model loaded in LM Studio?")
+        except httpx.ConnectError:
+            raise ConnectionError(f"Could not connect to {self.lm_studio_url}. Is LM Studio running?")
+        except Exception as e:
+            raise RuntimeError(f"LLM Provider Error: {type(e).__name__} - {str(e)}")
+
+    async def stream(
+        self,
+        prompt: str,
+        temperature: float = 0.7,
+        max_tokens: int = 512,
+        top_p: float = 0.9,
+        frequency_penalty: float = 0.0,
+        presence_penalty: float = 0.0,
+        system_prompt: Optional[str] = None,
+        stop: Optional[List[str]] = None,
+        seed: Optional[int] = None,
+        personality_params: Optional[PersonalityParams] = None,
+    ):
+        """
+        Stream tokens from LLM using SSE (Server-Sent Events).
+        """
+        if personality_params:
+            temperature = personality_params.temperature
+            top_p = personality_params.top_p
+            frequency_penalty = personality_params.frequency_penalty
+            presence_penalty = personality_params.presence_penalty
+        
+        messages = []
+        if system_prompt:
+            messages.append({"role": "system", "content": system_prompt})
+        messages.append({"role": "user", "content": prompt})
+        
+        payload = {
+            "model": self.lm_studio_model,
+            "messages": messages,
+            "temperature": float(temperature),
+            "max_tokens": int(max_tokens),
+            "stream": True,
+            "top_p": float(top_p) if top_p is not None else 1.0,
+            "frequency_penalty": float(frequency_penalty) if frequency_penalty is not None else 0.0,
+            "presence_penalty": float(presence_penalty) if presence_penalty is not None else 0.0,
+        }
+        
+        if stop:
+            payload["stop"] = stop
+        if seed is not None:
+            payload["seed"] = seed
+            
+        try:
+            async with httpx.AsyncClient(timeout=self.timeout) as client:
+                async with client.stream("POST", f"{self.lm_studio_url}/v1/chat/completions", json=payload) as response:
+                    response.raise_for_status()
+                    
+                    async for line in response.aiter_lines():
+                        if line.startswith("data: "):
+                            data = line[6:]  # Strip "data: "
+                            if data.strip() == "[DONE]":
+                                break
+                            
+                            try:
+                                chunk = json.loads(data)
+                                if "choices" in chunk and len(chunk["choices"]) > 0:
+                                    delta = chunk["choices"][0].get("delta", {})
+                                    
+                                    # Handle content
+                                    content = delta.get("content", "")
+                                    if content:
+                                        yield content
+                                        
+                                    # Handle reasoning/thinking (DeepSeek/o1 style)
+                                    reasoning = delta.get("reasoning_content") or delta.get("reasoning")
+                                    if reasoning:
+                                        yield f"__THOUGHT__{reasoning}"
+                                        
+                            except json.JSONDecodeError:
+                                continue
+                                
+        except httpx.ReadTimeout:
+            raise TimeoutError(f"Model generation timed out after {self.timeout}s.")
+        except httpx.ConnectError:
+            raise ConnectionError(f"Could not connect to {self.lm_studio_url}.")
+        except Exception as e:
+            raise RuntimeError(f"Stream Error: {type(e).__name__} - {str(e)}")
 
     async def complete_with_rigidity(
         self,
