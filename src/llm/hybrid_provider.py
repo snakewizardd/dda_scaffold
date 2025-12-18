@@ -67,25 +67,33 @@ class PersonalityParams:
             "cautious": {"temp_range": (0.1, 0.5), "top_p_range": (0.5, 0.8)},
             "balanced": {"temp_range": (0.3, 0.9), "top_p_range": (0.7, 0.95)},
             "exploratory": {"temp_range": (0.7, 1.4), "top_p_range": (0.85, 1.0)},
+            "polymath": {"temp_range": (0.4, 0.7), "top_p_range": (0.8, 0.95)}, # Superhuman range
         }
         
         profile = profiles.get(personality_type, profiles["balanced"])
         
-        # Rigidity interpolation: high ρ → lower end of range
-        # This is the key insight: rigidity constrains cognitive exploration
         temp_low, temp_high = profile["temp_range"]
         top_p_low, top_p_high = profile["top_p_range"]
         
-        # Inverted interpolation: rho=0 → high end, rho=1 → low end
+        # Inverted interpolation: rho=0 -> high end, rho=1 -> low end
         openness = 1.0 - rho
         
+        # SUPERHUMAN LOGIC:
+        # If 'polymath', High Rigidity = High Precision (Low Temp) BUT High Creativity in phrasing (High Penalty).
+        # We want the agent to be "Conceptually Rigid" but "Rhetorically Flexible".
+        if personality_type == "polymath":
+             freq_penalty = 0.5 + (1.0 * rho) # Penalty INCREASES strongly with Rigidity (max 1.5)
+             pres_penalty = 0.2 + (0.5 * rho) # Presence also increases
+        else:
+             # Default "Collapse" behavior for primitive agents
+             freq_penalty = 0.5 * openness
+             pres_penalty = 0.3 * openness
+
         return cls(
             temperature=temp_low + openness * (temp_high - temp_low),
             top_p=top_p_low + openness * (top_p_high - top_p_low),
-            # High rigidity → allow repetition (safe patterns)
-            frequency_penalty=0.5 * openness,
-            # Low rigidity → encourage novelty
-            presence_penalty=0.3 * openness,
+            frequency_penalty=freq_penalty,
+            presence_penalty=pres_penalty,
         )
 
 
