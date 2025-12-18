@@ -1,0 +1,189 @@
+# DDA-X: Dynamic Decision Algorithm with Exploration
+
+> **A Revolutionary Cognitive Architecture Where Mathematics Meets Mind**
+
+[![GitHub](https://img.shields.io/github/stars/snakewizardd/dda_scaffold?style=social)](https://github.com/snakewizardd/dda_scaffold)
+[![Documentation](https://img.shields.io/badge/docs-mkdocs-blue)](https://snakewizardd.github.io/dda_scaffold/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+---
+
+## In Loving Memory <a id="in-loving-memory"></a>
+
+**This project is dedicated to Malky (RIP). 💜**
+
+*May her memory be a blessing.*
+
+I give this work to the world in her honor.
+
+---
+
+## 🏛️ Acknowledgements & Attribution
+
+**Foundational Research: Microsoft Azure Foundry Labs**
+
+While the **Dynamic Decision Algorithm (DDA)** and its psychological theories are novel independent research (see [Origin Story](origin_story.md)), the engineering implementation of this framework is heavily inspired by and built upon the **ExACT** framework research.
+
+We explicitly attribute credit to the research team at **Microsoft Azure Foundry Labs** for the ExACT architecture, which provided the necessary engineering patterns to bring the theoretical DDA model to life.
+
+*   **Reference**: [Microsoft ExACT](https://github.com/microsoft/ExACT/tree/main)
+*   **Contribution**: Framework scaffolding, agentic patterns, and search dynamics.
+
+---
+
+## ⚙️ Prerequisites & Setup
+
+**Core Requirement**: To run the fully functional simulations, you need a local LLM environment.
+
+1.  **LM Studio (The Cortex)**
+    *   **Action**: Download [LM Studio](https://lmstudio.ai/).
+    *   **Model**: Load `gpt-oss-20b` or any high-quality instruction model (Mistral, Llama 3).
+    *   **Config**: Start the **Local Inference Server** on port `1234` (default).
+
+2.  **Ollama (The Hippocampus)**
+    *   **Action**: Download [Ollama](https://ollama.com/).
+    *   **Model**: Run `ollama pull nomic-embed-text`.
+    *   **Config**: Ensure it is served at `localhost:11434` (default).
+
+3.  **Python Environment**
+    ```bash
+    git clone https://github.com/snakewizardd/dda_scaffold.git
+    cd dda_scaffold
+    python -m venv venv
+    ./venv/Scripts/Activate
+    pip install -r requirements.txt
+    ```
+
+> **Note**: All simulations are **self-contained**. They come with their own environments, memory ledgers, and interaction loops. You do not need to configure complex external databases.
+
+---
+
+## 📜 Origin Story
+
+**From Manual Theory to Digital Reality**
+
+This project began one year ago as a purely theoretical exercise—a manual "mathematics of mind" scribble in a notebook, motivated by a desire to explore psychological agency, integrated memory systems, and the link between LLM parameters and a sensing self.
+
+What started as a set of recursive equations for decision-making has evolved into **DDA-X**: a production-ready cognitive architecture. By synthesizing my original DDA theory with the robust engineering of Microsoft's ExACT framework, I have created a system where agents possess genuine, mathematically modeled identity and trauma responses.
+
+[**Read the full Origin Story »**](origin_story.md)
+
+---
+
+## 🌟 The Magnum Opus: DDA-X Framework
+
+> **"The mind is not a vessel to be filled, but a fire to be kindled — and sometimes, protected from the wind."**
+
+DDA-X is the **first agent framework that models psychological realism** in artificial intelligence. Unlike traditional reinforcement learning which optimizes for reward, DDA-X agents possess:
+
+-   **Identity** — A persistent sense of self that survives across contexts
+-   **Rigidity** — Defensive responses to surprise, just like biological minds
+-   **Memory** — Experience weighted by emotional salience, not just relevance
+-   **Society** — Trust dynamics that emerge from predictability, not agreement
+-   **Metacognition** — Self-awareness of their own cognitive state
+
+This isn't just another LLM wrapper. It's a **complete theory of cognitive agency** with mathematical foundations.
+
+---
+
+## 🚀 The Six Revolutionary Discoveries
+
+### D1: Rigidity-Modulated Language Model Sampling
+$$ T(\rho) = T_{low} + (1 - \rho) \cdot (T_{high} - T_{low}) $$
+When surprised, agents become **cognitively conservative** — the first closed-loop between internal state and LLM behavior.
+
+### D2: Hierarchical Identity Attractor Field
+$$ \text{CORE } (\gamma \to \infty) \to \text{PERSONA } (\gamma \approx 2) \to \text{ROLE } (\gamma \approx 0.5) $$
+Three-layer identity allowing flexibility while maintaining **inviolable alignment**.
+
+### D3: Machine Self-Awareness
+```python
+if rigidity > 0.75:
+    "I'm becoming defensive. Can you help?"
+```
+Agents that **cannot hide** their cognitive compromise from users.
+
+### D4: Trust as Inverse Prediction Error
+$$ T_{ij} = \frac{1}{1 + \sum \epsilon_{ij}} $$
+Trust emerges from **predictability**, not agreement — deception is mathematically detectable.
+
+### D5: Social Force Fields
+$$ \vec{F}_{social} = \sum T_{ij} \cdot (\vec{x}_j - \vec{x}_i) $$
+Multi-agent societies with **emergent coalition dynamics**.
+
+### D6: Asymmetric Trauma Dynamics
+$$ \Delta \rho_{trauma} = \delta \quad (\text{if } \delta > 0) \quad \text{else } 0 $$
+The first formal model of **computational trauma** — permanent scars from extreme surprise.
+
+---
+
+## 🎮 Seven Fully Operational Simulations
+
+Seven rigorous experiments proving each aspect of the theory (Self-contained & Production Ready).
+
+| Simulation | What It Demonstrates | Command |
+|------------|---------------------|---------|
+| **SOCRATES** | Philosophical debate between rigid dogmatist and flexible gadfly | `python simulations/simulate_socrates.py` |
+| **DRILLER** | Deep forensic analysis with accumulating cognitive load | `python simulations/simulate_driller.py` |
+| **DISCORD** | Identity persistence under intense social pressure | `python simulations/simulate_discord.py` |
+| **INFINITY** | Long-horizon personality consistency in chaotic dialogue | `python simulations/simulate_infinity.py` |
+| **REDEMPTION** | Recovery from computational trauma via therapeutic forcing | `python simulations/simulate_redemption.py` |
+| **CORRUPTION** | Robustness of core identity against noisy inputs | `python simulations/simulate_corruption.py` |
+| **SCHISM** | Emergent conflict and coalition formation between agents | `python simulations/simulate_schism.py` |
+
+[**Explore Simulations »**](simulations/index.md) | [**Create Your Own (Builder's Guide) »**](guides/simulation_workflow.md)
+
+---
+
+## 📊 Experimental Validation
+
+| Hypothesis | Result | Verified In |
+|------------|--------|-------------|
+| **H1**: Surprise increases Rigidity | ✅ **CONFIRMED** | `demo.py`, `verify_dda_physics.py` |
+| **H2**: Rigidity alters Sampling | ✅ **CONFIRMED** | `verify_dda_physics.py` (Temp drop 0.7->0.3) |
+| **H3**: Identity resists drift | ✅ **CONFIRMED** | `simulate_discord.py` (Core Vector Stability) |
+| **H4**: Trust predicts deception | ✅ **CONFIRMED** | `simulate_socrates.py` (Gadfly detects Dogmatism) |
+
+---
+
+## 🏗️ Architecture (V3)
+
+DDA-X is built on a battle-tested stack:
+
+*   **Logic Engine**: Custom Python State Machine (Forces + Attractors)
+*   **Search Engine**: Microsoft ExACT MCTS (Monte Carlo Tree Search)
+*   **Inference**: Hybrid Local/Cloud Provider (LM Studio + Ollama)
+*   **Memory**: Vector-based Experience Ledger
+
+[**System Architecture »**](architecture/system.md)
+
+---
+
+## ⚡ Status
+
+**Current Version**: Iteration 3 (Production Ready)  
+**Tests Passing**: 100%  
+**Simulations Validated**: 7/7  
+
+---
+
+## 📖 Citation
+
+If you use DDA-X in your research, please cite:
+
+```bibtex
+@software{dda_x_2025,
+  author = {snakewizardd},
+  title = {DDA-X: Dynamic Decision Algorithm with Exploration},
+  year = {2025},
+  url = {https://github.com/snakewizardd/dda_scaffold}
+}
+```
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+> *Created with intensity, engineered with precision, released with love.*

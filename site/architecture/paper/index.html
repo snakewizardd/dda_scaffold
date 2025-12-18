@@ -1,0 +1,2347 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Advanced Agentic Decision Framework.">
+      
+      
+        <meta name="author" content="snakewizardd">
+      
+      
+        <link rel="canonical" href="https://snakewizardd.github.io/dda_scaffold/architecture/paper/">
+      
+      
+        <link rel="prev" href="../society/">
+      
+      
+        <link rel="next" href="../../research/future/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Whitepaper (v0.1) - DDA-X: The Magnum Opus</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#dda-x-rigidity-dampened-exploration-for-agentic-ai" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="DDA-X: The Magnum Opus" class="md-header__button md-logo" aria-label="DDA-X: The Magnum Opus" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DDA-X: The Magnum Opus
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Whitepaper (v0.1)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/snakewizardd/dda_scaffold" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    snakewizardd/dda_scaffold
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="DDA-X: The Magnum Opus" class="md-nav__button md-logo" aria-label="DDA-X: The Magnum Opus" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    DDA-X: The Magnum Opus
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/snakewizardd/dda_scaffold" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    snakewizardd/dda_scaffold
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prologue
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Prologue
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../origin_story/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Origin Story
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The Masterwork
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    The Masterwork
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/discoveries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Novel Discoveries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core_concepts/rigidity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core_concepts/identity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identity Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core_concepts/forces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decision Dynamics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../simulations/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The Simulations
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    The Simulations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../simulations/SIMULATIONS_COMPLETE_ARCHITECTURE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Complete Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../simulations/SIMULATIONS_OPERATIONAL_STATUS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operational Status
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/simulation_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Builder's Guide (Create Your Own)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    System Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tech Stack & System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ExACT Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../society/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Agent Society
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Whitepaper (v0.1)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Whitepaper (v0.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#abstract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Abstract
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introduction
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-contributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Contributions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-related-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Related Work
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Related Work">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-search-augmented-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Search-Augmented Agents
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-agent-self-reflection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Agent Self-Reflection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-identity-and-personality-in-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Identity and Personality in Agents
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Method
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Method">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-state-space-and-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 State Space and Identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-adaptive-rigidity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Adaptive Rigidity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-dda-x-action-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 DDA-X Action Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-personality-profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Personality Profiles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-protection-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Protection Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-memory-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 Memory System
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-implementation-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Implementation Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Implementation Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Core Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-key-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Key Classes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-integration-with-exact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Integration with ExACT
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-experiments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Experiments
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Experiments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-experimental-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Experimental Setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-research-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Research Questions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Results
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-discussion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Discussion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Discussion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-when-rigidity-helps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 When Rigidity Helps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-when-rigidity-hurts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 When Rigidity Hurts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-theoretical-implications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Theoretical Implications
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-a-symbol-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix A: Symbol Table
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-b-algorithm-pseudocode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix B: Algorithm Pseudocode
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendix B: Algorithm Pseudocode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#algorithm-1-dda-x-action-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Algorithm 1: DDA-X Action Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#algorithm-2-rigidity-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Algorithm 2: Rigidity Update
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Research & Future
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Research & Future
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/future/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap (Iter 4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#abstract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Abstract
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introduction
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-contributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Contributions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-related-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Related Work
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Related Work">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-search-augmented-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Search-Augmented Agents
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-agent-self-reflection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Agent Self-Reflection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-identity-and-personality-in-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Identity and Personality in Agents
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Method
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Method">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-state-space-and-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 State Space and Identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-adaptive-rigidity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Adaptive Rigidity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-dda-x-action-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 DDA-X Action Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-personality-profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Personality Profiles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-protection-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Protection Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-memory-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 Memory System
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-implementation-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Implementation Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Implementation Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Core Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-key-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Key Classes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-integration-with-exact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Integration with ExACT
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-experiments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Experiments
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Experiments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-experimental-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Experimental Setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-research-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Research Questions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Results
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-discussion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Discussion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Discussion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-when-rigidity-helps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 When Rigidity Helps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-when-rigidity-hurts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 When Rigidity Hurts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-theoretical-implications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Theoretical Implications
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-a-symbol-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix A: Symbol Table
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-b-algorithm-pseudocode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix B: Algorithm Pseudocode
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendix B: Algorithm Pseudocode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#algorithm-1-dda-x-action-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Algorithm 1: DDA-X Action Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#algorithm-2-rigidity-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Algorithm 2: Rigidity Update
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="dda-x-rigidity-dampened-exploration-for-agentic-ai">DDA-X: Rigidity-Dampened Exploration for Agentic AI</h1>
+<p><strong>Dynamic Decision Algorithm with Exploration: A Framework for Identity-Preserving Agents</strong></p>
+<hr />
+<h2 id="abstract">Abstract</h2>
+<p>Current approaches to agentic AI treat surprise as a learning signal: unexpected outcomes trigger reflection, exploration, and adaptation. We propose an alternative paradigm where <strong>surprise triggers rigidity</strong> — a protective response that reduces exploration and strengthens identity persistence. We introduce DDA-X (Dynamic Decision Algorithm with Exploration), a novel agent framework that combines Monte Carlo Tree Search with force-balanced state dynamics and adaptive rigidity. Our key contributions are: (1) a continuous state-space representation with an identity attractor that models "who the agent is," (2) a rigidity mechanism where prediction error increases defensiveness and <em>dampens</em> exploration, and (3) a novel action selection formula that fuses force-alignment with UCT-style exploration modulated by rigidity. Unlike prior work that treats all agents identically, DDA-X enables configurable personality profiles (cautious, exploratory, traumatized) through parameter tuning. We provide a complete implementation architecture and discuss implications for building agents that balance task completion with self-preservation.</p>
+<p><strong>Keywords:</strong> autonomous agents, Monte Carlo Tree Search, identity persistence, adaptive rigidity, LLM agents</p>
+<hr />
+<h2 id="1-introduction">1. Introduction</h2>
+<p>Recent advances in vision-language models (VLMs) have enabled sophisticated autonomous agents capable of navigating complex environments such as web browsers (Koh et al., 2024a; Zhou et al., 2024), operating systems (Wang et al., 2024), and software development (Yang et al., 2024). These agents typically employ reinforcement learning principles or tree search methods to select actions that maximize task success.</p>
+<p>A common assumption in this paradigm is that <strong>surprise is informative</strong> — when an agent's prediction differs from reality, this discrepancy drives learning and exploration. This assumption underlies TD-learning (Sutton &amp; Barto, 2018), curiosity-driven exploration (Pathak et al., 2017), and recent work on reflective agents (Yu et al., 2024).</p>
+<p>We challenge this assumption with a simple observation: <strong>biological agents often respond to surprise with rigidity, not curiosity</strong>. A startled organism contracts, retreats, or freezes. A threatened human becomes defensive, not exploratory. This is not a bug — it's a survival mechanism.</p>
+<p>We propose <strong>DDA-X</strong> (Dynamic Decision Algorithm with Exploration), a framework that models agents as systems balancing two competing forces:</p>
+<ol>
+<li><strong>Identity persistence</strong>: the drive to remain coherent and self-consistent</li>
+<li><strong>Reality integration</strong>: the pressure to update beliefs based on environmental feedback</li>
+</ol>
+<p>The signature mechanism of DDA-X is that <strong>surprise increases rigidity</strong>, which in turn <em>dampens exploration</em>. When an agent's predictions are violated, it becomes more conservative, not more curious. This creates qualitatively different agent behaviors that may be desirable in high-stakes, safety-critical, or adversarial environments.</p>
+<h3 id="11-contributions">1.1 Contributions</h3>
+<ol>
+<li>
+<p><strong>A continuous state-space agent model</strong> with an identity attractor x* and force-balanced dynamics (Section 3.1)</p>
+</li>
+<li>
+<p><strong>Adaptive rigidity</strong> ρ ∈ [0,1] that increases with prediction error and dampens exploration (Section 3.2)</p>
+</li>
+<li>
+<p><strong>DDA-X action selection</strong>: a novel formula combining force-alignment with rigidity-modulated UCT exploration (Section 3.3)</p>
+</li>
+<li>
+<p><strong>Personality profiles</strong>: configurable agent archetypes (cautious, exploratory, traumatized) via parameter tuning (Section 3.4)</p>
+</li>
+<li>
+<p><strong>Complete implementation architecture</strong> with class blueprints for practical deployment (Section 4)</p>
+</li>
+</ol>
+<hr />
+<h2 id="2-related-work">2. Related Work</h2>
+<h3 id="21-search-augmented-agents">2.1 Search-Augmented Agents</h3>
+<p>Monte Carlo Tree Search (MCTS) has been successfully applied to agentic tasks, balancing exploration and exploitation via the Upper Confidence Bound for Trees (UCT) formula (Kocsis &amp; Szepesvári, 2006; Silver et al., 2017). Recent work extends MCTS with language model priors (Yu et al., 2023) and contrastive reflection (Yu et al., 2024).</p>
+<p><strong>ExACT</strong> (Yu et al., 2024) introduces Reflective MCTS (R-MCTS), which combines tree search with a reflection-improvement loop: after each episode, the agent identifies "surprising" transitions (where |V(s') - Q(s,a)| is large), generates lessons via LLM prompting, and retrieves relevant reflections for future tasks. A multi-agent debate mechanism provides more calibrated state evaluation.</p>
+<p>Our work extends this paradigm with a crucial inversion: rather than using surprise to drive reflection and exploration, we use surprise to <em>increase rigidity and dampen exploration</em>.</p>
+<h3 id="22-agent-self-reflection">2.2 Agent Self-Reflection</h3>
+<p>Self-reflection has emerged as a powerful technique for improving LLM agents (Shinn et al., 2023; Madaan et al., 2023). These methods typically prompt agents to identify mistakes and generate corrective guidance for future attempts.</p>
+<p>DDA-X incorporates reflection through our memory system (the "ledger"), but weights retrieved memories by <strong>prediction error salience</strong> — surprising experiences are more readily recalled, akin to trauma weighting in cognitive systems.</p>
+<h3 id="23-identity-and-personality-in-agents">2.3 Identity and Personality in Agents</h3>
+<p>While prior work has explored persona-conditioned agents (Park et al., 2023), these approaches typically implement personality through prompt engineering rather than dynamical systems. DDA-X models identity as an <strong>attractor in state space</strong> with quantitative stiffness, enabling formal analysis of identity persistence and will.</p>
+<hr />
+<h2 id="3-method">3. Method</h2>
+<h3 id="31-state-space-and-identity">3.1 State Space and Identity</h3>
+<p>We model the agent's internal state as a continuous vector in decision-space:</p>
+<div class="arithmatex">\[\mathbf{x}_t \in \mathbb{R}^d\]</div>
+<p>This vector encodes the agent's current stance, beliefs, goals, and affect. Unlike discrete state representations in MCTS, this continuous space enables smooth dynamics and gradient-based analysis.</p>
+<p><strong>Identity Attractor.</strong> We define a fixed point x* ∈ ℝ^d representing "who the agent is" — its core values, preferences, and characteristic behaviors. The agent experiences a restoring force toward this attractor:</p>
+<div class="arithmatex">\[\mathbf{F}_{id}(t) = \gamma(\mathbf{x}^* - \mathbf{x}_t)\]</div>
+<p>where γ ≥ 0 is the <strong>identity stiffness</strong>.</p>
+<p><strong>Truth Channel.</strong> Environmental observations I_t are encoded into state space and create a force toward the observed reality:</p>
+<div class="arithmatex">\[\mathbf{F}_T(t) = T(I_t, \Delta I_t) - \mathbf{x}_t\]</div>
+<p>where T(·) is an encoder function (e.g., LLM embedding followed by linear projection).</p>
+<p><strong>Reflection Channel.</strong> Available actions A_t and retrieved memories create a force toward preferred action directions:</p>
+<div class="arithmatex">\[\mathbf{F}_R(t) = R(\mathcal{A}_t, \Phi_t, \mathcal{L}) - \mathbf{x}_t\]</div>
+<p><strong>State Update.</strong> The agent's state evolves according to:</p>
+<div class="arithmatex">\[\mathbf{x}_{t+1} = \mathbf{x}_t + k_{eff} \left[ \gamma(\mathbf{x}^* - \mathbf{x}_t) + m_t(\mathbf{F}_T + \mathbf{F}_R) \right]\]</div>
+<p>where:
+- k_eff is the <strong>effective step size</strong> (decreases with rigidity)
+- m_t is the <strong>external pressure gain</strong></p>
+<h3 id="32-adaptive-rigidity">3.2 Adaptive Rigidity</h3>
+<p>The core innovation of DDA-X is that <strong>surprise increases rigidity</strong>, which then dampens both state updates and exploration.</p>
+<p><strong>Prediction Error.</strong> After taking action a*<em t_1="t+1">t, the agent observes outcome o</em> and computes:</p>
+<div class="arithmatex">\[\epsilon_t = \|\mathbf{x}^{pred}_{t+1} - \mathbf{x}^{actual}_{t+1}\|_2\]</div>
+<p>where x^{pred} was the agent's expected next state and x^{actual} is the encoded outcome.</p>
+<p><strong>Rigidity Update.</strong> Rigidity ρ ∈ [0,1] evolves according to:</p>
+<div class="arithmatex">\[\rho_{t+1} = \text{clip}\left( \rho_t + \alpha \left[ \sigma\left(\frac{\epsilon_t - \epsilon_0}{s}\right) - \frac{1}{2} \right], 0, 1 \right)\]</div>
+<p>where:
+- σ(·) is the sigmoid function
+- ε₀ is the surprise threshold ("when surprise becomes threatening")
+- α is the rigidity learning rate
+- s is the sigmoid sensitivity</p>
+<p>This formulation is <strong>bidirectional</strong>: low error (ε &lt; ε₀) causes rigidity to <em>decrease</em>, enabling recovery when situations are predictable.</p>
+<p><strong>Effective Openness.</strong> Rigidity modulates the agent's responsiveness:</p>
+<div class="arithmatex">\[k_{eff} = k_{base}(1 - \rho_t)\]</div>
+<p>High rigidity → low k_eff → smaller state updates → more identity-centric behavior.</p>
+<h3 id="33-dda-x-action-selection">3.3 DDA-X Action Selection</h3>
+<p>We now present our novel action selection formula, which fuses force-based alignment with exploration.</p>
+<p><strong>Action Directions.</strong> Each discrete action a ∈ A_t has a direction in state space:</p>
+<div class="arithmatex">\[\hat{\mathbf{d}}(a) \in \mathbb{R}^d, \quad \|\hat{\mathbf{d}}(a)\| = 1\]</div>
+<p><strong>Desired Movement.</strong> The net force on the agent defines a desired movement direction:</p>
+<div class="arithmatex">\[\Delta\mathbf{x}_t = \gamma(\mathbf{x}^* - \mathbf{x}_t) + m_t(\mathbf{F}_T + \mathbf{F}_R)\]</div>
+<p><strong>DDA-X Selection Formula.</strong> We select actions by maximizing:</p>
+<div class="arithmatex">\[\boxed{a^*_t = \arg\max_{a \in \mathcal{A}_t} \left[ \underbrace{\cos(\Delta\mathbf{x}_t, \hat{\mathbf{d}}(a))}_{\text{DDA alignment}} + \underbrace{c \cdot P(a|s) \cdot \frac{\sqrt{N(s)}}{1 + N(s,a)}}_{\text{UCT exploration}} \cdot \underbrace{(1 - \rho_t)}_{\text{rigidity dampening}} \right]}\]</div>
+<p>This formula has three components:</p>
+<ol>
+<li><strong>DDA alignment</strong>: prefer actions aligned with the force-balanced desired direction</li>
+<li><strong>UCT exploration</strong>: the standard MCTS exploration bonus (Kocsis &amp; Szepesvári, 2006)</li>
+<li><strong>Rigidity dampening</strong>: <strong>the exploration bonus is multiplied by (1 - ρ)</strong></li>
+</ol>
+<p>The third component is our key contribution: when surprise is high (ρ → 1), exploration is suppressed. The agent becomes conservative, preferring actions aligned with its current trajectory rather than exploring novel options.</p>
+<h3 id="34-personality-profiles">3.4 Personality Profiles</h3>
+<p>Unlike prior agent frameworks where all instances behave identically, DDA-X enables diverse personalities through parameter configuration:</p>
+<table>
+<thead>
+<tr>
+<th>Profile</th>
+<th>γ</th>
+<th>ε₀</th>
+<th>α</th>
+<th>ρ_init</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cautious</strong></td>
+<td>2.0</td>
+<td>0.2</td>
+<td>0.2</td>
+<td>0.0</td>
+<td>Strong identity, low surprise threshold, fast rigidity ramp</td>
+</tr>
+<tr>
+<td><strong>Exploratory</strong></td>
+<td>0.5</td>
+<td>0.6</td>
+<td>0.05</td>
+<td>0.0</td>
+<td>Weak identity, high surprise tolerance, slow rigidity change</td>
+</tr>
+<tr>
+<td><strong>Traumatized</strong></td>
+<td>1.5</td>
+<td>0.1</td>
+<td>0.3</td>
+<td>0.4</td>
+<td>Hair-trigger defensiveness, elevated baseline rigidity</td>
+</tr>
+</tbody>
+</table>
+<p>These profiles emerge naturally from the mathematical framework without ad-hoc behavioral rules.</p>
+<h3 id="35-protection-mode">3.5 Protection Mode</h3>
+<p>When rigidity exceeds a threshold, the agent can enter <strong>protection mode</strong>:</p>
+<div class="arithmatex">\[m_{protect}(\rho) = m_0(1 - \rho) + m_{min}\]</div>
+<p>In protection mode, the agent:
+- Restricts its action set to safe defaults
+- Increases identity pull (higher γ)
+- May request clarification rather than acting</p>
+<p>This models defensive behavior under threat without requiring explicit behavioral rules.</p>
+<h3 id="36-memory-system">3.6 Memory System</h3>
+<p>We extend standard reflection databases with <strong>surprise-weighted retrieval</strong>:</p>
+<div class="arithmatex">\[\text{score}(entry) = \underbrace{\text{sim}(\mathbf{c}_{now}, \mathbf{c}_t)}_{\text{relevance}} \cdot \underbrace{e^{-\lambda_r(now - t)}}_{\text{recency}} \cdot \underbrace{(1 + \lambda_\epsilon \cdot \epsilon_t)}_{\text{salience}}\]</div>
+<p>Experiences with high prediction error (surprising outcomes) are more readily retrieved, implementing a form of trauma weighting.</p>
+<hr />
+<h2 id="4-implementation-architecture">4. Implementation Architecture</h2>
+<p>We provide a complete blueprint for implementing DDA-X. The architecture integrates with existing LLM and browser automation frameworks.</p>
+<h3 id="41-core-components">4.1 Core Components</h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>dda-x/
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── src/
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│   ├── core/
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│   │   ├── state.py          # DDAState, ActionDirection
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│   │   ├── forces.py         # IdentityPull, TruthChannel, ReflectionChannel
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│   │   └── decision.py       # DDADecisionMaker
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│   ├── search/
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│   │   ├── tree.py           # DDANode, DDASearchTree
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│   │   └── mcts.py           # Search algorithm
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│   ├── memory/
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│   │   ├── ledger.py         # ExperienceLedger
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│   │   └── retriever.py      # FAISS-based retrieval
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│   └── agent.py              # DDAXAgent
+</span></code></pre></div>
+<h3 id="42-key-classes">4.2 Key Classes</h3>
+<p><strong>DDAState</strong> maintains the agent's continuous state vector x, identity attractor x*, rigidity ρ, and parameters.</p>
+<p><strong>DDADecisionMaker</strong> implements the DDA-X selection formula, computing alignment scores and rigidity-dampened exploration bonuses.</p>
+<p><strong>DDASearchTree</strong> extends standard MCTS with DDA state tracking at each node, enabling rigidity to evolve during tree traversal.</p>
+<p><strong>ExperienceLedger</strong> stores experiences with prediction error annotations and implements surprise-weighted retrieval.</p>
+<h3 id="43-integration-with-exact">4.3 Integration with ExACT</h3>
+<p>DDA-X is designed to be compatible with existing R-MCTS implementations. Key integration points:</p>
+<ol>
+<li><strong>Value function</strong>: ExACT's multi-agent debate can be used directly for V(s) estimation</li>
+<li><strong>Reflection generation</strong>: ExACT's contrastive reflection prompts can populate our ledger</li>
+<li><strong>Environment interface</strong>: Same browser automation as VisualWebArena</li>
+</ol>
+<p>The primary modification is replacing UCT selection with DDA-X selection and adding rigidity tracking.</p>
+<hr />
+<h2 id="5-experiments">5. Experiments</h2>
+<p><em>[PLACEHOLDER: Experiments section to be completed in v0.1]</em></p>
+<h3 id="51-experimental-setup">5.1 Experimental Setup</h3>
+<p>We plan to evaluate DDA-X on VisualWebArena (Koh et al., 2024a), a benchmark of 910 web navigation tasks across three environments (Classifieds, Reddit, Shopping).</p>
+<p><strong>Baselines:</strong>
+- ReACT (Yao et al., 2023): Direct prompting without search
+- MCTS: Standard Monte Carlo Tree Search
+- R-MCTS (Yu et al., 2024): Reflective MCTS with multi-agent debate</p>
+<p><strong>Metrics:</strong>
+- Task success rate
+- Token consumption
+- Rigidity dynamics (ρ evolution over episodes)
+- Personality differentiation (behavioral variance across profiles)</p>
+<h3 id="52-research-questions">5.2 Research Questions</h3>
+<ol>
+<li>Does rigidity-dampened exploration improve performance on adversarial or deceptive tasks?</li>
+<li>Do different personality profiles exhibit measurably different behaviors?</li>
+<li>How does the protect mode threshold affect success/failure tradeoffs?</li>
+<li>Is surprise-weighted memory retrieval more effective than uniform retrieval?</li>
+</ol>
+<h3 id="53-results">5.3 Results</h3>
+<p><em>[To be completed with empirical data]</em></p>
+<hr />
+<h2 id="6-discussion">6. Discussion</h2>
+<h3 id="61-when-rigidity-helps">6.1 When Rigidity Helps</h3>
+<p>We hypothesize that rigidity-dampened exploration is beneficial in:</p>
+<ul>
+<li><strong>Adversarial environments</strong>: where exploration can be exploited by malicious actors</li>
+<li><strong>High-stakes decisions</strong>: where the cost of exploration errors is high</li>
+<li><strong>Identity-critical tasks</strong>: where maintaining consistent behavior is more important than optimal performance</li>
+<li><strong>Deceptive contexts</strong>: where surprise may indicate manipulation rather than learning opportunity</li>
+</ul>
+<h3 id="62-when-rigidity-hurts">6.2 When Rigidity Hurts</h3>
+<p>Rigidity may be detrimental in:</p>
+<ul>
+<li><strong>Novel environments</strong>: where exploration is necessary for learning</li>
+<li><strong>Rapidly changing contexts</strong>: where flexibility is required</li>
+<li><strong>Pure performance optimization</strong>: where identity preservation is irrelevant</li>
+</ul>
+<h3 id="63-theoretical-implications">6.3 Theoretical Implications</h3>
+<p>DDA-X introduces several concepts not present in standard RL or MCTS:</p>
+<ol>
+<li><strong>Identity as attractor</strong>: agents have a "self" they preserve, not just a policy they optimize</li>
+<li><strong>Rigidity as feature</strong>: defensiveness is modeled, not just performance</li>
+<li><strong>Will as impedance</strong>: W_t = γ / (m_t · k_eff) quantifies resistance to environmental pressure</li>
+<li><strong>Stability boundary</strong>: m_crit = 1/k_eff - γ/2 defines when the agent can be destabilized</li>
+</ol>
+<p>These concepts may be useful for AI safety research, particularly in understanding agent values and resistance to manipulation.</p>
+<hr />
+<h2 id="7-conclusion">7. Conclusion</h2>
+<p>We introduced DDA-X, a framework for agentic AI that inverts the standard relationship between surprise and exploration. Rather than treating surprise as a learning signal, DDA-X models surprise as a threat that triggers protective rigidity.</p>
+<p>Our key contributions are:</p>
+<ol>
+<li>A continuous state-space model with identity attractor and force-balanced dynamics</li>
+<li>Adaptive rigidity that increases with prediction error and dampens exploration</li>
+<li>The DDA-X selection formula: cos(Δx, d̂(a)) + c·P(a|s)·√N(s)/(1+N(s,a))·(1-ρ)</li>
+<li>Configurable personality profiles enabling agent archetypes</li>
+<li>A complete implementation architecture</li>
+</ol>
+<p>This work opens new directions for building agents that balance task completion with self-preservation, potentially relevant for AI safety and alignment.</p>
+<hr />
+<h2 id="references">References</h2>
+<p>Kocsis, L., &amp; Szepesvári, C. (2006). Bandit based monte-carlo planning. In <em>Proceedings of ECML</em>.</p>
+<p>Koh, J. Y., Lo, R., Jang, L., Duvvur, V., Lim, M. C., Huang, P.-Y., Neubig, G., Zhou, S., Salakhutdinov, R., &amp; Fried, D. (2024a). VisualWebArena: Evaluating multimodal agents on realistic visual web tasks. <em>arXiv preprint arXiv:2401.13649</em>.</p>
+<p>Koh, J. Y., McAleer, S., Fried, D., &amp; Salakhutdinov, R. (2024b). Tree search for language model agents. <em>arXiv preprint arXiv:2407.01476</em>.</p>
+<p>Madaan, A., Tandon, N., Gupta, P., Hallinan, S., Gao, L., Wiegreffe, S., Alon, U., Dziri, N., Prabhumoye, S., Yang, Y., et al. (2023). Self-refine: Iterative refinement with self-feedback. <em>arXiv preprint arXiv:2303.17651</em>.</p>
+<p>Park, J. S., O'Brien, J. C., Cai, C. J., Morris, M. R., Liang, P., &amp; Bernstein, M. S. (2023). Generative agents: Interactive simulacra of human behavior. <em>arXiv preprint arXiv:2304.03442</em>.</p>
+<p>Pathak, D., Agrawal, P., Efros, A. A., &amp; Darrell, T. (2017). Curiosity-driven exploration by self-supervised prediction. In <em>ICML</em>.</p>
+<p>Shinn, N., Cassano, F., Gopinath, A., Narasimhan, K., &amp; Yao, S. (2023). Reflexion: Language agents with verbal reinforcement learning. <em>arXiv preprint arXiv:2303.11366</em>.</p>
+<p>Silver, D., Schrittwieser, J., Simonyan, K., Antonoglou, I., Huang, A., Guez, A., Hubert, T., Baker, L., Lai, M., Bolton, A., et al. (2017). Mastering the game of go without human knowledge. <em>Nature</em>, 550(7676), 354-359.</p>
+<p>Sutton, R. S., &amp; Barto, A. G. (2018). <em>Reinforcement learning: An introduction</em>. MIT press.</p>
+<p>Wang, G., Xie, Y., Jiang, Y., Mandlekar, A., Xiao, C., Zhu, Y., Fan, L., &amp; Anandkumar, A. (2024). Voyager: An open-ended embodied agent with large language models. <em>arXiv preprint arXiv:2305.16291</em>.</p>
+<p>Yang, J., Jimenez, C. E., Wettig, A., Liber, K., Yao, S., &amp; Narasimhan, K. (2024). SWE-agent: Agent-computer interfaces enable automated software engineering. <em>arXiv preprint arXiv:2405.15793</em>.</p>
+<p>Yao, S., Yu, D., Zhao, J., Shafran, I., Griffiths, T., Cao, Y., &amp; Narasimhan, K. (2023). Tree of thoughts: Deliberate problem solving with large language models. <em>arXiv preprint arXiv:2305.10601</em>.</p>
+<p>Yu, X., Peng, B., Vajipey, V., Cheng, H., Galley, M., Gao, J., &amp; Yu, Z. (2024). ExACT: Teaching AI agents to explore with reflective-MCTS and exploratory learning. <em>arXiv preprint</em>.</p>
+<p>Yu, X., Zhou, S., &amp; Yu, Z. (2023). Prompt-based monte-carlo tree search for goal-oriented dialogue policy planning. <em>arXiv preprint arXiv:2305.13660</em>.</p>
+<p>Zhou, S., Xu, F. F., Zhu, H., Zhou, X., Lo, R., Sridhar, A., Cheng, X., Ou, T., Bisk, Y., Fried, D., Alon, U., &amp; Neubig, G. (2024). WebArena: A realistic web environment for building autonomous agents. <em>arXiv preprint arXiv:2307.13854</em>.</p>
+<hr />
+<h2 id="appendix-a-symbol-table">Appendix A: Symbol Table</h2>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x_t</td>
+<td>Agent state in ℝ^d</td>
+</tr>
+<tr>
+<td>x*</td>
+<td>Identity attractor</td>
+</tr>
+<tr>
+<td>γ</td>
+<td>Identity stiffness</td>
+</tr>
+<tr>
+<td>ρ_t</td>
+<td>Rigidity / defensiveness ∈ [0,1]</td>
+</tr>
+<tr>
+<td>k_eff</td>
+<td>Effective step size = k_base(1-ρ)</td>
+</tr>
+<tr>
+<td>ε_t</td>
+<td>Prediction error ‖x_pred - x_actual‖</td>
+</tr>
+<tr>
+<td>ε₀</td>
+<td>Surprise threshold</td>
+</tr>
+<tr>
+<td>α</td>
+<td>Rigidity learning rate</td>
+</tr>
+<tr>
+<td>m_t</td>
+<td>External pressure gain</td>
+</tr>
+<tr>
+<td>F_id</td>
+<td>Identity pull force</td>
+</tr>
+<tr>
+<td>F_T</td>
+<td>Truth channel force</td>
+</tr>
+<tr>
+<td>F_R</td>
+<td>Reflection channel force</td>
+</tr>
+<tr>
+<td>d̂(a)</td>
+<td>Action direction (unit vector)</td>
+</tr>
+<tr>
+<td>P(a|s)</td>
+<td>Prior action probability from LLM</td>
+</tr>
+<tr>
+<td>Q(s,a)</td>
+<td>Action value estimate</td>
+</tr>
+<tr>
+<td>N(s)</td>
+<td>State visit count</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="appendix-b-algorithm-pseudocode">Appendix B: Algorithm Pseudocode</h2>
+<h3 id="algorithm-1-dda-x-action-selection">Algorithm 1: DDA-X Action Selection</h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Input: state x_t, identity x*, actions A_t, rigidity ρ, tree statistics
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Output: selected action a*
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>1. Compute desired movement:
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>   Δx = γ(x* - x_t) + m_t(F_T + F_R)
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>2. For each action a ∈ A_t:
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>   alignment = cos(Δx, d̂(a))
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>   exploration = c × P(a|s) × √N(s) / (1 + N(s,a))
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>   score(a) = alignment + exploration × (1 - ρ)
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>3. Return a* = argmax score(a)
+</span></code></pre></div>
+<h3 id="algorithm-2-rigidity-update">Algorithm 2: Rigidity Update</h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Input: predicted state x_pred, actual outcome o, current rigidity ρ
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Output: updated rigidity ρ&#39;
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>1. Encode outcome: x_actual = E(o)
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>2. Compute error: ε = ‖x_pred - x_actual‖
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>3. Compute update: Δρ = α × [σ((ε - ε₀)/s) - 0.5]
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>4. Apply: ρ&#39; = clip(ρ + Δρ, 0, 1)
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>5. Return ρ&#39;
+</span></code></pre></div>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 snakewizardd - Radical Open Source
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/snakewizardd" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.indexes", "navigation.sections", "navigation.expand", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

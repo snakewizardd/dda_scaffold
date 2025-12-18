@@ -1,0 +1,45 @@
+# Default configuration for DDA-X agent
+
+agent:
+  # DDA core parameters
+  gamma: 1.0              # Identity stiffness
+  k_base: 0.5            # Base step size (openness)
+  m: 1.0                 # External pressure/gain
+  epsilon_0: 0.3         # Surprise threshold
+  alpha: 0.1             # Rigidity learning rate
+  s: 0.1                 # Sigmoid sensitivity
+
+  # Search parameters
+  c_explore: 1.0         # Exploration constant
+  max_iterations: 50     # MCTS iterations per decision
+  branching_factor: 5    # Actions to consider
+  max_depth: 10          # Maximum search depth
+
+  # State space
+  state_dim: 64          # Dimensionality of state vector
+
+  # Protection
+  protect_threshold: 0.7  # Rigidity threshold for protect mode
+
+memory:
+  # Ledger parameters
+  lambda_recency: 0.01   # Recency decay rate
+  lambda_salience: 1.0   # Salience (surprise) weight
+  max_entries: 10000     # Maximum ledger entries
+
+  # Reflection
+  reflection_threshold: 0.5  # Min surprise for reflection
+  max_reflections_retrieved: 3
+
+search:
+  # MCTS parameters
+  expansion_threshold: 1    # Visits before expansion
+  discount_factor: 0.95     # Future reward discount
+
+  # Value estimation
+  value_method: "heuristic"  # heuristic, rollout, llm, debate
+  rollout_depth: 5          # Depth for rollout simulations
+
+environment:
+  type: "mock"            # mock, browser, custom
+  timeout: 30.0          # Action timeout in seconds

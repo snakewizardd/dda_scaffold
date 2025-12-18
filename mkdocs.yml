@@ -1,0 +1,90 @@
+site_name: "DDA-X: The Magnum Opus"
+site_description: "Advanced Agentic Decision Framework."
+site_url: "https://snakewizardd.github.io/dda_scaffold/"
+repo_url: "https://github.com/snakewizardd/dda_scaffold"
+repo_name: "snakewizardd/dda_scaffold"
+site_author: "snakewizardd"
+copyright: "Copyright &copy; 2025 snakewizardd - Radical Open Source"
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/snakewizardd
+
+theme:
+  name: material
+  palette:
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+    # Palette toggle for light mode
+    - scheme: default
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+  features:
+    - navigation.indexes
+    - navigation.sections
+    - navigation.expand
+    - content.code.copy
+    - content.tabs.link
+
+nav:
+  - Prologue:
+    - The Vision (README): index.md
+    - Origin Story: origin_story.md
+  
+  - The Masterwork:
+    - Novel Discoveries: research/discoveries.md
+    - Core Theory: core_concepts/rigidity.md
+    - Identity Architecture: core_concepts/identity.md
+    - Decision Dynamics: core_concepts/forces.md
+
+  - The Simulations:
+    - 7 Simulations Showcase: simulations/index.md
+    - Quickstart Guide: guides/quickstart.md
+    - Complete Architecture: simulations/SIMULATIONS_COMPLETE_ARCHITECTURE.md
+    - Operational Status: simulations/SIMULATIONS_OPERATIONAL_STATUS.md
+    - Builder's Guide (Create Your Own): guides/simulation_workflow.md
+
+  - System Architecture:
+    - Tech Stack & System: architecture/system.md
+    - ExACT Integration: architecture/integration.md
+    - Multi-Agent Society: architecture/society.md
+    - Whitepaper (v0.1): architecture/paper.md
+
+  - Research & Future:
+    - Roadmap (Iter 4): research/future.md
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true 
+  - admonition
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.arithmatex:
+      generic: true
+  - attr_list
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+extra_css:
+  - stylesheets/extra.css
