@@ -1,4 +1,4 @@
-# DDA-X# Quick Start (DDA-X Iteration 3)
+# Quick Start (DDA-X Iteration 3)
 
 > **Maintained by**: [snakewizardd](https://github.com/snakewizardd)  
 > **Repository**: [https://github.com/snakewizardd/dda_scaffold](https://github.com/snakewizardd/dda_scaffold)
@@ -21,53 +21,51 @@ cd dda_scaffold
 
 # 2. Create virtual environment
 python -m venv venv
+.\venv\Scripts\Activate
+
+# 3. Install dependencies (Make sure to install ollama and httpx!)
+pip install -r requirements.txt
 ```
 
 ## Quick Test (No LLM Required)
 
-Test the core mechanics without any external services:
+Test the core mechanics without any external services. This proves the **Physics Engine** is functional.
 
 ```bash
-python -c "
-from src.core.dynamics import MultiTimescaleRigidity
-from src.llm.hybrid_provider import PersonalityParams
-
-# Simulate rigidity dynamics
-r = MultiTimescaleRigidity()
-for eps in [0.3, 0.5, 0.8, 1.5, 0.2]:
-    result = r.update(eps)
-    print(f'Surprise={eps:.1f} -> Rigidity={result[\"rho_fast\"]:.3f}')
-
-# See how rigidity affects LLM behavior
-print(f'\nHigh rigidity (defensive): {PersonalityParams.from_rigidity(0.8)}')
-print(f'Low rigidity (open): {PersonalityParams.from_rigidity(0.2)}')
-"
+python simulations/demo.py
 ```
 
 ---
 
 ## Running Full Experiments
 
-### Step 1: Start LM Studio
+The simulations are **self-contained** and ready to run.
 
-1. Open LM Studio
-2. Load any model (e.g., Mistral, Llama)
-3. Start local server (default: http://127.0.0.1:1234)
+### Step 1: Start LM Studio
+1.  Open **LM Studio**.
+2.  Load **GPT-OSS-20B** (or Mistral/Llama).
+3.  Start the **Local Server** on port `1234` (Green Start Button).
 
 ### Step 2: Start Ollama
+1.  Open terminal.
+2.  Run: `ollama run nomic-embed-text`.
+3.  (This serves embeddings on port `11434`).
+
+### Step 3: Run Any Simulation
+All specific simulations are in the root directory.
 
 ```bash
-ollama pull nomic-embed-text
-ollama serve
+# Socratic Debate
+python simulations/simulate_socrates.py
+
+# Forensic Analysis
+python simulations/simulate_driller.py
+
+# Trauma Restoration
+python simulations/simulate_redemption.py
 ```
 
-### Step 3: Run Experiments
-
-```bash
-python runners/run_experiments.py
-```
-
-Results saved to `data/experiments/dda_x_live_*.jsonl`
+Results are automatically saved to `data/experiments/dda_x_live_*.jsonl`.
 
 ---
 
@@ -134,7 +132,6 @@ rho_new = rho + alpha * sigmoid((epsilon - epsilon_0) / s)
 ---
 
 ## Need Help?
-
-- Full architecture: `arch.md`
-- Paper draft: `paper_v0.md`
-- Discoveries: `DISCOVERIES.md`
+- Full architecture: `docs/architecture/system.md`
+- Paper draft: `docs/architecture/paper.md`
+- Discoveries: `docs/research/discoveries.md`
