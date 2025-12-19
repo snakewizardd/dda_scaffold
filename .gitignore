@@ -53,8 +53,16 @@ Thumbs.db
 
 # Runtime ledger entries (regeneratable, large binaries)
 data/experiences/*.pkl.xz
-# Keep experiment logs for open science!
-# data/experiments/  ← COMMITTED for reproducibility
+
+# Ignore data folders but keep the structure
+data/ledgers/*
+!data/ledgers/.keep
+data/memory/*
+!data/memory/.keep
+data/demo_logs/*
+!data/demo_logs/.keep
+data/experiments/*
+!data/experiments/.keep
 
 # Prompt Logging Local - Handoff docs
 NEXT_PROMPT.md

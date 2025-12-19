@@ -150,6 +150,8 @@ class HybridProvider:
         seed: Optional[int] = None,
         # NEW: Rigidity-aware generation
         personality_params: Optional[PersonalityParams] = None,
+        # NEW: Structured Output
+        response_format: Optional[Dict] = None,
     ) -> str:
         """
         Generate completion using LM Studio (OpenAI-compatible API).
@@ -161,6 +163,7 @@ class HybridProvider:
         - stop: Stop sequences
         - seed: Reproducibility
         - personality_params: Override all params based on DDA-X state
+        - response_format: JSON schema for structured output
         """
         # If personality params provided, use them (rigidity-aware generation)
         if personality_params:
@@ -177,11 +180,11 @@ class HybridProvider:
         payload = {
             "model": self.lm_studio_model,
             "messages": messages,
-            "temperature": temperature,
-            "max_tokens": max_tokens,
-            "top_p": top_p,
-            "frequency_penalty": frequency_penalty,
-            "presence_penalty": presence_penalty,
+            "temperature": float(temperature),
+            "max_tokens": int(max_tokens),
+            "top_p": float(top_p),
+            "frequency_penalty": float(frequency_penalty),
+            "presence_penalty": float(presence_penalty),
             "stream": False
         }
         
@@ -190,6 +193,8 @@ class HybridProvider:
             payload["stop"] = stop
         if seed is not None:
             payload["seed"] = seed
+        if response_format:
+            payload["response_format"] = response_format
         
         try:
             async with httpx.AsyncClient(timeout=self.timeout) as client:
