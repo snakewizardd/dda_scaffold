@@ -181,7 +181,11 @@ class DDAXAgent:
 
         # Encode observation
         if self.obs_encoder:
-            obs_embedding = self.obs_encoder.encode(observation) if hasattr(self.obs_encoder, 'encode') else self.obs_encoder(observation)
+            res = self.obs_encoder.encode(observation) if hasattr(self.obs_encoder, 'encode') else self.obs_encoder(observation)
+            if asyncio.iscoroutine(res):
+                obs_embedding = await res
+            else:
+                obs_embedding = res
         else:
             obs_embedding = np.random.randn(self.config.state_dim)
 

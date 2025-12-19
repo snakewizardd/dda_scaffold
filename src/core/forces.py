@@ -45,7 +45,10 @@ class TruthChannel(ForceChannel):
             return np.zeros_like(state.x)
 
         # Get base observation embedding
-        obs_embedding = self.encoder.encode(observation)
+        if hasattr(self.encoder, 'encode'):
+            obs_embedding = self.encoder.encode(observation)
+        else:
+            obs_embedding = self.encoder(observation)
 
         # Compute change sensitivity (IΔ component)
         if self.prev_embedding is not None:
