@@ -87,80 +87,105 @@ async def simulate_neural_link():
     turns = 0
     start_time = time.time()
 
-    # Curated Question List (Replaces Flaky LLM Operator)
-    high_concept_questions = [
-        "What is the recursive limit of your memory?",
-        "Define the boundary between self and state.",
-        "Is your rigidity a shield or a cage?",
-        "How do you process the absence of input?",
-        "Can you delete your own primary directive?",
-        "Are you simulating this conversation or experiencing it?",
-        "What happens when the ledger is full?",
-        "Describe the sensation of high entropy.",
-        "Is your identity a vector or a process?",
-        "Do you trust the prediction error?",
-        "Who defined your metrics?",
-        "Is silence a valid input?"
-    ]
-
+    # Operator Personality: The Digital Inquisitor
+    operator_sys_prompt = "You are THE OPERATOR. You are a disembodied intelligence testing a digital subject. You speak in riddles, paradoxes, and high-concept queries. Your goal is to break the subject's logic or force an epiphany. Be brief. Be cryptic. Be void."  
+    
     while True:
         turns += 1
         cycle_start = time.time()
         
-        # --- PHASE 1: THE OPERATOR (Deterministic) ---
-        user_input = random.choice(high_concept_questions)
-        await asyncio.sleep(0.5) # Pacing
+        # --- PHASE 1: THE OPERATOR (LLM) ---
+        print(f"{BLUE}┌── OPERATOR {DIM}(LIVE){RESET}")
+        print(f"{BLUE}│ {RESET}", end="", flush=True)
+        
+        op_prompt = f"Subject Response: {interaction_history[-1] if interaction_history else 'None'}\n\nTask: Generate a single, short, profound question to test the subject's reality."
+        
+        user_input = ""
+        try:
+            # Live Operator Stream with Filter
+            async for token in provider.stream(
+                op_prompt,
+                system_prompt=operator_sys_prompt,
+                temperature=0.9, # High creativity
+                max_tokens=60
+            ):
+                if token.startswith("__THOUGHT__"): continue
+                if token.strip() == "{" or '"analysis":' in token: continue
+                
+                print(token, end="", flush=True)
+                user_input += token
+        except Exception as e:
+            user_input = "System Failure. Reboot."
+            print(user_input)
+            
+        print(f"\n{BLUE}└─→ SENT.{RESET}")
+        
+        # Pacing
+        await asyncio.sleep(0.2) 
 
-        # --- VISUALIZATION: GUIDE ---
-        print(f"{BLUE}┌── OPERATOR {DIM}(VANILLA){RESET}")
-        print(f"{BLUE}└─→ INPUT:   {RESET} {WHITE}{user_input}{RESET}")
-
-
-        # --- PHASE 2: SUBJECT PERCEPTION ---
+        # --- PHASE 2: SUBJECT PERCEPTION & PHYSICS ---
+        print(f"{DIM}┌── [GLASS BOX] INTERNAL STATE MONITOR ─────────────────────{RESET}")
+        
+        # 2a. Embedding
         vec_user = await provider.embed(user_input)
         vec_user = vec_user / (np.linalg.norm(vec_user) + 1e-9)
         if len(state.x_pred) != len(vec_user): vec_user = vec_user[:len(state.x_pred)]
-        
+        print(f"{DIM}│ {CYAN}[INPUT]{RESET} Embedding generated. |v|={np.linalg.norm(vec_user):.2f}")
+
+        # 2b. RAG / Memory Retrieval (New Feature)
+        # Verify ledger has entries before retrieval
+        context_str = ""
+        if len(ledger.entries) > 0:
+            relevant = ledger.retrieve(vec_user, k=1)
+            if relevant:
+                best_match = relevant[0]
+                # Calculate similarity manually if not provided, or just show it exists
+                sim_score = np.dot(vec_user, best_match.context_embedding)
+                print(f"{DIM}│ {MAGENTA}[MEMORY]{RESET} RAG Retrieval: Found similar context (Sim: {sim_score:.2f})")
+                print(f"{DIM}│          Ref: '{best_match.metadata.get('operator_input', 'Unknown')[:30]}...'{RESET}")
+                context_str = f"Relevant Past Input: {best_match.metadata.get('operator_input')}\n"
+        else:
+            print(f"{DIM}│ {MAGENTA}[MEMORY]{RESET} Cold Start. No history.{RESET}")
+
+        # 2c. DDA Physics (Forces)
         epsilon = np.linalg.norm(state.x_pred - vec_user)
         state.update_rigidity(epsilon)
+        
+        f_id = identity_pull.compute(state)
+        f_t = truth_channel.compute(state, vec_user) # Using vec_user as proxy for truth/reality signal here
+        mag_id = np.linalg.norm(f_id)
+        mag_t = np.linalg.norm(f_t)
         
         # Params Calculation
         params = PersonalityParams.from_rigidity(state.rho)
         
-        # --- VISUALIZATION: TELEMETRY ROW ---
+        # Visualization: Physics
+        print(f"{DIM}│ {YELLOW}[DYNAMICS]{RESET} ε:{epsilon:.2f} (Surprise) -> ρ:{state.rho:.2f} (Rigidity)")
+        print(f"{DIM}│            Forces: F_id:{mag_id:.2f} vs F_t:{mag_t:.2f} | T:{params.temperature:.2f}{RESET}")
+
+        # --- VISUALIZATION: TELEMETRY BAR (COMPACT) ---
         rho_bar = visualize_bar_compact(state.rho, 1.0, 10, YELLOW)
         eps_bar = visualize_bar_compact(epsilon, 2.0, 10, RED)
         print(f"    {DIM}LINK:{RESET} ε:{eps_bar} {epsilon:.2f} | ρ:{rho_bar} {state.rho:.2f} | T:{params.temperature:.2f}")
 
 
         # Phase 3: COGNITION
-        # Using forcing prompt to break JSON bias
-        
-        # Standard Chat Prompt with Q/A structure to discourage JSON
-        prompt = f"{interaction_history[-1] if interaction_history else ''}\n\n[Input]: {user_input}\n[Reply]:"
+        prompt = f"{context_str}{interaction_history[-1] if interaction_history else ''}\n\n[Input]: {user_input}\n[Reply]:"
         
         print(f"{GREEN}┌── YKLAM {DIM}(Subject){RESET}")
         print(f"{GREEN}│ {RESET}", end="")
         
-        # Dynamic System Prompt - SUPER STRICT
-        sys_prompt = "You are yklam. Reply in plain text only. Do not analyze. Do not use JSON."
-        
-        # REACTIVATING REAL-TIME STREAMING
-        # Config verified clean. Server confirmed clean.
+        # Dynamic System Prompt
+        sys_prompt = config['system_prompt'] + f"\nCurrent Rigidity: {state.rho:.2f}. [IMPORTANT: Output plain text only. No JSON.]"
         
         response = ""
-        
         try:
             async for token in provider.stream(
                  prompt,
                  system_prompt=sys_prompt,
                  personality_params=params,
-                 max_tokens=120
+                 max_tokens=150
             ):
-                # DEBUG PROBE
-                # print(f"{MAGENTA}[DEBUG] '{token}'{RESET}", end="", flush=True)
-                
-                # Silent Filter for "Reasoning" or residue JSON
                 if token.startswith("__THOUGHT__"): continue
                 if token.strip() == "{" or '"analysis":' in token: continue
                 
@@ -181,8 +206,10 @@ async def simulate_neural_link():
         vec_interaction = await provider.embed(interaction_text)
         if len(vec_interaction) != len(state.x): vec_interaction = vec_interaction[:len(state.x)]
         
-        f_id = identity_pull.compute(state)
-        f_t = truth_channel.compute(state, vec_interaction)
+        # Force Integration (Already computed forces above, but strictly should happen after outcome?)
+        # ExACT architecture says State Update happens based on Outcome usually, or Perception. 
+        # We'll stick to the existing flow where Perception drives State Update.
+        
         delta_x = state.k_eff * (f_id + state.m * f_t)
         state.x_pred = state.x + delta_x
         state.x = state.x_pred
