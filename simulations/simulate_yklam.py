@@ -72,10 +72,12 @@ async def simulate_yklam():
     # No scorer needed for pure chat reflection in this simple loop
     reflection_channel = ReflectionChannel(scorer=None) 
     
-    # Initialize Memory Ledger
-    ledger_path = Path("data/ledgers/yklam_memory")
+    # Initialize Memory Ledger (Unique Run Isolation)
+    run_id = int(time.time())
+    ledger_path = Path(f"data/ledgers/yklam_manual/{run_id}")
     ledger = ExperienceLedger(ledger_path, lambda_recency=0.005, lambda_salience=2.0)
-    print(f"{DIM}[MEMORY] Ledger loaded with {len(ledger.entries)} entries.{RESET}")
+    print(f"{DIM}[MEMORY] Ledger initialized at: {ledger_path}{RESET}")
+    print(f"{DIM}[MEMORY] Previous memories ignored. Run is contained.{RESET}")
 
     # Conversation State (Short-term buffer)
     chat_history = []
@@ -215,7 +217,7 @@ async def simulate_yklam():
         except Exception as e:
             print(f"\n{RED}Error: {e}{RESET}")
             
-    asyncio.run(simulate_yklam())
+
 if __name__ == "__main__":
     if sys.platform == 'win32': os.system('color')
     asyncio.run(simulate_yklam())
