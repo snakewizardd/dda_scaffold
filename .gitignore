@@ -61,6 +61,8 @@ data/memory/*
 !data/memory/.keep
 data/demo_logs/*
 !data/demo_logs/.keep
+!data/demo_logs/paper_sim.txt
+!data/demo_logs/paper_sim_explanation.md
 data/experiments/*
 !data/experiments/.keep
 
