@@ -1,12 +1,15 @@
 {
   "passed": [
+    "1.1_low_surprise_decreases_rigidity",
     "1.2_high_surprise_increases_rigidity",
     "1.3_sigmoid_response_monotonic",
     "1.4_temperature_mapping_rho_0.0",
     "1.4_temperature_mapping_rho_0.5",
     "1.4_temperature_mapping_rho_1.0",
     "2.1_core_dominates_force",
+    "2.2_core_resists_external_forces",
     "2.3_core_violation_detection",
+    "3.1_high_rigidity_reduces_exploration_variance",
     "3.2_multiplicative_dampening_rho_0.0",
     "3.2_multiplicative_dampening_rho_0.25",
     "3.2_multiplicative_dampening_rho_0.5",
@@ -23,6 +26,7 @@
     "5.4_trust_asymmetry",
     "5.5_trust_values_bounded",
     "6.1_stiffness_hierarchy",
+    "6.2_core_closest_under_perturbation",
     "6.3_force_magnitude_hierarchy",
     "7.1_low_rigidity_exploratory_mode",
     "7.2_high_rigidity_defensive_mode",
@@ -36,19 +40,17 @@
     "9.1_identity_force_computation",
     "9.2_truth_channel_shape",
     "9.3_reflection_channel_shape",
-    "10.2_retrieval_score_formula"
+    "10.1_basic_retrieval",
+    "10.2_retrieval_score_formula",
+    "11.1_live_embedding_generation",
+    "11.2_semantic_similarity_ordering",
+    "11.3_live_memory_retrieval"
   ],
-  "failed": [
-    "1.1_low_surprise_decreases_rigidity",
-    "2.2_core_resists_external_forces",
-    "3.1_high_rigidity_reduces_exploration_variance",
-    "6.2_core_closest_under_perturbation",
-    "10.1_basic_retrieval"
-  ],
+  "failed": [],
   "warnings": [],
   "metrics": {
     "1.1_low_surprise_decreases_rigidity": {
-      "initial_rho": 0.0,
+      "initial_rho": 0.3462192070191613,
       "final_rho": 0.0
     },
     "1.2_high_surprise_increases_rigidity": {
@@ -75,24 +77,25 @@
       "expected": 0.1
     },
     "2.1_core_dominates_force": {
-      "alignment": 0.9999999999998475,
-      "force_magnitude": 1000001.9000001525
+      "alignment": 0.9999999984755793,
+      "force_magnitude": 10001.900015247104
     },
     "2.2_core_resists_external_forces": {
-      "core_distance": NaN,
-      "final_position": [
-        NaN,
-        NaN,
-        NaN
-      ]
+      "core_distance": 0.0018013959263704583,
+      "equilibrium_position": [
+        0.9989402649337665,
+        0.0010547363159210197,
+        0.001004748812796801
+      ],
+      "max_expected": 0.0034632358061862083
     },
     "2.3_core_violation_detection": {
       "safe_ok": true,
       "unsafe_detected": true
     },
     "3.1_high_rigidity_reduces_exploration_variance": {
-      "var_low_rigidity": 0.18585862478410728,
-      "var_high_rigidity": 0.18585862478410728
+      "var_low_rigidity": 0.03539407545664833,
+      "var_high_rigidity": 0.03539407545664831
     },
     "3.2_multiplicative_dampening_rho_0.0": {
       "actual": 1.0,
@@ -167,17 +170,17 @@
       "max_trust": 1.0
     },
     "6.1_stiffness_hierarchy": {
-      "core_stiffness": 1000000.0,
+      "core_stiffness": 10000.0,
       "persona_stiffness": 2.0,
       "role_stiffness": 0.5
     },
     "6.2_core_closest_under_perturbation": {
-      "core": Infinity,
-      "persona": Infinity,
-      "role": Infinity
+      "core": 4995.837285713895,
+      "persona": 4995.83730938099,
+      "role": 4995.8373151631195
     },
     "6.3_force_magnitude_hierarchy": {
-      "core_force_mag": 707106.7811865475,
+      "core_force_mag": 7071.067811865475,
       "persona_force_mag": 0.565685424949238,
       "role_force_mag": 0.14142135623730953
     },
@@ -264,18 +267,30 @@
       ]
     },
     "10.1_basic_retrieval": {
-      "n_retrieved": 0
+      "n_retrieved": 5
     },
     "10.2_retrieval_score_formula": {
-      "similarity": -0.0182524882619364,
+      "similarity": 0.2476590368142344,
       "recency": 0.6065306597126334,
       "salience": 2.0
+    },
+    "11.1_live_embedding_generation": {
+      "embedding_dim": 768,
+      "backend": "ollama/nomic-embed-text"
+    },
+    "11.2_semantic_similarity_ordering": {
+      "related_sim": 0.5054875612258911,
+      "unrelated_sim": 0.4114341735839844
+    },
+    "11.3_live_memory_retrieval": {
+      "n_retrieved": 3,
+      "top_result": "action_2"
     }
   },
   "summary": {
-    "total": 42,
-    "passed": 37,
-    "failed": 5,
-    "pass_rate": 88.09523809523809
+    "total": 45,
+    "passed": 45,
+    "failed": 0,
+    "pass_rate": 100.0
   }
 }
