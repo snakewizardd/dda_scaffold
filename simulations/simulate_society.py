@@ -577,7 +577,7 @@ Don't explain yourself - just speak as you would."""
         
         # Trust analysis
         print(f"\n{C.CYAN}Trust Dynamics:{C.RESET}")
-        trust_stats = self.trust_matrix.get_statistics()
+        trust_stats = self.trust_matrix.get_network_stats()
         print(f"  Mean trust: {trust_stats.get('mean_trust', 0):.3f}")
         print(f"  Min trust: {trust_stats.get('min_trust', 0):.3f}")
         
