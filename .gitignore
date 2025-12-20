@@ -77,3 +77,6 @@ NEXT_PROMPT4.md
 # Personal Discord logs - do not push
 simulations/simulate_discord_reconstruction.py
 data/discord_reconstruction/
+
+
+data/discord_sim/
