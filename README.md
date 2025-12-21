@@ -470,7 +470,9 @@ DDA-X is an **ongoing research initiative** with foundational capabilities demon
 
 ### What This Is NOT
 - **Formally proven** — The mathematical formulations are validated empirically, not through formal proofs or theorems
-- **Tested on SOTA LLMs** — All experiments used local models (`nomic-embed-text`, `GPT-OSS-20B`). Behavior may differ significantly on GPT-4, Claude, or Gemini
+- **Tested on SOTA LLMs** — **Validated on GPT-5.2 & text-embedding-3-large.**
+    - [View Experiment Report](data/experiments/gpt52_profuse_society/experiment_report.md) — Confirms DDA-X dynamics (Rigidity, Trauma, Trust) scale to State-of-the-Art models.
+    - Previous experiments utilized local models (`nomic-embed-text`, `GPT-OSS-20B`).
 - **Benchmarked against alternatives** — No comparative evaluation against ReACT, AutoGen, CrewAI, or other agent frameworks
 - **Production-ready** — This is a research framework, not a deployment-ready system
 - **Benchmarked on SOTA** — Needs validation on frontier models (Claude/GPT-4) and standardized benchmarks (GAIA/WebArena)
