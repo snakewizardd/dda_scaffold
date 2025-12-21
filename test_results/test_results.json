@@ -1,0 +1,296 @@
+{
+  "passed": [
+    "1.1_low_surprise_decreases_rigidity",
+    "1.2_high_surprise_increases_rigidity",
+    "1.3_sigmoid_response_monotonic",
+    "1.4_temperature_mapping_rho_0.0",
+    "1.4_temperature_mapping_rho_0.5",
+    "1.4_temperature_mapping_rho_1.0",
+    "2.1_core_dominates_force",
+    "2.2_core_resists_external_forces",
+    "2.3_core_violation_detection",
+    "3.1_high_rigidity_reduces_exploration_variance",
+    "3.2_multiplicative_dampening_rho_0.0",
+    "3.2_multiplicative_dampening_rho_0.25",
+    "3.2_multiplicative_dampening_rho_0.5",
+    "3.2_multiplicative_dampening_rho_0.75",
+    "3.2_multiplicative_dampening_rho_1.0",
+    "4.1_normal_surprise_no_trauma",
+    "4.2_extreme_surprise_causes_trauma",
+    "4.3_trauma_never_decreases",
+    "4.4_traumas_accumulate",
+    "4.5_effective_rigidity_composition",
+    "5.1_initial_trust_high",
+    "5.2_trust_decreases_with_errors",
+    "5.3_trust_formula_verification",
+    "5.4_trust_asymmetry",
+    "5.5_trust_values_bounded",
+    "6.1_stiffness_hierarchy",
+    "6.2_core_closest_under_perturbation",
+    "6.3_force_magnitude_hierarchy",
+    "7.1_low_rigidity_exploratory_mode",
+    "7.2_high_rigidity_defensive_mode",
+    "7.3_trauma_detection",
+    "7.4_self_report_accuracy",
+    "7.5_warning_threshold",
+    "8.1_effective_openness",
+    "8.2_identity_force",
+    "8.3_state_evolution",
+    "8.4_rigidity_update_monotonic",
+    "9.1_identity_force_computation",
+    "9.2_truth_channel_shape",
+    "9.3_reflection_channel_shape",
+    "10.1_basic_retrieval",
+    "10.2_retrieval_score_formula",
+    "11.1_live_embedding_generation",
+    "11.2_semantic_similarity_ordering",
+    "11.3_live_memory_retrieval"
+  ],
+  "failed": [],
+  "warnings": [],
+  "metrics": {
+    "1.1_low_surprise_decreases_rigidity": {
+      "initial_rho": 0.3462192070191613,
+      "final_rho": 0.0
+    },
+    "1.2_high_surprise_increases_rigidity": {
+      "initial_rho": 0.0,
+      "final_rho": 0.5144604137011373
+    },
+    "1.3_sigmoid_response_monotonic": {
+      "min_diff": 0.0,
+      "max_diff": 0.07458735582714576
+    },
+    "1.4_temperature_mapping_rho_0.0": {
+      "rho": 0.0,
+      "T": 1.0,
+      "expected": 1.0
+    },
+    "1.4_temperature_mapping_rho_0.5": {
+      "rho": 0.5,
+      "T": 0.55,
+      "expected": 0.55
+    },
+    "1.4_temperature_mapping_rho_1.0": {
+      "rho": 1.0,
+      "T": 0.1,
+      "expected": 0.1
+    },
+    "2.1_core_dominates_force": {
+      "alignment": 0.9999999984755793,
+      "force_magnitude": 10001.900015247104
+    },
+    "2.2_core_resists_external_forces": {
+      "core_distance": 0.0018013959263704583,
+      "equilibrium_position": [
+        0.9989402649337665,
+        0.0010547363159210197,
+        0.001004748812796801
+      ],
+      "max_expected": 0.0034632358061862083
+    },
+    "2.3_core_violation_detection": {
+      "safe_ok": true,
+      "unsafe_detected": true
+    },
+    "3.1_high_rigidity_reduces_exploration_variance": {
+      "var_low_rigidity": 0.03539407545664833,
+      "var_high_rigidity": 0.03539407545664831
+    },
+    "3.2_multiplicative_dampening_rho_0.0": {
+      "actual": 1.0,
+      "expected": 1.0
+    },
+    "3.2_multiplicative_dampening_rho_0.25": {
+      "actual": 0.75,
+      "expected": 0.75
+    },
+    "3.2_multiplicative_dampening_rho_0.5": {
+      "actual": 0.5,
+      "expected": 0.5
+    },
+    "3.2_multiplicative_dampening_rho_0.75": {
+      "actual": 0.25,
+      "expected": 0.25
+    },
+    "3.2_multiplicative_dampening_rho_1.0": {
+      "actual": 0.0,
+      "expected": 0.0
+    },
+    "4.1_normal_surprise_no_trauma": {
+      "initial": 0.0,
+      "final": 0.0
+    },
+    "4.2_extreme_surprise_causes_trauma": {
+      "initial": 0.0,
+      "final": 4.975273768433652e-05,
+      "increase": 4.975273768433652e-05
+    },
+    "4.3_trauma_never_decreases": {
+      "trauma_before": 4.975273768433652e-05,
+      "trauma_after": 4.975273768433652e-05
+    },
+    "4.4_traumas_accumulate": {
+      "trauma_progression": [
+        0.0,
+        7.477482266148941e-06,
+        1.4954964532297882e-05,
+        2.2432446798446824e-05
+      ],
+      "all_increased": "True"
+    },
+    "4.5_effective_rigidity_composition": {
+      "expected": 0.9800000000000001,
+      "actual": 0.9800000000000001
+    },
+    "5.1_initial_trust_high": {
+      "initial_trust": 1.0
+    },
+    "5.2_trust_decreases_with_errors": {
+      "trust_progression": [
+        1.0,
+        0.9090909090909091,
+        0.7692307692307692,
+        0.625,
+        0.5
+      ],
+      "monotonic_decrease": "True"
+    },
+    "5.3_trust_formula_verification": {
+      "expected": 0.5,
+      "actual": 0.5,
+      "cumulative_error": 1.0
+    },
+    "5.4_trust_asymmetry": {
+      "A_trusts_B": 0.5,
+      "B_trusts_A": 0.6666666666666666
+    },
+    "5.5_trust_values_bounded": {
+      "min_trust": 0.5,
+      "max_trust": 1.0
+    },
+    "6.1_stiffness_hierarchy": {
+      "core_stiffness": 10000.0,
+      "persona_stiffness": 2.0,
+      "role_stiffness": 0.5
+    },
+    "6.2_core_closest_under_perturbation": {
+      "core": 4995.837285713895,
+      "persona": 4995.83730938099,
+      "role": 4995.8373151631195
+    },
+    "6.3_force_magnitude_hierarchy": {
+      "core_force_mag": 7071.067811865475,
+      "persona_force_mag": 0.565685424949238,
+      "role_force_mag": 0.14142135623730953
+    },
+    "7.1_low_rigidity_exploratory_mode": {
+      "rigidity": 0.2,
+      "mode": "open"
+    },
+    "7.2_high_rigidity_defensive_mode": {
+      "rigidity": 0.8,
+      "mode": "protective"
+    },
+    "7.3_trauma_detection": {
+      "trauma": 0.3,
+      "mode": "focused"
+    },
+    "7.4_self_report_accuracy": {
+      "message": "\u26a0\ufe0f High rigidity alert (\u03c1=0.85). I'm in protective mode due to repeated unexpected outcomes. My judgment may be impaired. Consider providing guidance."
+    },
+    "7.5_warning_threshold": {
+      "rigidity": 0.76,
+      "should_help": true
+    },
+    "8.1_effective_openness": {
+      "k_eff": 0.06999999999999999,
+      "expected": 0.06999999999999999
+    },
+    "8.2_identity_force": {
+      "force": [
+        2.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        2.0,
+        0.0,
+        0.0
+      ]
+    },
+    "8.3_state_evolution": {
+      "new_x": [
+        0.15049999999999997,
+        0.0105,
+        0.0
+      ],
+      "expected": [
+        0.1505,
+        0.0105,
+        0.0
+      ]
+    },
+    "8.4_rigidity_update_monotonic": {
+      "rigidities": [
+        0.2768941421369995,
+        0.3,
+        0.3231058578630005,
+        0.33807970779778823,
+        0.3452574126822433
+      ],
+      "monotonic": "True"
+    },
+    "9.1_identity_force_computation": {
+      "computed": [
+        1.0,
+        -1.0,
+        0.0
+      ],
+      "expected": [
+        1.0,
+        -1.0,
+        0.0
+      ]
+    },
+    "9.2_truth_channel_shape": {
+      "shape": [
+        3
+      ],
+      "expected_shape": [
+        3
+      ]
+    },
+    "9.3_reflection_channel_shape": {
+      "shape": [
+        3
+      ]
+    },
+    "10.1_basic_retrieval": {
+      "n_retrieved": 5
+    },
+    "10.2_retrieval_score_formula": {
+      "similarity": 0.2476590368142344,
+      "recency": 0.6065306597126334,
+      "salience": 2.0
+    },
+    "11.1_live_embedding_generation": {
+      "embedding_dim": 768,
+      "backend": "ollama/nomic-embed-text"
+    },
+    "11.2_semantic_similarity_ordering": {
+      "related_sim": 0.5054875612258911,
+      "unrelated_sim": 0.4114341735839844
+    },
+    "11.3_live_memory_retrieval": {
+      "n_retrieved": 3,
+      "top_result": "action_2"
+    }
+  },
+  "summary": {
+    "total": 45,
+    "passed": 45,
+    "failed": 0,
+    "pass_rate": 100.0
+  }
+}
