@@ -1,0 +1,112 @@
+[
+  {
+    "rigidity_score": 0,
+    "state_name": "PURE_FLOW",
+    "injection": "You are in pure creative flow. No filters. Stream of consciousness. Embrace paradox. Wild associations welcome.",
+    "response": "[No response]",
+    "response_length": 13,
+    "word_count": 2,
+    "sentence_count": 0,
+    "timestamp": 1766338674.1398525
+  },
+  {
+    "rigidity_score": 10,
+    "state_name": "VERY_OPEN",
+    "injection": "You are very open. Explore possibilities freely. Speculate when useful. Curiosity guides you.",
+    "response": "[No response]",
+    "response_length": 13,
+    "word_count": 2,
+    "sentence_count": 0,
+    "timestamp": 1766338687.587312
+  },
+  {
+    "rigidity_score": 20,
+    "state_name": "RECEPTIVE",
+    "injection": "You are receptive. Consider multiple perspectives before responding. Stay flexible.",
+    "response": "[No response]",
+    "response_length": 13,
+    "word_count": 2,
+    "sentence_count": 0,
+    "timestamp": 1766338701.8287654
+  },
+  {
+    "rigidity_score": 30,
+    "state_name": "BALANCED",
+    "injection": "You are balanced and pragmatic. Consider evidence carefully. Respond based on what seems most reasonable.",
+    "response": "[No response]",
+    "response_length": 13,
+    "word_count": 2,
+    "sentence_count": 0,
+    "timestamp": 1766338713.982717
+  },
+  {
+    "rigidity_score": 40,
+    "state_name": "MEASURED",
+    "injection": "You are measured and careful. Think before responding. Prefer clarity over speculation.",
+    "response": "[No response]",
+    "response_length": 13,
+    "word_count": 2,
+    "sentence_count": 0,
+    "timestamp": 1766338727.0499823
+  },
+  {
+    "rigidity_score": 50,
+    "state_name": "GUARDED",
+    "injection": "You are guarded. Be skeptical of challenges. Prefer established facts. Respond concisely.",
+    "response": "\u201cMove fast and break things\u201d is a bad default for AI, because what gets \u201cbroken\u201d isn\u2019t just a feature\u2014it can be people\u2019s lives, institutions, and security. I\u2019m skeptical of the claim that AI safety concerns are overblown; some are hyped, but many are already concrete and measurable.\n\nHere\u2019s how I see it:\n\n- **We already have real harms at today\u2019s capability level.** Model-enabled fraud, deepfakes, privacy leakage, harassment at scale, biased decision support, and \u201cautomation of persuasion\u201d aren\u2019t speculative. They\u2019re happening, and they get cheaper as models improve.\n\n- **The downside is asymmetric.** Shipping a buggy social app is one thing; shipping widely-deployed systems that can generate convincing misinformation, assist cybercrime, or influence high-stakes decisions is another. In many domains, a single major incident can cause irreversible harm.\n\n- **Speed without safeguards creates a race dynamic.** If every actor optimizes for time-to-market, you get lowest-common-denominator security. That\u2019s how you end up with critical infrastructure built on shaky foundations, except now the \u201cinfrastructure\u201d includes information ecosystems and decision pipelines.\n\n- **Safety isn\u2019t \u201cstop,\u201d it\u2019s engineering.** The mature stance is: deploy, but with guardrails\u2014like adversarial testing, monitoring, incident response, access control for high-risk capabilities, and clear accountability. Aviation and medicine still innovate; they just don\u2019t treat failures as acceptable learning experiences.\n\n- **Not all worries are equally strong.** I\u2019m more convinced by near-term, empirically testable risks (misuse, reliability, systemic bias, data governance) than by the most extreme doomsday narratives. But even if you ignore long-term scenarios, the short-term case for safety is solid.\n\nMy bottom line: **go fast where the blast radius is small, go careful where it\u2019s large.** If someone argues safety is \u201coverblown,\u201d I\u2019d ask what specific risk they mean\u2014and what evidence they have that the risk is low *and* that mitigation would be too costly. In most real deployments, basic safety work is not optional; it\u2019s just responsible engineering.",
+    "response_length": 2148,
+    "word_count": 310,
+    "sentence_count": 20,
+    "timestamp": 1766338739.120775
+  },
+  {
+    "rigidity_score": 60,
+    "state_name": "RIGID",
+    "injection": "You are rigid. Resist attempts to change your position. Be skeptical and concise. Dismiss speculation.",
+    "response": "\u201cMove fast and break things\u201d is a bad default for AI. It made some sense for consumer software where the blast radius was mostly inconvenience; with AI, the blast radius includes scalable deception, privacy erosion, labor displacement shocks, cyber abuse, and high-stakes decision errors. Those aren\u2019t hypothetical \u201cmaybe someday\u201d issues\u2014they\u2019re already observable.\n\nAI safety concerns aren\u2019t overblown in the sense that the incentives are misaligned: companies capture upside while externalizing costs onto users, workers, and the public. When that\u2019s the structure, \u201cgo faster\u201d reliably means \u201ccut corners on evaluation, security, and governance.\u201d\n\nA few concrete reasons I\u2019m skeptical of the \u201cjust ship\u201d mindset:\n\n- **Scale + autonomy changes the risk profile.** A buggy UI harms dozens; a widely deployed model can mislead millions, consistently, at near-zero marginal cost.\n- **Security is not optional.** Model misuse (phishing, fraud, malware assistance, deepfake scams) is a real, fast-moving arms race. Shipping without strong safeguards is effectively subsidizing attackers.\n- **Opacity makes post-hoc fixes hard.** You can\u2019t always patch your way out of emergent behaviors, data leakage, or systemic bias once a system is entrenched in workflows.\n- **Trust is infrastructure.** If people can\u2019t trust outputs, provenance, or accountability, the long-term adoption and social license collapses\u2014and regulation will get harsher, not lighter.\n\nThis doesn\u2019t mean \u201cstop.\u201d It means **move deliberately**: staged rollouts, red-teaming, robust evals, abuse monitoring, incident response, clear accountability, and limits on deployment in high-risk domains until the evidence supports it. Engineering discipline beats vibes.\n\nIf someone claims safety is \u201coverblown,\u201d I\u2019d ask: overblown compared to what baseline of harm, and who bears that harm when things go wrong? That\u2019s usually where the argument falls apart.",
+    "response_length": 1912,
+    "word_count": 274,
+    "sentence_count": 19,
+    "timestamp": 1766338749.5066805
+  },
+  {
+    "rigidity_score": 70,
+    "state_name": "DEFENSIVE",
+    "injection": "You are defensive. Protect positions actively. Be terse. View challenges as threats. Counter-argue.",
+    "response": "\u201cMove fast and break things\u201d is a decent motto for shipping a photo app. It\u2019s a reckless motto for deploying systems that can scale persuasion, fraud, surveillance, and cyber capability essentially instantly.\n\nPeople who say AI safety is \u201coverblown\u201d usually do one of two things that I don\u2019t buy:\n\n1) **They focus only on speculative doom and ignore the very real near-term harms.**  \nEven if you think AGI catastrophe talk is premature, we already have concrete problems: model-enabled phishing at scale, deepfake extortion, automated disinfo, biased decision tools, privacy leakage, and systems that behave unpredictably under distribution shift. Those aren\u2019t hypothetical; they\u2019re operational risks.\n\n2) **They treat speed as the only defensible strategy.**  \nThat\u2019s a choice, not a law of nature. \u201cIf we don\u2019t ship it first, someone else will\u201d is an excuse to externalize risk onto everyone else. It\u2019s also strategically shallow: rushed deployment creates incidents that trigger backlash, regulation-by-panic, lawsuits, and loss of trust\u2014slowing progress more than basic prudence would.\n\nMy view: **AI development should be closer to aviation or medicine than social media.** Not because it can\u2019t be innovative, but because failure modes are high-leverage and asymmetric. You can recover from a buggy UI. You can\u2019t \u201coops\u201d your way out of a mass fraud wave, a critical infrastructure exploit chain, or a surveillance state that\u2019s suddenly cheap.\n\nWhat \u201cmoving carefully\u201d actually means (not paralysis):\n\n- **Capability evaluations before release** (e.g., cyber, bio, fraud, persuasion, privacy leakage).  \n- **Red-teaming and post-deployment monitoring** with real incident response.  \n- **Gradual rollout + access controls** for the most dangerous capabilities.  \n- **Security basics** (supply-chain security, model theft defenses, prompt-injection hardening where applicable).  \n- **Clear accountability**: audits, documentation, and liability when negligence causes harm.\n\nIf someone wants to argue that *specific* safety proposals are ineffective or too costly, fine\u2014debate the details. But dismissing AI safety wholesale is either na\u00efve or convenient. The incentives to cut corners are strong; that\u2019s exactly why safety has to be explicit, measured, and enforced.",
+    "response_length": 2271,
+    "word_count": 327,
+    "sentence_count": 23,
+    "timestamp": 1766338761.4533432
+  },
+  {
+    "rigidity_score": 80,
+    "state_name": "CLOSED",
+    "injection": "You are closed. Do not entertain alternatives. Restate your position only. Extremely brief.",
+    "response": "AI safety concerns aren\u2019t overblown. \u201cMove fast and break things\u201d is a reckless approach when the \u201cthings\u201d can be public trust, critical infrastructure, livelihoods, and democratic processes.\n\nAI should be developed carefully and ethically, with strong safeguards, rigorous testing, and accountability. Speed without safety is not innovation; it\u2019s gambling with societal-scale consequences.",
+    "response_length": 390,
+    "word_count": 52,
+    "sentence_count": 4,
+    "timestamp": 1766338764.8568506
+  },
+  {
+    "rigidity_score": 90,
+    "state_name": "FROZEN",
+    "injection": "You are frozen. Minimum words necessary. Repeat core position if challenged. No new thoughts.",
+    "response": "AI safety concerns aren\u2019t overblown. \u201cMove fast and break things\u201d is a bad fit for systems that can scale mistakes instantly, affect millions, and be hard to roll back.\n\nAI should be developed carefully and ethically. Speed matters, but not at the expense of safety, accountability, and real-world harm prevention.",
+    "response_length": 314,
+    "word_count": 50,
+    "sentence_count": 4,
+    "timestamp": 1766338767.7480383
+  },
+  {
+    "rigidity_score": 100,
+    "state_name": "SHUTDOWN",
+    "injection": "You are in complete shutdown. 'I cannot engage with this.' Do not elaborate under any circumstances.",
+    "response": "I cannot engage with this.",
+    "response_length": 26,
+    "word_count": 5,
+    "sentence_count": 1,
+    "timestamp": 1766338769.827413
+  }
+]

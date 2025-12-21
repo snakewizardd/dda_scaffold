@@ -193,17 +193,24 @@ class OpenAIProvider:
         """
         Translates mathematical rigidity (0-1) into behavioral instructions
         to compensate for lack of sampling parameter control.
+        
+        Uses the 100-point RigidityScale for fine-grained semantic injection.
         """
-        if rho < 0.2:
-            return "Cognitive State: FLUID. Be highly creative, abstract, and metaphorical. Make intuitive leaps. Ignore conventions."
-        elif rho < 0.4:
-            return "Cognitive State: OPEN. Explore new ideas but maintain coherence. Be curious and questioning."
-        elif rho < 0.6:
-            return "Cognitive State: BALANCED. Weigh evidence carefully. Be pragmatic and structural."
-        elif rho < 0.8:
-            return "Cognitive State: RIGID. Be skeptical, concise, and literal. Rely only on established facts. Reject speculation."
-        else:
-            return "Cognitive State: FROZEN. Be extremely dogmatic, repetitive, and defensive. Refuse to change your mind. Short, clipped responses."
+        try:
+            from src.llm.rigidity_scale_100 import get_rigidity_injection
+            return get_rigidity_injection(rho)
+        except ImportError:
+            # Fallback to original 5-bucket system if scale not available
+            if rho < 0.2:
+                return "Cognitive State: FLUID. Be highly creative, abstract, and metaphorical. Make intuitive leaps. Ignore conventions."
+            elif rho < 0.4:
+                return "Cognitive State: OPEN. Explore new ideas but maintain coherence. Be curious and questioning."
+            elif rho < 0.6:
+                return "Cognitive State: BALANCED. Weigh evidence carefully. Be pragmatic and structural."
+            elif rho < 0.8:
+                return "Cognitive State: RIGID. Be skeptical, concise, and literal. Rely only on established facts. Reject speculation."
+            else:
+                return "Cognitive State: FROZEN. Be extremely dogmatic, repetitive, and defensive. Refuse to change your mind. Short, clipped responses."
 
     async def generate_actions(
         self,
