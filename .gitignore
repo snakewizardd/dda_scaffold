@@ -53,18 +53,23 @@ Thumbs.db
 
 # Runtime ledger entries (regeneratable, large binaries)
 data/experiences/*.pkl.xz
+*.pkl
+*.pkl.xz
 
 # Ignore data folders but keep the structure
 data/ledgers/*
 !data/ledgers/.keep
 data/memory/*
 !data/memory/.keep
+**/*_ledger/
 data/demo_logs/*
 !data/demo_logs/.keep
 !data/demo_logs/paper_sim.txt
 !data/demo_logs/paper_sim_explanation.md
 data/experiments/*
 !data/experiments/.keep
+!data/experiments/gpt52_profuse_society/
+!data/experiments/gpt52_profuse_society/experiment_report.md
 
 # Prompt Logging Local - Handoff docs
 NEXT_PROMPT.md
@@ -81,3 +86,5 @@ data/discord_reconstruction/
 
 data/discord_sim/
 data/problem_solver_sim/
+
+.env
