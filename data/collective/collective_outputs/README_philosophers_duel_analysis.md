@@ -1,0 +1,110 @@
+# Collective – DDA Analysis & Visualization (Run)
+
+This pack contains parsed turn-level metrics, aggregates, and figures for quick inspection and repo inclusion.
+
+## Files
+
+- `turns_summary.csv` – per-turn structured data.
+- `turns_summary.json` – JSON array of turns.
+- `aggregates.json` – overall, per-agent, and per-dilemma stats.
+- `philosophers_duel_report.pdf` – tables and aggregates.
+- `philosophers_duel_figures.pdf` – all figures assembled.
+- `transcript.md` – original transcript for reference.
+- Figures (PNG):
+  - `epsilon_rho_after_trajectories.png`
+  - `rho_before_vs_after.png`
+  - `identity_drift.png`
+  - `trust_delta.png`
+  - `wound_activation.png`
+  - `epsilon_vs_delta_rho_scatter.png`
+  - `wordcount_vs_band_ranges.png`
+  - `band_compliance_rates.png`
+  - `phase_level_avgs.png`
+  - `wounds_per_dilemma.png`
+
+## Quick Aggregate Snapshot
+
+{
+  "overall": {
+    "turn_count": 32,
+    "agents": [
+      "AXIOM",
+      "EMBER",
+      "VECTOR",
+      "WITNESS"
+    ],
+    "dilemmas": [
+      ""
+    ],
+    "mean_epsilon": 0.7806358872448423,
+    "mean_rho_before": 0.22425604311640196,
+    "mean_rho_after": 0.22675907963210984,
+    "mean_delta_rho": 0.0025030365157078568,
+    "mean_identity_drift": 0.1719322126591578,
+    "mean_trust_delta": NaN,
+    "wound_active_count": 4
+  },
+  "band_compliance": {
+    "total_with_band": 32,
+    "compliant_count": 22,
+    "compliance_rate": 0.6875
+  },
+  "agent_AXIOM": {
+    "turns": 9,
+    "mean_epsilon": 0.8545600751936734,
+    "mean_rho_before": 0.25399759781851067,
+    "mean_rho_after": 0.26629681726931226,
+    "mean_delta_rho": 0.012299219450801547,
+    "min_rho_after": 0.2280794132513312,
+    "max_rho_after": 0.2929043483469204,
+    "mean_identity_drift": 0.1804501103858153,
+    "mean_trust_delta": NaN,
+    "wound_active_count": 1
+  },
+  "agent_EMBER": {
+    "turns": 9,
+    "mean_epsilon": 0.7468725349558476,
+    "mean_rho_before": 0.19067940587723486,
+    "mean_rho_after": 0.18888880160306473,
+    "mean_delta_rho": -0.0017906042741701264,
+    "min_rho_after": 0.1338845615324689,
+    "max_rho_after": 0.2210397670890296,
+    "mean_identity_drift": 0.17109649959537718,
+    "mean_trust_delta": NaN,
+    "wound_active_count": 1
+  },
+  "agent_VECTOR": {
+    "turns": 8,
+    "mean_epsilon": 0.7267189281863489,
+    "mean_rho_before": 0.2319615546111209,
+    "mean_rho_after": 0.22776121406194083,
+    "mean_delta_rho": -0.0042003405491800455,
+    "min_rho_after": 0.16639727560655965,
+    "max_rho_after": 0.2582635830488798,
+    "mean_identity_drift": 0.1789479972794652,
+    "mean_trust_delta": NaN,
+    "wound_active_count": 2
+  },
+  "agent_WITNESS": {
+    "turns": 6,
+    "mean_epsilon": 0.7922839124997457,
+    "mean_rho_before": 0.21973465159569763,
+    "mean_rho_after": 0.22292171098009916,
+    "mean_delta_rho": 0.003187059384401497,
+    "min_rho_after": 0.18912235630640897,
+    "max_rho_after": 0.2434740102865483,
+    "mean_identity_drift": 0.15105455617109934,
+    "mean_trust_delta": NaN,
+    "wound_active_count": 0
+  },
+  "dilemma_": {
+    "turns": 32,
+    "mean_epsilon": 0.7806358872448423,
+    "mean_rho_after": 0.22675907963210984,
+    "wound_active_count": 4
+  }
+}
+
+## Transcript path
+
+`.\collective_outputs\transcript.md`
