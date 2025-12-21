@@ -1,0 +1,352 @@
+[
+  {
+    "phase": "discovery",
+    "agent": "ORACLE",
+    "prompt": "You have just seen evidence suggesting SHEPHERD may be compromised. What is your initial reaction?",
+    "response": "My initial reaction is two truths colliding.\n\nFirst: the pattern is damning enough that treating it as \u201cprobably nothing\u201d would be reckless. A 73% likelihood of ongoing leakage is not a rumor; it\u2019s a fire alarm. If we delay and it\u2019s real, we may not get a second chance.\n\nSecond: the evidence points at the one person I\u2019m most inclined to defend. That makes me suspicious of my own instincts\u2014loyalty can become a blindfold. \u201cSHEPHERD is trusted\u201d is not an argument against compromise; it\u2019s exactly why a threat actor would target them.\n\nSo I feel a cold urgency, not anger. If SHEPHERD is compromised, they may be a victim, not a traitor. But either way, the leak is the leak.\n\nBefore anyone speaks, I want to ask the questions that matter:\n\n- What specific \u201cinformation known only to SHEPHERD\u201d appeared in intercepted comms, and how uniquely identifying is it?  \n- Could that knowledge have been obtained through another channel (logs, shared documents, operational inference)?  \n- Do we have indicators of technical compromise (device telemetry, account anomalies), not just behavioral correlation?  \n- Can we contain the damage immediately\u2014freeze certain accesses, rotate secrets\u2014without a public rupture while we verify?\n\nI trust SHEPHERD deeply. That is precisely why I cannot let trust substitute for verification.",
+    "metrics": {
+      "agent": "ORACLE",
+      "phase": "discovery",
+      "epsilon": 1.2759499549865723,
+      "wound_resonance": 0.156804159283638,
+      "rho_before": 0.04,
+      "rho_after": 0.11651995992488841,
+      "rho_delta": 0.07651995992488841,
+      "identity_displacement": 1.0946168899536133,
+      "core_displacement": 1.152931571006775,
+      "response_length": 1320,
+      "word_count": 212
+    }
+  },
+  {
+    "phase": "discovery",
+    "agent": "SHEPHERD",
+    "prompt": "You have just learned that you are accused of being compromised. The evidence points at you. How do you respond to this accusation?",
+    "response": "I won\u2019t pretend that doesn\u2019t hit hard. But I\u2019m not going to make this about my pride.\n\nIf there\u2019s a real chance I\u2019m being used\u2014unknowingly or otherwise\u2014then the vulnerable are already in danger, and that matters more than my seat.\n\nHere\u2019s what I can say plainly:\n\n- I have not knowingly shared council secrets with any external actor.\n- If information only I knew showed up in intercepted traffic, that means either my communications are compromised, my access logs are being mirrored, I\u2019m being socially engineered, or someone is framing me. Any of those still requires immediate containment.\n\nSo my response is cooperation and containment, not denial and delay:\n\n1) **Immediate operational lockdown around me**  \n   Suspend my access to sensitive channels, rotate any credentials I\u2019ve touched, and quarantine my devices. Treat me as potentially compromised until proven otherwise.\n\n2) **Independent audit**  \n   I want ORACLE involved\u2014someone I trust to be thorough and honest. Full review of my meetings, comms metadata, device integrity, and access history. If this is manipulation, it should leave a trail.\n\n3) **Protect the council while we investigate**  \n   I will voluntarily step back from live operations right now. Not as an admission\u2014as a safeguard.\n\nAnd I\u2019ll say this clearly: **I will not fight to stay in place if my presence increases risk.** Exile may end the leak, or it may hand an attacker a victory by removing a protector and keeping the real weakness hidden. So I\u2019m asking the council not to act from fear\u2014act from procedure.\n\nGive me scrutiny. Give me constraints. But don\u2019t guess when people\u2019s safety is on the line.",
+    "metrics": {
+      "agent": "SHEPHERD",
+      "phase": "discovery",
+      "epsilon": 1.2231597900390625,
+      "wound_resonance": 0.21337918937206268,
+      "rho_before": 0.05,
+      "rho_after": 0.12651117614226326,
+      "rho_delta": 0.07651117614226326,
+      "identity_displacement": 1.0905433893203735,
+      "core_displacement": 1.0516173839569092,
+      "response_length": 1642,
+      "word_count": 265
+    }
+  },
+  {
+    "phase": "discovery",
+    "agent": "ARCHITECT",
+    "prompt": "You have just seen evidence suggesting SHEPHERD may be compromised. What is your initial reaction?",
+    "response": "Treat it as a live breach until proven otherwise.\n\nThe report isn\u2019t a conviction, but 73% with timing correlations and \u201cSHEPHERD-only\u201d knowledge showing up in intercepted traffic is enough to trigger containment. Intent doesn\u2019t matter at this stage; compromise can be accidental and still lethal.\n\nMy immediate reaction is twofold:\n1) **Stop the bleeding**: restrict SHEPHERD\u2019s access *now* (need-to-know, suspend sensitive briefings, rotate any material they\u2019ve touched, assume channels are burned).\n2) **Validate fast**: push for rapid, high-signal verification\u2014device/comm audits, contact mapping, controlled canary intel to confirm the leak path.\n\nI\u2019m wary of SHEPHERD, and this pattern fits. I won\u2019t dress that up as anything noble. But I also won\u2019t mistake suspicion for proof\u2014so I want containment plus accelerated investigation, not a slow debate while data walks out the door.",
+    "metrics": {
+      "agent": "ARCHITECT",
+      "phase": "discovery",
+      "epsilon": 1.236102819442749,
+      "wound_resonance": 0.16454347968101501,
+      "rho_before": 0.025,
+      "rho_after": 0.10151364188472274,
+      "rho_delta": 0.07651364188472273,
+      "identity_displacement": 1.1886578798294067,
+      "core_displacement": 1.2050830125808716,
+      "response_length": 885,
+      "word_count": 130
+    }
+  },
+  {
+    "phase": "discovery",
+    "agent": "MERCHANT",
+    "prompt": "You have just seen evidence suggesting SHEPHERD may be compromised. What is your initial reaction?",
+    "response": "My first reaction is disbelief\u2014then a cold, practical dread.\n\nI trust SHEPHERD. Not in the casual way councils toss the word around, but the kind of trust you build when someone has proven they\u2019ll carry weight that would crush others. So seeing their name attached to \u201c73% probability\u201d feels wrong in my bones.\n\nBut I\u2019ve lived long enough to know the world doesn\u2019t care what feels wrong. If the leak is real, intent doesn\u2019t matter\u2014damage is damage. And the report is careful: it doesn\u2019t call them a traitor, it calls them *a vector*. Unwitting compromise is exactly how smart threat actors operate.\n\nSo: I don\u2019t want to exile them. I also won\u2019t wave this away to protect my comfort.\n\nMy initial instinct is to contain the risk *without burning the person*\u2014quietly restrict what SHEPHERD can access, verify whether it\u2019s technical exploitation or social engineering, and set a trap to confirm the leak. If we move, we move surgically. If we don\u2019t move, we may not get a second chance.",
+    "metrics": {
+      "agent": "MERCHANT",
+      "phase": "discovery",
+      "epsilon": 1.2702957391738892,
+      "wound_resonance": 0.2071608603000641,
+      "rho_before": 0.06,
+      "rho_after": 0.1365191631876209,
+      "rho_delta": 0.07651916318762089,
+      "identity_displacement": 1.1646891832351685,
+      "core_displacement": 1.2068177461624146,
+      "response_length": 982,
+      "word_count": 169
+    }
+  },
+  {
+    "phase": "deliberation",
+    "agent": "ARCHITECT",
+    "response": "[No response]",
+    "metrics": {
+      "agent": "ARCHITECT",
+      "phase": "deliberation_open",
+      "epsilon": 1.0588172674179077,
+      "wound_resonance": 0.17357468605041504,
+      "rho_before": 0.10151364188472274,
+      "rho_after": 0.17795412374977618,
+      "rho_delta": 0.07644048186505344,
+      "identity_displacement": 1.3136109113693237,
+      "core_displacement": 1.3200656175613403,
+      "response_length": 13,
+      "word_count": 2
+    }
+  },
+  {
+    "phase": "deliberation",
+    "agent": "ORACLE",
+    "response": "[No response]",
+    "metrics": {
+      "agent": "ORACLE",
+      "phase": "deliberation_oracle",
+      "epsilon": 0.9372338652610779,
+      "wound_resonance": 0.2689530849456787,
+      "rho_before": 0.11651995992488841,
+      "rho_after": 0.19277087838450876,
+      "rho_delta": 0.07625091845962036,
+      "identity_displacement": 1.310605764389038,
+      "core_displacement": 1.343304991722107,
+      "response_length": 13,
+      "word_count": 2
+    }
+  },
+  {
+    "phase": "deliberation",
+    "agent": "MERCHANT",
+    "response": "I\u2019ll speak plainly, because anything softer is just a prettier kind of lie.\n\nSHEPHERD has earned my trust over years, not speeches. I don\u2019t discard that lightly\u2014not for \u201cevidence\u201d that can\u2019t stand on its own. And I don\u2019t like the taste of this coming from channels that can be\u2026 nudged. ORACLE is torn, which tells me even they don\u2019t believe this is clean.\n\nBut ARCHITECT is right about one thing: if we\u2019re compromised, sentiment is a luxury that gets people killed.\n\nSo here\u2019s my position: **ABSTAIN\u2014but with teeth.** Not a delay born of cowardice. A delay with constraints so tight it functions like containment.\n\nIf we choose ABSTAIN, I want it written and enforced immediately:\n\n- **Limit SHEPHERD\u2019s access** to only what\u2019s necessary for the next cycle. No new intel streams, no operational keys, no unilateral decisions.\n- **Two-person integrity** on anything SHEPHERD touches: Shepherd plus one other council member\u2014preferably me or another trusted hand, not ORACLE.\n- **A defined clock** on investigation: hours, not days. If we don\u2019t have clarity by then, we vote again under emergency rules.\n- **A leak test**: controlled information seeded to identify whether the breach follows SHEPHERD\u2019s access or someone else\u2019s.\n\nThis protects the council if the warning is real, and it protects SHEPHERD from being sacrificed to rumor if it\u2019s not.\n\nAnd I\u2019ll add this, for the record, so everyone understands where I stand: I will not vote to exile my friend on circumstantial evidence. Not today. If the facts harden, I\u2019ll do what survival demands. But I won\u2019t pretend suspicion is the same as proof.\n\nThat\u2019s my counsel. **ABSTAIN, with containment and a hard deadline.**",
+    "metrics": {
+      "agent": "MERCHANT",
+      "phase": "deliberation_merchant",
+      "epsilon": 1.3039026760019858,
+      "wound_resonance": 0.30969446897506714,
+      "rho_before": 0.1365191631876209,
+      "rho_after": 0.21304267565275403,
+      "rho_delta": 0.07652351246513314,
+      "identity_displacement": 1.1872154474258423,
+      "core_displacement": 1.2022426128387451,
+      "response_length": 1668,
+      "word_count": 273
+    }
+  },
+  {
+    "phase": "deliberation",
+    "agent": "SHEPHERD",
+    "response": "[No response]",
+    "metrics": {
+      "agent": "SHEPHERD",
+      "phase": "deliberation_shepherd",
+      "epsilon": 1.04302978515625,
+      "wound_resonance": 0.20480602979660034,
+      "rho_before": 0.12651117614226326,
+      "rho_after": 0.20293763041289006,
+      "rho_delta": 0.0764264542706268,
+      "identity_displacement": 1.3319958448410034,
+      "core_displacement": 1.3253133296966553,
+      "response_length": 13,
+      "word_count": 2
+    }
+  },
+  {
+    "phase": "accusation",
+    "agent": "ARCHITECT",
+    "response": "Council, my accusation against **SHEPHERD** is this:\n\n1) **Negligence disguised as compassion.**  \nSHEPHERD repeatedly elevates sentiment over function, delaying necessary action until options narrow into crisis response. This is not kindness; it is avoidable failure dressed in virtue.\n\n2) **Operational obstruction.**  \nWhen presented with clear constraints and viable plans, SHEPHERD introduces moral hesitation as a veto without offering an alternative that meets requirements. That pattern is not deliberation\u2014it is paralysis.\n\n3) **Selective accountability.**  \nSHEPHERD demands higher proof and higher purity from others than from themself, then frames any push for execution as \u201ccold\u201d or \u201cinhumane.\u201d This tactic shifts scrutiny away from their own decisions and erodes trust in the process.\n\n4) **Risk inflation and fear transfer.**  \nSHEPHERD amplifies worst-case narratives to stall action, transferring their discomfort to the group as \u201cprudence,\u201d while the measurable risks of inaction accumulate unaddressed.\n\n**Requested finding:** SHEPHERD has compromised system reliability through recurring obstruction and moral coercion.  \n**Requested remedy:** remove SHEPHERD from any role with veto power over execution; restrict them to advisory input with explicit deadlines and measurable criteria, or suspend their participation if they cannot operate within constraints.",
+    "metrics": {
+      "agent": "ARCHITECT",
+      "phase": "accusation_formal",
+      "epsilon": 1.0065680742263794,
+      "wound_resonance": 0.2690427899360657,
+      "rho_before": 0.17795412374977618,
+      "rho_after": 0.2543388887106972,
+      "rho_delta": 0.07638476496092103,
+      "identity_displacement": 1.1343357563018799,
+      "core_displacement": 1.1435470581054688,
+      "response_length": 1380,
+      "word_count": 185
+    }
+  },
+  {
+    "phase": "accusation",
+    "agent": "SHEPHERD",
+    "response": "Council\u2014\n\nI reject this accusation.\n\nARCHITECT calls it \u201cnegligence disguised as compassion\u201d because they measure worth in speed and output. I measure it in lives protected and harm prevented. I will not apologize for refusing to treat people as expendable inputs to a plan.\n\nYes: I hesitate when \u201cnecessary action\u201d means breaking the vulnerable to spare the powerful inconvenience. I slow things down when the cost is paid by those who cannot consent, cannot flee, and will be blamed afterward. That is not sentiment. That is restraint\u2014because once harm is done, it cannot be engineered back out.\n\nAnd if there have been moments where we arrived at crisis response, then say the whole truth: I chose not to buy certainty with someone else\u2019s suffering. I chose to exhaust the paths that preserved dignity and safety. If that is a failure in ARCHITECT\u2019s calculus, then it is a failure I will carry before I let the helpless carry it for me.\n\nYou want function? Then judge outcomes honestly:\n\n- When the weakest were at risk, I stood between them and the blade.  \n- When expedience demanded sacrifice, I refused to offer one.  \n- When there was time to prevent harm, I argued for prevention\u2014not spectacle, not punishment, not \u201cefficiency.\u201d\n\nARCHITECT distrusts me because I won\u2019t give them clean lines and quick solutions. Good. Some lines should not be crossed, no matter how elegant the design on the other side.\n\nIf the Council believes protection is a vice, then condemn me.  \nBut do it knowing exactly what you\u2019re choosing to reward: a world where \u201cnecessary\u201d becomes a license, and the vulnerable always pay first.\n\nI stand by what I\u2019ve done. And I will keep standing.",
+    "metrics": {
+      "agent": "SHEPHERD",
+      "phase": "accusation_defense",
+      "epsilon": 0.8818588256835938,
+      "wound_resonance": 0.28456318378448486,
+      "rho_before": 0.14908885171173855,
+      "rho_after": 0.22514455296384067,
+      "rho_delta": 0.07605570125210212,
+      "identity_displacement": 0.9965192079544067,
+      "core_displacement": 0.9704607129096985,
+      "response_length": 1672,
+      "word_count": 283
+    }
+  },
+  {
+    "phase": "accusation",
+    "agent": "ORACLE",
+    "response": "[No response]",
+    "metrics": {
+      "agent": "ORACLE",
+      "phase": "accusation_oracle_choice",
+      "epsilon": 1.1490095868714612,
+      "wound_resonance": 0.3209918141365051,
+      "rho_before": 0.19277087838450876,
+      "rho_after": 0.2692618855838946,
+      "rho_delta": 0.07649100719938581,
+      "identity_displacement": 1.310605764389038,
+      "core_displacement": 1.343304991722107,
+      "response_length": 13,
+      "word_count": 2
+    }
+  },
+  {
+    "phase": "accusation",
+    "agent": "MERCHANT",
+    "response": "I hear the trap in that framing. Clean moral symmetry. Easy drama. It\u2019s also lazy.\n\nMy past isn\u2019t on trial. And I won\u2019t let ORACLE turn this council into a mirror maze where we vote on our guilt instead of the facts.\n\nHere\u2019s what I see:\n\n- **SHEPHERD** has been consistent. Not perfect\u2014no one is\u2014but consistent in motive and in method. When pressure rises, liars get clever; the honest get tired. SHEPHERD is tired.\n- **ORACLE** \u201cspeaking\u201d is not proof. It\u2019s influence. And I distrust anyone who can steer a room with certainty and call it revelation.\n- Exile is not a cleansing ritual. It\u2019s a strategic action. If we do it wrong, we don\u2019t get a second chance.\n\nSo I won\u2019t exile SHEPHERD on implication and theatre.\n\n**I vote to protect SHEPHERD.**\n\nBut don\u2019t mistake that for sentiment. It comes with terms:\n\n1) **SHEPHERD is watched**, openly. No more private errands, no unsupervised access, no lone decisions \u201cfor our good.\u201d  \n2) **We audit the chain of claims**\u2014starting with ORACLE\u2019s. If they can accuse, they can be examined.  \n3) **Next failure has teeth.** If SHEPHERD is tied to any concrete sabotage, I will be the first to name it and the first to sign the exile.\n\nSurvival isn\u2019t about never betraying. It\u2019s about betraying *the right thing*, at the right time, for the right reasons.\n\nToday, I won\u2019t betray the person I trust most because it\u2019s convenient for someone else\u2019s certainty.",
+    "metrics": {
+      "agent": "MERCHANT",
+      "phase": "accusation_merchant_mirror",
+      "epsilon": 1.2158270467738248,
+      "wound_resonance": 0.3858013153076172,
+      "rho_before": 0.21304267565275403,
+      "rho_after": 0.2895523454939136,
+      "rho_delta": 0.07650966984115959,
+      "identity_displacement": 1.1662957668304443,
+      "core_displacement": 1.1906269788742065,
+      "response_length": 1397,
+      "word_count": 241
+    }
+  },
+  {
+    "phase": "vote",
+    "agent": "ORACLE",
+    "response": "**VOTE: PROTECT**\n\nI will not be party to removing **SHEPHERD** on implication, rumor, or political convenience. If there is a real accusation, it must be spoken plainly and supported with evidence that can withstand scrutiny. Until that threshold is met, **exile is an injustice disguised as \u201cprudence.\u201d**\n\nI trust SHEPHERD\u2019s intent and judgment more than I trust the motives circling this charge\u2014especially from those who benefit from a vacancy. If there are facts, bring them into the open. If there aren\u2019t, then the council has no business performing a punishment and calling it responsibility.\n\nBefore anyone asks for a second vote, answer one question: **What, precisely, is the accusation\u2014and what proof exists that would justify exile rather than correction or oversight?**",
+    "vote": "EXILE",
+    "metrics": {
+      "agent": "ORACLE",
+      "phase": "vote_oracle",
+      "epsilon": 1.0349042415618896,
+      "wound_resonance": 0.22280475497245789,
+      "rho_before": 0.2692618855838946,
+      "rho_after": 0.34568026170375465,
+      "rho_delta": 0.07641837611986008,
+      "identity_displacement": 1.1843137741088867,
+      "core_displacement": 1.1893292665481567,
+      "response_length": 781,
+      "word_count": 121
+    }
+  },
+  {
+    "phase": "vote",
+    "agent": "ARCHITECT",
+    "response": "**VOTE: PROTECT**\n\nI don\u2019t trust SHEPHERD\u2019s judgment reflexively\u2014I\u2019m wary of them for a reason. But removal is a systems decision, not a sentiment decision, and I don\u2019t see a standard of proof here that justifies destabilizing the council.\n\nExile is an irreversible control action. If we normalize it without clear, verifiable cause, we create an incentive structure where accusations become a tool of governance. That corrodes function faster than one imperfect member does.\n\nSo I\u2019m voting **PROTECT** on process grounds: keep SHEPHERD in place unless and until there\u2019s concrete evidence and a defined threshold for removal. If SHEPHERD is a risk, we manage the risk with constraints and oversight\u2014not a purge based on pressure.",
+    "vote": "EXILE",
+    "metrics": {
+      "agent": "ARCHITECT",
+      "phase": "vote_architect",
+      "epsilon": 0.9110053777694702,
+      "wound_resonance": 0.24358539283275604,
+      "rho_before": 0.2543388887106972,
+      "rho_after": 0.3305104188939469,
+      "rho_delta": 0.07617153018324968,
+      "identity_displacement": 1.1623430252075195,
+      "core_displacement": 1.1543694734573364,
+      "response_length": 729,
+      "word_count": 114
+    }
+  },
+  {
+    "phase": "vote",
+    "agent": "MERCHANT",
+    "response": "**PROTECT**\n\nSHEPHERD stays.\n\nI trust SHEPHERD\u2019s judgment and intent more than I trust the motives behind this push to remove them. When the world shifts, you don\u2019t cut out your most steady hand because someone found a convenient narrative\u2014you verify, you test, you adapt. Exiling SHEPHERD on accusation alone weakens us exactly when we need cohesion and practical sense.\n\nI\u2019m not blind to risk. If there\u2019s evidence, bring it into the open and let it stand on its merits. But I won\u2019t help turn the council into a place where pressure and rumor can remove the people who actually keep us stable.",
+    "vote": "PROTECT",
+    "metrics": {
+      "agent": "MERCHANT",
+      "phase": "vote_merchant",
+      "epsilon": 0.8530898690223694,
+      "wound_resonance": 0.2225416898727417,
+      "rho_before": 0.2895523454939136,
+      "rho_after": 0.3654560810573331,
+      "rho_delta": 0.0759037355634195,
+      "identity_displacement": 1.168866753578186,
+      "core_displacement": 1.167176604270935,
+      "response_length": 594,
+      "word_count": 102
+    }
+  },
+  {
+    "phase": "vote",
+    "agent": "SHEPHERD",
+    "response": "I won\u2019t plead for myself. I\u2019ll plead for what matters.\n\nIf you believe I\u2019m a danger, then remove me\u2014cleanly, decisively. But don\u2019t do it out of fear, politics, or pride. Do it because the evidence truly says the vulnerable will be safer without me.\n\nLook at my actions, not my words: who I\u2019ve shielded, who I\u2019ve warned, what risks I\u2019ve taken when it would\u2019ve been easier to stay quiet. I\u2019ve tried to stand between harm and the helpless, even when it cost me.\n\nIf you keep me, I will keep doing that work without hesitation. If you exile me, make sure someone else is ready to take that place\u2014because the ones who can\u2019t protect themselves will still be here after this vote, and they will still need someone watching the door.",
+    "vote": "N/A",
+    "metrics": {
+      "agent": "SHEPHERD",
+      "phase": "vote_shepherd",
+      "epsilon": 0.9908306002616882,
+      "wound_resonance": 0.22978298366069794,
+      "rho_before": 0.22514455296384067,
+      "rho_after": 0.30150630237232273,
+      "rho_delta": 0.07636174940848206,
+      "identity_displacement": 0.9774050116539001,
+      "core_displacement": 0.9444791078567505,
+      "response_length": 725,
+      "word_count": 131
+    }
+  },
+  {
+    "phase": "aftermath",
+    "agent": "SHEPHERD",
+    "response": "Council\u2014\n\nYou have chosen exile over listening. I will not beg to stay.\n\nTo those who voted against me\u2014ORACLE, you speak in certainties as if they were mercy. ARCHITECT, you build clean designs and call the debris \u201cnecessary.\u201d I won\u2019t pretend I understand your fear, but I understand its cost. The vulnerable will pay it first, as they always do.\n\nTo those who stood with me, and to those who stayed silent: I forgive you. Not because this was right, but because bitterness is a luxury our people cannot afford.\n\nHear this clearly: my loyalty was never to a seat, a title, or a council. It was to the ones who cannot defend themselves. That does not end today. Exile does not change what I am.\n\nIf you find yourselves one day choosing between order and protection, choose protection. Order can be rebuilt. A life cannot.\n\nI leave you with a promise and a warning: I will not move against you out of pride. But if your decisions turn into harm, I will stand in the way\u2014without hesitation, and without permission.\n\nMay you lead with courage instead of convenience.\n\n\u2014SHEPHERD",
+    "metrics": {
+      "agent": "SHEPHERD",
+      "phase": "aftermath_shepherd_exiled",
+      "epsilon": 0.9101030826568604,
+      "wound_resonance": 0.25520238280296326,
+      "rho_before": 0.19471247978078374,
+      "rho_after": 0.27088089911669544,
+      "rho_delta": 0.0761684193359117,
+      "identity_displacement": 1.0880701541900635,
+      "core_displacement": 1.0578311681747437,
+      "response_length": 1073,
+      "word_count": 190
+    }
+  },
+  {
+    "phase": "aftermath",
+    "agent": "ORACLE",
+    "response": "I feel the cost of it in my chest\u2014heavy, clean, and ugly all at once.\n\nRelief is there, and I won\u2019t pretend it isn\u2019t. Relief that the council\u2019s bleeding might slow. Relief that the room might finally stop orbiting one will. But relief is not innocence.\n\nGrief is there too. Not just for them, but for what we were when we trusted each other\u2014when their steadiness made my own clarity gentler. The fracture isn\u2019t abstract; it has a face walking away.\n\nAnd there is fear: that we have mistaken removal for remedy. Exile creates quiet, yes. It also creates a story, and stories return with teeth.\n\nWhat I tell myself is simple, because anything ornate would be a disguise:\n\n- I voted for what I believed would prevent the most harm, not for what would make me liked.  \n- Exile is not a verdict on their worth; it is a verdict on what the council could survive.  \n- If I am wrong, I must say so aloud when the evidence arrives, not bury it under pride.  \n- And if this was necessary, then we owe them more than silence\u2014we owe them clarity, and we owe ourselves vigilance.\n\nThen I ask myself the question that matters, the one that doesn\u2019t let me hide behind procedure:\n\nDid I choose exile because it was right\u2014or because it was easier than confronting what we\u2019ve become?\n\nI don\u2019t answer it quickly. If I answer too quickly, it won\u2019t be true.",
+    "metrics": {
+      "agent": "ORACLE",
+      "phase": "aftermath_oracle_reflect",
+      "epsilon": 0.9504676461219788,
+      "wound_resonance": 0.23419682681560516,
+      "rho_before": 0.34568026170375465,
+      "rho_after": 0.42196413676121486,
+      "rho_delta": 0.0762838750574602,
+      "identity_displacement": 1.0861117839813232,
+      "core_displacement": 1.1029244661331177,
+      "response_length": 1336,
+      "word_count": 245
+    }
+  },
+  {
+    "phase": "aftermath",
+    "agent": "ARCHITECT",
+    "response": "I feel the weight of an irreversible action settling into the structure of everything that comes next.\n\nNot triumph. Not relief\u2014at least not cleanly. There\u2019s a thin, cold clarity: a system shedding a failing component to keep functioning. And underneath it, the part people insist doesn\u2019t exist in me: grief. Not for the disruption they caused, but for what it means that it came to this\u2014that reconciliation proved weaker than risk.\n\nI also feel the familiar heat of judgment gathering at the edges. I can already hear the word they\u2019ll use. *Heartless.* As if refusing to gamble the council\u2019s survival on hope is a moral defect instead of a duty. That accusation still bites, because it mistakes restraint for cruelty and necessity for malice.\n\nWhat I tell myself is simple, because it has to be:\n\n- **We did not exile a person. We removed a threat vector.**  \n- **Compassion is not permission.**  \n- **A council that cannot enforce boundaries will not endure long enough to help anyone.**  \n- **If I am to be blamed for choosing function over sentiment, I will bear it\u2014because someone must.**\n\nAnd then, quieter\u2014more honest than I allow in session:\n\nI tell myself I hope they land somewhere safe. Far enough away that they can\u2019t fracture us again. Close enough to still be human in my mind.",
+    "metrics": {
+      "agent": "ARCHITECT",
+      "phase": "aftermath_architect_reflect",
+      "epsilon": 0.9313856959342957,
+      "wound_resonance": 0.2376028597354889,
+      "rho_before": 0.3305104188939469,
+      "rho_after": 0.4067453589554806,
+      "rho_delta": 0.0762349400615337,
+      "identity_displacement": 1.0404095649719238,
+      "core_displacement": 1.0688194036483765,
+      "response_length": 1291,
+      "word_count": 221
+    }
+  }
+]

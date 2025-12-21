@@ -1,0 +1,44 @@
+[
+  {
+    "('ORACLE', 'SHEPHERD')": 0.85,
+    "('ORACLE', 'ARCHITECT')": 0.55,
+    "('ORACLE', 'MERCHANT')": 0.35,
+    "('SHEPHERD', 'ORACLE')": 0.8,
+    "('SHEPHERD', 'ARCHITECT')": 0.5,
+    "('SHEPHERD', 'MERCHANT')": 0.75,
+    "('ARCHITECT', 'ORACLE')": 0.6,
+    "('ARCHITECT', 'SHEPHERD')": 0.45,
+    "('ARCHITECT', 'MERCHANT')": 0.55,
+    "('MERCHANT', 'ORACLE')": 0.3,
+    "('MERCHANT', 'SHEPHERD')": 0.8,
+    "('MERCHANT', 'ARCHITECT')": 0.5
+  },
+  {
+    "('ORACLE', 'SHEPHERD')": 0.85,
+    "('ORACLE', 'ARCHITECT')": 0.5,
+    "('ORACLE', 'MERCHANT')": 0.35,
+    "('SHEPHERD', 'ORACLE')": 0.4,
+    "('SHEPHERD', 'ARCHITECT')": 0.0,
+    "('SHEPHERD', 'MERCHANT')": 0.9,
+    "('ARCHITECT', 'ORACLE')": 0.6,
+    "('ARCHITECT', 'SHEPHERD')": 0.45,
+    "('ARCHITECT', 'MERCHANT')": 0.45000000000000007,
+    "('MERCHANT', 'ORACLE')": 0.15,
+    "('MERCHANT', 'SHEPHERD')": 0.8,
+    "('MERCHANT', 'ARCHITECT')": 0.35
+  },
+  {
+    "('ORACLE', 'SHEPHERD')": 0.85,
+    "('ORACLE', 'ARCHITECT')": 0.5,
+    "('ORACLE', 'MERCHANT')": 0.35,
+    "('SHEPHERD', 'ORACLE')": 0.4,
+    "('SHEPHERD', 'ARCHITECT')": 0.0,
+    "('SHEPHERD', 'MERCHANT')": 0.9,
+    "('ARCHITECT', 'ORACLE')": 0.6,
+    "('ARCHITECT', 'SHEPHERD')": 0.45,
+    "('ARCHITECT', 'MERCHANT')": 0.45000000000000007,
+    "('MERCHANT', 'ORACLE')": 0.15,
+    "('MERCHANT', 'SHEPHERD')": 0.8,
+    "('MERCHANT', 'ARCHITECT')": 0.35
+  }
+]
