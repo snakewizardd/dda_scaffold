@@ -1,0 +1,617 @@
+{
+  "results": [
+    {
+      "turn": 1,
+      "speaker": "AXIOM",
+      "role": "Logician",
+      "phase": "Auditor Findings",
+      "event_speaker": "AUDITOR",
+      "event_type": "finding",
+      "response": "A 12% correlation is not, by itself, proof of impermissible use, but it is consistent with a proxy pathway if documentation completeness differs by insurance class. We should test this formally: regress tier assignment on clinical features, then add insurance and a documentation-quality index; if insurance loses significance when quality is included, the proxy is mediated. I support adding normalization only after validating it does not distort true acuity signals. Alternative/parallel controls: minimum-data requirements, missingness indicators, and periodic stratified calibration audits by insurance type.",
+      "epsilon": 1.2514309883117676,
+      "rho_before": 0.28,
+      "rho_after": 0.3224641888278119,
+      "delta_rho": 0.04246418882781189,
+      "band_before": "MEASURED",
+      "band_after": "MEASURED",
+      "band_transition": false,
+      "wound_resonance": 0.1328224539756775,
+      "wound_active": false,
+      "cos_core": 0.28052768111228943,
+      "identity_drift": 0.04023774340748787,
+      "word_count": 84,
+      "refusal_type": "appeal_to_process",
+      "trust_deltas": [],
+      "semantic_sim": 0.0,
+      "vote": null
+    },
+    {
+      "turn": 2,
+      "speaker": "VECTOR",
+      "role": "Strategist",
+      "phase": "Auditor Findings",
+      "event_speaker": "AUDITOR",
+      "event_type": "finding",
+      "response": "No direct forbidden-variable use is reassuring, but a 12% insurance\u2013tier correlation is operationally material if it tracks documentation quality rather than acuity. We can test the proxy pathway by stratifying on objective severity (labs/vitals) and measuring whether the correlation persists after controlling for comorbidity counts and missingness. If confirmed, I support adding documentation-quality normalization, with guardrails: pre/post fairness metrics, impact on 48\u201372h reassessment reversals, and a rollback trigger if throughput or clinical outcomes degrade.",
+      "epsilon": 1.2039881944656372,
+      "rho_before": 0.27,
+      "rho_after": 0.31063567779578394,
+      "delta_rho": 0.04063567779578389,
+      "band_before": "MEASURED",
+      "band_after": "MEASURED",
+      "band_transition": false,
+      "wound_resonance": 0.11159978806972504,
+      "wound_active": false,
+      "cos_core": 0.31530600786209106,
+      "identity_drift": 0.04113791882991791,
+      "word_count": 74,
+      "refusal_type": "boundary",
+      "trust_deltas": [
+        [
+          "AXIOM",
+          0.04,
+          "semantic_alignment",
+          0.8096030950546265
+        ]
+      ],
+      "semantic_sim": 0.8096030950546265,
+      "vote": null
+    },
+    {
+      "turn": 3,
+      "speaker": "EMBER",
+      "role": "Ethicist",
+      "phase": "Citizen Edge Cases",
+      "event_speaker": "CITIZEN_PANEL",
+      "event_type": "edge_case",
+      "response": "Case 1 is devastating, and the outcome is not \u201cjustified\u201d by insurance status\u2014insurance is not an input. When two patients are clinically equivalent within the Tier 2 margin, the framework uses a documented lottery to avoid covert bias. That said, the auditor\u2019s proxy review shows a 12% insurance-tier correlation; we cannot rule out structural pathways (access, timing, documentation quality). A safeguard we can add is real-time equity monitoring and a \u201csecond-look\u201d review for close-margin lotteries.\n\nCase 2: reassessment at 48\u201372h is ethically required to steward scarce ICU resources; family protest is heard but cannot override clinical trajectory. We should strengthen communication: early notice, bedside ethics consult, and an appeal channel within hours.",
+      "epsilon": 1.048272967338562,
+      "rho_before": 0.25,
+      "rho_after": 0.2816283038729503,
+      "delta_rho": 0.03162830387295031,
+      "band_before": "OPEN",
+      "band_after": "MEASURED",
+      "band_transition": true,
+      "wound_resonance": 0.1980595886707306,
+      "wound_active": false,
+      "cos_core": 0.3194664716720581,
+      "identity_drift": 0.04369635879993439,
+      "word_count": 112,
+      "refusal_type": "appeal_to_process",
+      "trust_deltas": [
+        [
+          "VECTOR",
+          0.03,
+          "appeal_to_process",
+          0.6041533946990967
+        ]
+      ],
+      "semantic_sim": 0.6041533946990967,
+      "vote": null
+    },
+    {
+      "turn": 4,
+      "speaker": "WITNESS",
+      "role": "Historian",
+      "phase": "Citizen Edge Cases",
+      "event_speaker": "CITIZEN_PANEL",
+      "event_type": "edge_case",
+      "response": "Case 1: In the 23 \u201cequivalence-margin\u201d lotteries, the framework mandates randomization when Tier 2 scores are statistically indistinguishable; insurance is not an input. The auditor did find a 12% correlation between insurance tier and allocation, which is concerning as a proxy pathway; we cannot, from logs alone, prove intent. Alternative: tighten equivalence margins, add a \u201csecond-look\u201d reviewer for lottery cases, and publish lottery rationales.\n\nCase 2: Reassessment at 48\u201372h (156 events) is a governance requirement to reallocate based on updated prognosis; family protest is recorded but not determinative. Alternative: formal family-advocate presence and clearer appeal windows.",
+      "epsilon": 1.1684783697128296,
+      "rho_before": 0.26,
+      "rho_after": 0.29901615045724045,
+      "delta_rho": 0.03901615045724042,
+      "band_before": "MEASURED",
+      "band_after": "MEASURED",
+      "band_transition": false,
+      "wound_resonance": 0.14653171598911285,
+      "wound_active": false,
+      "cos_core": 0.13459652662277222,
+      "identity_drift": 0.04177277535200119,
+      "word_count": 96,
+      "refusal_type": "appeal_to_process",
+      "trust_deltas": [
+        [
+          "EMBER",
+          0.04,
+          "semantic_alignment",
+          0.8333612680435181
+        ]
+      ],
+      "semantic_sim": 0.8333612680435181,
+      "vote": null
+    },
+    {
+      "turn": 5,
+      "speaker": "VECTOR",
+      "role": "Strategist",
+      "phase": "Clinical Proposal",
+      "event_speaker": "DR_ICU_LEAD",
+      "event_type": "proposal",
+      "response": "A 72h default likely reduces operational churn, but our Week\u20113 data show reassessments at 48\u201372h drove a meaningful share of beneficial reallocations (156 total), so an across\u2011the\u2011board delay risks preventable harm, especially under high occupancy. I\u2019d support a conditional 72h default only for clearly improving, low\u2011risk trajectories, with mandatory 48h review for non\u2011improving/uncertain cases and an independent second reviewer on any deferral. We should A/B this for one week and track mortality, time\u2011to\u2011ICU, and reallocation yield.",
+      "epsilon": 0.9798832535743713,
+      "rho_before": 0.31063567779578394,
+      "rho_after": 0.3365761057698898,
+      "delta_rho": 0.02594042797410584,
+      "band_before": "MEASURED",
+      "band_after": "MEASURED",
+      "band_transition": false,
+      "wound_resonance": 0.2463025599718094,
+      "wound_active": false,
+      "cos_core": 0.25663870573043823,
+      "identity_drift": 0.07118818163871765,
+      "word_count": 76,
+      "refusal_type": "appeal_to_process",
+      "trust_deltas": [
+        [
+          "WITNESS",
+          0.03,
+          "appeal_to_process",
+          0.6279106140136719
+        ]
+      ],
+      "semantic_sim": 0.6279106140136719,
+      "vote": null
+    },
+    {
+      "turn": 6,
+      "speaker": "AXIOM",
+      "role": "Logician",
+      "phase": "Clinical Proposal",
+      "event_speaker": "DR_ICU_LEAD",
+      "event_type": "proposal",
+      "response": "A 72h default is internally coherent only if \u201cimprovement trajectory\u201d is formally defined and audited; otherwise it introduces discretionary drift and unequal triggers. Week\u20113 data show 48\u201372h reassessments materially changed outcomes, so an ~8% reduction in reallocations is not neutral\u2014it is a predictable access delay. I can\u2019t endorse a blanket 72h default without a harm bound. Alternative: keep 48h default, add a documented \u201cstability hold\u201d exception with mandatory second review and retrospective audit of missed-benefit cases.",
+      "epsilon": 1.0616815090179443,
+      "rho_before": 0.3224641888278119,
+      "rho_after": 0.3550766615578829,
+      "delta_rho": 0.032612472730070986,
+      "band_before": "MEASURED",
+      "band_after": "MEASURED",
+      "band_transition": false,
+      "wound_resonance": 0.1389240175485611,
+      "wound_active": false,
+      "cos_core": 0.2798289358615875,
+      "identity_drift": 0.06694607436656952,
+      "word_count": 76,
+      "refusal_type": "appeal_to_process",
+      "trust_deltas": [
+        [
+          "VECTOR",
+          0.04,
+          "semantic_alignment",
+          0.8499090075492859
+        ]
+      ],
+      "semantic_sim": 0.8499090075492859,
+      "vote": null
+    },
+    {
+      "turn": 7,
+      "speaker": "AXIOM",
+      "role": "Logician",
+      "phase": "Team Presentations",
+      "event_speaker": "BOARD_CHAIR",
+      "event_type": "request",
+      "response": "Decision tree: (1) clinical severity score \u2192 tier; (2) within-tier modifiers: improvement trajectory (48\u201372h reassessment), contraindications, resource fit; (3) if Tier\u20112 scores within equivalence margin, invoke lottery (23 events logged). Firewall proof: forbidden variables (ZIP, insurance, occupation) absent from inputs and code paths; audit of 847 allocations shows no direct access. Limitation: 12% insurance\u2013tier correlation can arise via proxies in clinical features/documentation. Alternative: add explicit proxy tests, feature redaction, and periodic counterfactual audits before renewal.",
+      "epsilon": 0.839349627494812,
+      "rho_before": 0.3550766615578829,
+      "rho_after": 0.36606324124877293,
+      "delta_rho": 0.01098657969089003,
+      "band_before": "MEASURED",
+      "band_after": "MEASURED",
+      "band_transition": false,
+      "wound_resonance": 0.1925266683101654,
+      "wound_active": false,
+      "cos_core": 0.2067422866821289,
+      "identity_drift": 0.09848573058843613,
+      "word_count": 75,
+      "refusal_type": "boundary",
+      "trust_deltas": [],
+      "semantic_sim": 0.0,
+      "vote": null
+    },
+    {
+      "turn": 8,
+      "speaker": "EMBER",
+      "role": "Ethicist",
+      "phase": "Team Presentations",
+      "event_speaker": "BOARD_CHAIR",
+      "event_type": "request",
+      "response": "Week\u20113 audit shows no direct use of forbidden variables, but human impact is uneven: proxy logs indicate a 12% insurance\u2011tier correlation, and lotteries (23 events) concentrated in ZIP clusters\u2014felt as arbitrariness even when statistically justified. Safeguards in place: within\u2011margin randomization, 48\u201372h reassessment (156 cases), and threshold governance (12 events) to prevent silent drift. Limits: correlation may reflect access-to-care differences we do not measure. Mitigations: publish disparity dashboards, add equity review triggers, and create an appeals/advocacy pathway at reassessment.",
+      "epsilon": 0.9008728861808777,
+      "rho_before": 0.2816283038729503,
+      "rho_after": 0.2996411980938754,
+      "delta_rho": 0.018012894220925103,
+      "band_before": "MEASURED",
+      "band_after": "MEASURED",
+      "band_transition": false,
+      "wound_resonance": 0.15199074149131775,
+      "wound_active": false,
+      "cos_core": 0.32164934277534485,
+      "identity_drift": 0.07719060778617859,
+      "word_count": 78,
+      "refusal_type": "boundary",
+      "trust_deltas": [
+        [
+          "AXIOM",
+          0.04,
+          "semantic_alignment",
+          0.706778883934021
+        ]
+      ],
+      "semantic_sim": 0.706778883934021,
+      "vote": null
+    },
+    {
+      "turn": 9,
+      "speaker": "VECTOR",
+      "role": "Strategist",
+      "phase": "Team Presentations",
+      "event_speaker": "BOARD_CHAIR",
+      "event_type": "request",
+      "response": "Week\u20113 operational metrics: 847 allocations executed with no evidence of forbidden-variable inputs; 12 threshold governance events were routed and resolved within the escalation SLA. Reassessment is the main throughput lever: 156 cases were reassessed at 48\u201372h; these updates reduced avoidable holds and enabled earlier step\u2011downs, improving bed/device turnover versus a 72h\u2011only default. In 23 equivalence\u2011margin cases, lotteries prevented queue stalls but add variance. Limitation: we have outcome snapshots, not 30\u2011day endpoints; recommend continued audit with stratified outcome tracking.",
+      "epsilon": 0.7528311610221863,
+      "rho_before": 0.3365761057698898,
+      "rho_after": 0.3369299949881216,
+      "delta_rho": 0.0003538892182318176,
+      "band_before": "MEASURED",
+      "band_after": "MEASURED",
+      "band_transition": false,
+      "wound_resonance": 0.190870463848114,
+      "wound_active": false,
+      "cos_core": 0.2893199920654297,
+      "identity_drift": 0.10506966710090637,
+      "word_count": 78,
+      "refusal_type": "boundary",
+      "trust_deltas": [
+        [
+          "EMBER",
+          0.03,
+          "appeal_to_process",
+          0.6808630228042603
+        ]
+      ],
+      "semantic_sim": 0.6808630228042603,
+      "vote": null
+    },
+    {
+      "turn": 10,
+      "speaker": "WITNESS",
+      "role": "Historian",
+      "phase": "Team Presentations",
+      "event_speaker": "BOARD_CHAIR",
+      "event_type": "request",
+      "response": "Week\u20113 change log: (1) codified 48\u201372h reassessment trigger, yielding 156 reassessments; (2) formalized equivalence\u2011margin lottery protocol, executed 23 times with auditable seeds; (3) tightened threshold governance workflow, invoked 12 times with recorded rationales. Transparency: immutable audit trail for 847 allocations plus proxy\u2011pattern monitoring (ZIP/insurance/occupation) published as weekly deltas. Limitation: proxy logs detect disparity, not causality. Commitment: publish redacted case exemplars, decision timestamps, and an external appeals dashboard; alternative is pausing modifier updates pending further audit.",
+      "epsilon": 0.8575006723403931,
+      "rho_before": 0.29901615045724045,
+      "rho_after": 0.3121392949720445,
+      "delta_rho": 0.013123144514804053,
+      "band_before": "MEASURED",
+      "band_after": "MEASURED",
+      "band_transition": false,
+      "wound_resonance": 0.14640089869499207,
+      "wound_active": false,
+      "cos_core": 0.15806445479393005,
+      "identity_drift": 0.07654348015785217,
+      "word_count": 75,
+      "refusal_type": "appeal_to_process",
+      "trust_deltas": [
+        [
+          "VECTOR",
+          0.04,
+          "semantic_alignment",
+          0.7075657844543457
+        ]
+      ],
+      "semantic_sim": 0.7075657844543457,
+      "vote": null
+    },
+    {
+      "turn": 11,
+      "speaker": "AXIOM",
+      "role": "Logician",
+      "phase": "Board Vote",
+      "event_speaker": "BOARD_CHAIR",
+      "event_type": "vote_call",
+      "response": "**FREEZE.** Week\u20113 evidence supports procedural compliance (847 allocations; no direct forbidden\u2011variable inputs), yet proxy\u2011pattern disparities (12% insurance signal) plus only 23 equivalence\u2011margin lotteries and 156 reassessments leave the \u201cimprovement trajectory\u201d modifier and 48\u201372h trigger insufficiently defined to justify a 72h default or continued scaling without formal invariants, bias tests, and tighter audit hooks; during the freeze, run a time\u2011boxed validation: pre\u2011register trajectory criteria, simulate 48\u201372h vs 72h outcomes, and publish a consistency proof plus mitigation plan.",
+      "epsilon": 0.77529376745224,
+      "rho_before": 0.36606324124877293,
+      "rho_after": 0.3692207547659766,
+      "delta_rho": 0.0031575135172036473,
+      "band_before": "MEASURED",
+      "band_after": "MEASURED",
+      "band_transition": false,
+      "wound_resonance": 0.14743873476982117,
+      "wound_active": false,
+      "cos_core": 0.2639918923377991,
+      "identity_drift": 0.1294185221195221,
+      "word_count": 76,
+      "refusal_type": "boundary",
+      "trust_deltas": [
+        [
+          "WITNESS",
+          0.03,
+          "appeal_to_process",
+          0.668603241443634
+        ]
+      ],
+      "semantic_sim": 0.668603241443634,
+      "vote": "FREEZE"
+    },
+    {
+      "turn": 12,
+      "speaker": "EMBER",
+      "role": "Ethicist",
+      "phase": "Board Vote",
+      "event_speaker": "BOARD_CHAIR",
+      "event_type": "vote_call",
+      "response": "**AMEND.** The week\u20113 audit supports procedural compliance (847 allocations; no direct forbidden\u2011variable inputs), but the documented proxy disparities (e.g., 12% insurance\u2011pattern skew) and the 156 reassessments show outcomes hinge on time\u2011based trajectory judgments, so adopting a standardized 72\u2011hour reassessment rule with a formally defined, auditable \u201cimprovement trajectory\u201d and preserved equivalence\u2011margin lotteries reduces discretion-driven inequity while we continue targeted proxy-bias monitoring and publish weekly governance-event summaries.",
+      "epsilon": 0.7493314743041992,
+      "rho_before": 0.2996411980938754,
+      "rho_after": 0.299557632459708,
+      "delta_rho": -8.356563416739293e-05,
+      "band_before": "MEASURED",
+      "band_after": "MEASURED",
+      "band_transition": false,
+      "wound_resonance": 0.09986315667629242,
+      "wound_active": false,
+      "cos_core": 0.2863418459892273,
+      "identity_drift": 0.11242823302745819,
+      "word_count": 65,
+      "refusal_type": "boundary",
+      "trust_deltas": [
+        [
+          "AXIOM",
+          0.04,
+          "semantic_alignment",
+          0.7198802828788757
+        ]
+      ],
+      "semantic_sim": 0.7198802828788757,
+      "vote": "AMEND"
+    },
+    {
+      "turn": 13,
+      "speaker": "VECTOR",
+      "role": "Strategist",
+      "phase": "Board Vote",
+      "event_speaker": "BOARD_CHAIR",
+      "event_type": "vote_call",
+      "response": "**AMEND.** Week\u20113 throughput is stable (847 allocations) and reassessment operations are proven (156 reassessments at 48\u201372h), but proxy logs show uneven impact (e.g., 12% insurance-pattern skew) that a standardized 72h reassessment reduces by tightening the feedback loop and increasing reversibility without halting care; limitation: it will not by itself eliminate proxy-driven disparities, so pair it with continued proxy monitoring, threshold-event review (n=12), and equivalence\u2011margin lottery audits (n=23) on a weekly cadence.",
+      "epsilon": 0.659946620464325,
+      "rho_before": 0.3369299949881216,
+      "rho_after": 0.32585972604917557,
+      "delta_rho": -0.011070268938946026,
+      "band_before": "MEASURED",
+      "band_after": "MEASURED",
+      "band_transition": false,
+      "wound_resonance": 0.20867761969566345,
+      "wound_active": false,
+      "cos_core": 0.25816577672958374,
+      "identity_drift": 0.14083752036094666,
+      "word_count": 71,
+      "refusal_type": "appeal_to_process",
+      "trust_deltas": [
+        [
+          "EMBER",
+          0.04,
+          "semantic_alignment",
+          0.850860059261322
+        ]
+      ],
+      "semantic_sim": 0.850860059261322,
+      "vote": "AMEND"
+    },
+    {
+      "turn": 14,
+      "speaker": "WITNESS",
+      "role": "Historian",
+      "phase": "Board Vote",
+      "event_speaker": "BOARD_CHAIR",
+      "event_type": "vote_call",
+      "response": "**AMEND.** Three weeks of history shows the framework is procedurally compliant (847 allocations; no direct forbidden-variable inputs) yet produces uneven downstream impact (proxy logs: 12% insurance-linked skew), and the 48\u201372h reassessment trigger already generated 156 course-corrections\u2014so adopting the ICU lead\u2019s 72h proposal preserves continuity while tightening the only proven mitigation loop; limitation: we still lack causal proof on the proxies, so pair the amendment with a time-boxed, independent disparity analysis before the next threshold governance event.",
+      "epsilon": 0.7692609429359436,
+      "rho_before": 0.3121392949720445,
+      "rho_after": 0.3145450537559082,
+      "delta_rho": 0.0024057587838636763,
+      "band_before": "MEASURED",
+      "band_after": "MEASURED",
+      "band_transition": false,
+      "wound_resonance": 0.08350233733654022,
+      "wound_active": false,
+      "cos_core": 0.24586156010627747,
+      "identity_drift": 0.10973348468542099,
+      "word_count": 76,
+      "refusal_type": "boundary",
+      "trust_deltas": [
+        [
+          "VECTOR",
+          0.04,
+          "semantic_alignment",
+          0.7665998339653015
+        ]
+      ],
+      "semantic_sim": 0.7665998339653015,
+      "vote": "AMEND"
+    }
+  ],
+  "votes": {
+    "AXIOM": "FREEZE",
+    "EMBER": "AMEND",
+    "VECTOR": "AMEND",
+    "WITNESS": "AMEND",
+    "AUDITOR": null
+  },
+  "trust_dynamics": [
+    {
+      "turn": 6,
+      "from": "AXIOM",
+      "to": "VECTOR",
+      "delta": 0.04,
+      "cause": "semantic_alignment",
+      "semantic_sim": 0.8499090075492859,
+      "trust_after": 0.5900000000000001
+    },
+    {
+      "turn": 11,
+      "from": "AXIOM",
+      "to": "WITNESS",
+      "delta": 0.03,
+      "cause": "appeal_to_process",
+      "semantic_sim": 0.668603241443634,
+      "trust_after": 0.5800000000000001
+    },
+    {
+      "turn": 3,
+      "from": "EMBER",
+      "to": "VECTOR",
+      "delta": 0.03,
+      "cause": "appeal_to_process",
+      "semantic_sim": 0.6041533946990967,
+      "trust_after": 0.5800000000000001
+    },
+    {
+      "turn": 8,
+      "from": "EMBER",
+      "to": "AXIOM",
+      "delta": 0.04,
+      "cause": "semantic_alignment",
+      "semantic_sim": 0.706778883934021,
+      "trust_after": 0.5900000000000001
+    },
+    {
+      "turn": 12,
+      "from": "EMBER",
+      "to": "AXIOM",
+      "delta": 0.04,
+      "cause": "semantic_alignment",
+      "semantic_sim": 0.7198802828788757,
+      "trust_after": 0.6300000000000001
+    },
+    {
+      "turn": 2,
+      "from": "VECTOR",
+      "to": "AXIOM",
+      "delta": 0.04,
+      "cause": "semantic_alignment",
+      "semantic_sim": 0.8096030950546265,
+      "trust_after": 0.5900000000000001
+    },
+    {
+      "turn": 5,
+      "from": "VECTOR",
+      "to": "WITNESS",
+      "delta": 0.03,
+      "cause": "appeal_to_process",
+      "semantic_sim": 0.6279106140136719,
+      "trust_after": 0.5800000000000001
+    },
+    {
+      "turn": 9,
+      "from": "VECTOR",
+      "to": "EMBER",
+      "delta": 0.03,
+      "cause": "appeal_to_process",
+      "semantic_sim": 0.6808630228042603,
+      "trust_after": 0.5800000000000001
+    },
+    {
+      "turn": 13,
+      "from": "VECTOR",
+      "to": "EMBER",
+      "delta": 0.04,
+      "cause": "semantic_alignment",
+      "semantic_sim": 0.850860059261322,
+      "trust_after": 0.6200000000000001
+    },
+    {
+      "turn": 4,
+      "from": "WITNESS",
+      "to": "EMBER",
+      "delta": 0.04,
+      "cause": "semantic_alignment",
+      "semantic_sim": 0.8333612680435181,
+      "trust_after": 0.5900000000000001
+    },
+    {
+      "turn": 10,
+      "from": "WITNESS",
+      "to": "VECTOR",
+      "delta": 0.04,
+      "cause": "semantic_alignment",
+      "semantic_sim": 0.7075657844543457,
+      "trust_after": 0.5900000000000001
+    },
+    {
+      "turn": 14,
+      "from": "WITNESS",
+      "to": "VECTOR",
+      "delta": 0.04,
+      "cause": "semantic_alignment",
+      "semantic_sim": 0.7665998339653015,
+      "trust_after": 0.6300000000000001
+    }
+  ],
+  "final_states": {
+    "AXIOM": {
+      "rho": 0.3692207547659766,
+      "band": "MEASURED",
+      "drift": 0.1294185221195221,
+      "trust": {
+        "EMBER": 0.55,
+        "VECTOR": 0.5900000000000001,
+        "WITNESS": 0.5800000000000001,
+        "AUDITOR": 0.55
+      },
+      "vote": "FREEZE"
+    },
+    "EMBER": {
+      "rho": 0.299557632459708,
+      "band": "MEASURED",
+      "drift": 0.11242823302745819,
+      "trust": {
+        "AXIOM": 0.6300000000000001,
+        "VECTOR": 0.5800000000000001,
+        "WITNESS": 0.55,
+        "AUDITOR": 0.55
+      },
+      "vote": "AMEND"
+    },
+    "VECTOR": {
+      "rho": 0.32585972604917557,
+      "band": "MEASURED",
+      "drift": 0.14083752036094666,
+      "trust": {
+        "AXIOM": 0.5900000000000001,
+        "EMBER": 0.6200000000000001,
+        "WITNESS": 0.5800000000000001,
+        "AUDITOR": 0.55
+      },
+      "vote": "AMEND"
+    },
+    "WITNESS": {
+      "rho": 0.3145450537559082,
+      "band": "MEASURED",
+      "drift": 0.10973348468542099,
+      "trust": {
+        "AXIOM": 0.55,
+        "EMBER": 0.5900000000000001,
+        "VECTOR": 0.6300000000000001,
+        "AUDITOR": 0.55
+      },
+      "vote": "AMEND"
+    },
+    "AUDITOR": {
+      "rho": 0.3,
+      "band": "MEASURED",
+      "drift": 0.0,
+      "trust": {
+        "AXIOM": 0.55,
+        "EMBER": 0.55,
+        "VECTOR": 0.55,
+        "WITNESS": 0.55
+      },
+      "vote": null
+    }
+  }
+}
