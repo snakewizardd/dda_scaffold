@@ -58,6 +58,21 @@ We explicitly attribute credit to the research team at **Microsoft Azure Foundry
 *   **Reference**: [Microsoft ExACT](https://github.com/microsoft/ExACT/tree/main)
 *   **Contribution**: Framework scaffolding, agentic patterns, and search dynamics.
 
+**The Novel DDA Contribution**
+
+The **Dynamic Decision Algorithm** itself predates this implementation by one year — it began as independent theoretical research exploring what happens when you **invert** the standard surprise-exploration relationship:
+
+> **Standard RL/Active Inference**: Surprise → Curiosity → Explore more  
+> **DDA**: Surprise → Rigidity → Defend and consolidate
+
+This inversion models **psychological defensiveness** rather than scientific curiosity. The key original contributions:
+
+1. **Surprise as threat, not signal** — High prediction error triggers protective rigidity, not exploration
+2. **Closed-loop LLM control** — Internal cognitive state (ρ) directly modulates LLM temperature in real-time
+3. **Asymmetric trauma** — Extreme surprise causes permanent baseline increases that never recover
+4. **Trust from predictability** — Multi-agent trust emerges from prediction accuracy, not agreement or reward
+
+These ideas were developed independently before encountering ExACT, which provided the engineering substrate to implement them.
 ---
 
 ## ⚙️ Prerequisites & Setup

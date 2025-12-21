@@ -29,6 +29,13 @@ We explicitly attribute credit to the research team at **Microsoft Azure Foundry
 *   **Reference**: [Microsoft ExACT](https://github.com/microsoft/ExACT/tree/main)
 *   **Contribution**: Framework scaffolding, agentic patterns, and search dynamics.
 
+**The Novel DDA Contribution**: The Dynamic Decision Algorithm **inverts** the standard surprise-exploration relationship:
+
+> **Standard RL**: Surprise → Curiosity → Explore  
+> **DDA**: Surprise → Rigidity → Defend
+
+This models **psychological defensiveness** — the original theoretical contribution developed independently before implementation.
+
 ---
 
 ## ⚙️ Prerequisites & Setup
