@@ -21,7 +21,7 @@ The framework treats "Personality" as a mass vector with inertia, applying Newto
 
 * **Stateful Alignment:** Identity is stored as a persistent vector (`agent.x`), not a prompt.
 * **Hybrid Inference:** Validated on **GPT-5.2** (via API) for high-fidelity reasoning and **GPT-OSS-20B/Nomic** (Local) for edge deployment.
-* **Economic Efficiency:** Complete simulation suites (50+ runs) executed for **<$1.50** total API cost due to vector-based state management.
+* **Economic Efficiency:** Vector-based state management enables complete simulation suites at very low API cost.
 
 ---
 
