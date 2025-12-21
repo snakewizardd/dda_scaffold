@@ -86,6 +86,17 @@ We explicitly attribute credit to the research team at **Microsoft Azure Foundry
 
 > **Note**: All simulations are **self-contained**. They come with their own environments, memory ledgers, and interaction loops. You do not need to configure complex external databases.
 
+> [!IMPORTANT]
+> **Local-Only Architecture & Model Limitations**
+>
+> This entire architecture runs **100% locally** with zero cloud dependencies. All simulations and experiments documented here were conducted using:
+> - **Embeddings**: `nomic-embed-text` via Ollama
+> - **Language Model**: `GPT-OSS-20B` via LM Studio
+>
+> **DDA-X has not yet been tested on state-of-the-art (SOTA) LLMs** such as GPT-4, Claude, or Gemini. The cognitive dynamics, emergent behaviors, and experimental results reflect the capabilities of the local models listed above.
+>
+> However, the architecture is **easily extensible** to any OpenAI-compatible API endpoint. To connect to cloud providers or more powerful models, simply configure the `HybridProvider` in `src/llm/hybrid_provider.py` with your preferred endpoint URL and API key.
+
 ---
 
 ## 📜 Origin Story
