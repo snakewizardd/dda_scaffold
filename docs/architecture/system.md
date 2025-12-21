@@ -1381,7 +1381,7 @@ initial_rho: 0.4       # Start with elevated baseline
 | **Surprise → rigidity** | ❌ Opposite (surprise → learn) | ✅ Core mechanism |
 | **Personality profiles** | ❌ All agents identical | ✅ Configurable (cautious, exploratory, traumatized) |
 | **Protect mode** | ❌ None | ✅ ρ > threshold → conservative |
-| **Stability guarantees** | ❌ None | ✅ m_crit derived |
+| **Stability metrics** | ❌ None | ✅ m_crit derived |
 | **Memory salience** | ❌ Just similarity | ✅ sim × recency × surprise |
 | **Tree search** | ✅ UCT | ✅ DDA-X (UCT + alignment + rigidity) |
 | **Reflection learning** | ✅ Yes | ✅ Yes (your ledger format) |

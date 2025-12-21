@@ -21,7 +21,7 @@ The test suite comprehensively validates the mathematical claims of the DDA-X fr
 **Verdict:** ✅ CONFIRMED — The surprise-rigidity coupling is a novel, testable mechanism that links prediction error to behavioral rigidity, distinct from existing approaches.
 
 #### 2. Identity Attractor Stability (Tests 2.1–2.3)
-**Claim:** Core identity with γ→∞ provides inviolable alignment guarantees.
+**Claim:** Core identity with γ→∞ provides strong empirical alignment stability.
 
 | Test                              | Result | Evidence                                      |
 |-----------------------------------|--------|-----------------------------------------------|
@@ -127,7 +127,7 @@ The test suite comprehensively validates the mathematical claims of the DDA-X fr
 The test suite provides rigorous mathematical verification of 7 core claims with a 100% pass rate across 45 tests. The DDA-X framework introduces:
 
 - A physics-based cognitive engine with testable dynamics equations
-- Novel alignment guarantees via hierarchical identity attractors
+- Strong alignment stability via hierarchical identity attractors
 - Psychologically grounded trauma and rigidity mechanics
 - Principled trust quantification from first principles
 - Real-world validated integration with LLM backends

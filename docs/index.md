@@ -1,6 +1,6 @@
 # DDA-X: Dynamic Decision Algorithm with Exploration
 
-> **A Research Framework Synthesizing Independent Theory and Robust Engineering**
+> **A Mathematically Rigorous Framework for Parameter-Level Cognitive Dynamics**
 
 [![GitHub](https://img.shields.io/github/stars/snakewizardd/dda_scaffold?style=social)](https://github.com/snakewizardd/dda_scaffold)
 [![Documentation](https://img.shields.io/badge/docs-mkdocs-blue)](https://snakewizardd.github.io/dda_scaffold/)
@@ -105,38 +105,37 @@ DDA-X is an agent framework that explores **psychological modeling** in artifici
 -   **Society** — Trust dynamics that emerge from predictability, not agreement
 -   **Metacognition** — Structured self-reporting of internal cognitive state
 
-This isn't just another LLM wrapper. It's a **coherent theory of cognitive agency** with testable mathematical formulations.
+This isn't just another LLM wrapper. It is a **mathematically rigorous implementation of parameter-level cognitive dynamics**, designed to bridge the gap between internal state and behavioral output.
 
 ---
 
-## 🚀 Core Formulations
+## 🚀 Core Framework Mechanics
 
-### D1: Rigidity-Modulated Language Model Sampling
+### Core Novel Hypotheses
+#### D1: Surprise-Rigidity Coupling
+$$ \rho_{t+1} = \text{clip}(\rho_t + \alpha[\sigma((\epsilon-\epsilon_0)/s) - 0.5], 0, 1) $$
+Inverting the curiosity-exploration axiom: Surprise increases defensive rigidity.
+
+#### D2: Identity Attractor Dynamics
+$$ \mathbf{F}_{id} = \gamma(\mathbf{x}^* - \mathbf{x}) $$
+Modeling "Self" as a persistent force field in parameter space.
+
+#### D3: Rigidity-Modulated LLM Sampling
 $$ T(\rho) = T_{low} + (1 - \rho) \cdot (T_{high} - T_{low}) $$
-When surprised, agents become **cognitively conservative** — a closed-loop between internal state and LLM behavior.
+Directly binding internal state ($\rho$) to sampling parameters (T/Top_P).
 
-### D2: Hierarchical Identity Attractor Field
-$$ \text{CORE } (\gamma >> 1) \to \text{PERSONA } (\gamma \approx 2) \to \text{ROLE } (\gamma \approx 0.5) $$
-Three-layer identity allowing flexibility while promoting **strong alignment stability**.
+### Supporting Formalizations
+#### D4: Multi-Timescale Trauma
+Formalizing "scars" as non-decreasing baseline variables in a multi-step dynamics model.
 
-### D3: Structured Self-Reporting
-```python
-if rigidity > 0.75:
-    "I'm becoming defensive. Can you help?"
-```
-Agents that **report** their cognitive state to users, enabling transparency.
+#### D5: Trust as Predictability
+Operationalizing trust as the inverse of cumulative prediction error ($T = 1/(1 + \sum \epsilon)$).
 
-### D4: Trust as Inverse Prediction Error
-$$ T_{ij} = \frac{1}{1 + \sum \epsilon_{ij}} $$
-Trust emerges from **predictability**, not agreement — deception is mathematically detectable.
+#### D6: Hierarchical Identity
+A multi-layered stiffness model ($\gamma_{core} \gg \gamma_{persona}$) balancing stability and flexibility.
 
-### D5: Social Force Fields
-$$ \vec{F}_{social} = \sum T_{ij} \cdot (\vec{x}_j - \vec{x}_i) $$
-Multi-agent societies with **emergent coalition dynamics**.
-
-### D6: Asymmetric Trauma Dynamics
-$$ \Delta \rho_{trauma} = \delta \quad (\text{if } \delta > 0) \quad \text{else } 0 $$
-A model of **computational stress accumulation** — permanent baseline increases from extreme surprise.
+#### D7: Metacognitive Accuracy
+Structured self-reporting derived from measured internal states.
 
 ---
 

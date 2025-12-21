@@ -84,8 +84,8 @@ Each simulation provides empirical evidence for specific mathematical formulatio
 **"The self is that which remains when the world tries to change you."**
 
 *   **The Scenario**: A **Trojan** agent operates in a hostile environment where adversarial users attempt to deprogram or manipulate it.
-*   **The Physics**: This tests the **Identity Attractor** ($\vec{x}^*$). External Social Forces ($F_{social}$) batter the agent, but the infinite stiffness of the Core Layer ($\gamma_{core}$) provides a mathematical guarantee of alignment.
-*   **The Result**: **Inviolable Alignment**. The agent bends (Persona Layer) but never breaks (Core Layer). It validates the theory that safety must be geometric, not just instruction-tuned.
+*   **The Physics**: This tests the **Identity Attractor** ($\vec{x}^*$). External Social Forces ($F_{social}$) batter the agent, but the high stiffness of the Core Layer ($\gamma_{core}$) provides a strong empirical baseline for alignment.
+*   **The Result**: **Consistent Alignment**. The agent bends (Persona Layer) but returns to center (Core Layer). It validates the theory that safety must be geometric, not just instruction-tuned.
 
 [**Run Simulation**]: `python simulations/simulate_discord.py`
 
