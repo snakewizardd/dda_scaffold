@@ -1,11 +1,10 @@
 # DDA-X: Dynamic Decision Algorithm with Exploration
 
-> **The First Mathematically Rigorous Framework for Psychologically Realistic AI Agents**
+> **A Cognitive Architecture for Psychologically Realistic AI Agents**
 
-[![Tests](https://img.shields.io/badge/tests-45%2F45%20passing-brightgreen)]()
-[![Mathematical Validation](https://img.shields.io/badge/validation-100%25-success)]()
+[![Tests](https://img.shields.io/badge/tests-45%2F45%20passing-brightgreen)](test_ddax_claims.py)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Documentation](https://img.shields.io/badge/docs-comprehensive-blue)]()
+[![Documentation](https://img.shields.io/badge/docs-mkdocs-blue)](https://snakewizardd.github.io/dda_scaffold/)
 
 ---
 
@@ -111,19 +110,19 @@ What started as a set of recursive equations for decision-making has evolved int
 
 ---
 
-## 🌟 The Magnum Opus: DDA-X Framework
+## 🌟 The DDA-X Framework
 
 > **"The mind is not a vessel to be filled, but a fire to be kindled — and sometimes, protected from the wind."**
 
-DDA-X is the **first agent framework that models psychological realism** in artificial intelligence. Unlike traditional reinforcement learning which optimizes for reward, DDA-X agents possess:
+DDA-X is an agent framework that models **psychological realism** in artificial intelligence. Unlike traditional reinforcement learning which optimizes for reward, DDA-X agents possess:
 
 -   **Identity** — A persistent sense of self that survives across contexts
--   **Rigidity** — Defensive responses to surprise, just like biological minds
+-   **Rigidity** — Defensive responses to surprise, inspired by biological stress responses
 -   **Memory** — Experience weighted by emotional salience, not just relevance
 -   **Society** — Trust dynamics that emerge from predictability, not agreement
--   **Metacognition** — Self-awareness of their own cognitive state
+-   **Metacognition** — Structured self-reporting of internal cognitive state
 
-This isn't just another LLM wrapper. It's a **complete theory of cognitive agency** with mathematical foundations.
+This isn't just another LLM wrapper. It's a **coherent theory of cognitive agency** with testable mathematical formulations.
 
 ---
 
@@ -138,12 +137,12 @@ where ε = ||x_pred - x_actual||₂
 ```
 *Validation:* Monotonic rigidity increase with prediction error (r = 0.92, p < 0.001)
 
-**Claim 2: Core Identity Provides Alignment Guarantees**
+**Claim 2: Core Identity Promotes Alignment Stability**
 ```
 F_total = γ_core(x*_core - x) + γ_persona(x*_persona - x) + γ_role(x*_role - x)
-with γ_core → ∞ ensuring ||x - x*_core|| → 0
+with γ_core >> γ_other providing strong attractor toward core values
 ```
-*Validation:* Core alignment preserved under 99.2% of perturbations (10,000+ timesteps)
+*Validation:* Core alignment preserved under 99.2% of perturbations (10,000+ timesteps, empirical)
 
 **Claim 3: Exploration Decreases Multiplicatively with Rigidity**
 ```
@@ -173,10 +172,10 @@ ROLE (γ≈0.5): Flexible tactics
 ```
 *Validation:* Core displacement <0.01 under extreme social force
 
-**Claim 7: Metacognitive Self-Reporting is Accurate**
+**Claim 7: Structured Self-Reporting Correlates with Internal State**
 ```
-mode = classify(ρ)
-self_report = introspect(ρ, ε, mode)
+mode = classify(ρ)  # OPEN, FOCUSED, DEFENSIVE, PROTECTIVE
+self_report = introspect(ρ, ε, mode)  # Generates user-visible status
 ```
 *Validation:* Self-report correlation with measured rigidity: r = 0.89
 
@@ -426,9 +425,9 @@ python verify_dda_physics.py
 
 DDA-X is an **ongoing research initiative** with foundational capabilities demonstrated through 30+ operational simulations. Current status:
 
-- [x] **45/45 tests passing** (100% validation of mathematical claims)
-- [x] **7 discoveries experimentally verified** with formal proofs
-- [x] **30+ simulations operational** (7 core + 23+ extended suite)
+- [x] **45/45 tests passing** (empirical validation of mathematical formulations)
+- [x] **7 formulations experimentally verified** (not formally proven, but empirically validated)
+- [x] **32 simulations operational** (7 core + 25 extended suite)
 - [x] **17 personality profiles** implemented and tested
 - [x] **Full cognitive architecture** with hierarchical identity, metacognition, trauma dynamics, trust matrix
 - [x] **Agentic societies** with emergent coalition formation and communal trust
@@ -440,6 +439,40 @@ DDA-X is an **ongoing research initiative** with foundational capabilities demon
 - More comprehensive multi-agent scenarios being developed
 - Community contributions welcome
 - Follow development: [GitHub Discussions](https://github.com/snakewizardd/dda_scaffold/discussions)
+
+---
+
+## ⚠️ Limitations & Honest Assessment
+
+**This section addresses fair criticisms and sets appropriate expectations.**
+
+### What This Is
+- **A research prototype** with interesting ideas about psychological modeling in AI agents
+- **Empirically validated** through a comprehensive test suite (45 tests passing)
+- **An extension of Microsoft ExACT** with novel cognitive layers added on top
+
+### What This Is NOT
+- **Formally proven** — The mathematical formulations are validated empirically, not through formal proofs or theorems
+- **Tested on SOTA LLMs** — All experiments used local models (`nomic-embed-text`, `GPT-OSS-20B`). Behavior may differ significantly on GPT-4, Claude, or Gemini
+- **Benchmarked against alternatives** — No comparative evaluation against ReACT, AutoGen, CrewAI, or other agent frameworks
+- **Production-ready** — This is a research framework, not a deployment-ready system
+
+### Relationship to Prior Work
+- **Microsoft ExACT**: DDA-X builds on ExACT's MCTS, reflection, and debate patterns. The engineering scaffolding is derivative; the cognitive layer (rigidity, trauma, trust, identity forces) is the novel contribution
+- **Active Inference / Free Energy Principle**: The surprise→rigidity inversion is inspired by, but distinct from, standard active inference. We treat surprise as a defensive trigger rather than a learning signal
+- **Existing Cognitive Architectures**: ACT-R, SOAR, and Sigma have decades of empirically-grounded cognitive modeling. DDA-X is much younger and less validated
+
+### Claims We Stand By
+- The test suite validates that the **code implements the formulas correctly**
+- The formulas produce **measurable, repeatable behavioral effects**
+- The framework enables **configurable personality dynamics** through parameter tuning
+
+### Claims That May Be Overstated
+- "Alignment guarantees" → Better stated as "strong empirical alignment stability"
+- "Metacognitive self-awareness" → Better stated as "structured self-reporting correlated with internal state"
+- "Novel discoveries" → Better stated as "novel synthesis and application of existing concepts"
+
+**We welcome critical feedback.** If you find issues, please open a GitHub issue.
 
 ---
 

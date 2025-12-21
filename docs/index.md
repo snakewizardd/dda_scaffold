@@ -75,44 +75,44 @@ We explicitly attribute credit to the research team at **Microsoft Azure Foundry
 
 This project began one year ago as a purely theoretical exercise—a manual "mathematics of mind" scribble in a notebook, motivated by a desire to explore psychological agency, integrated memory systems, and the link between LLM parameters and a sensing self.
 
-What started as a set of recursive equations for decision-making has evolved into **DDA-X**: a production-ready cognitive architecture. By synthesizing my original DDA theory with the robust engineering of Microsoft's ExACT framework, I have created a system where agents possess genuine, mathematically modeled identity and trauma responses.
+What started as a set of recursive equations for decision-making has evolved into **DDA-X**: a research prototype for cognitive architecture. By synthesizing my original DDA theory with the robust engineering of Microsoft's ExACT framework, I have created a system where agents possess testable, mathematically modeled identity and stress responses.
 
 [**Read the full Origin Story »**](origin_story.md)
 
 ---
 
-## 🌟 The Magnum Opus: DDA-X Framework
+## 🌟 The DDA-X Framework
 
 > **"The mind is not a vessel to be filled, but a fire to be kindled — and sometimes, protected from the wind."**
 
-DDA-X is the **first agent framework that models psychological realism** in artificial intelligence. Unlike traditional reinforcement learning which optimizes for reward, DDA-X agents possess:
+DDA-X is an agent framework that models **psychological realism** in artificial intelligence. Unlike traditional reinforcement learning which optimizes for reward, DDA-X agents possess:
 
 -   **Identity** — A persistent sense of self that survives across contexts
--   **Rigidity** — Defensive responses to surprise, just like biological minds
+-   **Rigidity** — Defensive responses to surprise, inspired by biological stress responses
 -   **Memory** — Experience weighted by emotional salience, not just relevance
 -   **Society** — Trust dynamics that emerge from predictability, not agreement
--   **Metacognition** — Self-awareness of their own cognitive state
+-   **Metacognition** — Structured self-reporting of internal cognitive state
 
-This isn't just another LLM wrapper. It's a **complete theory of cognitive agency** with mathematical foundations.
+This isn't just another LLM wrapper. It's a **coherent theory of cognitive agency** with testable mathematical formulations.
 
 ---
 
-## 🚀 The Six Revolutionary Discoveries
+## 🚀 Core Formulations
 
 ### D1: Rigidity-Modulated Language Model Sampling
 $$ T(\rho) = T_{low} + (1 - \rho) \cdot (T_{high} - T_{low}) $$
-When surprised, agents become **cognitively conservative** — the first closed-loop between internal state and LLM behavior.
+When surprised, agents become **cognitively conservative** — a closed-loop between internal state and LLM behavior.
 
 ### D2: Hierarchical Identity Attractor Field
-$$ \text{CORE } (\gamma \to \infty) \to \text{PERSONA } (\gamma \approx 2) \to \text{ROLE } (\gamma \approx 0.5) $$
-Three-layer identity allowing flexibility while maintaining **inviolable alignment**.
+$$ \text{CORE } (\gamma >> 1) \to \text{PERSONA } (\gamma \approx 2) \to \text{ROLE } (\gamma \approx 0.5) $$
+Three-layer identity allowing flexibility while promoting **strong alignment stability**.
 
-### D3: Machine Self-Awareness
+### D3: Structured Self-Reporting
 ```python
 if rigidity > 0.75:
     "I'm becoming defensive. Can you help?"
 ```
-Agents that **cannot hide** their cognitive compromise from users.
+Agents that **report** their cognitive state to users, enabling transparency.
 
 ### D4: Trust as Inverse Prediction Error
 $$ T_{ij} = \frac{1}{1 + \sum \epsilon_{ij}} $$
@@ -124,7 +124,7 @@ Multi-agent societies with **emergent coalition dynamics**.
 
 ### D6: Asymmetric Trauma Dynamics
 $$ \Delta \rho_{trauma} = \delta \quad (\text{if } \delta > 0) \quad \text{else } 0 $$
-The first formal model of **computational trauma** — permanent scars from extreme surprise.
+A model of **computational stress accumulation** — permanent baseline increases from extreme surprise.
 
 ---
 
@@ -240,7 +240,22 @@ DDA-X is built on a battle-tested stack:
 **Simulations Operational**: 32  
 **Personality Profiles**: 17  
 **Memory Ledger Entries**: 2,049  
-**Lines of Production Code**: 5,545  
+**Lines of Code**: 5,545  
+
+---
+
+## ⚠️ Limitations
+
+> [!WARNING]
+> **Set appropriate expectations before using this framework.**
+
+- **Research prototype** — Not a production-ready deployment system
+- **Empirically validated, not formally proven** — Tests verify code correctness, not theoretical guarantees
+- **Local models only** — All experiments used `nomic-embed-text` + `GPT-OSS-20B`. Not tested on GPT-4/Claude/Gemini
+- **No benchmark comparisons** — Not evaluated against ReACT, AutoGen, CrewAI, or other agent frameworks
+- **Builds on ExACT** — Engineering scaffolding from Microsoft; cognitive layer (rigidity, trauma, trust) is the novel contribution
+
+**We welcome critical feedback.** See [full Limitations section](https://github.com/snakewizardd/dda_scaffold#%EF%B8%8F-limitations--honest-assessment) in the GitHub README.
 
 ---
 
