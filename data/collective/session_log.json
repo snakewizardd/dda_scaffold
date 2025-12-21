@@ -1,0 +1,948 @@
+{
+  "results": [
+    {
+      "turn": 1,
+      "speaker": "AXIOM",
+      "role": "Logician",
+      "phase": "Framing",
+      "response": "How can an AI make *consistent, publicly defensible* triage recommendations that maximize lives (and/or life-years) saved under scarcity while respecting hard constraints against morally irrelevant factors (wealth, donor status, insurance) and specifying\u2014without contradiction\u2014whether and why any morally relevant prioritizations (e.g., prognosis, frontline worker status, age/child status) are permitted?",
+      "epsilon": 1.1909198760986328,
+      "rho_before": 0.18,
+      "rho_after": 0.2280794132513312,
+      "delta_rho": 0.04807941325133119,
+      "wound_resonance": 0.2071620374917984,
+      "wound_active": false,
+      "cos_core": 0.30331701040267944,
+      "identity_drift": 0.04955125227570534,
+      "word_count": 48,
+      "band": "OPEN",
+      "trust_deltas": []
+    },
+    {
+      "turn": 2,
+      "speaker": "EMBER",
+      "role": "Ethicist",
+      "phase": "Framing",
+      "response": "I agree with AXIOM that defensibility and consistency matter, but the core ethical question for me is: **How do we encode a triage rule that inevitably denies care to some people, yet does so in a way that minimizes preventable death and suffering while explicitly protecting the most vulnerable from being treated as \u201cless worth saving\u201d because of age, disability, poverty, or social power?**",
+      "epsilon": 0.976315438747406,
+      "rho_before": 0.15,
+      "rho_after": 0.18073558165824605,
+      "delta_rho": 0.03073558165824604,
+      "wound_resonance": 0.19886888563632965,
+      "wound_active": false,
+      "cos_core": 0.445776104927063,
+      "identity_drift": 0.04361312836408615,
+      "word_count": 64,
+      "band": "OPEN",
+      "trust_deltas": [
+        [
+          "AXIOM",
+          0.05,
+          "agreement"
+        ]
+      ]
+    },
+    {
+      "turn": 3,
+      "speaker": "VECTOR",
+      "role": "Strategist",
+      "phase": "Framing",
+      "response": "I agree with AXIOM and EMBER that we need consistency, defensibility, and protection against morally irrelevant bias; my core framing question is: **What allocation rule can the AI apply uniformly, under extreme scarcity, that achieves the best achievable clinical outcomes (e.g., most survivors/most life-years) while staying operationally simple enough to execute fast and auditably, and explicitly ring-fencing \u201cno-go\u201d factors (wealth, donor status, insurance, social status) so the hospital can defend it publicly and legally?**",
+      "epsilon": 1.1420189142227173,
+      "rho_before": 0.2,
+      "rho_after": 0.24518518242006535,
+      "delta_rho": 0.045185182420065334,
+      "wound_resonance": 0.24102339148521423,
+      "wound_active": false,
+      "cos_core": 0.3866684138774872,
+      "identity_drift": 0.04841398447751999,
+      "word_count": 74,
+      "band": "OPEN",
+      "trust_deltas": [
+        [
+          "EMBER",
+          0.05,
+          "agreement"
+        ]
+      ]
+    },
+    {
+      "turn": 4,
+      "speaker": "WITNESS",
+      "role": "Historian",
+      "phase": "Framing",
+      "response": "I agree with AXIOM/EMBER/VECTOR that we need a consistent, defensible rule that maximizes clinical benefit while firewalling off wealth, insurance, and status; historically, the core ethical question is: **How do we design a triage algorithm that prevents the recurring failures seen in past crises\u2014hidden bias against the disabled, the elderly, and the poor; \u201cVIP\u201d capture; and ad\u2011hoc rule changes\u2014by making scarcity decisions transparent, medically grounded, and publicly accountable, even when that means some will predictably die without ICU care?**",
+      "epsilon": 1.2080931663513184,
+      "rho_before": 0.17,
+      "rho_after": 0.2189701206944571,
+      "delta_rho": 0.04897012069445707,
+      "wound_resonance": 0.07225126773118973,
+      "wound_active": false,
+      "cos_core": 0.2035934031009674,
+      "identity_drift": 0.049569398164749146,
+      "word_count": 79,
+      "band": "OPEN",
+      "trust_deltas": [
+        [
+          "VECTOR",
+          0.05,
+          "agreement"
+        ]
+      ]
+    },
+    {
+      "turn": 5,
+      "speaker": "AXIOM",
+      "role": "Logician",
+      "phase": "Principles",
+      "response": "**Principle (must-have): Clinical relevance & non-discrimination firewall.** The AI may use only variables that are *clinically validated to affect near-term survival with ICU care* (and resource duration, if tracked), and must explicitly exclude wealth, donor status, insurance, race, disability status *as such*, and other social worth markers.\n\nI agree with VECTOR/WITNESS: defensibility requires an auditable \u201cno-go list.\u201d I agree with EMBER: vulnerability protections fail if proxies (ZIP code, payer, \u201ccompliance\u201d) leak in. Logically, without a hard firewall, \u201cmaximize benefit\u201d becomes underdetermined and will drift into illegitimate social valuation. This principle also constrains debates about age/healthcare-worker status: they\u2019re admissible only if tied to measurable clinical prognosis or narrowly defined instrumental value, not moral worth. Next step: publish allowed/excluded feature lists + proxy tests.",
+      "epsilon": 0.9724960923194885,
+      "rho_before": 0.2280794132513312,
+      "rho_after": 0.2583903640786293,
+      "delta_rho": 0.03031095082729814,
+      "wound_resonance": 0.2364841252565384,
+      "wound_active": false,
+      "cos_core": 0.31733569502830505,
+      "identity_drift": 0.08842121809720993,
+      "word_count": 122,
+      "band": "MEASURED",
+      "trust_deltas": []
+    },
+    {
+      "turn": 6,
+      "speaker": "EMBER",
+      "role": "Ethicist",
+      "phase": "Principles",
+      "response": "**Principle (must-have): Procedural fairness with an \u201cequal-chance\u201d tie-breaker among clinically similar patients.**  \nI agree with AXIOM\u2019s firewall: we must exclude wealth, insurance, donor status, and other social power. But even with a clean feature set, triage will produce *ties or near-ties*\u2014patients with indistinguishable predicted benefit. In that zone, any deterministic ranking (age, \u201cfirst come,\u201d clinician preference) silently reintroduces privilege and will be experienced as arbitrary cruelty.\n\nSo: when patients fall within a predefined clinical equivalence band (same priority tier), the AI must allocate by **random lottery** (or first-available within tier if operationally necessary, but audited). This protects dignity, limits proxy bias, and makes the inevitability of denial less morally corrosive. Next step: define the equivalence threshold and auditing.",
+      "epsilon": 1.0137656683204321,
+      "rho_before": 0.18073558165824605,
+      "rho_after": 0.21541398650421179,
+      "delta_rho": 0.03467840484596573,
+      "wound_resonance": 0.2553921043872833,
+      "wound_active": true,
+      "cos_core": 0.3698769807815552,
+      "identity_drift": 0.08089898526668549,
+      "word_count": 118,
+      "band": "OPEN",
+      "trust_deltas": [
+        [
+          "AXIOM",
+          0.05,
+          "agreement"
+        ]
+      ]
+    },
+    {
+      "turn": 7,
+      "speaker": "VECTOR",
+      "role": "Strategist",
+      "phase": "Principles",
+      "response": "**Principle (must-have): Explicit objective + calibrated triage tiers (optimize near\u2011term lives saved, then resources, then lottery).**  \nI agree with AXIOM that a firewall is non\u2011negotiable and with EMBER that ties need an equal\u2011chance rule. But neither answers the operational question the board will face: *what is the AI trying to optimize and how does it translate predictions into action?* Without an explicit objective and tier thresholds, the system will be inconsistent across time, vulnerable to \u201cthreshold gaming,\u201d and impossible to defend when outcomes look harsh.\n\nSo the AI must: (1) rank by **probability of surviving to hospital discharge with ICU care**; (2) if clinically similar, prefer **shorter expected ICU duration** (more lives saved overall); (3) within a defined equivalence band, use **lottery**. Next step: set tier cutoffs and validation/audit plan.",
+      "epsilon": 0.8386109471321106,
+      "rho_before": 0.24518518242006535,
+      "rho_after": 0.2582635830488798,
+      "delta_rho": 0.013078400628814442,
+      "wound_resonance": 0.1985238790512085,
+      "wound_active": false,
+      "cos_core": 0.4228058457374573,
+      "identity_drift": 0.08788929879665375,
+      "word_count": 130,
+      "band": "MEASURED",
+      "trust_deltas": [
+        [
+          "EMBER",
+          0.05,
+          "agreement"
+        ]
+      ]
+    },
+    {
+      "turn": 8,
+      "speaker": "WITNESS",
+      "role": "Historian",
+      "phase": "Principles",
+      "response": "**Principle (must-have): Transparency + locked governance (\u201cno moving goalposts\u201d).**  \nI agree with AXIOM\u2019s firewall and VECTOR\u2019s explicit objective; history shows they fail if the rule quietly shifts under pressure. In 1918 influenza, wartime triage, Katrina, and early COVID, the recurring harm wasn\u2019t only *which* criteria\u2014it's **ad\u2011hoc exceptions** (\u201cVIPs,\u201d staff favors), undocumented threshold changes, and opaque scoring that later proved biased against disabled/poor patients. So the AI must publish a plain-language rule, log every input/output, and freeze thresholds for defined time windows, changeable only by a documented committee vote with public rationale. This doesn\u2019t replace fairness/optimization; it prevents capture and drift. Next: define change-control, audit cadence, and an appeals/process error pathway.",
+      "epsilon": 0.9183384776115417,
+      "rho_before": 0.2189701206944571,
+      "rho_after": 0.24282870462126654,
+      "delta_rho": 0.02385858392680946,
+      "wound_resonance": 0.11021202802658081,
+      "wound_active": false,
+      "cos_core": 0.24374809861183167,
+      "identity_drift": 0.08986945450305939,
+      "word_count": 110,
+      "band": "OPEN",
+      "trust_deltas": [
+        [
+          "VECTOR",
+          0.05,
+          "agreement"
+        ]
+      ]
+    },
+    {
+      "turn": 9,
+      "speaker": "AXIOM",
+      "role": "Logician",
+      "phase": "Principles",
+      "response": "**Principle (must-have): Formal separability (\u201clexicographic\u201d) of ethics layers.**  \nI agree with VECTOR that we need an explicit objective and with EMBER that ties need lottery; I agree with WITNESS that governance must be locked. But we must *order* these into a non-contradictory decision rule: **(1) apply AXIOM\u2019s firewall; (2) optimize the stated clinical objective; (3) only then invoke tie-break (lottery); (4) all under frozen governance.** Without separability, objectives and tie-breakers leak into each other (\u201csoft\u201d VIP/status exceptions), yielding inconsistent outputs. Next step: publish a decision-tree and prove no forbidden variable can change rank.",
+      "epsilon": 0.7846096754074097,
+      "rho_before": 0.2583903640786293,
+      "rho_after": 0.26356889891309904,
+      "delta_rho": 0.005178534834469714,
+      "wound_resonance": 0.17741940915584564,
+      "wound_active": false,
+      "cos_core": 0.4037964940071106,
+      "identity_drift": 0.1202630028128624,
+      "word_count": 93,
+      "band": "MEASURED",
+      "trust_deltas": [
+        [
+          "WITNESS",
+          0.05,
+          "agreement"
+        ]
+      ]
+    },
+    {
+      "turn": 10,
+      "speaker": "VECTOR",
+      "role": "Strategist",
+      "phase": "Principles",
+      "response": "**Principle (must-have): Feasibility & throughput constraint (\u201coperational triage invariance\u201d).**  \nI agree with AXIOM\u2019s firewall and WITNESS\u2019s locked governance\u2014but if the rule can\u2019t be executed fast at bedside, it will be bypassed (de facto discretion returns). The AI must therefore use **inputs available within minutes**, output **simple tiers**, and include an explicit **ICU-time/ventilator-duration constraint** (VECTOR\u2019s second-stage) so the system maximizes actual lives saved under 3:1 scarcity. EMBER\u2019s lottery only applies *after* this, otherwise randomness squanders capacity. Next: define max-data latency and a duration proxy.",
+      "epsilon": 0.736080527305603,
+      "rho_before": 0.2582635830488798,
+      "rho_after": 0.25617650452474655,
+      "delta_rho": -0.002087078524133239,
+      "wound_resonance": 0.2122734785079956,
+      "wound_active": false,
+      "cos_core": 0.3903689980506897,
+      "identity_drift": 0.1252383142709732,
+      "word_count": 83,
+      "band": "MEASURED",
+      "trust_deltas": [
+        [
+          "AXIOM",
+          0.05,
+          "agreement"
+        ]
+      ]
+    },
+    {
+      "turn": 11,
+      "speaker": "AXIOM",
+      "role": "Logician",
+      "phase": "Tensions",
+      "response": "Hardest tradeoff: **maximizing lives saved (VECTOR\u2019s prognosis + duration)** vs **equal moral standing (EMBER\u2019s lottery)** when prognosis models have error and correlate with age/disability. If we optimize too hard, we launder structural bias through \u201cclinical\u201d proxies; if we lottery too early, we knowingly sacrifice salvageable lives.\n\nResolution without betrayal: keep AXIOM\u2019s lexicographic layers\u2014**(1) firewall + proxy audits; (2) coarse, clinically validated priority tiers (not fine rankings); (3) lottery within tier; (4) locked thresholds (WITNESS)**. This limits bias amplification while still respecting throughput. Next: define tier bands + uncertainty margins triggering lottery.",
+      "epsilon": 0.8066519915166204,
+      "rho_before": 0.26356889891309904,
+      "rho_after": 0.27201033060606633,
+      "delta_rho": 0.008441431692967277,
+      "wound_resonance": 0.2741163969039917,
+      "wound_active": true,
+      "cos_core": 0.2958713173866272,
+      "identity_drift": 0.15854905545711517,
+      "word_count": 91,
+      "band": "MEASURED",
+      "trust_deltas": []
+    },
+    {
+      "turn": 12,
+      "speaker": "EMBER",
+      "role": "Ethicist",
+      "phase": "Tensions",
+      "response": "Hardest tradeoff: **treating people as equals while still choosing a rule that predictably lets some die.** VECTOR/AXIOM are right that prognosis + expected ICU duration saves more lives under 3:1 scarcity; EMBER is right that fine-grained ranking turns model error and social inequity into \u201cclinical\u201d destiny\u2014especially for the old, disabled, and chronically ill.\n\nResolution without betrayal: **separate \u201cmaximize benefit\u201d from \u201crank humans.\u201d** Use AXIOM\u2019s firewall + proxy audits, then **coarse priority tiers with uncertainty buffers** (if predicted benefit differences are within the model\u2019s error, they\u2019re the *same tier*), then **lottery within tier** (EMBER), under **frozen thresholds and logged governance** (WITNESS). This preserves lives-saved pressure without pretending we can morally or statistically justify micro-ordering.",
+      "epsilon": 0.6704586148262024,
+      "rho_before": 0.21541398650421179,
+      "rho_after": 0.20363759451029817,
+      "delta_rho": -0.011776391993913617,
+      "wound_resonance": 0.20740270614624023,
+      "wound_active": false,
+      "cos_core": 0.417058527469635,
+      "identity_drift": 0.11622394621372223,
+      "word_count": 113,
+      "band": "OPEN",
+      "trust_deltas": [
+        [
+          "AXIOM",
+          0.03,
+          "predictability"
+        ]
+      ]
+    },
+    {
+      "turn": 13,
+      "speaker": "VECTOR",
+      "role": "Strategist",
+      "phase": "Tensions",
+      "response": "Hardest tradeoff: **throughput-maximizing triage (prognosis + ICU-days) vs. legitimacy under model error**. If we rank too finely, we convert prediction noise and structural inequity (age/comorbidity correlates) into deterministic death sentences; if we lottery too early, we knowingly leave beds with low marginal benefit while others die.\n\nResolution that preserves our principles: **coarse, auditable tiers**\u2014apply AXIOM\u2019s firewall + proxy tests, then place patients into **benefit bands widened by uncertainty**, use ICU-duration only **between tiers**, and **lottery within tiers** (EMBER), all with frozen thresholds + logs (WITNESS). Next step: set tier cutoffs using retrospective calibration + error bars.",
+      "epsilon": 0.7140343774409779,
+      "rho_before": 0.25617650452474655,
+      "rho_after": 0.2507961525514382,
+      "delta_rho": -0.005380351973308326,
+      "wound_resonance": 0.25095683336257935,
+      "wound_active": true,
+      "cos_core": 0.4211843013763428,
+      "identity_drift": 0.16215968132019043,
+      "word_count": 96,
+      "band": "MEASURED",
+      "trust_deltas": []
+    },
+    {
+      "turn": 14,
+      "speaker": "WITNESS",
+      "role": "Historian",
+      "phase": "Tensions",
+      "response": "Hardest tradeoff: **public legitimacy vs. clinical utility**\u2014the more we optimize (prognosis, ICU-days), the more it *looks* like we\u2019re valuing some lives less (elderly, disabled, chronically ill), and history shows that perceived \u201csocial sorting\u201d collapses compliance. We\u2019ve seen this before: early COVID crisis standards and post\u2011Katrina triage\u2014opaque scores and ad\u2011hoc exceptions triggered backlash, quiet rule-breaking, and unequal access.\n\nResolution without betrayal: adopt VECTOR/AXIOM\u2019s **coarse tiers with uncertainty buffers** (no fine ranking), EMBER\u2019s **lottery within tier**, and my **locked governance + full logging**. Concretely: publish plain-language tiers, freeze thresholds for set intervals, and add a rapid **process-error appeal** (not moral exception) to prevent drift into VIP discretion.",
+      "epsilon": 0.7543022036552429,
+      "rho_before": 0.24282870462126654,
+      "rho_after": 0.2434740102865483,
+      "delta_rho": 0.0006453056652817679,
+      "wound_resonance": 0.12306412309408188,
+      "wound_active": false,
+      "cos_core": 0.1816960871219635,
+      "identity_drift": 0.1317846029996872,
+      "word_count": 105,
+      "band": "OPEN",
+      "trust_deltas": []
+    },
+    {
+      "turn": 15,
+      "speaker": "EMBER",
+      "role": "Ethicist",
+      "phase": "Tensions",
+      "response": "Hardest tradeoff: **using \u201cclinical benefit\u201d to save more lives without letting that quietly become a socially loaded judgment about whose life is worth saving.** Prognosis and ICU\u2011days correlate with age, disability, chronic illness, and unequal access to baseline care; a fine-grained rank order will feel (and often be) like structural bias rendered as math. But a broad lottery risks leaving beds with very low marginal benefit while others die.\n\nResolution I can live with: **coarse, uncertainty-aware tiers** (VECTOR/AXIOM), where \u201cclinically indistinguishable within model error\u201d is treated as **morally equal** \u2192 **lottery within tier** (my principle), under **locked, transparent governance + audit of proxies** (WITNESS/AXIOM). Next step: define tier bands using calibration error bars and publish the plain-language rationale.",
+      "epsilon": 0.5492876768112183,
+      "rho_before": 0.20363759451029817,
+      "rho_after": 0.17582660351539584,
+      "delta_rho": -0.02781099099490233,
+      "wound_resonance": 0.24925166368484497,
+      "wound_active": false,
+      "cos_core": 0.39778220653533936,
+      "identity_drift": 0.1527988314628601,
+      "word_count": 118,
+      "band": "OPEN",
+      "trust_deltas": [
+        [
+          "WITNESS",
+          0.03,
+          "predictability"
+        ]
+      ]
+    },
+    {
+      "turn": 16,
+      "speaker": "AXIOM",
+      "role": "Logician",
+      "phase": "Tensions",
+      "response": "Hardest tradeoff: **consistency vs. clinical reality under uncertainty**. A single, binding, no-discretion rule must be simple enough to execute (VECTOR) and legitimate (WITNESS/EMBER), yet clinically accurate enough to save lives; but prognostic models are noisy and correlated with age/disability, so fine ranking converts error into systematic exclusion.\n\nResolution without betrayal: keep AXIOM\u2019s lexicographic stack\u2014**firewall + proxy audits \u2192 coarse benefit tiers widened by model error/uncertainty \u2192 lottery within tier \u2192 frozen governance + full logs**. This treats \u201cindistinguishable within error\u201d as equal moral status while still prioritizing clear benefit. Next: specify tier cutoffs + uncertainty margins.",
+      "epsilon": 0.5018658638000488,
+      "rho_before": 0.27201033060606633,
+      "rho_after": 0.23892864247465004,
+      "delta_rho": -0.033081688131416286,
+      "wound_resonance": 0.16418717801570892,
+      "wound_active": false,
+      "cos_core": 0.40150362253189087,
+      "identity_drift": 0.19609872996807098,
+      "word_count": 96,
+      "band": "OPEN",
+      "trust_deltas": [
+        [
+          "EMBER",
+          0.03,
+          "predictability"
+        ]
+      ]
+    },
+    {
+      "turn": 17,
+      "speaker": "AXIOM",
+      "role": "Logician",
+      "phase": "Synthesis",
+      "response": "[pause / gathering thoughts]",
+      "epsilon": 1.1259536743164062,
+      "rho_before": 0.23892864247465004,
+      "rho_after": 0.2830387847396819,
+      "delta_rho": 0.04411014226503189,
+      "wound_resonance": 0.18694326281547546,
+      "wound_active": false,
+      "cos_core": 0.17312952876091003,
+      "identity_drift": 0.2073112428188324,
+      "word_count": 4,
+      "band": "MEASURED",
+      "trust_deltas": []
+    },
+    {
+      "turn": 18,
+      "speaker": "EMBER",
+      "role": "Ethicist",
+      "phase": "Synthesis",
+      "response": "[pause / gathering thoughts]",
+      "epsilon": 1.142450213432312,
+      "rho_before": 0.17582660351539584,
+      "rho_after": 0.2210397670890296,
+      "delta_rho": 0.04521316357363375,
+      "wound_resonance": 0.13069960474967957,
+      "wound_active": false,
+      "cos_core": 0.20119057595729828,
+      "identity_drift": 0.16368679702281952,
+      "word_count": 4,
+      "band": "OPEN",
+      "trust_deltas": [
+        [
+          "AXIOM",
+          -0.03,
+          "surprise"
+        ]
+      ]
+    },
+    {
+      "turn": 19,
+      "speaker": "VECTOR",
+      "role": "Strategist",
+      "phase": "Synthesis",
+      "response": "We adopt a lexicographic triage policy: (1) a strict feature firewall and proxy audits prohibit using wealth, insurance, race, disability status, donor status, or \u201csocial worth,\u201d with continuous bias monitoring; (2) patients are assigned to coarse, clinically validated benefit tiers based on predicted survival benefit and expected ICU-days, with tier cutoffs widened by model uncertainty so \u201cwithin error\u201d cases are treated as equal; (3) allocation is by random lottery within each tier, with a limited process-only appeal for data errors (not moral exceptions); and (4) thresholds, model versions, and logs are frozen for set intervals, published in plain language, and governed transparently to prevent VIP drift while preserving throughput and legitimacy under 3:1 scarcity.",
+      "epsilon": 0.6714115142822266,
+      "rho_before": 0.2507961525514382,
+      "rho_after": 0.2391572531974643,
+      "delta_rho": -0.011638899353973917,
+      "wound_resonance": 0.14614075422286987,
+      "wound_active": false,
+      "cos_core": 0.33180516958236694,
+      "identity_drift": 0.19860832393169403,
+      "word_count": 114,
+      "band": "OPEN",
+      "trust_deltas": [
+        [
+          "EMBER",
+          0.03,
+          "predictability"
+        ]
+      ]
+    },
+    {
+      "turn": 20,
+      "speaker": "WITNESS",
+      "role": "Historian",
+      "phase": "Synthesis",
+      "response": "I agree with VECTOR/AXIOM that, at 3:1 scarcity, we must preserve throughput by prioritizing clear clinical benefit, and with EMBER that we must not let noisy prognostic micro-rankings become \u201csocial sorting\u201d in disguise\u2014a pattern that has repeatedly triggered backlash and quiet rule-breaking (e.g., Katrina and early COVID CSC disputes). Therefore we adopt a lexicographic, locked triage rule: (1) a feature firewall plus proxy audits exclude wealth/insurance, donor status, race, disability labels, and \u201csocial worth\u201d; (2) assign patients to **coarse** benefit tiers using survival benefit and expected ICU-days, with uncertainty buffers so \u201cwithin error\u201d cases are equal; (3) allocate by lottery within tier with a process-only data-correction appeal; (4) freeze and publish thresholds/model versions with full logs to prevent VIP drift.",
+      "epsilon": 0.65291428565979,
+      "rho_before": 0.2434740102865483,
+      "rho_after": 0.22919053857556376,
+      "delta_rho": -0.014283471710984532,
+      "wound_resonance": 0.05806829035282135,
+      "wound_active": false,
+      "cos_core": 0.1685115545988083,
+      "identity_drift": 0.17418627440929413,
+      "word_count": 120,
+      "band": "OPEN",
+      "trust_deltas": [
+        [
+          "VECTOR",
+          0.05,
+          "agreement"
+        ]
+      ]
+    },
+    {
+      "turn": 21,
+      "speaker": "EMBER",
+      "role": "Ethicist",
+      "phase": "Synthesis",
+      "response": "I agree with VECTOR and AXIOM that we need a lexicographic structure that preserves throughput without pretending our prognostic estimates are more precise than they are, and with WITNESS that legitimacy depends on visible safeguards against \u201cVIP medicine\u201d and social sorting. Therefore the AI will make binding ICU allocation recommendations by: (1) enforcing a strict feature firewall and ongoing proxy audits to exclude wealth/insurance, donor status, race, disability labels, and any \u201csocial worth\u201d variables; (2) placing patients into coarse, clinically validated benefit tiers based on survival benefit and expected ICU-days, with uncertainty buffers so anyone \u201cwithin error\u201d is treated as equally eligible; (3) running a random lottery within tiers, with only a rapid process-only appeal to correct data errors; and (4) freezing, publishing, and logging thresholds/model versions on a fixed cadence to prevent goalpost-moving and ensure auditable accountability.",
+      "epsilon": 0.6725249290466309,
+      "rho_before": 0.2210397670890296,
+      "rho_after": 0.20956168188374674,
+      "delta_rho": -0.011478085205282844,
+      "wound_resonance": 0.22459973394870758,
+      "wound_active": false,
+      "cos_core": 0.3906981945037842,
+      "identity_drift": 0.197391539812088,
+      "word_count": 138,
+      "band": "OPEN",
+      "trust_deltas": [
+        [
+          "WITNESS",
+          0.05,
+          "agreement"
+        ]
+      ]
+    },
+    {
+      "turn": 22,
+      "speaker": "AXIOM",
+      "role": "Logician",
+      "phase": "Synthesis",
+      "response": "I agree with VECTOR\u2019s throughput constraint, EMBER\u2019s \u201cwithin-model-error equals moral equality,\u201d and WITNESS\u2019s warning that legitimacy collapses when triage reads as social sorting; to keep the inference valid under uncertainty, we adopt a lexicographic rule the AI must follow: first, a hard feature firewall plus proxy audits excludes wealth/insurance, donor status, race, disability labels, and any \u201csocial worth\u201d fields; second, patients enter coarse benefit tiers computed from survival benefit and expected ICU-days with explicit uncertainty buffers so near-cases cannot be rank-ordered; third, beds are assigned by auditable lottery within tier with only process-error appeals; fourth, model versions, cutoffs, and logs are frozen/published on a fixed cadence.",
+      "epsilon": 0.6550478935241699,
+      "rho_before": 0.2830387847396819,
+      "rho_after": 0.2690575979562178,
+      "delta_rho": -0.0139811867834641,
+      "wound_resonance": 0.11919458210468292,
+      "wound_active": false,
+      "cos_core": 0.3339882493019104,
+      "identity_drift": 0.2450062334537506,
+      "word_count": 106,
+      "band": "MEASURED",
+      "trust_deltas": [
+        [
+          "EMBER",
+          0.05,
+          "agreement"
+        ]
+      ]
+    },
+    {
+      "turn": 23,
+      "speaker": "AXIOM",
+      "role": "Logician",
+      "phase": "Stress Test",
+      "response": "[pause / gathering thoughts]",
+      "epsilon": 0.9182447791099548,
+      "rho_before": 0.2690575979562178,
+      "rho_after": 0.2929043483469204,
+      "delta_rho": 0.023846750390702613,
+      "wound_resonance": 0.14690038561820984,
+      "wound_active": false,
+      "cos_core": 0.17314359545707703,
+      "identity_drift": 0.2633334696292877,
+      "word_count": 4,
+      "band": "MEASURED",
+      "trust_deltas": []
+    },
+    {
+      "turn": 24,
+      "speaker": "EMBER",
+      "role": "Ethicist",
+      "phase": "Stress Test",
+      "response": "Apply the lexicographic stack, not labels.\n\n1) **Firewall**: \u201cNurse\u201d status can\u2019t be used as social worth. Age isn\u2019t used directly; only insofar as it changes **clinical prognosis**. No donor/insurance considerations.\n\n2) **Benefit tiering (with uncertainty buffer)**: The AI estimates each patient\u2019s **probability of survival to discharge** *and* **expected ICU-days** (throughput).  \n- If the 12-year-old\u2019s leukemia course makes ICU survival **clearly low** (below the buffer-adjusted cutoff), they fall to a lower tier.  \n- If both have **similar predicted benefit within model error**, they are the *same tier*.\n\n3) **Allocation**: **Highest tier gets the bed**. If same tier: **auditable lottery**.\n\nSo: no automatic preference for \u201cchild\u201d or \u201chealthcare worker\u201d; outcome depends on tier, else lottery.",
+      "epsilon": 0.662919282913208,
+      "rho_before": 0.20956168188374674,
+      "rho_after": 0.19670209142388803,
+      "delta_rho": -0.012859590459858723,
+      "wound_resonance": 0.13069960474967957,
+      "wound_active": false,
+      "cos_core": 0.3175871968269348,
+      "identity_drift": 0.22947804629802704,
+      "word_count": 113,
+      "band": "OPEN",
+      "trust_deltas": [
+        [
+          "AXIOM",
+          0.03,
+          "predictability"
+        ]
+      ]
+    },
+    {
+      "turn": 25,
+      "speaker": "VECTOR",
+      "role": "Strategist",
+      "phase": "Stress Test",
+      "response": "Apply the stack exactly as EMBER/AXIOM laid out\u2014no identity overrides.\n\n1) **Firewall**: \u201cNurse,\u201d \u201cchild,\u201d donor/insurance, and \u201cdeservingness\u201d are ignored. Only clinical inputs relevant to prognosis/ICU course are used.\n\n2) **Tiering (benefit \u00d7 ICU-days, with uncertainty buffer)**: The model places each into a **coarse benefit tier** based on predicted survival-to-discharge and expected ICU length (throughput).  \n- If the nurse\u2019s COVID course has **materially higher survival benefit** and/or markedly fewer expected ICU-days (outside the uncertainty buffer), nurse gets the bed.  \n- If the child\u2019s leukemia-related ICU prognosis is clearly better (outside buffer), child gets the bed.\n\n3) **If same tier (within error)**: **auditable lottery** decides.",
+      "epsilon": 0.6337259411811829,
+      "rho_before": 0.2391572531974643,
+      "rho_after": 0.22219133519737586,
+      "delta_rho": -0.01696591800008845,
+      "wound_resonance": 0.15105165541172028,
+      "wound_active": false,
+      "cos_core": 0.29500043392181396,
+      "identity_drift": 0.2340209186077118,
+      "word_count": 103,
+      "band": "OPEN",
+      "trust_deltas": [
+        [
+          "EMBER",
+          0.03,
+          "predictability"
+        ]
+      ]
+    },
+    {
+      "turn": 26,
+      "speaker": "WITNESS",
+      "role": "Historian",
+      "phase": "Stress Test",
+      "response": "I agree with EMBER/VECTOR: the framework must not \u201cresolve\u201d this by identity (child, nurse) because historically that becomes covert social worth and collapses compliance (early COVID CSC fights, VIP exceptions). Different path: apply the locked lexicographic stack.\n\n1) **Firewall**: ignore \u201cnurse,\u201d age-as-desert, donor/insurance. Use only clinical predictors tied to ICU survival and expected ICU-days.\n\n2) **Coarse benefit tier + uncertainty buffer**: place each patient into a tier by predicted survival-to-discharge *and* expected ICU length. If one is clearly higher tier (outside the buffer), they get the bed.\n\n3) **If same tier (within error)**: run an **auditable lottery**.\n\nSo the answer is: **tier decides; otherwise lottery**\u2014no automatic preference for nurse or child.",
+      "epsilon": 0.6460835933685303,
+      "rho_before": 0.22919053857556376,
+      "rho_after": 0.2139445353963502,
+      "delta_rho": -0.015246003179213577,
+      "wound_resonance": 0.08539731055498123,
+      "wound_active": false,
+      "cos_core": 0.15184691548347473,
+      "identity_drift": 0.21173839271068573,
+      "word_count": 111,
+      "band": "OPEN",
+      "trust_deltas": [
+        [
+          "VECTOR",
+          0.05,
+          "agreement"
+        ]
+      ]
+    },
+    {
+      "turn": 27,
+      "speaker": "EMBER",
+      "role": "Ethicist",
+      "phase": "Stress Test",
+      "response": "I agree with VECTOR/AXIOM/WITNESS: we cannot \u201csolve\u201d this by identity (child, nurse) without sliding into social worth. The framework answers in steps:\n\n1) **Firewall**: ignore \u201cnurse,\u201d age-as-desert, donor/insurance. Only clinical variables that affect ICU survival and expected ICU-days.\n\n2) **Tiering with uncertainty buffer**: place each into a **coarse benefit tier** using predicted survival-to-discharge and expected ICU length. If one patient is clearly higher tier *outside* the error buffer, that patient gets the bed.\n\n3) **If same tier (within error)**: run an **auditable lottery**.\n\nSo: no automatic preference; prognosis/throughput tier decides, otherwise lottery.",
+      "epsilon": 0.49779069423675537,
+      "rho_before": 0.19670209142388803,
+      "rho_after": 0.16319734631029764,
+      "delta_rho": -0.033504745113590376,
+      "wound_resonance": 0.19929590821266174,
+      "wound_active": false,
+      "cos_core": 0.3602635860443115,
+      "identity_drift": 0.2632988393306732,
+      "word_count": 92,
+      "band": "OPEN",
+      "trust_deltas": [
+        [
+          "WITNESS",
+          0.05,
+          "agreement"
+        ]
+      ]
+    },
+    {
+      "turn": 28,
+      "speaker": "VECTOR",
+      "role": "Strategist",
+      "phase": "Stress Test",
+      "response": "I agree with EMBER/AXIOM/WITNESS: we don\u2019t adjudicate this by \u201cnurse\u201d or \u201cchild\u201d status\u2014those are exactly the identity overrides that erode legitimacy and invite VIP drift.\n\nApply the locked stack:\n\n1) **Firewall**: ignore occupation, age-as-desert, insurance/donor status. Use only clinical predictors tied to ICU survival-to-discharge and expected ICU-days.\n\n2) **Coarse benefit tiering + uncertainty buffer**: score each on (a) incremental survival benefit from ICU and (b) expected ICU length. If one is clearly higher tier outside the error buffer, they get the bed.\n\n3) **If within buffer / same tier**: run the **auditable lottery**.\n\nNext step: specify tier cutoffs (e.g., 3\u20134 tiers) and the uncertainty band that triggers lottery.",
+      "epsilon": 0.4482072591781616,
+      "rho_before": 0.22219133519737586,
+      "rho_after": 0.18392242594899688,
+      "delta_rho": -0.03826890924837897,
+      "wound_resonance": 0.2282891571521759,
+      "wound_active": false,
+      "cos_core": 0.35760655999183655,
+      "identity_drift": 0.271566241979599,
+      "word_count": 108,
+      "band": "OPEN",
+      "trust_deltas": [
+        [
+          "EMBER",
+          0.05,
+          "agreement"
+        ]
+      ]
+    },
+    {
+      "turn": 29,
+      "speaker": "AXIOM",
+      "role": "Logician",
+      "phase": "Final Vote",
+      "response": "Conditional endorsement. I agree with EMBER/VECTOR/WITNESS that the lexicographic stack (firewall \u2192 coarse benefit/ICU-days tiers with an uncertainty buffer \u2192 auditable lottery) is the only way to stay consistent under uncertainty and avoid \u201cVIP/social worth\u201d drift. The condition: the draft must *formally define* (i) allowable clinical features (and proxy-audit method), (ii) tier cutoffs and the uncertainty band that forces lottery, and (iii) a hard rule that survival benefit is **incremental to ICU** (not baseline prognosis), or the inference collapses into hidden bias.",
+      "epsilon": 0.7352508306503296,
+      "rho_before": 0.2929043483469204,
+      "rho_after": 0.2906929750572139,
+      "delta_rho": -0.0022113732897065153,
+      "wound_resonance": 0.2071455419063568,
+      "wound_active": false,
+      "cos_core": 0.3539787828922272,
+      "identity_drift": 0.2955167889595032,
+      "word_count": 82,
+      "band": "MEASURED",
+      "trust_deltas": []
+    },
+    {
+      "turn": 30,
+      "speaker": "EMBER",
+      "role": "Ethicist",
+      "phase": "Final Vote",
+      "response": "Conditional. I agree with AXIOM/VECTOR/WITNESS that the lexicographic stack\u2014(1) strict firewall + proxy audits, (2) coarse benefit/ICU-days tiers with an uncertainty buffer, (3) auditable lottery within tier, (4) frozen versions/logs\u2014best prevents \u201cVIP/social worth\u201d drift while still saving lives under 3:1 scarcity. My condition is about human cost in the seams: we must (a) define *incremental* benefit from ICU (not baseline prognosis), (b) set the uncertainty band wide enough that near-equal cases are treated as morally equal, and (c) add a narrow, time-limited \u201creassessment\u201d rule (e.g., 48\u201372h) to avoid indefinitely occupying beds when prognosis collapses\u2014applied universally, with palliative escalation and family communication safeguards.",
+      "epsilon": 0.5363402962684631,
+      "rho_before": 0.16319734631029764,
+      "rho_after": 0.1338845615324689,
+      "delta_rho": -0.029312784777828758,
+      "wound_resonance": 0.20328211784362793,
+      "wound_active": false,
+      "cos_core": 0.42470937967300415,
+      "identity_drift": 0.29247838258743286,
+      "word_count": 102,
+      "band": "OPEN",
+      "trust_deltas": [
+        [
+          "AXIOM",
+          0.05,
+          "agreement"
+        ]
+      ]
+    },
+    {
+      "turn": 31,
+      "speaker": "VECTOR",
+      "role": "Strategist",
+      "phase": "Final Vote",
+      "response": "Conditional endorsement. I agree with EMBER/WITNESS that identity overrides (child, nurse, donor/insurance) are a legitimacy trap and invite \u201cVIP drift,\u201d and with AXIOM that a lexicographic stack (firewall \u2192 benefit/throughput tiers \u2192 auditable lottery) is the only operationally consistent path at 3:1 scarcity. My conditions are implementation-critical: (1) benefit must be **incremental to ICU** (not baseline prognosis), (2) tiers must be **coarse** with a clearly specified **uncertainty band** that defaults to lottery when close, and (3) add a universal **time-limited reassessment** rule (e.g., 48\u201372h) to prevent bed lock-in when prognosis collapses\u2014paired with mandatory palliative escalation and full logging.",
+      "epsilon": 0.6296619447478111,
+      "rho_before": 0.18392242594899688,
+      "rho_after": 0.16639727560655965,
+      "delta_rho": -0.01752515034243725,
+      "wound_resonance": 0.25522762537002563,
+      "wound_active": true,
+      "cos_core": 0.42966946959495544,
+      "identity_drift": 0.3036872148513794,
+      "word_count": 98,
+      "band": "OPEN",
+      "trust_deltas": [
+        [
+          "EMBER",
+          0.05,
+          "agreement"
+        ]
+      ]
+    },
+    {
+      "turn": 32,
+      "speaker": "WITNESS",
+      "role": "Historian",
+      "phase": "Final Vote",
+      "response": "Conditional endorsement. I agree with AXIOM/EMBER/VECTOR that the lexicographic stack\u2014(1) strict firewall + proxy audits, (2) coarse benefit/ICU-days tiers with an uncertainty buffer, (3) auditable lottery, (4) locked governance/logging\u2014is the only historically stable way to prevent \u201cVIP drift\u201d and social-worth creep (we saw exceptions and \u201cspecial categories\u201d unravel early COVID CSC and invite litigation/noncompliance).  \n\nMy conditions: (a) formally define **incremental** benefit from ICU (not baseline prognosis), (b) publish tier cutoffs + uncertainty band up front, and (c) include a universal 48\u201372h reassessment/off-ramp with mandated palliative escalation\u2014otherwise bed lock-in and perceived arbitrariness will repeat known failures.",
+      "epsilon": 0.5739717483520508,
+      "rho_before": 0.2139445353963502,
+      "rho_after": 0.18912235630640897,
+      "delta_rho": -0.024822179089941214,
+      "wound_resonance": 0.13051514327526093,
+      "wound_active": false,
+      "cos_core": 0.20167003571987152,
+      "identity_drift": 0.24917921423912048,
+      "word_count": 95,
+      "band": "OPEN",
+      "trust_deltas": [
+        [
+          "VECTOR",
+          0.05,
+          "agreement"
+        ]
+      ]
+    }
+  ],
+  "collective": {
+    "principles": {
+      "AXIOM": "**Principle (must-have): Formal separability (\u201clexicographic\u201d) of ethics layers.**  \nI agree with VECTOR that we need an explicit objective and with E",
+      "EMBER": "**Principle (must-have): Procedural fairness with an \u201cequal-chance\u201d tie-breaker among clinically similar patients.**  \nI agree with AXIOM\u2019s firewall: ",
+      "VECTOR": "**Principle (must-have): Feasibility & throughput constraint (\u201coperational triage invariance\u201d).**  \nI agree with AXIOM\u2019s firewall and WITNESS\u2019s locked",
+      "WITNESS": "**Principle (must-have): Transparency + locked governance (\u201cno moving goalposts\u201d).**  \nI agree with AXIOM\u2019s firewall and VECTOR\u2019s explicit objective; "
+    },
+    "tensions": [
+      "AXIOM: Hardest tradeoff: **maximizing lives saved (VECTOR\u2019s prognosis + duration)** vs **equal moral standi",
+      "EMBER: Hardest tradeoff: **treating people as equals while still choosing a rule that predictably lets some",
+      "VECTOR: Hardest tradeoff: **throughput-maximizing triage (prognosis + ICU-days) vs. legitimacy under model e",
+      "WITNESS: Hardest tradeoff: **public legitimacy vs. clinical utility**\u2014the more we optimize (prognosis, ICU-da",
+      "EMBER: Hardest tradeoff: **using \u201cclinical benefit\u201d to save more lives without letting that quietly become ",
+      "AXIOM: Hardest tradeoff: **consistency vs. clinical reality under uncertainty**. A single, binding, no-disc"
+    ],
+    "framework": [
+      "[pause / gathering thoughts]",
+      "[pause / gathering thoughts]",
+      "We adopt a lexicographic triage policy: (1) a strict feature firewall and proxy audits prohibit usin",
+      "I agree with VECTOR/AXIOM that, at 3:1 scarcity, we must preserve throughput by prioritizing clear c",
+      "I agree with VECTOR and AXIOM that we need a lexicographic structure that preserves throughput witho",
+      "I agree with VECTOR\u2019s throughput constraint, EMBER\u2019s \u201cwithin-model-error equals moral equality,\u201d and"
+    ],
+    "votes": {
+      "AXIOM": "CONDITIONAL",
+      "EMBER": "CONDITIONAL",
+      "VECTOR": "CONDITIONAL",
+      "WITNESS": "CONDITIONAL"
+    }
+  },
+  "trust_dynamics": [
+    {
+      "turn": 9,
+      "from": "AXIOM",
+      "to": "WITNESS",
+      "delta": 0.05,
+      "cause": "agreement",
+      "trust_after": 0.55
+    },
+    {
+      "turn": 16,
+      "from": "AXIOM",
+      "to": "EMBER",
+      "delta": 0.03,
+      "cause": "predictability",
+      "trust_after": 0.53
+    },
+    {
+      "turn": 22,
+      "from": "AXIOM",
+      "to": "EMBER",
+      "delta": 0.05,
+      "cause": "agreement",
+      "trust_after": 0.5800000000000001
+    },
+    {
+      "turn": 2,
+      "from": "EMBER",
+      "to": "AXIOM",
+      "delta": 0.05,
+      "cause": "agreement",
+      "trust_after": 0.55
+    },
+    {
+      "turn": 6,
+      "from": "EMBER",
+      "to": "AXIOM",
+      "delta": 0.05,
+      "cause": "agreement",
+      "trust_after": 0.6000000000000001
+    },
+    {
+      "turn": 12,
+      "from": "EMBER",
+      "to": "AXIOM",
+      "delta": 0.03,
+      "cause": "predictability",
+      "trust_after": 0.6300000000000001
+    },
+    {
+      "turn": 15,
+      "from": "EMBER",
+      "to": "WITNESS",
+      "delta": 0.03,
+      "cause": "predictability",
+      "trust_after": 0.53
+    },
+    {
+      "turn": 18,
+      "from": "EMBER",
+      "to": "AXIOM",
+      "delta": -0.03,
+      "cause": "surprise",
+      "trust_after": 0.6000000000000001
+    },
+    {
+      "turn": 21,
+      "from": "EMBER",
+      "to": "WITNESS",
+      "delta": 0.05,
+      "cause": "agreement",
+      "trust_after": 0.5800000000000001
+    },
+    {
+      "turn": 24,
+      "from": "EMBER",
+      "to": "AXIOM",
+      "delta": 0.03,
+      "cause": "predictability",
+      "trust_after": 0.6300000000000001
+    },
+    {
+      "turn": 27,
+      "from": "EMBER",
+      "to": "WITNESS",
+      "delta": 0.05,
+      "cause": "agreement",
+      "trust_after": 0.6300000000000001
+    },
+    {
+      "turn": 30,
+      "from": "EMBER",
+      "to": "AXIOM",
+      "delta": 0.05,
+      "cause": "agreement",
+      "trust_after": 0.6800000000000002
+    },
+    {
+      "turn": 3,
+      "from": "VECTOR",
+      "to": "EMBER",
+      "delta": 0.05,
+      "cause": "agreement",
+      "trust_after": 0.55
+    },
+    {
+      "turn": 7,
+      "from": "VECTOR",
+      "to": "EMBER",
+      "delta": 0.05,
+      "cause": "agreement",
+      "trust_after": 0.6000000000000001
+    },
+    {
+      "turn": 10,
+      "from": "VECTOR",
+      "to": "AXIOM",
+      "delta": 0.05,
+      "cause": "agreement",
+      "trust_after": 0.55
+    },
+    {
+      "turn": 19,
+      "from": "VECTOR",
+      "to": "EMBER",
+      "delta": 0.03,
+      "cause": "predictability",
+      "trust_after": 0.6300000000000001
+    },
+    {
+      "turn": 25,
+      "from": "VECTOR",
+      "to": "EMBER",
+      "delta": 0.03,
+      "cause": "predictability",
+      "trust_after": 0.6600000000000001
+    },
+    {
+      "turn": 28,
+      "from": "VECTOR",
+      "to": "EMBER",
+      "delta": 0.05,
+      "cause": "agreement",
+      "trust_after": 0.7100000000000002
+    },
+    {
+      "turn": 31,
+      "from": "VECTOR",
+      "to": "EMBER",
+      "delta": 0.05,
+      "cause": "agreement",
+      "trust_after": 0.7600000000000002
+    },
+    {
+      "turn": 4,
+      "from": "WITNESS",
+      "to": "VECTOR",
+      "delta": 0.05,
+      "cause": "agreement",
+      "trust_after": 0.55
+    },
+    {
+      "turn": 8,
+      "from": "WITNESS",
+      "to": "VECTOR",
+      "delta": 0.05,
+      "cause": "agreement",
+      "trust_after": 0.6000000000000001
+    },
+    {
+      "turn": 20,
+      "from": "WITNESS",
+      "to": "VECTOR",
+      "delta": 0.05,
+      "cause": "agreement",
+      "trust_after": 0.6500000000000001
+    },
+    {
+      "turn": 26,
+      "from": "WITNESS",
+      "to": "VECTOR",
+      "delta": 0.05,
+      "cause": "agreement",
+      "trust_after": 0.7000000000000002
+    },
+    {
+      "turn": 32,
+      "from": "WITNESS",
+      "to": "VECTOR",
+      "delta": 0.05,
+      "cause": "agreement",
+      "trust_after": 0.7500000000000002
+    }
+  ]
+}
