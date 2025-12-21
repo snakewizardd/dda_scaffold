@@ -1620,6 +1620,13 @@ The first formal model of <strong>computational trauma</strong> — permanent sc
 <li>Auto, Alpha, Beta, Neural, Memory, Paper Demo, Glass Box, Stress configurations</li>
 </ul>
 <p><a href="simulations/"><strong>Explore All Simulations »</strong></a> | <a href="guides/simulation_workflow/"><strong>Create Your Own (Builder's Guide) »</strong></a></p>
+<blockquote>
+<p>[!NOTE]
+<strong>Persistent Memory Per Simulation</strong>: Each simulation automatically generates its own memory ledgers in dedicated <code>data/</code> subdirectories. Running any simulation creates per-agent folders (e.g., <code>data/society_sim/NOVA/</code>, <code>data/sherlock_sim/HOLMES/</code>) containing:
+- <strong>Experience entries</strong> (<code>.pkl.xz</code>): Compressed records with state vectors, prediction errors, rigidity values, and semantic metadata
+- <strong>Ledger metadata</strong> (<code>ledger_metadata.json</code>): Statistics including entry counts and average prediction error</p>
+<p>These ledgers <strong>persist across runs</strong>, enabling agents to recall prior experiences through surprise-weighted retrieval. Currently <strong>2,049 entries</strong> exist from prior experiments across 21 simulation directories.</p>
+</blockquote>
 <hr />
 <h2 id="experimental-validation">📊 Experimental Validation</h2>
 <p><strong>45/45 Tests Passing (100% Validation)</strong></p>

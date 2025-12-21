@@ -216,6 +216,8 @@ Each agent maintains:
 
 Agents form **interconnected cognitive systems** where one agent's state influences others through the force integration layer, creating authentic emergent group dynamics.
 
+> **📁 Persistent Memory Architecture**: Each simulation automatically generates its own memory ledgers in dedicated `data/` subdirectories. For example, running `simulate_society.py` creates `data/society_sim/NOVA/`, `data/society_sim/SPARK/`, etc. — each containing compressed `.pkl.xz` experience entries and `ledger_metadata.json` files. Multi-agent simulations produce **per-agent ledgers** that persist across runs, enabling longitudinal studies and memory-informed behavior. Currently **2,049 ledger entries** exist from prior experiments.
+
 **Extended Experimental Suite (17+ Additional Simulations):**
 
 - **Problem Solver** (6 agents): CALCULATOR, INTUITOR, LOGICIAN, SKEPTIC, SYNTHESIZER, VISUALIZER (validates D5, D6)

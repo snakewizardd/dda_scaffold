@@ -178,6 +178,12 @@ The first formal model of **computational trauma** — permanent scars from extr
 
 [**Explore All Simulations »**](simulations/index.md) | [**Create Your Own (Builder's Guide) »**](guides/simulation_workflow.md)
 
+> [!NOTE]
+> **Persistent Memory Per Simulation**: Each simulation automatically generates its own memory ledgers in dedicated `data/` subdirectories. Running any simulation creates per-agent folders (e.g., `data/society_sim/NOVA/`, `data/sherlock_sim/HOLMES/`) containing:
+> - **Experience entries** (`.pkl.xz`): Compressed records with state vectors, prediction errors, rigidity values, and semantic metadata
+> - **Ledger metadata** (`ledger_metadata.json`): Statistics including entry counts and average prediction error
+> 
+> These ledgers **persist across runs**, enabling agents to recall prior experiences through surprise-weighted retrieval. Currently **2,049 entries** exist from prior experiments across 21 simulation directories.
 ---
 
 ## 📊 Experimental Validation
