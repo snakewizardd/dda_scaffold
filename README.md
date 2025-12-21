@@ -491,6 +491,20 @@ DDA-X is an **ongoing research initiative** with foundational capabilities demon
 - "Novel discoveries" → Better stated as "novel synthesis and application of existing concepts"
 - "Metacognitive self-awareness" → Better stated as "metacognitive introspection (structured self-reporting)"
 
+### 9. Strategic Refutation (FAQ)
+
+**Q: Is this just "Prompt Hacking" with extra steps?**
+A: **No.** System prompts suffer from "context decay" and "instruction drift" as the conversation grows. DDA-X Identity Attractors are **mathematical invariants** in the selection rule. They act as "hardcoded gravity" that persists regardless of context window saturation, preventing the agent from being "gaslit" into a new persona.
+
+**Q: Is "Rigidity" just sampling noise?**
+A: **No.** While temperature modulation is common, linking it to *prediction error* creates a **Behavioral Posture Engine**. High $\rho$ doesn't just reduce randomness; it acts as "Digital Body Language," making the agent's internal state externally observable and predictable.
+
+**Q: Does "Deep Fusion" interfere with optimization?**
+A: **Yes, by design.** Standard MCTS optimizes for *reward*. DDA-X optimizes for *Alignment-Critical Success*. We intentionally prune "optimal" paths that violate identity constraints. The goal is not just to win, but to win *as the agent*.
+
+**Q: Is "Metacognition" just the prompt reading a variable?**
+A: **Yes, and that's the point.** We do not claim consciousness. We provide **Operational Observability**. By forcing the LLM to "confess" its internal state (Rigidity) through structured output, we solve the "Black Box" opaqueness of standard agent interactions.
+
 **We welcome critical feedback.** If you find issues, please open a GitHub issue.
 
 ---
