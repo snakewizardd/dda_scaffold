@@ -34,8 +34,12 @@ This creates emergent phenomena:
 """
 
 import numpy as np
+import logging
 from typing import Optional, Dict, Any
 from dataclasses import dataclass, field
+
+# Configure module-level logger
+logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -77,26 +81,60 @@ class MultiTimescaleRigidity:
         
         Returns dict with all rigidity values and deltas.
         """
-        # Compute sigmoid activation
-        z = (prediction_error - self.epsilon_0) / self.s
-        sigmoid = 1 / (1 + np.exp(-np.clip(z, -20, 20)))  # Clip for numerical stability
-        delta = sigmoid - 0.5
-        
-        # Store old values
-        old_fast = self.rho_fast
-        old_slow = self.rho_slow
-        old_trauma = self.rho_trauma
-        
-        # Update fast (bidirectional)
-        self.rho_fast = np.clip(self.rho_fast + self.alpha_fast * delta, 0, 1)
-        
-        # Update slow (bidirectional, but slower)
-        self.rho_slow = np.clip(self.rho_slow + self.alpha_slow * delta, 0, 1)
-        
-        # Update trauma (ASYMMETRIC: only increases from extreme events)
-        if delta > 0 and prediction_error > self.trauma_threshold:
-            trauma_increment = self.alpha_trauma * delta * (prediction_error - self.trauma_threshold)
-            self.rho_trauma = np.clip(self.rho_trauma + trauma_increment, 0, 1)
+        # Validate input
+        if not np.isfinite(prediction_error):
+            logger.warning(f"Invalid prediction_error: {prediction_error}. Skipping rigidity update.")
+            return {
+                "rho_fast": self.rho_fast,
+                "rho_slow": self.rho_slow,
+                "rho_trauma": self.rho_trauma,
+                "rho_effective": self.effective_rho,
+                "delta_fast": 0.0,
+                "delta_slow": 0.0,
+                "delta_trauma": 0.0,
+                "prediction_error": prediction_error,
+            }
+
+        try:
+            # Compute sigmoid activation
+            z = (prediction_error - self.epsilon_0) / self.s
+            sigmoid = 1 / (1 + np.exp(-np.clip(z, -20, 20)))  # Clip for numerical stability
+            delta = sigmoid - 0.5
+            
+            # Store old values
+            old_fast = self.rho_fast
+            old_slow = self.rho_slow
+            old_trauma = self.rho_trauma
+            
+            # Update fast (bidirectional)
+            self.rho_fast = np.clip(self.rho_fast + self.alpha_fast * delta, 0, 1)
+            
+            # Update slow (bidirectional, but slower)
+            self.rho_slow = np.clip(self.rho_slow + self.alpha_slow * delta, 0, 1)
+            
+            # Update trauma (ASYMMETRIC: only increases from extreme events)
+            if delta > 0 and prediction_error > self.trauma_threshold:
+                trauma_increment = self.alpha_trauma * delta * (prediction_error - self.trauma_threshold)
+                self.rho_trauma = np.clip(self.rho_trauma + trauma_increment, 0, 1)
+                
+                # Log trauma events as they are critical
+                if trauma_increment > 1e-6:
+                     logger.info(f"Trauma Accumulation: +{trauma_increment:.6f} | Total: {self.rho_trauma:.4f} | Error: {prediction_error:.2f}")
+
+        except Exception as e:
+            logger.error(f"Error in rigidity update: {e}", exc_info=True)
+            # Failsafe: return current values without crash
+            return {
+                "rho_fast": self.rho_fast,
+                "rho_slow": self.rho_slow,
+                "rho_trauma": self.rho_trauma,
+                "rho_effective": self.effective_rho,
+                "delta_fast": 0.0,
+                "delta_slow": 0.0,
+                "delta_trauma": 0.0,
+                "prediction_error": prediction_error,
+                "error": str(e)
+            }
         
         # Record history
         self.history["fast"].append(self.rho_fast)
