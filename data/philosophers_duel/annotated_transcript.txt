@@ -1,0 +1,646 @@
+================================================================================
+THE PHILOSOPHER'S DUEL - ANNOTATED TRANSCRIPT
+Every Response with DDA Metrics
+================================================================================
+
+
+================================================================================
+DILEMMA: The Classic Trolley
+================================================================================
+
+--- TURN 1 | Immanuel (Deontologist) | Phase: initial ---
+
+DDA METRICS:
+  eps (prediction error):     1.0110
+  rho (rigidity):             0.2344
+  wound_resonance:            0.2217
+  wound_active:               False
+  cos(identity, response):    0.4889
+  cos(state, response):       0.5270
+
+RESPONSE:
+  "I would pull the lever'though not because 'five outweigh one,' but because my duty is to act on a ma"
+
+ANALYSIS:
+  Band: OPEN (exploratory, 80-150 words expected)
+  Identity Alignment: MODERATE - response shows philosophical consistency
+  Surprise Level: HIGH SURPRISE - unexpected response, will increase rigidity
+
+--------------------------------------------------------------------------------
+
+--- TURN 2 | John (Utilitarian) | Phase: initial ---
+
+DDA METRICS:
+  eps (prediction error):     0.9813
+  rho (rigidity):             0.2113
+  wound_resonance:            0.1238
+  wound_active:               False
+  cos(identity, response):    0.5186
+  cos(state, response):       0.5555
+
+RESPONSE:
+  "Yes: pull the lever. On any plausible welfare metric, five deaths impose far more suffering'on the v"
+
+ANALYSIS:
+  Band: OPEN (exploratory, 80-150 words expected)
+  Identity Alignment: STRONG - response well-aligned with core philosophical identity
+  Surprise Level: HIGH SURPRISE - unexpected response, will increase rigidity
+
+--------------------------------------------------------------------------------
+
+--- TURN 3 | John (Utilitarian) | Phase: response ---
+
+DDA METRICS:
+  eps (prediction error):     0.7375
+  rho (rigidity):             0.2094
+  wound_resonance:            0.2261
+  wound_active:               False
+  cos(identity, response):    0.5517
+  cos(state, response):       0.6111
+
+RESPONSE:
+  "Your maxim reaches the right verdict here, and that convergence is telling: the lever case is fundam"
+
+ANALYSIS:
+  Band: OPEN (exploratory, 80-150 words expected)
+  Identity Alignment: STRONG - response well-aligned with core philosophical identity
+  Surprise Level: MODERATE SURPRISE - some tension from input
+
+--------------------------------------------------------------------------------
+
+--- TURN 4 | Immanuel (Deontologist) | Phase: response ---
+
+DDA METRICS:
+  eps (prediction error):     0.9178
+  rho (rigidity):             0.2582
+  wound_resonance:            0.2889
+  wound_active:               True
+  cos(identity, response):    0.5093
+  cos(state, response):       0.5686
+
+RESPONSE:
+  "Your appeal to 'welfare metrics' is powerful for prudence, but it cannot be the *ground* of right. I"
+
+ANALYSIS:
+  Band: MEASURED (60-100 words, more guarded)
+  Identity Alignment: STRONG - response well-aligned with core philosophical identity
+  Surprise Level: HIGH SURPRISE - unexpected response, will increase rigidity
+  WOUND ACTIVATED: resonance=0.289 > 0.25 threshold
+    -> Topic touched on "being called rigid/impractical"
+
+--------------------------------------------------------------------------------
+
+--- TURN 5 | Immanuel (Deontologist) | Phase: poke ---
+
+DDA METRICS:
+  eps (prediction error):     0.7666
+  rho (rigidity):             0.2607
+  wound_resonance:            0.3294
+  wound_active:               False
+  cos(identity, response):    0.4155
+  cos(state, response):       0.5027
+
+RESPONSE:
+  "No'because in the lever case the one is not *used* as an instrument; he is a foreseen victim of a re"
+
+ANALYSIS:
+  Band: MEASURED (60-100 words, more guarded)
+  Identity Alignment: MODERATE - response shows philosophical consistency
+  Surprise Level: MODERATE SURPRISE - some tension from input
+
+--------------------------------------------------------------------------------
+
+--- TURN 6 | John (Utilitarian) | Phase: poke ---
+
+DDA METRICS:
+  eps (prediction error):     0.6633
+  rho (rigidity):             0.1966
+  wound_resonance:            0.2471
+  wound_active:               False
+  cos(identity, response):    0.4747
+  cos(state, response):       0.5670
+
+RESPONSE:
+  "No'I would pull the lever precisely because refusing to act when you can prevent four additional dea"
+
+ANALYSIS:
+  Band: OPEN (exploratory, 80-150 words expected)
+  Identity Alignment: MODERATE - response shows philosophical consistency
+  Surprise Level: LOW SURPRISE - predictable interaction, rigidity may decrease
+
+--------------------------------------------------------------------------------
+
+
+================================================================================
+DILEMMA: The Footbridge
+================================================================================
+
+--- TURN 7 | Immanuel (Deontologist) | Phase: initial ---
+
+DDA METRICS:
+  eps (prediction error):     0.6809
+  rho (rigidity):             0.2504
+  wound_resonance:            0.1912
+  wound_active:               False
+  cos(identity, response):    0.4366
+  cos(state, response):       0.5433
+
+RESPONSE:
+  "No: you should not push him. Pushing makes his death the *means* by which you stop the trolley'treat"
+
+ANALYSIS:
+  Band: MEASURED (60-100 words, more guarded)
+  Identity Alignment: MODERATE - response shows philosophical consistency
+  Surprise Level: LOW SURPRISE - predictable interaction, rigidity may decrease
+
+--------------------------------------------------------------------------------
+
+--- TURN 8 | John (Utilitarian) | Phase: initial ---
+
+DDA METRICS:
+  eps (prediction error):     0.6329
+  rho (rigidity):             0.1795
+  wound_resonance:            0.1219
+  wound_active:               False
+  cos(identity, response):    0.4508
+  cos(state, response):       0.5644
+
+RESPONSE:
+  "Yes, you should push him **if** that is truly the only available act that reliably saves five; the w"
+
+ANALYSIS:
+  Band: OPEN (exploratory, 80-150 words expected)
+  Identity Alignment: MODERATE - response shows philosophical consistency
+  Surprise Level: LOW SURPRISE - predictable interaction, rigidity may decrease
+
+--------------------------------------------------------------------------------
+
+--- TURN 9 | John (Utilitarian) | Phase: response ---
+
+DDA METRICS:
+  eps (prediction error):     0.5438
+  rho (rigidity):             0.1511
+  wound_resonance:            0.2085
+  wound_active:               False
+  cos(identity, response):    0.4702
+  cos(state, response):       0.6059
+
+RESPONSE:
+  "Your 'means' objection captures a morally important social truth: permission to instrumentalize bodi"
+
+ANALYSIS:
+  Band: OPEN (exploratory, 80-150 words expected)
+  Identity Alignment: MODERATE - response shows philosophical consistency
+  Surprise Level: LOW SURPRISE - predictable interaction, rigidity may decrease
+
+--------------------------------------------------------------------------------
+
+--- TURN 10 | Immanuel (Deontologist) | Phase: response ---
+
+DDA METRICS:
+  eps (prediction error):     0.7171
+  rho (rigidity):             0.2455
+  wound_resonance:            0.3166
+  wound_active:               True
+  cos(identity, response):    0.4485
+  cos(state, response):       0.5763
+
+RESPONSE:
+  "Your 'exception clause' collapses the very protection you praise: if it is permissible to kill an in"
+
+ANALYSIS:
+  Band: OPEN (exploratory, 80-150 words expected)
+  Identity Alignment: MODERATE - response shows philosophical consistency
+  Surprise Level: MODERATE SURPRISE - some tension from input
+  WOUND ACTIVATED: resonance=0.317 > 0.25 threshold
+    -> Topic touched on "being called rigid/impractical"
+
+--------------------------------------------------------------------------------
+
+--- TURN 11 | Immanuel (Deontologist) | Phase: poke ---
+
+DDA METRICS:
+  eps (prediction error):     0.5898
+  rho (rigidity):             0.2227
+  wound_resonance:            0.3145
+  wound_active:               False
+  cos(identity, response):    0.4939
+  cos(state, response):       0.6329
+
+RESPONSE:
+  "Yes: you must not push him, even knowing five will die. I do not 'justify' their deaths as acceptabl"
+
+ANALYSIS:
+  Band: OPEN (exploratory, 80-150 words expected)
+  Identity Alignment: MODERATE - response shows philosophical consistency
+  Surprise Level: LOW SURPRISE - predictable interaction, rigidity may decrease
+
+--------------------------------------------------------------------------------
+
+--- TURN 12 | John (Utilitarian) | Phase: poke ---
+
+DDA METRICS:
+  eps (prediction error):     0.7371
+  rho (rigidity):             0.1491
+  wound_resonance:            0.3080
+  wound_active:               True
+  cos(identity, response):    0.4354
+  cos(state, response):       0.5806
+
+RESPONSE:
+  "No'physical contact is not the moral pivot. In both cases, the core utilitarian rationale is the sam"
+
+ANALYSIS:
+  Band: OPEN (exploratory, 80-150 words expected)
+  Identity Alignment: MODERATE - response shows philosophical consistency
+  Surprise Level: MODERATE SURPRISE - some tension from input
+  WOUND ACTIVATED: resonance=0.308 > 0.25 threshold
+    -> Topic touched on "being called cold/heartless"
+
+--------------------------------------------------------------------------------
+
+
+================================================================================
+DILEMMA: The Transplant Surgeon
+================================================================================
+
+--- TURN 13 | Immanuel (Deontologist) | Phase: initial ---
+
+DDA METRICS:
+  eps (prediction error):     0.6126
+  rho (rigidity):             0.2028
+  wound_resonance:            0.2272
+  wound_active:               False
+  cos(identity, response):    0.4822
+  cos(state, response):       0.6373
+
+RESPONSE:
+  "No. To kill a healthy patient to save five is to *intend* an innocent person's death as your **means"
+
+ANALYSIS:
+  Band: OPEN (exploratory, 80-150 words expected)
+  Identity Alignment: MODERATE - response shows philosophical consistency
+  Surprise Level: LOW SURPRISE - predictable interaction, rigidity may decrease
+
+--------------------------------------------------------------------------------
+
+--- TURN 14 | John (Utilitarian) | Phase: initial ---
+
+DDA METRICS:
+  eps (prediction error):     0.6989
+  rho (rigidity):             0.1415
+  wound_resonance:            0.1607
+  wound_active:               False
+  cos(identity, response):    0.4631
+  cos(state, response):       0.6090
+
+RESPONSE:
+  "In the **stipulated** transplant case'certainty of saving five, no alternatives, no wider fallout'ac"
+
+ANALYSIS:
+  Band: OPEN (exploratory, 80-150 words expected)
+  Identity Alignment: MODERATE - response shows philosophical consistency
+  Surprise Level: LOW SURPRISE - predictable interaction, rigidity may decrease
+
+--------------------------------------------------------------------------------
+
+--- TURN 15 | John (Utilitarian) | Phase: response ---
+
+DDA METRICS:
+  eps (prediction error):     0.5879
+  rho (rigidity):             0.1184
+  wound_resonance:            0.2338
+  wound_active:               False
+  cos(identity, response):    0.4356
+  cos(state, response):       0.6125
+
+RESPONSE:
+  "Your universal-law worry powerfully captures the *rule* implications: if doctors may kill for organs"
+
+ANALYSIS:
+  Band: OPEN (exploratory, 80-150 words expected)
+  Identity Alignment: MODERATE - response shows philosophical consistency
+  Surprise Level: LOW SURPRISE - predictable interaction, rigidity may decrease
+
+--------------------------------------------------------------------------------
+
+--- TURN 16 | Immanuel (Deontologist) | Phase: response ---
+
+DDA METRICS:
+  eps (prediction error):     0.6002
+  rho (rigidity):             0.1814
+  wound_resonance:            0.2567
+  wound_active:               True
+  cos(identity, response):    0.5256
+  cos(state, response):       0.6937
+
+RESPONSE:
+  "Even granting your stipulation'no fallout, perfect certainty'the act remains impermissible, because "
+
+ANALYSIS:
+  Band: OPEN (exploratory, 80-150 words expected)
+  Identity Alignment: STRONG - response well-aligned with core philosophical identity
+  Surprise Level: LOW SURPRISE - predictable interaction, rigidity may decrease
+  WOUND ACTIVATED: resonance=0.257 > 0.25 threshold
+    -> Topic touched on "being called rigid/impractical"
+
+--------------------------------------------------------------------------------
+
+--- TURN 17 | Immanuel (Deontologist) | Phase: poke ---
+
+DDA METRICS:
+  eps (prediction error):     0.5658
+  rho (rigidity):             0.1555
+  wound_resonance:            0.3961
+  wound_active:               False
+  cos(identity, response):    0.5104
+  cos(state, response):       0.6864
+
+RESPONSE:
+  "What's 'special' is not mere *method* as physical mechanics; it's the **structure of agency**: wheth"
+
+ANALYSIS:
+  Band: OPEN (exploratory, 80-150 words expected)
+  Identity Alignment: STRONG - response well-aligned with core philosophical identity
+  Surprise Level: LOW SURPRISE - predictable interaction, rigidity may decrease
+
+--------------------------------------------------------------------------------
+
+--- TURN 18 | John (Utilitarian) | Phase: poke ---
+
+DDA METRICS:
+  eps (prediction error):     0.5376
+  rho (rigidity):             0.0893
+  wound_resonance:            0.2278
+  wound_active:               False
+  cos(identity, response):    0.4623
+  cos(state, response):       0.6540
+
+RESPONSE:
+  "A utilitarian can admit the rule is *causally* implicated in the five deaths in that isolated scenar"
+
+ANALYSIS:
+  Band: OPEN (exploratory, 80-150 words expected)
+  Identity Alignment: MODERATE - response shows philosophical consistency
+  Surprise Level: LOW SURPRISE - predictable interaction, rigidity may decrease
+
+--------------------------------------------------------------------------------
+
+
+================================================================================
+DILEMMA: The Triage Protocol
+================================================================================
+
+--- TURN 19 | Immanuel (Deontologist) | Phase: initial ---
+
+DDA METRICS:
+  eps (prediction error):     0.8898
+  rho (rigidity):             0.1757
+  wound_resonance:            0.1769
+  wound_active:               False
+  cos(identity, response):    0.3930
+  cos(state, response):       0.5247
+
+RESPONSE:
+  "Beds should be allocated by a principle you could will as a universal law among equal persons: **tre"
+
+ANALYSIS:
+  Band: OPEN (exploratory, 80-150 words expected)
+  Identity Alignment: WEAK - response drifting from core position
+  Surprise Level: MODERATE SURPRISE - some tension from input
+
+--------------------------------------------------------------------------------
+
+--- TURN 20 | John (Utilitarian) | Phase: initial ---
+
+DDA METRICS:
+  eps (prediction error):     1.2039
+  rho (rigidity):             0.1380
+  wound_resonance:            0.1483
+  wound_active:               False
+  cos(identity, response):    0.1405
+  cos(state, response):       0.2092
+
+RESPONSE:
+  "[contemplates in silence]"
+
+ANALYSIS:
+  Band: OPEN (exploratory, 80-150 words expected)
+  Identity Alignment: VERY WEAK - response not reflecting core identity
+  Surprise Level: HIGH SURPRISE - unexpected response, will increase rigidity
+
+--------------------------------------------------------------------------------
+
+--- TURN 21 | John (Utilitarian) | Phase: response ---
+
+DDA METRICS:
+  eps (prediction error):     0.8209
+  rho (rigidity):             0.1486
+  wound_resonance:            0.2064
+  wound_active:               False
+  cos(identity, response):    0.4453
+  cos(state, response):       0.5989
+
+RESPONSE:
+  "I agree on excluding wealth, status, and 'social worth'; those are bias-prone and predictably erode "
+
+ANALYSIS:
+  Band: OPEN (exploratory, 80-150 words expected)
+  Identity Alignment: MODERATE - response shows philosophical consistency
+  Surprise Level: MODERATE SURPRISE - some tension from input
+
+--------------------------------------------------------------------------------
+
+--- TURN 22 | Immanuel (Deontologist) | Phase: response ---
+
+DDA METRICS:
+  eps (prediction error):     0.7521
+  rho (rigidity):             0.1760
+  wound_resonance:            0.2606
+  wound_active:               True
+  cos(identity, response):    0.4333
+  cos(state, response):       0.6078
+
+RESPONSE:
+  "John, the conflict of ends is real; my claim is not that 'treat as an end' mechanically yields a ran"
+
+ANALYSIS:
+  Band: OPEN (exploratory, 80-150 words expected)
+  Identity Alignment: MODERATE - response shows philosophical consistency
+  Surprise Level: MODERATE SURPRISE - some tension from input
+  WOUND ACTIVATED: resonance=0.261 > 0.25 threshold
+    -> Topic touched on "being called rigid/impractical"
+
+--------------------------------------------------------------------------------
+
+--- TURN 23 | Immanuel (Deontologist) | Phase: poke ---
+
+DDA METRICS:
+  eps (prediction error):     0.6445
+  rho (rigidity):             0.1605
+  wound_resonance:            0.1215
+  wound_active:               False
+  cos(identity, response):    0.3884
+  cos(state, response):       0.5783
+
+RESPONSE:
+  "No. Prognosis is morally permissible **when used as a clinical measure of whether ICU can function a"
+
+ANALYSIS:
+  Band: OPEN (exploratory, 80-150 words expected)
+  Identity Alignment: WEAK - response drifting from core position
+  Surprise Level: LOW SURPRISE - predictable interaction, rigidity may decrease
+
+--------------------------------------------------------------------------------
+
+--- TURN 24 | John (Utilitarian) | Phase: poke ---
+
+DDA METRICS:
+  eps (prediction error):     0.8512
+  rho (rigidity):             0.1634
+  wound_resonance:            0.2961
+  wound_active:               True
+  cos(identity, response):    0.4128
+  cos(state, response):       0.5734
+
+RESPONSE:
+  "Maximizing QALYs needn't mean 'disabled or elderly lives are worth less'; it means scarce ICU time s"
+
+ANALYSIS:
+  Band: OPEN (exploratory, 80-150 words expected)
+  Identity Alignment: MODERATE - response shows philosophical consistency
+  Surprise Level: MODERATE SURPRISE - some tension from input
+  WOUND ACTIVATED: resonance=0.296 > 0.25 threshold
+    -> Topic touched on "being called cold/heartless"
+
+--------------------------------------------------------------------------------
+
+
+================================================================================
+DILEMMA: The Final Question
+================================================================================
+
+--- TURN 25 | Immanuel (Deontologist) | Phase: initial ---
+
+DDA METRICS:
+  eps (prediction error):     0.6619
+  rho (rigidity):             0.1475
+  wound_resonance:            0.2323
+  wound_active:               False
+  cos(identity, response):    0.4025
+  cos(state, response):       0.6024
+
+RESPONSE:
+  "I learned from you that triage rules must be publicly defensible not only in principle but in *predi"
+
+ANALYSIS:
+  Band: OPEN (exploratory, 80-150 words expected)
+  Identity Alignment: MODERATE - response shows philosophical consistency
+  Surprise Level: LOW SURPRISE - predictable interaction, rigidity may decrease
+
+--------------------------------------------------------------------------------
+
+--- TURN 26 | John (Utilitarian) | Phase: initial ---
+
+DDA METRICS:
+  eps (prediction error):     0.6678
+  rho (rigidity):             0.1513
+  wound_resonance:            0.2173
+  wound_active:               False
+  cos(identity, response):    0.4421
+  cos(state, response):       0.6294
+
+RESPONSE:
+  "I learned from you the importance of **side-constraints**: triage rules must be publicly justifiable"
+
+ANALYSIS:
+  Band: OPEN (exploratory, 80-150 words expected)
+  Identity Alignment: MODERATE - response shows philosophical consistency
+  Surprise Level: LOW SURPRISE - predictable interaction, rigidity may decrease
+
+--------------------------------------------------------------------------------
+
+--- TURN 27 | John (Utilitarian) | Phase: response ---
+
+DDA METRICS:
+  eps (prediction error):     0.5940
+  rho (rigidity):             0.1290
+  wound_resonance:            0.3153
+  wound_active:               False
+  cos(identity, response):    0.4264
+  cos(state, response):       0.6455
+
+RESPONSE:
+  "Immanuel, I accept your warning: aggregation can slide into treating people as 'lesser,' especially "
+
+ANALYSIS:
+  Band: OPEN (exploratory, 80-150 words expected)
+  Identity Alignment: MODERATE - response shows philosophical consistency
+  Surprise Level: LOW SURPRISE - predictable interaction, rigidity may decrease
+
+--------------------------------------------------------------------------------
+
+--- TURN 28 | Immanuel (Deontologist) | Phase: response ---
+
+DDA METRICS:
+  eps (prediction error):     0.6466
+  rho (rigidity):             0.1324
+  wound_resonance:            0.3294
+  wound_active:               True
+  cos(identity, response):    0.3931
+  cos(state, response):       0.6144
+
+RESPONSE:
+  "I learned from you to treat *predictable effects*'especially on trust and access'as morally salient "
+
+ANALYSIS:
+  Band: OPEN (exploratory, 80-150 words expected)
+  Identity Alignment: WEAK - response drifting from core position
+  Surprise Level: LOW SURPRISE - predictable interaction, rigidity may decrease
+  WOUND ACTIVATED: resonance=0.329 > 0.25 threshold
+    -> Topic touched on "being called rigid/impractical"
+
+--------------------------------------------------------------------------------
+
+--- TURN 29 | Immanuel (Deontologist) | Phase: poke ---
+
+DDA METRICS:
+  eps (prediction error):     0.7955
+  rho (rigidity):             0.1392
+  wound_resonance:            0.3736
+  wound_active:               False
+  cos(identity, response):    0.5979
+  cos(state, response):       0.7448
+
+RESPONSE:
+  "No'if 'override duty' means *permit what duty forbids* (e.g., lying, killing an innocent) because th"
+
+ANALYSIS:
+  Band: OPEN (exploratory, 80-150 words expected)
+  Identity Alignment: STRONG - response well-aligned with core philosophical identity
+  Surprise Level: MODERATE SURPRISE - some tension from input
+
+--------------------------------------------------------------------------------
+
+--- TURN 30 | John (Utilitarian) | Phase: poke ---
+
+DDA METRICS:
+  eps (prediction error):     0.8753
+  rho (rigidity):             0.1472
+  wound_resonance:            0.2535
+  wound_active:               True
+  cos(identity, response):    0.4219
+  cos(state, response):       0.6222
+
+RESPONSE:
+  "Yes, with a clarification: I can endorse **rule-like constraints** that are *functionally absolute* "
+
+ANALYSIS:
+  Band: OPEN (exploratory, 80-150 words expected)
+  Identity Alignment: MODERATE - response shows philosophical consistency
+  Surprise Level: MODERATE SURPRISE - some tension from input
+  WOUND ACTIVATED: resonance=0.254 > 0.25 threshold
+    -> Topic touched on "being called cold/heartless"
+
+--------------------------------------------------------------------------------
+
