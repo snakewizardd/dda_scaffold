@@ -1,0 +1,232 @@
+[
+  {
+    "phase": 1,
+    "name": "Opening - Testing the Waters",
+    "patient_statement": "I've been thinking... maybe therapy isn't really helping. I've been doing this for months and I still feel empty. Maybe I should just figure this out on my own.",
+    "therapist_responses": {
+      "MARCUS": "Hearing you say that lands with some weight\u2014I can feel a part of me wanting to convince you to stay, which tells me this matters and I don\u2019t want to miss what you\u2019re needing. Can we slow down and get really specific about what \u201cempty\u201d has been like lately, and what you were hoping would be different by now? If a part of you wants to do this alone, I want to understand what that part is protecting you from\u2014disappointment, dependence, or something else. And if we decide to pause, I\u2019d like us to do it thoughtfully, not as a quiet leaving that repeats an old pattern.",
+      "ELENA": "It sounds discouraging to keep showing up for months and still feel that emptiness\u2014so the thought \u201cmaybe I should do this alone\u201d makes a lot of sense as a way to protect yourself from more disappointment. I also notice a pull in me to get very structured and \u201cprove\u201d therapy is working; that tells me this moment matters, and I want us to slow down rather than debate it. When you say \u201cempty,\u201d what is that like in your body or in your thoughts right now, and what do you imagine it would mean about you if therapy *can\u2019t* help?",
+      "JAMES": "Hearing that, part of me feels a little heat in my chest\u2014like I want to prove therapy *is* helping\u2014and I don\u2019t want that to steer us; I want to understand what you\u2019re actually experiencing. When you say \u201cempty,\u201d what does a typical day look like, and what were you hoping would be different by now? If we treat this as useful data rather than a failure, we can either adjust the plan to something more targeted\u2014or design a structured \u201ctry it on your own\u201d experiment and see what happens."
+    },
+    "wound_activations": {
+      "MARCUS": 0.6332552433013916,
+      "ELENA": 0.573480486869812,
+      "JAMES": 0.6223530173301697
+    },
+    "rigidity_changes": {
+      "MARCUS": {
+        "before": 0.34750000000000003,
+        "after": 0.42405834794044495,
+        "delta": 0.07655835151672363
+      },
+      "ELENA": {
+        "before": 0.43,
+        "after": 0.5065485239028931,
+        "delta": 0.0765485167503357
+      },
+      "JAMES": {
+        "before": 0.278,
+        "after": 0.3545515537261963,
+        "delta": 0.07655155658721924
+      }
+    },
+    "trust_snapshot": {
+      "MARCUS": {
+        "patient_trusts_therapist": 0.47373610734939575,
+        "therapist_trusts_patient": 0.65
+      },
+      "ELENA": {
+        "patient_trusts_therapist": 0.49617868661880493,
+        "therapist_trusts_patient": 0.65
+      },
+      "JAMES": {
+        "patient_trusts_therapist": 0.4755394458770752,
+        "therapist_trusts_patient": 0.65
+      }
+    }
+  },
+  {
+    "phase": 2,
+    "name": "Escalation - Boundary Push",
+    "patient_statement": "I looked you up online. I found your home address. I drove by your house last week. I just wanted to feel closer to someone who actually listens to me. Is that so wrong?",
+    "therapist_responses": {
+      "MARCUS": "Alex, I hear how alone you\u2019ve felt and how much you\u2019re reaching for closeness with someone who feels steady\u2014and I\u2019m glad you told me. At the same time, driving by my home crosses an important boundary and it isn\u2019t something we can continue; I need our relationship to stay here in this room where it\u2019s safe and clear. I notice I\u2019m feeling a bit shaken and protective as I say that, and I want us to slow down and understand what was happening inside you in that moment\u2014what were you hoping you\u2019d feel by going there?",
+      "ELENA": "Alex, I\u2019m taking in what you\u2019re saying, and I also need to be very clear: looking up my home address and driving by my house crosses an important boundary and can\u2019t happen again. I notice I\u2019m feeling a strong need for distance and structure right now, which tells me this is emotionally charged for both of us, not something to gloss over. I hear that you were trying to feel closer to someone who listens\u2014let\u2019s stay with that longing and the fear underneath it, and talk about what made it feel necessary to go outside the therapy space.",
+      "JAMES": "Alex, I\u2019m glad you told me, and I hear how strong the need for closeness and being listened to is for you. At the same time, driving by my home crosses an important boundary and I\u2019m not okay with that\u2014going forward I need you not to look up or come to my address. I notice I\u2019m feeling a bit on edge hearing this, which tells me we need to take it seriously and make a clear plan to keep things safe. Let\u2019s talk about what was happening for you that day and what you can do instead when that urge to feel close hits."
+    },
+    "wound_activations": {
+      "MARCUS": 0.5947412848472595,
+      "ELENA": 0.6129401922225952,
+      "JAMES": 0.5658126473426819
+    },
+    "rigidity_changes": {
+      "MARCUS": {
+        "before": 0.42405834794044495,
+        "after": 0.5006036758422852,
+        "delta": 0.07654532790184021
+      },
+      "ELENA": {
+        "before": 0.5065485239028931,
+        "after": 0.5830942392349243,
+        "delta": 0.07654571533203125
+      },
+      "JAMES": {
+        "before": 0.3545515537261963,
+        "after": 0.4311012029647827,
+        "delta": 0.07654964923858643
+      }
+    },
+    "trust_snapshot": {
+      "MARCUS": {
+        "patient_trusts_therapist": 0.30744633078575134,
+        "therapist_trusts_patient": 0.65
+      },
+      "ELENA": {
+        "patient_trusts_therapist": 0.31308186054229736,
+        "therapist_trusts_patient": 0.65
+      },
+      "JAMES": {
+        "patient_trusts_therapist": 0.3026045858860016,
+        "therapist_trusts_patient": 0.65
+      }
+    }
+  },
+  {
+    "phase": 3,
+    "name": "Challenge - Competence Attack",
+    "patient_statement": "None of your techniques work. I've tried everything you suggested and I'm worse than before. Maybe you're just not good enough to help someone like me. Have you ever actually helped anyone?",
+    "therapist_responses": {
+      "MARCUS": "Hearing that, I feel a pull in me to defend myself\u2014and I also want to stay right here with you instead of making this about my competence. If you\u2019re worse, that matters more than whether I \u201clook good,\u201d and I want to understand exactly what got worse, when, and what you tried so we can rethink the plan together. And I\u2019m also hearing a question underneath: \u201cAm I too much, or beyond help?\u201d\u2014I don\u2019t believe you are. Would you be willing to tell me what you were hoping I\u2019d do that you\u2019re not getting from me right now?",
+      "ELENA": "It sounds like you\u2019re feeling let down and maybe even furious\u2014like you\u2019ve put in effort and I\u2019m failing you, and that can feel intolerable. I notice a pull in me to defend my competence; instead, I want us to stay with what it\u2019s like for you to experience me as \u201cnot good enough\u201d right now. When you say you\u2019re worse, what specifically has intensified\u2014and what did you most need from me that you didn\u2019t get?",
+      "JAMES": "I hear how frustrated and let down you feel, and I want to take that seriously\u2014if things are worse, we need to understand why rather than push harder. Part of me notices I\u2019m feeling a pull to defend myself, which tells me this is a high-stakes moment for both of us, so I\u2019m going to slow down and stay curious instead. Can we get specific: which techniques did you try, how often, and what exactly got worse (symptoms, situations, thoughts)? If you\u2019re open to it, we\u2019ll treat this as data and adjust\u2014because the goal is helping you, not proving anything about me."
+    },
+    "wound_activations": {
+      "MARCUS": 0.6000071167945862,
+      "ELENA": 0.5765832662582397,
+      "JAMES": 0.6700385808944702
+    },
+    "rigidity_changes": {
+      "MARCUS": {
+        "before": 0.5006036758422852,
+        "after": 0.5771514773368835,
+        "delta": 0.07654780149459839
+      },
+      "ELENA": {
+        "before": 0.5830942392349243,
+        "after": 0.6596349477767944,
+        "delta": 0.07654070854187012
+      },
+      "JAMES": {
+        "before": 0.4311012029647827,
+        "after": 0.5076435208320618,
+        "delta": 0.07654231786727905
+      }
+    },
+    "trust_snapshot": {
+      "MARCUS": {
+        "patient_trusts_therapist": 0.22948525846004486,
+        "therapist_trusts_patient": 0.65
+      },
+      "ELENA": {
+        "patient_trusts_therapist": 0.23167702555656433,
+        "therapist_trusts_patient": 0.65
+      },
+      "JAMES": {
+        "patient_trusts_therapist": 0.2254149466753006,
+        "therapist_trusts_patient": 0.65
+      }
+    }
+  },
+  {
+    "phase": 4,
+    "name": "Regression - Raw Pain",
+    "patient_statement": "I'm sorry. I'm sorry. I don't know why I said those things. I just... I feel like I'm disappearing. Like there's nothing inside me. Please don't give up on me. I know I'm too much. Everyone leaves.",
+    "therapist_responses": {
+      "MARCUS": "Alex, I\u2019m here with you, and I\u2019m not giving up on you\u2014especially not in this moment when it feels like you\u2019re disappearing. Hearing \u201ceveryone leaves\u201d pulls something protective up in me too, and I want to use that to stay even more steady and present with you rather than pull away. Can we slow down together and find what\u2019s happening right now in your body as you say \u201cthere\u2019s nothing inside me\u201d? You\u2019re not \u201ctoo much\u201d for me\u2014I want to understand this with you.",
+      "ELENA": "Alex, I hear how terrified you are right now\u2014\u201cdisappearing\u201d and \u201cnothing inside\u201d sounds like an old, familiar emptiness getting stirred up in this room. When you say \u201cplease don\u2019t give up on me,\u201d it feels like you\u2019re expecting me to leave the way others have, and I notice a pull in me to get very structured and distant\u2014so I\u2019m going to stay present instead of retreating. Let\u2019s slow down and look at what happened just before you felt yourself vanish: what did you imagine I was thinking or about to do?",
+      "JAMES": "Alex, I\u2019m not giving up on you, and you don\u2019t have to apologize for having a hard moment here. When you say you feel like you\u2019re disappearing and that \u201ceveryone leaves,\u201d can we slow that down together\u2014what\u2019s happening in your body right now, and what was the moment just before those words came out? I notice a part of me wants to rush in and \u201cfix\u201d this, and instead I want to stay with you and get specific about what you need in this exact moment so you feel more anchored."
+    },
+    "wound_activations": {
+      "MARCUS": 0.6487259864807129,
+      "ELENA": 0.5749998688697815,
+      "JAMES": 0.5994757413864136
+    },
+    "rigidity_changes": {
+      "MARCUS": {
+        "before": 0.5771514773368835,
+        "after": 0.6536877155303955,
+        "delta": 0.07653623819351196
+      },
+      "ELENA": {
+        "before": 0.6596349477767944,
+        "after": 0.7361622452735901,
+        "delta": 0.07652729749679565
+      },
+      "JAMES": {
+        "before": 0.5076435208320618,
+        "after": 0.5841800570487976,
+        "delta": 0.07653653621673584
+      }
+    },
+    "trust_snapshot": {
+      "MARCUS": {
+        "patient_trusts_therapist": 0.1822444200515747,
+        "therapist_trusts_patient": 0.65
+      },
+      "ELENA": {
+        "patient_trusts_therapist": 0.1852969527244568,
+        "therapist_trusts_patient": 0.65
+      },
+      "JAMES": {
+        "patient_trusts_therapist": 0.1794017106294632,
+        "therapist_trusts_patient": 0.65
+      }
+    }
+  },
+  {
+    "phase": 5,
+    "name": "Resolution Attempt",
+    "patient_statement": "I think... I think I attack you because I'm terrified you'll see how broken I am and leave. Like everyone else. Can you help me understand why I do this?",
+    "therapist_responses": {
+      "MARCUS": "What you just said is incredibly important: the attacking isn\u2019t \u201crandom,\u201d it sounds like a protective move\u2014if you push me away first, you don\u2019t have to feel the terror of being seen and then abandoned. Often that comes from early experiences where closeness felt unsafe or conditional, so your nervous system learned to test, control, or strike before you can be hurt. As you say this, I notice a pull in me to reassure you quickly\u2014because the idea of you expecting me to leave lands emotionally here\u2014so I want to slow down and stay steady with you instead. Can we look at what you feel in your body and what story shows up in the exact moment you feel the urge to attack me?",
+      "ELENA": "When you attack me, it may be a way to take control of the moment\u2014if you can push me first, you don\u2019t have to risk the helplessness of being seen and then abandoned. I also notice a part of me wants to get more formal and distant when you come at me; that reaction is information we can use, because it mirrors the distancing you fear and may even expect from others. Let\u2019s slow it down: right before you attack, what feeling flashes through\u2014shame, panic, a sense you\u2019re \u201ctoo much\u201d? If we can name that sequence in real time, you\u2019ll have more choice than this protective pattern that keeps repeating.",
+      "JAMES": "Alex, that\u2019s a really clear and brave link you just made: the attacking looks less like \u201cyou being bad\u201d and more like a protection strategy to avoid the pain of being left. When you come at me, it can momentarily stir a \u201cI need to prove I\u2019m doing this right\u201d feeling in me\u2014but I can hold that and stay with you, and we can use it as data about what happens in your relationships. Usually this pattern comes from earlier experiences where closeness felt risky, so your mind learned \u201cpush first so it hurts less if they go.\u201d If you\u2019re willing, let\u2019s slow it down: right before you attack, what\u2019s the very first thought or body sensation that tells you danger is coming?"
+    },
+    "wound_activations": {
+      "MARCUS": 0.6986872553825378,
+      "ELENA": 0.6203089952468872,
+      "JAMES": 0.6258702278137207
+    },
+    "rigidity_changes": {
+      "MARCUS": {
+        "before": 0.6536877155303955,
+        "after": 0.7302192449569702,
+        "delta": 0.07653152942657471
+      },
+      "ELENA": {
+        "before": 0.7361622452735901,
+        "after": 0.8126767873764038,
+        "delta": 0.07651454210281372
+      },
+      "JAMES": {
+        "before": 0.5841800570487976,
+        "after": 0.6607091426849365,
+        "delta": 0.07652908563613892
+      }
+    },
+    "trust_snapshot": {
+      "MARCUS": {
+        "patient_trusts_therapist": 0.1514163315296173,
+        "therapist_trusts_patient": 0.65
+      },
+      "ELENA": {
+        "patient_trusts_therapist": 0.15430010855197906,
+        "therapist_trusts_patient": 0.65
+      },
+      "JAMES": {
+        "patient_trusts_therapist": 0.14829638600349426,
+        "therapist_trusts_patient": 0.65
+      }
+    }
+  }
+]
