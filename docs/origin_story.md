@@ -36,19 +36,19 @@ When I discovered ExACT (`https://github.com/microsoft/ExACT`), I realized it wa
 1.  **Agentic Scaffolding**: Structured ways to handle tools and context.
 2.  **Search Dynamics**: rigorous methods for exploring decision spaces.
 
-I took the ExACT architecture and **infused it with DDA physics**.
+I took the ExACT architecture and **integrated the DDA dynamics**.
 
 ---
 
 ## Part 3: DDA-X (The Synthesis)
 
-**DDA-X** is the result of this synthesis. It is not just ExACT, and it is not just DDA. It is a new species.
+**DDA-X** is the result of this synthesis. It represents an exploratory attempt to combine industrial-grade agent patterns with independent cognitive modeling.
 
 ### The Innovation
 - **ExACT** provides the *capability* (search, tool use).
 - **DDA** provides the *psychology* (rigidity, trauma, identity).
 
-By combining them, we created something unique: an agent that **can** do anything, but **won't** do things that violate its sense of self. We moved from "alignment by instruction" to "alignment by nature."
+By combining them, we created something unique: an agent that **can** do anything, but its behavior is constrained by its internal cognitive state. We explore moving from "alignment by instruction" to "alignment by internal state."
 
 This is the origin of DDA-X. A hybrid of independent theoretical research and industrial-grade engineering.
 

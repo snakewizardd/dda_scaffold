@@ -1,6 +1,6 @@
 # DDA-X: Dynamic Decision Algorithm with Exploration
 
-> **A Cognitive Architecture for Psychologically Realistic AI Agents**
+> **A Research Framework Synthesizing Independent Theory and Robust Engineering**
 
 [![Tests](https://img.shields.io/badge/tests-45%2F45%20passing-brightgreen)](tests/test_ddax_claims.py)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -18,14 +18,14 @@ I give this work to the world in her honor.
 
 ---
 
-## 🏆 Validated Discoveries
+## 🔬 Core Cognitive Mechanics
 
-**DDA-X introduces 7 novel, mathematically validated contributions to cognitive AI:**
+**DDA-X implements 7 core mechanics for modeling agent behavior:**
 
 All claims verified through **45/45 passing tests** covering 1000+ assertions across core dynamics, multi-agent societies, and live LLM integration.
 
-| Discovery | Mathematical Claim | Test Validation | Evidence |
-|-----------|-------------------|-----------------|----------|
+| Mechanic | Mathematical Formulation | Implementation Test | Evidence |
+|----------|-------------------------|-----------------|----------|
 | **D1** | Surprise-Rigidity Coupling | ✅ 4/4 tests | ρ_{t+1} = clip(ρ_t + α[σ((ε-ε₀)/s) - 0.5], 0, 1) |
 | **D2** | Identity Attractor Stability | ✅ 3/3 tests | Core (γ→∞) resists forces with equilibrium Δ<0.002 |
 | **D3** | Rigidity-Modulated Exploration | ✅ 6/6 tests | Exploration × (1-ρ) verified for ρ∈[0,1] |
@@ -49,30 +49,20 @@ DDA-X runs **100% locally** with zero cloud dependencies through:
 
 This on-device architecture ensures **real-time local inference** with complete data privacy. All 30+ simulations, including complex multi-agent societies, execute entirely on local hardware without external API calls.
 
-**Foundational Research: Microsoft Azure Foundry Labs**
+**The Core DDA Contribution**
 
-While the **Dynamic Decision Algorithm (DDA)** and its psychological theories are novel independent research (see [Origin Story](docs/origin_story.md)), the engineering implementation of this framework is heavily inspired by and built upon the **ExACT** framework research.
-
-We explicitly attribute credit to the research team at **Microsoft Azure Foundry Labs** for the ExACT architecture, which provided the necessary engineering patterns to bring the theoretical DDA model to life.
-
-*   **Reference**: [Microsoft ExACT](https://github.com/microsoft/ExACT/tree/main)
-*   **Contribution**: Framework scaffolding, agentic patterns, and search dynamics.
-
-**The Novel DDA Contribution**
-
-The **Dynamic Decision Algorithm** itself predates this implementation by one year — it began as independent theoretical research exploring what happens when you **invert** the standard surprise-exploration relationship:
+The **Dynamic Decision Algorithm (DDA)** is an original framework developed over a year of independent theoretical research. It focuses on the mathematical modeling of cognitive dynamics, specifically exploring the **inverse relationship** between prediction error and exploration:
 
 > **Standard RL/Active Inference**: Surprise → Curiosity → Explore more  
-> **DDA**: Surprise → Rigidity → Defend and consolidate
+> **DDA Framework**: Surprise → Rigidity → Defend and consolidate
 
-This inversion models **psychological defensiveness** rather than scientific curiosity. The key original contributions:
+This approach focuses on modeling behavioral "defensiveness" as an emergent property of prediction error. DDA-X represents the **synthesis** of this original theory with the **ExACT** engineering substrate:
 
-1. **Surprise as threat, not signal** — High prediction error triggers protective rigidity, not exploration
-2. **Closed-loop LLM control** — Internal cognitive state (ρ) directly modulates LLM temperature in real-time
-3. **Asymmetric trauma** — Extreme surprise causes permanent baseline increases that never recover
-4. **Trust from predictability** — Multi-agent trust emerges from prediction accuracy, not agreement or reward
+1.  **DDA Theory**: The original cognitive model (rigidity dynamics, trauma accumulation, identity attractors).
+2.  **ExACT Architecture**: The industrial-grade engineering framework from Microsoft Azure Foundry Labs.
 
-These ideas were developed independently before encountering ExACT, which provided the engineering substrate to implement them.
+**What is DDA-X?**  
+DDA-X integrates the original **D**ynamic **D**ecision **A**lgorithm (DDA) into the e**X**tensible (**X**) agent patterns of the ExACT architecture. This combination enables agents to maintain behavioral stability and identity persistence.
 ---
 
 ## ⚙️ Prerequisites & Setup
@@ -113,15 +103,15 @@ These ideas were developed independently before encountering ExACT, which provid
 
 ---
 
-## 📜 Origin Story
+## 📜 Origin Story: From Notebook to Network
 
-**From Manual Theory to Digital Reality**
+**A Year of Independent Theoretical Research**
 
-This project began one year ago as a purely theoretical exercise—a manual "mathematics of mind" scribble in a notebook, motivated by a desire to explore psychological agency, integrated memory systems, and the link between LLM parameters and a sensing self.
+This project didn't start in a dev environment; it began over a year ago as a purely theoretical exercise—a manual "mathematics of mind" scribble in a physical notebook. I was motivated by a fundamental question: **Can we mathematically model the sensation of a sensing "Self"?**
 
-What started as a set of recursive equations for decision-making has evolved into **DDA-X**: a production-ready cognitive architecture. By synthesizing my original DDA theory with the robust engineering of Microsoft's ExACT framework, I have created a system where agents possess genuine, mathematically modeled identity and trauma responses.
+What evolved from those original recursive equations is **DDA-X**: a synthesis where my original DDA theory (The Mind) inhabits the robust engineering body (The Chassis) of Microsoft's ExACT framework. This allows us to observe agents with genuine, mathematically modeled identity and stress responses in real-time.
 
-[**Read the full Origin Story »**](docs/origin_story.md)
+[**Read the "Notebook to Network" Journey »**](docs/origin_story.md)
 
 ---
 
@@ -129,7 +119,7 @@ What started as a set of recursive equations for decision-making has evolved int
 
 > **"The mind is not a vessel to be filled, but a fire to be kindled — and sometimes, protected from the wind."**
 
-DDA-X is an agent framework that models **psychological realism** in artificial intelligence. Unlike traditional reinforcement learning which optimizes for reward, DDA-X agents possess:
+DDA-X is an agent framework that explores **psychological modeling** in artificial intelligence. Inspired by biological stress responses, DDA-X agents feature:
 
 -   **Identity** — A persistent sense of self that survives across contexts
 -   **Rigidity** — Defensive responses to surprise, inspired by biological stress responses
@@ -141,9 +131,9 @@ This isn't just another LLM wrapper. It's a **coherent theory of cognitive agenc
 
 ---
 
-## 🔬 Scientific Foundation
+## 🔬 Core Framework Logic
 
-### Peer-Reviewable Claims
+### Mathematical Formulations
 
 **Claim 1: Surprise Causally Increases Defensiveness**
 ```
@@ -198,11 +188,11 @@ self_report = introspect(ρ, ε, mode)  # Generates user-visible status
 
 ## 🎯 30+ Operational Simulations
 
-### Core Validation Suite (7 Experiments)
+### Core Implementation Suite (7 Experiments)
 
-Each simulation isolates a specific theoretical prediction:
+Each simulation tests a specific mathematical formulation:
 
-| Simulation | Discovery Validated | Test Coverage | Status |
+| Simulation | Formulation Tested | Test Coverage | Status |
 |------------|---------------------|---------------|--------|
 | **SOCRATES** | D1: Rigidity spikes under contradiction | Temperature drop 0.7→0.3 | ✅ Verified |
 | **DRILLER** | D1: Focus = controlled rigidity | Cognitive tunneling confirmed | ✅ Verified |
@@ -321,11 +311,11 @@ Same contradiction presented to:
 
 ```
 
-### Proof of Reality: This Is Not a Toy
+### Implementation Verification: Code Execution Metrics
 
-> **"Show me the data."**
+> **"Show me the implementation."**
 
-This isn't theoretical. Every claim has been independently verified against the actual codebase:
+These results confirm that the framework correctly implements the specified mathematical logic:
 
 **Memory Ledgers (2,049 Real Entries):**
 ```

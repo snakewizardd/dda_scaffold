@@ -1,4 +1,4 @@
-# The Complete Simulation Suite: A Proof of Cognitive Life
+# The Complete Simulation Suite: Implementation Verification
 
 > **"We do not simulate behavior. We simulate the physics that gives rise to behavior."**
 
@@ -10,9 +10,9 @@ From the rigidity of dogmatism to the scars of trauma, from multi-agent societie
 
 ---
 
-## Evidence Mapping: Simulations → Validated Discoveries
+## Evidence Mapping: Simulations → Core Mechanics
 
-Each simulation provides empirical evidence for specific theoretical claims validated by the [test suite](https://github.com/snakewizardd/dda_scaffold/blob/main/tests/test_ddax_claims.py). The table below maps simulations to the discoveries they operationally demonstrate:
+Each simulation provides empirical evidence for specific mathematical formulations tested by the [test suite](https://github.com/snakewizardd/dda_scaffold/blob/main/tests/test_ddax_claims.py). The table below maps simulations to the formulations they operationally demonstrate:
 
 | Simulation | Validated Claims | Empirical Evidence | Test Coverage |
 |------------|------------------|-------------------|---------------|
@@ -51,7 +51,7 @@ Each simulation provides empirical evidence for specific theoretical claims vali
 - **D6 (Hierarchical Identity)**: 8 simulations operationally validate
 - **D7 (Metacognitive Accuracy)**: 2 simulations operationally validate
 
-**Total Simulation-Claim Validations:** 40+ operational demonstrations across 30+ environments
+**Total Simulation-Formulation Verifications:** 40+ operational demonstrations across 30+ environments
 
 ---
 
@@ -511,4 +511,4 @@ print(f"Trust matrix: {agent.society.trust_matrix}")
 4. **Build Custom**: Use the Builder's Guide to create new simulations
 5. **Contribute**: Share novel simulations with the community
 
-> **"We have not just built better agents. We have discovered the mathematics of mind."**
+> **"A research framework for exploring cognitive dynamics in AI agents."**

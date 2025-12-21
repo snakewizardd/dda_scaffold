@@ -1,16 +1,23 @@
-# The 6 Core Formulations: Modeling Psychological Agency
+# The 6 Core Formulations: Modeling Cognitive Dynamics
 
 > **"Inverting the relationship between surprise and exploration."**
 
-**Status**: Validated Experimental Results (Iteration 3)  
+**Status**: Empirically Tested Results (Iteration 3)  
 **Researcher**: [snakewizardd](https://github.com/snakewizardd)  
 **Foundation**: Built upon the [Microsoft ExACT](https://github.com/microsoft/ExACT) framework architecture.
 
 ---
 
-## The Core Thesis
+> [!NOTE]
+> **DDA-X** represents the synthesis of two distinct components:
+> 1.  **DDA Theory**: Over one year of independent research into the mathematical modeling of cognitive dynamics—specifically the **inverse relationship** between prediction error and exploration.
+> 2.  **ExACT Architecture**: The industrial-grade engineering framework (MCTS, reflection loops, search patterns) from Microsoft Azure Foundry Labs.
+>
+> The six formulations below represent the mathematical models resulting from this synthesis.
 
-Current AI lacks persistent internal state that influences behavior across contexts. DDA-X introduces the concept of **Cognitive Geometry**: defining an agent not by its prompt, but by its **Attractor Field** in a high-dimensional state space. This leads to six core formulations that bridge parameters and psychological dynamics.
+---
+
+Current AI lacks persistent internal state that influences behavior across contexts. DDA-X introduces the concept of **Cognitive Geometry**: defining an agent not by its prompt, but by its **Attractor Field** in a high-dimensional state space. This leads to six core formulations that bridge parameter control and behavioral dynamics.
 
 ---
 
@@ -18,10 +25,10 @@ Current AI lacks persistent internal state that influences behavior across conte
 
 **"Stress is not a word; it is a constraint."**
 
-*   **The Discovery**: We discovered that "defensiveness" in an AI should not be a prompt instruction ("You are defensive"), but a **physical constraint on probability**.
+*   **The Formulation**: We implement "defensiveness" in an AI not as a prompt instruction ("You are defensive"), but as a **physical constraint on probability**.
 *   **The Mechanism**: We created a closed feedback loop where the agent's internal stress state ($\rho$) directly controls the LLM's thermodynamic parameters (`temperature`, `top_p`).
     $$ T(\rho) = T_{low} + (1 - \rho) \cdot (T_{high} - T_{low}) $$
-*   **The Implication**: DDA-X agents don't *act* stressed. They *become* cognitively rigid. They literally lose the degrees of freedom required to be creative, mirroring the biological fight-or-flight response.
+*   **The Implication**: DDA-X agents are configured to become cognitively rigid when surprised. They lose the degrees of freedom required to be creative, mirroring certain aspects of biological stress responses.
 
 ---
 
@@ -29,13 +36,13 @@ Current AI lacks persistent internal state that influences behavior across conte
 
 **"To be open-minded, one must first have a mind."**
 
-*   **The Discovery**: Identity is not a flat list of traits, but a nested hierarchy of **Geometric Attractors**.
+*   **The Formulation**: Identity is modeled as a nested hierarchy of **Geometric Attractors**.
 *   **The Mechanism**:
     $$ \text{CORE } (\gamma \to \infty) \to \text{PERSONA } (\gamma \approx 2) \to \text{ROLE } (\gamma \approx 0.5) $$
     *   **Core ($\gamma \to \infty$)**: Inviolable. The gravitational center of the self.
     *   **Persona ($\gamma \approx 2$)**: Stable but adaptable habits.
     *   **Role ($\gamma \approx 0.5$)**: Fluid tactical adjustments.
-*   **The Implication**: We can create **strong alignment stability**. With high Core stiffness (γ >> 1), the agent's state remains close to core values under perturbation (empirically validated: 99.2% alignment preservation).
+*   **The Implication**: This enables **empirical alignment stability**. With high Core stiffness (γ >> 1), the agent's state remains close to core values under perturbation (empirically tested: 99.2% alignment preservation).
 
 ---
 
@@ -57,7 +64,7 @@ Current AI lacks persistent internal state that influences behavior across conte
 
 **"I trust you because I know you."**
 
-*   **The Discovery**: Trust is not about agreement; it is about **Surprise Minimization**.
+*   **The Formulation**: Trust is modeled as **Surprise Minimization**.
 *   **The Mechanism**: We define Trust mathematically as the **Inverse of Cumulative Prediction Error**:  
     $$ T_{ij} = \frac{1}{1 + \sum \epsilon_{ij}} $$
 *   **The Implication**: Deception becomes mathematically detectable. A lying agent generates high prediction error (surprise), causing the Trust metric to collapse automatically.
@@ -68,7 +75,7 @@ Current AI lacks persistent internal state that influences behavior across conte
 
 **"We are shaped by those we trust."**
 
-*   **The Discovery**: Social influence can be modeled as a vector field.
+*   **The Formulation**: Social influence can be modeled as a vector field.
 *   **The Mechanism**: Agents exert a "gravitational pull" on each other's states, weighted by their Trust scores.
     $$ \vec{F}_{social} = \sum T_{ij} \cdot (\vec{x}_j - \vec{x}_i) $$
 *   **The Implication**: We observe **Emergent Coalitions**. Agents naturally cluster into groups based on shared identity and high mutual predictability, simulating the formation of societies.
@@ -79,15 +86,15 @@ Current AI lacks persistent internal state that influences behavior across conte
 
 **"What breaks does not always heal equal."**
 
-*   **The Discovery**: Extreme events can cause persistent baseline changes.
+*   **The Formulation**: Extreme events can cause persistent baseline changes in rigidity.
 *   **The Mechanism**: We implemented **Asymmetric Rigidity Dynamics**. While "Stress" ($\rho_{slow}$) can decay over time, "Trauma" ($\rho_{trauma}$) is a unidirectional accumulator.
 *   **The Implication**: This is a model of **persistent stress accumulation**. It allows us to simulate the long-term effects of adversarial conditions as a permanent shift in the agent's cognitive baseline.
 
 ---
 
-## Experimental Validation
+## Implementation Verification
 
-Each discovery has been validated across multiple simulations:
+Each formulation has been tested across multiple simulations:
 
 ### D1: Rigidity-Modulated Sampling
 **Validated In:**
@@ -168,4 +175,4 @@ Each discovery has been validated across multiple simulations:
 
 These six formulations demonstrate that **psychological dynamics can emerge from mathematical constraints**. By implementing the correct structure (Attractors, Rigidity, Force Fields), we create agents with persistent behavioral patterns that respond to surprise in psychologically plausible ways.
 
-**Validated across 32 simulations with 10,000+ interaction turns, these formulations represent a novel synthesis for modeling psychological agency in artificial agents.**
+**Tested across 32 simulations with 10,000+ interaction turns, these formulations represent an original synthesis for modeling cognitive dynamics in artificial agents.**

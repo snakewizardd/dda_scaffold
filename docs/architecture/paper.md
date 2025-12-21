@@ -6,7 +6,7 @@
 
 ## Abstract
 
-Current approaches to agentic AI treat surprise as a learning signal: unexpected outcomes trigger reflection, exploration, and adaptation. We propose an alternative paradigm where **surprise triggers rigidity** — a protective response that reduces exploration and strengthens identity persistence. We introduce DDA-X (Dynamic Decision Algorithm with Exploration), a novel agent framework that combines Monte Carlo Tree Search with force-balanced state dynamics and adaptive rigidity. Our key contributions are: (1) a continuous state-space representation with an identity attractor that models "who the agent is," (2) a rigidity mechanism where prediction error increases defensiveness and *dampens* exploration, and (3) a novel action selection formula that fuses force-alignment with UCT-style exploration modulated by rigidity. Unlike prior work that treats all agents identically, DDA-X enables configurable personality profiles (cautious, exploratory, traumatized) through parameter tuning. We provide a complete implementation architecture and discuss implications for building agents that balance task completion with self-preservation.
+Current approaches to agentic AI often treat surprise as a learning signal: unexpected outcomes trigger reflection, exploration, and adaptation. We explore an alternative paradigm where **surprise triggers rigidity** — a protective response that reduces exploration and strengthens identity persistence. We introduce DDA-X (Dynamic Decision Algorithm with Exploration), a research framework that combines Monte Carlo Tree Search with force-balanced state dynamics and adaptive rigidity. Our core contributions include: (1) a continuous state-space representation with an identity attractor that models cognitive persistence, (2) a rigidity mechanism where prediction error increases defensiveness and dampens exploration, and (3) an action selection formula that fuses force-alignment with UCT-style exploration modulated by rigidity. Built as an extension of existing agentic patterns, DDA-X enables configurable behavioral profiles (cautious, exploratory, rigidified) through parameter tuning. We provide an implementation architecture and discuss its application for building agents that balance task completion with behavioral stability.
 
 **Keywords:** autonomous agents, Monte Carlo Tree Search, identity persistence, adaptive rigidity, LLM agents
 
@@ -20,12 +20,12 @@ A common assumption in this paradigm is that **surprise is informative** — whe
 
 We challenge this assumption with a simple observation: **biological agents often respond to surprise with rigidity, not curiosity**. A startled organism contracts, retreats, or freezes. A threatened human becomes defensive, not exploratory. This is not a bug — it's a survival mechanism.
 
-We propose **DDA-X** (Dynamic Decision Algorithm with Exploration), a framework that models agents as systems balancing two competing forces:
+We propose **DDA-X** (Dynamic Decision Algorithm with Exploration), a framework that explores modeling agents as systems balancing two competing forces:
 
 1. **Identity persistence**: the drive to remain coherent and self-consistent
 2. **Reality integration**: the pressure to update beliefs based on environmental feedback
 
-The signature mechanism of DDA-X is that **surprise increases rigidity**, which in turn *dampens exploration*. When an agent's predictions are violated, it becomes more conservative, not more curious. This creates qualitatively different agent behaviors that may be desirable in high-stakes, safety-critical, or adversarial environments.
+The signature hypothesis of DDA-X is that **surprise increases rigidity**, which in turn *dampens exploration*. When an agent's predictions are violated, it becomes more conservative, not more curious. This produces qualitatively different agent behaviors that may be useful in high-stakes, safety-critical, or adversarial environments.
 
 ### 1.1 Contributions
 
@@ -33,11 +33,11 @@ The signature mechanism of DDA-X is that **surprise increases rigidity**, which 
 
 2. **Adaptive rigidity** ρ ∈ [0,1] that increases with prediction error and dampens exploration (Section 3.2)
 
-3. **DDA-X action selection**: a novel formula combining force-alignment with rigidity-modulated UCT exploration (Section 3.3)
+3. **DDA-X action selection**: a selection formula combining force-alignment with rigidity-modulated UCT exploration (Section 3.3)
 
-4. **Personality profiles**: configurable agent archetypes (cautious, exploratory, traumatized) via parameter tuning (Section 3.4)
+4. **Behavioral profiles**: configurable agent archetypes (cautious, exploratory, rigidified) via parameter tuning (Section 3.4)
 
-5. **Complete implementation architecture** with class blueprints for practical deployment (Section 4)
+5. **Implementation architecture** with class blueprints for research deployment (Section 4)
 
 ---
 
@@ -294,17 +294,17 @@ These concepts may be useful for AI safety research, particularly in understandi
 
 ## 7. Conclusion
 
-We introduced DDA-X, a framework for agentic AI that inverts the standard relationship between surprise and exploration. Rather than treating surprise as a learning signal, DDA-X models surprise as a threat that triggers protective rigidity.
+We introduced DDA-X, a framework for agentic AI that explores an inverse relationship between surprise and exploration. Rather than treating all surprise as a learning signal, DDA-X models surprise as a trigger for protective rigidity.
 
-Our key contributions are:
+The proposed mechanics include:
 
 1. A continuous state-space model with identity attractor and force-balanced dynamics
 2. Adaptive rigidity that increases with prediction error and dampens exploration
 3. The DDA-X selection formula: cos(Δx, d̂(a)) + c·P(a|s)·√N(s)/(1+N(s,a))·(1-ρ)
-4. Configurable personality profiles enabling agent archetypes
-5. A complete implementation architecture
+4. Configurable behavioral profiles enabling agent archetypes
+5. An implementation architecture built on the ExACT framework
 
-This work opens new directions for building agents that balance task completion with self-preservation, potentially relevant for AI safety and alignment.
+This work opens directions for building agents that balance task completion with behavioral stability, potentially relevant for AI safety and research into agentic alignment.
 
 ---
 

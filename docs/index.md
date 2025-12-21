@@ -1,6 +1,6 @@
 # DDA-X: Dynamic Decision Algorithm with Exploration
 
-> **A Revolutionary Cognitive Architecture Where Mathematics Meets Mind**
+> **A Research Framework Synthesizing Independent Theory and Robust Engineering**
 
 [![GitHub](https://img.shields.io/github/stars/snakewizardd/dda_scaffold?style=social)](https://github.com/snakewizardd/dda_scaffold)
 [![Documentation](https://img.shields.io/badge/docs-mkdocs-blue)](https://snakewizardd.github.io/dda_scaffold/)
@@ -29,12 +29,17 @@ We explicitly attribute credit to the research team at **Microsoft Azure Foundry
 *   **Reference**: [Microsoft ExACT](https://github.com/microsoft/ExACT/tree/main)
 *   **Contribution**: Framework scaffolding, agentic patterns, and search dynamics.
 
-**The Novel DDA Contribution**: The Dynamic Decision Algorithm **inverts** the standard surprise-exploration relationship:
+**The Core DDA Hypothesis**: The Dynamic Decision Algorithm **inverts** the standard surprise-exploration relationship:
 
 > **Standard RL**: Surprise → Curiosity → Explore  
 > **DDA**: Surprise → Rigidity → Defend
 
-This models **psychological defensiveness** — the original theoretical contribution developed independently before implementation.
+DDA represents the **Original Theory**—over a year of independent research into the mathematical modeling of cognitive dynamics. We delineate:
+1.  **DDA Theory**: The original cognitive model (rigidity dynamics, trauma accumulation, identity attractors).
+2.  **ExACT Architecture**: The industrial-grade engineering framework (MCTS, reflection loops, search patterns) from Microsoft Azure Foundry Labs.
+
+**What is DDA-X?**  
+DDA-X integrates the original **D**ynamic **D**ecision **A**lgorithm (DDA) into the e**X**tensible (**X**) agent patterns of the ExACT architecture. This combination enables agents to maintain behavioral stability and identity persistence.
 
 ---
 
@@ -76,15 +81,15 @@ This models **psychological defensiveness** — the original theoretical contrib
 
 ---
 
-## 📜 Origin Story
+## 📜 Origin Story: From Notebook to Network
 
-**From Manual Theory to Digital Reality**
+**A Year of Independent Theoretical Research**
 
-This project began one year ago as a purely theoretical exercise—a manual "mathematics of mind" scribble in a notebook, motivated by a desire to explore psychological agency, integrated memory systems, and the link between LLM parameters and a sensing self.
+This project didn't start in a dev environment; it began over a year ago as a purely theoretical exercise—a manual "mathematics of mind" scribble in a notebook. I was motivated by a fundamental question: **Can we mathematically model the sensation of a sensing "Self"?**
 
-What started as a set of recursive equations for decision-making has evolved into **DDA-X**: a research prototype for cognitive architecture. By synthesizing my original DDA theory with the robust engineering of Microsoft's ExACT framework, I have created a system where agents possess testable, mathematically modeled identity and stress responses.
+What evolved from those original recursive equations is **DDA-X**: a research prototype for cognitive architecture where my original DDA theory (The Mind) inhabits the robust engineering body (The Chassis) of Microsoft's ExACT framework. 
 
-[**Read the full Origin Story »**](origin_story.md)
+[**Read the "Notebook to Network" Journey »**](origin_story.md)
 
 ---
 
@@ -92,7 +97,7 @@ What started as a set of recursive equations for decision-making has evolved int
 
 > **"The mind is not a vessel to be filled, but a fire to be kindled — and sometimes, protected from the wind."**
 
-DDA-X is an agent framework that models **psychological realism** in artificial intelligence. Unlike traditional reinforcement learning which optimizes for reward, DDA-X agents possess:
+DDA-X is an agent framework that explores **psychological modeling** in artificial intelligence. Inspired by biological stress responses, DDA-X agents feature:
 
 -   **Identity** — A persistent sense of self that survives across contexts
 -   **Rigidity** — Defensive responses to surprise, inspired by biological stress responses
@@ -139,7 +144,7 @@ A model of **computational stress accumulation** — permanent baseline increase
 
 **7 Core Validated Experiments** proving foundational theory:
 
-| Simulation | What It Demonstrates | Command |
+| Simulation | Formulation Tested | Command |
 |------------|---------------------|---------|
 | **SOCRATES** | Philosophical debate between rigid dogmatist and flexible gadfly | `python simulations/simulate_socrates.py` |
 | **DRILLER** | Deep forensic analysis with accumulating cognitive load | `python simulations/simulate_driller.py` |
@@ -193,11 +198,11 @@ A model of **computational stress accumulation** — permanent baseline increase
 > These ledgers **persist across runs**, enabling agents to recall prior experiences through surprise-weighted retrieval. Currently **2,049 entries** exist from prior experiments across 21 simulation directories.
 ---
 
-## 📊 Experimental Validation
+## 📊 Implementation Verification
 
-**45/45 Tests Passing (100% Validation)**
+**45/45 Tests Passing (Implementation Validation)**
 
-| Claim | Tests | Status | Key Evidence |
+| Formulation | Tests | Status | Key Evidence |
 |-------|-------|--------|--------------|
 | **D1**: Surprise-Rigidity Coupling | 4 | ✅ | Monotonic ρ increase with ε (r=0.92) |
 | **D2**: Identity Attractor Stability | 3 | ✅ | Core alignment <0.002 displacement |
@@ -209,7 +214,7 @@ A model of **computational stress accumulation** — permanent baseline increase
 | **Core Physics** | 4 | ✅ | State evolution numerically stable |
 | **Force Aggregation** | 3 | ✅ | Channel composition verified |
 | **Memory Retrieval** | 2 | ✅ | Surprise-weighted salience working |
-| **Live Backend** | 5 | ✅ | Ollama 768-dim embeddings verified |
+| **Live Backend Backend** | 5 | ✅ | Ollama 768-dim embeddings verified |
 
 **Run it yourself:**
 ```bash
