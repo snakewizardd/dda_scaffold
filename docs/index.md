@@ -213,7 +213,7 @@ A model of **computational stress accumulation** — permanent baseline increase
 
 **Run it yourself:**
 ```bash
-.\venv\Scripts\python.exe test_ddax_claims.py
+.\venv\Scripts\python.exe tests/test_ddax_claims.py
 # Output: Total Tests: 45 | Passed: 45 (100.0%) | Failed: 0 (0.0%)
 ```
 

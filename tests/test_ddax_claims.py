@@ -25,8 +25,8 @@ from dataclasses import dataclass, field
 import matplotlib.pyplot as plt
 from pathlib import Path
 
-# Add project root to path
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# Add project root to path (parent of tests/)
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # Import DDA-X components
 from src.core.state import DDAState, ActionDirection

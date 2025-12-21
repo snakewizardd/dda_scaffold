@@ -381,7 +381,7 @@ The framework is ready for:
 
 ---
 
-**Test Suite:** [`test_ddax_claims.py`](https://github.com/snakewizardd/dda_scaffold/blob/main/test_ddax_claims.py)
+**Test Suite:** [`tests/test_ddax_claims.py`](https://github.com/snakewizardd/dda_scaffold/blob/main/tests/test_ddax_claims.py)
 **Detailed Results:** [`test_results.json`](https://github.com/snakewizardd/dda_scaffold/blob/main/test_results/test_results.json)
 **Visualizations:** [`ddax_test_results.png`](https://github.com/snakewizardd/dda_scaffold/blob/main/test_results/ddax_test_results.png)
 **Reviewer Analysis:** [`review_comments.md`](https://github.com/snakewizardd/dda_scaffold/blob/main/test_results/review_comments.md)

@@ -2,7 +2,7 @@
 
 > **A Cognitive Architecture for Psychologically Realistic AI Agents**
 
-[![Tests](https://img.shields.io/badge/tests-45%2F45%20passing-brightgreen)](test_ddax_claims.py)
+[![Tests](https://img.shields.io/badge/tests-45%2F45%20passing-brightgreen)](tests/test_ddax_claims.py)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Documentation](https://img.shields.io/badge/docs-mkdocs-blue)](https://snakewizardd.github.io/dda_scaffold/)
 
@@ -34,7 +34,7 @@ All claims verified through **45/45 passing tests** covering 1000+ assertions ac
 | **D6** | Hierarchical Identity | ✅ 3/3 tests | γ_core=10⁴ > γ_persona=2 > γ_role=0.5 |
 | **D7** | Metacognitive Accuracy | ✅ 5/5 tests | Self-report correlation r=0.89 with measured ρ |
 
-**Comprehensive test suite:** [`test_ddax_claims.py`](test_ddax_claims.py) | **Results:** [`test_results/`](test_results/) | **Full Validation Report:** [`VALIDATION_RESULTS.md`](docs/VALIDATION_RESULTS.md)
+**Comprehensive test suite:** [`tests/test_ddax_claims.py`](tests/test_ddax_claims.py) | **Results:** [`test_results/`](test_results/) | **Full Validation Report:** [`VALIDATION_RESULTS.md`](docs/VALIDATION_RESULTS.md)
 
 ---
 
@@ -364,7 +364,7 @@ Get-ChildItem -Path src -Include *.py -Recurse | Get-Content | Measure-Object -L
 
 **Test Suite (45/45 Passing — Run It Yourself):**
 ```bash
-.\venv\Scripts\python.exe test_ddax_claims.py
+.\venv\Scripts\python.exe tests/test_ddax_claims.py
 # Output: Total Tests: 45 | Passed: 45 (100.0%) | Failed: 0 (0.0%)
 ```
 

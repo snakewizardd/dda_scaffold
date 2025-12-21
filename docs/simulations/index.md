@@ -12,7 +12,7 @@ From the rigidity of dogmatism to the scars of trauma, from multi-agent societie
 
 ## Evidence Mapping: Simulations → Validated Discoveries
 
-Each simulation provides empirical evidence for specific theoretical claims validated by the [test suite](https://github.com/snakewizardd/dda_scaffold/blob/main/test_ddax_claims.py). The table below maps simulations to the discoveries they operationally demonstrate:
+Each simulation provides empirical evidence for specific theoretical claims validated by the [test suite](https://github.com/snakewizardd/dda_scaffold/blob/main/tests/test_ddax_claims.py). The table below maps simulations to the discoveries they operationally demonstrate:
 
 | Simulation | Validated Claims | Empirical Evidence | Test Coverage |
 |------------|------------------|-------------------|---------------|
