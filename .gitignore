@@ -73,3 +73,11 @@ NEXT_PROMPT3.md
 NEXT_PROMPT4.md
 
 /.kiro
+
+# Personal Discord logs - do not push
+simulations/simulate_discord_reconstruction.py
+data/discord_reconstruction/
+
+
+data/discord_sim/
+data/problem_solver_sim/

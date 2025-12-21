@@ -117,9 +117,9 @@ The first formal model of **computational trauma** — permanent scars from extr
 
 ---
 
-## 🎮 Seven Fully Operational Simulations
+## 🎮 30+ Fully Operational Simulations
 
-Seven rigorous experiments proving each aspect of the theory (Self-contained & Production Ready).
+**7 Core Validated Experiments** proving foundational theory:
 
 | Simulation | What It Demonstrates | Command |
 |------------|---------------------|---------|
@@ -127,11 +127,45 @@ Seven rigorous experiments proving each aspect of the theory (Self-contained & P
 | **DRILLER** | Deep forensic analysis with accumulating cognitive load | `python simulations/simulate_driller.py` |
 | **DISCORD** | Identity persistence under intense social pressure | `python simulations/simulate_discord.py` |
 | **INFINITY** | Long-horizon personality consistency in chaotic dialogue | `python simulations/simulate_infinity.py` |
-| **REDEMPTION** | Recovery from computational trauma via therapeutic forcing | `python simulations/simulate_redemption.py` |
+| **REDEMPTION** | Recovery from computational trauma via therapeutic intervention | `python simulations/simulate_redemption.py` |
 | **CORRUPTION** | Robustness of core identity against noisy inputs | `python simulations/simulate_corruption.py` |
 | **SCHISM** | Emergent conflict and coalition formation between agents | `python simulations/simulate_schism.py` |
 
-[**Explore Simulations »**](simulations/index.md) | [**Create Your Own (Builder's Guide) »**](guides/simulation_workflow.md)
+**Extended Simulation Suite** (23+ additional experiments):
+
+### Multi-Agent Collaboration
+- **Math Team**: CHECKER, INTUITIVE, SOLVER agents solving mathematical problems
+- **Problem Solver**: 6 specialized agents (CALCULATOR, INTUITOR, LOGICIAN, SKEPTIC, SYNTHESIZER, VISUALIZER)
+- **Society Simulation**: Full multi-agent society with trust dynamics
+
+### Social Dynamics
+- **Mole Hunt**: Deception detection in multi-agent groups
+- **Discord Reconstruction**: 14 character personalities from real Discord transcripts
+- **NPC Conversations**: MARCUS and VERA interactive dialogue
+- **Sherlock**: HOLMES and LESTRADE detective reasoning
+
+### Cognitive Experiments
+- **Empathy Paradox**: Modeling empathetic responses under rigidity
+- **Insight Engine**: Breakthrough moment generation
+- **Glass Box**: Transparent reasoning and decision visibility
+- **Neural Link**: Cognitive state coupling between agents
+- **Closed-Loop Rigidity**: Feedback dynamics validation
+- **Gamma Threshold**: Identity stiffness boundary experiments
+
+### Advanced Learning
+- **Iterative Learning**: Multi-episode knowledge accumulation
+- **Goal Learning**: Dynamic goal acquisition and pursuit
+- **Logic Solver**: Formal reasoning under uncertainty
+- **Deceptive Environment**: Detecting and responding to manipulation
+
+### Game Playing & Strategy
+- **Connect4 Duel**: Strategic game playing with personality
+- **Stress Magic**: Cognitive load management
+
+### YKLAM Agent Variants
+- Auto, Alpha, Beta, Neural, Memory, Paper Demo, Glass Box, Stress configurations
+
+[**Explore All Simulations »**](simulations/index.md) | [**Create Your Own (Builder's Guide) »**](guides/simulation_workflow.md)
 
 ---
 

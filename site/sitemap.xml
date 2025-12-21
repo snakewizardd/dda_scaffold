@@ -2,66 +2,78 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://snakewizardd.github.io/dda_scaffold/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-21</lastmod>
+    </url>
+    <url>
+         <loc>https://snakewizardd.github.io/dda_scaffold/VALIDATION_RESULTS/</loc>
+         <lastmod>2025-12-21</lastmod>
     </url>
     <url>
          <loc>https://snakewizardd.github.io/dda_scaffold/origin_story/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-21</lastmod>
+    </url>
+    <url>
+         <loc>https://snakewizardd.github.io/dda_scaffold/architecture/COMPLETE_ARCHITECTURE/</loc>
+         <lastmod>2025-12-21</lastmod>
     </url>
     <url>
          <loc>https://snakewizardd.github.io/dda_scaffold/architecture/integration/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-21</lastmod>
     </url>
     <url>
          <loc>https://snakewizardd.github.io/dda_scaffold/architecture/paper/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-21</lastmod>
     </url>
     <url>
          <loc>https://snakewizardd.github.io/dda_scaffold/architecture/society/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-21</lastmod>
     </url>
     <url>
          <loc>https://snakewizardd.github.io/dda_scaffold/architecture/system/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-21</lastmod>
+    </url>
+    <url>
+         <loc>https://snakewizardd.github.io/dda_scaffold/components/COMPONENTS_REFERENCE/</loc>
+         <lastmod>2025-12-21</lastmod>
     </url>
     <url>
          <loc>https://snakewizardd.github.io/dda_scaffold/core_concepts/forces/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-21</lastmod>
     </url>
     <url>
          <loc>https://snakewizardd.github.io/dda_scaffold/core_concepts/identity/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-21</lastmod>
     </url>
     <url>
          <loc>https://snakewizardd.github.io/dda_scaffold/core_concepts/rigidity/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-21</lastmod>
     </url>
     <url>
          <loc>https://snakewizardd.github.io/dda_scaffold/guides/quickstart/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-21</lastmod>
     </url>
     <url>
          <loc>https://snakewizardd.github.io/dda_scaffold/guides/simulation_workflow/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-21</lastmod>
     </url>
     <url>
          <loc>https://snakewizardd.github.io/dda_scaffold/research/discoveries/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-21</lastmod>
     </url>
     <url>
          <loc>https://snakewizardd.github.io/dda_scaffold/research/future/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-21</lastmod>
     </url>
     <url>
          <loc>https://snakewizardd.github.io/dda_scaffold/simulations/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-21</lastmod>
     </url>
     <url>
          <loc>https://snakewizardd.github.io/dda_scaffold/simulations/SIMULATIONS_COMPLETE_ARCHITECTURE/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-21</lastmod>
     </url>
     <url>
          <loc>https://snakewizardd.github.io/dda_scaffold/simulations/SIMULATIONS_OPERATIONAL_STATUS/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-21</lastmod>
     </url>
 </urlset>

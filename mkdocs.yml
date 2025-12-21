@@ -55,8 +55,11 @@ nav:
 
   - System Architecture:
     - Tech Stack & System: architecture/system.md
+    - Complete System View: architecture/COMPLETE_ARCHITECTURE.md
     - ExACT Integration: architecture/integration.md
     - Multi-Agent Society: architecture/society.md
+    - Component Reference: components/COMPONENTS_REFERENCE.md
+    - Validation Report: VALIDATION_RESULTS.md
     - Whitepaper (v0.1): architecture/paper.md
 
   - Research & Future:
