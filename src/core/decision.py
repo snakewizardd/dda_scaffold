@@ -17,6 +17,7 @@ class DecisionConfig:
     """Hyperparameters for action selection."""
     c_explore: float = 1.0                 # Exploration constant
     use_rigidity_damping: bool = True      # Apply rigidity to exploration
+    q_weight: float = 0.5                  # Balance between Q-value and DDA-Alignment
     min_alignment_threshold: float = -0.5  # Reject actions misaligned with Δx
 
 
@@ -24,7 +25,7 @@ class DDADecisionMaker:
     """
     Selects actions using DDA-X scoring:
 
-    Score(a) = cos(Δx, d̂(a)) + c × P(a|s) × √N(s)/(1+N(s,a)) × (1 - ρ)
+    Score(a) = (1-w)·Q(a) + w·cos(Δx, d̂(a)) + c × P(a|s) × √N(s)/(1+N(s,a)) × (1 - ρ)
     """
 
     def __init__(self, config: DecisionConfig):
@@ -66,8 +67,10 @@ class DDADecisionMaker:
             else:
                 rigidity_factor = 1.0
 
-            # Final score
-            score = alignment + exploration * rigidity_factor
+            # Final score: Deep Fusion of Q-value (Environment) and Alignment (Identity)
+            w = self.config.q_weight
+            exploitation = (1 - w) * action.Q + w * alignment
+            score = exploitation + exploration * rigidity_factor
             scores.append(score)
 
         return scores
@@ -138,7 +141,7 @@ def dda_x_select(
     """
     Standalone DDA-X action selection function.
 
-    Score(a) = cos(Δx, d̂(a)) + c × P(a|s) × √N(s)/(1+N(s,a)) × (1 - ρ)
+    Score(a) = (1-w)·Q(a) + w·cos(Δx, d̂(a)) + c × P(a|s) × √N(s)/(1+N(s,a)) × (1 - ρ)
     """
     best_score = float('-inf')
     best_action = None
@@ -159,8 +162,10 @@ def dda_x_select(
         else:
             exploration = c * action.prior_prob * np.sqrt(total_visits) / (1 + action.N)
 
-        # Component 3: Rigidity dampening
-        score = alignment + exploration * rigidity_factor
+        # Final score: Balance Q and Alignment (w=0.5 default)
+        w = 0.5
+        exploitation = (1 - w) * action.Q + w * alignment
+        score = exploitation + exploration * rigidity_factor
 
         if score > best_score:
             best_score = score

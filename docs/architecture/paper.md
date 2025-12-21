@@ -139,15 +139,14 @@ $$\Delta\mathbf{x}_t = \gamma(\mathbf{x}^* - \mathbf{x}_t) + m_t(\mathbf{F}_T + 
 
 **DDA-X Selection Formula.** We select actions by maximizing:
 
-$$\boxed{a^*_t = \arg\max_{a \in \mathcal{A}_t} \left[ \underbrace{\cos(\Delta\mathbf{x}_t, \hat{\mathbf{d}}(a))}_{\text{DDA alignment}} + \underbrace{c \cdot P(a|s) \cdot \frac{\sqrt{N(s)}}{1 + N(s,a)}}_{\text{UCT exploration}} \cdot \underbrace{(1 - \rho_t)}_{\text{rigidity dampening}} \right]}$$
+$$\boxed{a^*_t = \arg\max_{a \in \mathcal{A}_t} \left[ \underbrace{(1 - w) \cdot Q(s,a) + w \cdot \cos(\Delta\mathbf{x}_t, \hat{\mathbf{d}}(a))}_{\text{Deep Fusion (Environment + Identity)}} + \underbrace{c \cdot P(a|s) \cdot \frac{\sqrt{N(s)}}{1 + N(s,a)}}_{\text{UCT exploration}} \cdot \underbrace{(1 - \rho_t)}_{\text{rigidity dampening}} \right]}$$
 
-This formula has three components:
+This formula represents a **Deep Fusion** of the agent's internal and external feedback loops:
+1. **Environmental Channel ($Q(s,a)$)**: The backpropagated value from MCTS search, representing external performance rewards.
+2. **Identity Channel ($\Delta\mathbf{x}_t$)**: The force-balanced desired direction, representing internal identity persistence.
+3. **Rigidity Dampening**: The exploration bonus is scaled by $(1 - \rho)$, suppressing novelty when surprise is high.
 
-1. **DDA alignment**: prefer actions aligned with the force-balanced desired direction
-2. **UCT exploration**: the standard MCTS exploration bonus (Kocsis & Szepesvári, 2006)
-3. **Rigidity dampening**: **the exploration bonus is multiplied by (1 - ρ)**
-
-The third component is our key contribution: when surprise is high (ρ → 1), exploration is suppressed. The agent becomes conservative, preferring actions aligned with its current trajectory rather than exploring novel options.
+This unification ensure that the "DDA Mind" (forces) and "ExACT Body" (search) are mathematically synchronized.
 
 ### 3.4 Personality Profiles
 
@@ -323,8 +322,8 @@ The results documented in this v1.0 release were obtained using local 20B parame
 ### 8.3 Red-Teaming Identity Alignment
 The theoretical guarantee provided by the infinite stiffness limit (γ→∞) needs adversarial verification. Future work will involve red-teaming core identity attractors with advanced prompt injection and social manipulation techniques to find the "fracture points" of the hierarchical model.
 
-### 8.4 Longitudinal Social Dynamics
-The society simulations presented here (3-14 agents) demonstrate emergent trust networks, but larger-scale, long-horizon studies are needed to observe the evolution of "traumatized" vs. "resilient" agent cultures over thousands of interactions.
+### 8.4 Longitudinal Social Dynamics & Recovery
+The society simulations presented here (3-14 agents) demonstrate emergent trust networks, but larger-scale, long-horizon studies are needed. A key future direction is the implementation of **Therapeutic Recovery Loops** — mechanisms that allow for the gradual relaxation of 'Trauma' ($\rho_{trauma}$) through consistently low-surprise, safe interactions, addressing the potential brittleness of permanent defensiveness.
 
 ---
 

@@ -1,6 +1,6 @@
-# DDA-X: Dynamic Decision Algorithm with Exploration
+# DDA-X: Cognitive Engineering Framework
 
-> **A Research Framework Synthesizing Independent Theory and Robust Engineering**
+**A research-grade framework for identity-persistent agents. Synthesizes original Dynamic Decision Algorithm (DDA) theory with Microsoft ExACT architecture to implement parameter-level coupling, surprise-rigidity dynamics, and hierarchical alignment stability.**
 
 [![Tests](https://img.shields.io/badge/tests-45%2F45%20passing-brightgreen)](tests/test_ddax_claims.py)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -136,6 +136,7 @@ DDA-X is an agent framework that explores **psychological modeling** in artifici
 -   **Rigidity** — Defensive responses to surprise, inspired by biological stress responses
 -   **Memory** — Experience weighted by emotional salience, not just relevance
 -   **Society** — Trust dynamics that emerge from predictability, not agreement
+-   **Deep Fusion** — Unified selection logic balancing environmental rewards ($Q$) and identity forces ($\Delta x$)
 -   **Metacognition** — Structured self-reporting (introspective access) of internal cognitive state
 
 This isn't just another LLM wrapper. It is a **mathematically rigorous implementation of parameter-level cognitive dynamics**, designed to bridge the gap between internal state and behavioral output.

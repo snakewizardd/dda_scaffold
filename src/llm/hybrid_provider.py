@@ -50,7 +50,12 @@ class PersonalityParams:
     presence_penalty: float = 0.0
     
     @classmethod
-    def from_rigidity(cls, rho: float, personality_type: str = "balanced") -> "PersonalityParams":
+    def from_rigidity(
+        cls, 
+        rho: float, 
+        personality_type: str = "balanced",
+        custom_profiles: Optional[Dict[str, Dict]] = None
+    ) -> "PersonalityParams":
         """
         DISCOVERY: Rigidity-Modulated LLM Parameters
         
@@ -70,6 +75,9 @@ class PersonalityParams:
             "polymath": {"temp_range": (0.4, 0.7), "top_p_range": (0.8, 0.95)}, # Superhuman range
         }
         
+        if custom_profiles:
+            profiles.update(custom_profiles)
+            
         profile = profiles.get(personality_type, profiles["balanced"])
         
         temp_low, temp_high = profile["temp_range"]
@@ -300,6 +308,7 @@ class HybridProvider:
         personality_type: str = "balanced",
         system_prompt: Optional[str] = None,
         max_tokens: int = 512,
+        custom_profiles: Optional[Dict[str, Dict]] = None,
     ) -> str:
         """
         DISCOVERY METHOD: Rigidity-modulated completion.
@@ -308,7 +317,11 @@ class HybridProvider:
         and LLM cognitive style. The agent literally "thinks differently"
         when it's defensive vs. open.
         """
-        params = PersonalityParams.from_rigidity(rigidity, personality_type)
+        params = PersonalityParams.from_rigidity(
+            rigidity, 
+            personality_type, 
+            custom_profiles=custom_profiles
+        )
         return await self.complete(
             prompt=prompt,
             system_prompt=system_prompt,
