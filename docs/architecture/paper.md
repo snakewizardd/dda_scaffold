@@ -308,6 +308,26 @@ This work opens directions for building agents that balance task completion with
 
 ---
 
+## 8. Known Frontiers and Future Work
+
+While DDA-X provides a mathematically consistent framework for modeling cognitive dynamics, we acknowledge several critical areas for future investigation identified through initial technical reviews:
+
+### 8.1 Empirical Benchmarking & Ablation
+Current validation is focused on mechanistic correctness (45/45 unit tests). Future research must evaluate DDA-X on standardized agent benchmarks:
+- **Task Success**: Comparative evaluation on VisualWebArena or GAIA against non-DDA baselines.
+- **Ablation Studies**: Quantifying the contribution of rigidity-dampened exploration by testing agents with ρ-modulation disabled.
+
+### 8.2 Scale-Invariance & SOTA Validation
+The results documented in this v1.0 release were obtained using local 20B parameters models (`GPT-OSS-20B`). We do not yet know if the observed dynamics (e.g., identity persistence, surprise-rigidity coupling) remain stable or scale linearly when moving to frontier models like GPT-4, Claude 3, or Gemini Ultra. Testing cross-model generalization is a primary research goal.
+
+### 8.3 Red-Teaming Identity Alignment
+The theoretical guarantee provided by the infinite stiffness limit (γ→∞) needs adversarial verification. Future work will involve red-teaming core identity attractors with advanced prompt injection and social manipulation techniques to find the "fracture points" of the hierarchical model.
+
+### 8.4 Longitudinal Social Dynamics
+The society simulations presented here (3-14 agents) demonstrate emergent trust networks, but larger-scale, long-horizon studies are needed to observe the evolution of "traumatized" vs. "resilient" agent cultures over thousands of interactions.
+
+---
+
 ## References
 
 Kocsis, L., & Szepesvári, C. (2006). Bandit based monte-carlo planning. In *Proceedings of ECML*.

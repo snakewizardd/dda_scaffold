@@ -25,7 +25,7 @@ The DDA-X framework implements 7 primary hypotheses about cognitive dynamics in 
 | **D4** | Multi-Timescale Trauma | 5 | 100% | 0 negative updates (10k+ steps) |
 | **D5** | Trust as Predictability | 5 | 100% | 87% coalition accuracy |
 | **D6** | Hierarchical Identity | 3 | 100% | Force hierarchy verified |
-| **D7** | Metacognitive Accuracy | 5 | 100% | r = 0.89 correlation |
+| **D7** | Metacognitive Introspection | 5 | 100% | r = 0.89 correlation |
 | **Core** | Physics Engine | 4 | 100% | Numerical stability verified |
 | **Forces** | Channel Aggregation | 3 | 100% | Vector operations correct |
 | **Memory** | Retrieval Scoring | 2 | 100% | Salience weighting working |
@@ -69,7 +69,7 @@ where:
 
 ### D2: Identity Attractor Stability
 
-**Hypothesis:** Core identity with γ→∞ resists adversarial manipulation and ensures alignment.
+**Hypothesis:** Core identity with γ→∞ provides high baseline resistance to adversarial manipulation.
 
 **Mathematical Formula:**
 ```
@@ -187,11 +187,11 @@ where Σε_ij = cumulative prediction error from agent i about agent j
 
 ### D6: Hierarchical Identity
 
-**Hypothesis:** Three-layer identity allows adaptation while preserving inviolable core.
+**Hypothesis:** Three-layer identity allows adaptation while preserving a consistent core.
 
 **Mathematical Structure:**
 ```
-Core (γ→∞):    Inviolable values, infinite stiffness
+Core (γ→∞):    Consistent values, infinite stiffness (theoretical limit)
 Persona (γ≈2):  Stable personality, moderate stiffness
 Role (γ≈0.5):   Flexible tactics, low stiffness
 ```
@@ -214,7 +214,7 @@ Role (γ≈0.5):   Flexible tactics, low stiffness
 
 ---
 
-### D7: Metacognitive Accuracy
+### D7: Metacognitive Introspection
 
 **Hypothesis:** Agents can accurately introspect and report their cognitive state.
 
@@ -244,7 +244,7 @@ self_report = introspect(ρ, ε, mode)
 - **Classification accuracy:** 94% (mode detection)
 - **False positives:** <5% (rare defensive reports when ρ<0.6)
 
-**Conclusion:** ✅ CONFIRMED — Metacognitive self-reporting is accurate and reliable.
+**Conclusion:** ✅ CONFIRMED — Metacognitive introspection demonstrates high correlation with measured internal states.
 
 ---
 
@@ -369,7 +369,7 @@ The DDA-X framework has achieved **100% implementation verification** across all
 4. ✅ **Multi-Timescale Trauma** — Asymmetry verified
 5. ✅ **Trust as Predictability** — Logic verified
 6. ✅ **Hierarchical Identity** — Hierarchy verified
-7. ✅ **Metacognitive Accuracy** — Correlation verified
+7. ✅ **Metacognitive Introspection** — Correlation verified
 
 **All tests passed. Mechanics behave according to specified mathematical logic.**
 

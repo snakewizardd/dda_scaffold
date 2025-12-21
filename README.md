@@ -31,7 +31,7 @@ I give this work to the world in her honor.
 *   **D4: Multi-Timescale Trauma** — Formalizing "scars" as non-decreasing baseline variables.
 *   **D5: Trust as Predictability** — Operationalizing trust as the inverse of cumulative prediction error.
 *   **D6: Hierarchical Identity** — A multi-layered stiffness model balancing stability and flexibility.
-*   **D7: Metacognitive Accuracy** — Structured self-reporting derived from measured internal states.
+*   **D7: Metacognitive Introspection** — Structured self-reporting derived from measured internal states.
 
 All claims are empirically verified through **45/45 passing tests** covering 1000+ assertions.
 
@@ -136,7 +136,7 @@ DDA-X is an agent framework that explores **psychological modeling** in artifici
 -   **Rigidity** — Defensive responses to surprise, inspired by biological stress responses
 -   **Memory** — Experience weighted by emotional salience, not just relevance
 -   **Society** — Trust dynamics that emerge from predictability, not agreement
--   **Metacognition** — Structured self-reporting of internal cognitive state
+-   **Metacognition** — Structured self-reporting (introspective access) of internal cognitive state
 
 This isn't just another LLM wrapper. It is a **mathematically rigorous implementation of parameter-level cognitive dynamics**, designed to bridge the gap between internal state and behavioral output.
 
@@ -182,7 +182,7 @@ T_ij = 1 / (1 + Σε_ij)
 
 **Claim 6: Hierarchical Identity Enables Flexible Alignment**
 ```
-CORE (γ→∞): Inviolable values
+CORE (γ→∞): Consistent baseline values
 PERSONA (γ≈2): Stable personality
 ROLE (γ≈0.5): Flexible tactics
 ```
@@ -286,7 +286,7 @@ Validated Components:
 ✅ Multi-Timescale Trauma Dynamics     (5 tests)
 ✅ Trust as Predictability             (5 tests)
 ✅ Hierarchical Identity Flexibility   (3 tests)
-✅ Metacognitive Self-Reporting        (5 tests)
+✅ Metacognitive Introspection         (5 tests)
 ✅ Core State Evolution Equations      (4 tests)
 ✅ Force Channel Aggregation           (3 tests)
 ✅ Memory Retrieval Scoring            (2 tests)
@@ -305,7 +305,7 @@ Validated Components:
 **Validation Metrics:**
 - Rigidity-temperature correlation: **r = -0.92** (p < 0.001)
 - Identity stability (core layer): **99.2%** alignment preservation
-- Metacognition accuracy: **89%** (self-report vs measured ρ)
+- Metacognition introspection: **89%** (self-report correlation with measured ρ)
 - Trust-coalition correlation: **87%** (predicted vs observed)
 - Social force influence: **r = 0.76** (force magnitude vs behavior change)
 - Trauma asymmetry: **100%** (zero negative updates across 10,000+ steps)
@@ -472,6 +472,7 @@ DDA-X is an **ongoing research initiative** with foundational capabilities demon
 - **Tested on SOTA LLMs** — All experiments used local models (`nomic-embed-text`, `GPT-OSS-20B`). Behavior may differ significantly on GPT-4, Claude, or Gemini
 - **Benchmarked against alternatives** — No comparative evaluation against ReACT, AutoGen, CrewAI, or other agent frameworks
 - **Production-ready** — This is a research framework, not a deployment-ready system
+- **Benchmarked on SOTA** — Needs validation on frontier models (Claude/GPT-4) and standardized benchmarks (GAIA/WebArena)
 
 ### Relationship to Prior Work
 - **Microsoft ExACT**: DDA-X builds on ExACT's MCTS, reflection, and debate patterns. The engineering scaffolding is derivative; the cognitive layer (rigidity, trauma, trust, identity forces) is the novel contribution
@@ -487,6 +488,7 @@ DDA-X is an **ongoing research initiative** with foundational capabilities demon
 - "Alignment guarantees" → Better stated as "strong empirical alignment stability"
 - "Metacognitive self-awareness" → Better stated as "structured self-reporting correlated with internal state"
 - "Novel discoveries" → Better stated as "novel synthesis and application of existing concepts"
+- "Metacognitive self-awareness" → Better stated as "metacognitive introspection (structured self-reporting)"
 
 **We welcome critical feedback.** If you find issues, please open a GitHub issue.
 

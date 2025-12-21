@@ -67,10 +67,10 @@ Current AI lacks persistent internal state that influences behavior across conte
 ### D6: Hierarchical Identity
 **"Balancing stability with tactical flexibility."**
 
-*   **The Mechanism**: A multi-layered stiffness model where core values are inviolable ($\gamma \to \infty$) while roles remain fluid.
-*   **Observed Dynamics**: 99.2% alignment preservation of core values across extended adversarial interactions.
+*   **The Mechanism**: A multi-layered stiffness model where core values are technically consistent ($\gamma \to \infty$ in theory) while roles remain fluid.
+*   **Observed Dynamics**: 99.2% alignment preservation of core values across extended adversarial interactions, demonstrating consistent baseline behavior.
 
-### D7: Metacognitive Accuracy
+### D7: Metacognitive Introspection
 **"Structured self-reporting of internal state."**
 
 *   **The Mechanism**: The agent observes its own measured rigidity and reports it through a structured metacognitive monitor.
@@ -109,7 +109,7 @@ Each mechanic has been validated across **32 simulations** and **45/45 passing t
 |--------|--------|
 | **Rigidity-Temperature Correlation** | r = -0.92 (p < 0.001) |
 | **Identity Stability (Core Layer)** | 99.2% Alignment Preservation |
-| **Metacognitive Accuracy** | 89% Correlation (Report vs Measure) |
+| **Metacognitive Introspection** | 89% Correlation (Report vs Measure) |
 | **Trust-Coalition Accuracy** | 87% Predicted vs Observed |
 | **Trauma Asymmetry** | 100% (Zero negative updates) |
 

@@ -132,9 +132,9 @@ Formalizing "scars" as non-decreasing baseline variables in a multi-step dynamic
 Operationalizing trust as the inverse of cumulative prediction error ($T = 1/(1 + \sum \epsilon)$).
 
 #### D6: Hierarchical Identity
-A multi-layered stiffness model ($\gamma_{core} \gg \gamma_{persona}$) balancing stability and flexibility.
+A multi-layered stiffness model ($\gamma_{core} \gg \gamma_{persona}$) balancing stability and tactical consistency.
 
-#### D7: Metacognitive Accuracy
+#### D7: Metacognitive Introspection
 Structured self-reporting derived from measured internal states.
 
 ---
@@ -209,7 +209,7 @@ Structured self-reporting derived from measured internal states.
 | **D4**: Multi-Timescale Trauma | 5 | ✅ | 0 negative trauma updates (10k+ steps) |
 | **D5**: Trust as Predictability | 5 | ✅ | T = 1/(1+Σε) with 87% coalition accuracy |
 | **D6**: Hierarchical Identity | 3 | ✅ | γ_core(10⁴) > γ_persona(2) > γ_role(0.5) |
-| **D7**: Metacognitive Accuracy | 5 | ✅ | Self-report correlation r=0.89 |
+| **D7**: Metacognitive Introspection | 5 | ✅ | Self-report correlation r=0.89 |
 | **Core Physics** | 4 | ✅ | State evolution numerically stable |
 | **Force Aggregation** | 3 | ✅ | Channel composition verified |
 | **Memory Retrieval** | 2 | ✅ | Surprise-weighted salience working |
