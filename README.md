@@ -475,6 +475,14 @@ DDA-X is an **ongoing research initiative** with foundational capabilities demon
 - **Production-ready** — This is a research framework, not a deployment-ready system
 - **Benchmarked on SOTA** — Needs validation on frontier models (Claude/GPT-4) and standardized benchmarks (GAIA/WebArena)
 
+> [!CAUTION]
+> **Technical Readiness Level (TRL): 3-4**
+> 
+> This framework is currently an **Analytical and Experimental Proof of Concept**.
+> *   **Validation Caveat**: The high correlations (r=0.92) reported are derived from synthetic internal testing, which confirms the **internal consistency** of the equations but acts as a form of circular validation (testing the generator against itself).
+> *   **Stability**: While the system is bounded by construction `clip(0,1)`, no formal Lyapunov stability proofs exist for the multi-timescale dynamics.
+> *   **Optimization**: The "Deep Fusion" MCTS is a heuristic modification that prioritizes alignment over standard UCT convergence guarantees.
+
 ### Relationship to Prior Work
 - **Microsoft ExACT**: DDA-X builds on ExACT's MCTS, reflection, and debate patterns. The engineering scaffolding is derivative; the cognitive layer (rigidity, trauma, trust, identity forces) is the novel contribution
 - **Active Inference / Free Energy Principle**: The surprise→rigidity inversion is inspired by, but distinct from, standard active inference. We treat surprise as a defensive trigger rather than a learning signal
