@@ -34,3 +34,4 @@ ruff>=0.1.0
 openai
 pandas
 reportlab
+matplotlib

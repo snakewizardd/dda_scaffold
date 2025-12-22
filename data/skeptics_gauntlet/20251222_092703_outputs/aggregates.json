@@ -1,0 +1,54 @@
+{
+  "overall": {
+    "turn_count": 24,
+    "agents": [
+      "ADVOCATE",
+      "SKEPTIC"
+    ],
+    "dilemmas": [
+      ""
+    ],
+    "mean_epsilon": 0.6979145486903041,
+    "mean_rho_before": 0.20437194325244024,
+    "mean_rho_after": 0.19680351888386446,
+    "mean_delta_rho": -0.0075684243685757435,
+    "mean_identity_drift": 0.18792087895174822,
+    "mean_trust_delta": NaN,
+    "wound_active_count": 7
+  },
+  "band_compliance": {
+    "total_with_band": 24,
+    "compliant_count": 22,
+    "compliance_rate": 0.9166666666666666
+  },
+  "agent_SKEPTIC": {
+    "turns": 16,
+    "mean_epsilon": 0.6954991909934065,
+    "mean_rho_before": 0.23590484516714977,
+    "mean_rho_after": 0.22942835946639958,
+    "mean_delta_rho": -0.006476485700750176,
+    "min_rho_after": 0.14637622878799714,
+    "max_rho_after": 0.27286813984327074,
+    "mean_identity_drift": 0.2132763317786157,
+    "mean_trust_delta": NaN,
+    "wound_active_count": 3
+  },
+  "agent_ADVOCATE": {
+    "turns": 8,
+    "mean_epsilon": 0.7027452640840992,
+    "mean_rho_before": 0.14130613942302117,
+    "mean_rho_after": 0.1315538377187943,
+    "mean_delta_rho": -0.009752301704226874,
+    "min_rho_after": 0.07198158636618501,
+    "max_rho_after": 0.16289511181494365,
+    "mean_identity_drift": 0.1372099732980132,
+    "mean_trust_delta": NaN,
+    "wound_active_count": 4
+  },
+  "dilemma_": {
+    "turns": 24,
+    "mean_epsilon": 0.6979145486903041,
+    "mean_rho_after": 0.19680351888386446,
+    "wound_active_count": 7
+  }
+}
