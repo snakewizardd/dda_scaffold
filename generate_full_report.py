@@ -727,7 +727,7 @@ def render_figures(df: pd.DataFrame, out_dir: str, session_list: List[Dict[str, 
     plt.close(fig)
 
 def build_tables_pdf(aggregates: Dict[str, Any], out_dir: str, experiment: str) -> str:
-    pdf_path = os.path.join(out_dir, "philosophers_duel_report.pdf")
+    pdf_path = os.path.join(out_dir, f"{experiment}_report.pdf")
     doc = SimpleDocTemplate(pdf_path, pagesize=letter)
     styles = getSampleStyleSheet()
     story = []
@@ -845,8 +845,8 @@ def build_tables_pdf(aggregates: Dict[str, Any], out_dir: str, experiment: str) 
     doc.build(story)
     return pdf_path
 
-def build_figures_pdf(out_dir: str) -> str:
-    fig_pdf_path = os.path.join(out_dir, "philosophers_duel_figures.pdf")
+def build_figures_pdf(out_dir: str, experiment: str) -> str:
+    fig_pdf_path = os.path.join(out_dir, f"{experiment}_figures.pdf")
     c = canvas.Canvas(fig_pdf_path, pagesize=letter)
     width, height = letter
     for fn in FIGURE_LIST:
@@ -868,7 +868,7 @@ def copy_transcript(src_path: str, out_dir: str) -> str:
     return dst_path
 
 def write_readme(out_dir: str, aggregates: Dict[str, Any], experiment: str, transcript_copied_path: str):
-    md_path = os.path.join(out_dir, "README_philosophers_duel_analysis.md")
+    md_path = os.path.join(out_dir, f"README_{experiment}_analysis.md")
     calibration = aggregates.get("calibration", {})
     scorecard = aggregates.get("identity_scorecard", {})
     band_compliance = aggregates.get("band_compliance", {})
@@ -898,8 +898,8 @@ def write_readme(out_dir: str, aggregates: Dict[str, Any], experiment: str, tran
         f.write("- `turns_summary.csv` – per-turn structured data.\n")
         f.write("- `turns_summary.json` – JSON array of turns.\n")
         f.write("- `aggregates.json` – overall, per-agent, and per-dilemma stats.\n")
-        f.write("- `philosophers_duel_report.pdf` – tables and aggregates.\n")
-        f.write("- `philosophers_duel_figures.pdf` – all figures assembled.\n")
+        f.write(f"- `{experiment}_report.pdf` – tables and aggregates.\n")
+        f.write(f"- `{experiment}_figures.pdf` – all figures assembled.\n")
         f.write("- `transcript.md` – original transcript for reference.\n")
         f.write("- Figures (PNG):\n")
         for fn in FIGURE_LIST:
@@ -957,7 +957,7 @@ def main():
 
     # 7) PDFs
     tables_pdf = build_tables_pdf(aggregates, out_dir, exp)
-    figures_pdf = build_figures_pdf(out_dir)
+    figures_pdf = build_figures_pdf(out_dir, exp)
 
     # 8) Copy transcript
     transcript_out = copy_transcript(inputs["transcript_path"], out_dir)
