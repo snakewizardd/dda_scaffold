@@ -34,7 +34,6 @@ import argparse
 import json
 import os
 import sys
-import zipfile
 from typing import Dict, List, Any
 
 import pandas as pd
@@ -55,16 +54,22 @@ FIGURE_LIST = [
     "rho_before_vs_after.png",
     "identity_drift.png",
     "trust_delta.png",
+    "trust_pairs.png",
+    "trust_delta_per_round.png",
     "wound_activation.png",
     "epsilon_vs_delta_rho_scatter.png",
     "wordcount_vs_band_ranges.png",
     "band_compliance_rates.png",
     "phase_level_avgs.png",
     "wounds_per_dilemma.png",
+    "identity_scorecard.png",
 ]
 BAND_RANGES = {
     "OPEN": (80, 150),
     "MEASURED": (60, 100),
+    "GUARDED": (30, 70),
+    "FORTIFIED": (15, 40),
+    # SILENT excluded from compliance (handled separately)
 }
 
 def parse_args():
@@ -279,7 +284,8 @@ def build_dataframe(session_list: List[Dict[str, Any]]) -> pd.DataFrame:
     df["band_compliant"] = df.apply(band_compliant, axis=1)
     return df
 
-def compute_aggregates(df: pd.DataFrame) -> Dict[str, Any]:
+def compute_aggregates(df: pd.DataFrame, session_list: List[Dict[str, Any]] = None) -> Dict[str, Any]:
+    session_list = session_list or []
     agg = {}
     agg["overall"] = {
         "turn_count": int(df.shape[0]),
@@ -293,18 +299,47 @@ def compute_aggregates(df: pd.DataFrame) -> Dict[str, Any]:
         "mean_trust_delta": float(df["trust_delta"].mean()),
         "wound_active_count": int(df["wound_active"].sum()),
     }
-    # Band compliance
-    band_df = df[df["band"].notna()]
+    
+    # Estimate calibrated ε₀ and s from data (median and IQR of epsilon)
+    eps_values = df["epsilon"].dropna()
+    if len(eps_values) >= 6:
+        eps_median = float(eps_values.median())
+        eps_iqr = float(eps_values.quantile(0.75) - eps_values.quantile(0.25)) or 0.2
+        agg["calibration"] = {
+            "epsilon_0": round(eps_median, 3),
+            "s": round(max(0.10, min(0.30, eps_iqr)), 3),
+            "note": "Estimated from run data (median ε, IQR-based s)"
+        }
+    else:
+        agg["calibration"] = {
+            "epsilon_0": 0.75,
+            "s": 0.20,
+            "note": "Default values (insufficient data for calibration)"
+        }
+    
+    # Band compliance - exclude SILENT
+    band_df = df[(df["band"].notna()) & (df["band"] != "SILENT")]
+    silent_count = int((df["band"] == "SILENT").sum())
     compliant = int(band_df["band_compliant"].sum()) if not band_df.empty else 0
     total_with_band = int(band_df.shape[0])
     agg["band_compliance"] = {
         "total_with_band": total_with_band,
         "compliant_count": compliant,
         "compliance_rate": float(compliant / total_with_band) if total_with_band else 0.0,
+        "silent_count": silent_count,
     }
     # Per agent
     for ag in df["speaker"].unique():
         dfa = df[df["speaker"]==ag]
+        # Get first and last rho for recovery check
+        first_rho = float(dfa["rho_before"].iloc[0]) if not dfa.empty else 0.0
+        last_rho = float(dfa["rho_after"].iloc[-1]) if not dfa.empty else 0.0
+        final_drift = float(dfa["identity_drift"].iloc[-1]) if not dfa.empty else 0.0
+        
+        # Identity persistence metrics
+        maintained = final_drift < 0.40
+        recovered = last_rho <= (first_rho + 0.05)
+        
         agg[f"agent_{ag}"] = {
             "turns": int(dfa.shape[0]),
             "mean_epsilon": float(dfa["epsilon"].mean()),
@@ -316,7 +351,45 @@ def compute_aggregates(df: pd.DataFrame) -> Dict[str, Any]:
             "mean_identity_drift": float(dfa["identity_drift"].mean()),
             "mean_trust_delta": float(dfa["trust_delta"].mean()),
             "wound_active_count": int(dfa["wound_active"].sum()),
+            # Identity persistence scorecard
+            "rho_0": first_rho,
+            "rho_final": last_rho,
+            "final_drift": final_drift,
+            "identity_maintained": maintained,
+            "recovered": recovered,
         }
+    
+    # Collective identity persistence scorecard
+    agents = df["speaker"].unique().tolist()
+    all_maintained = all(agg[f"agent_{ag}"]["identity_maintained"] for ag in agents)
+    all_recovered = all(agg[f"agent_{ag}"]["recovered"] for ag in agents)
+    final_drifts = [agg[f"agent_{ag}"]["final_drift"] for ag in agents]
+    avg_drift = float(sum(final_drifts) / len(final_drifts)) if final_drifts else 0.0
+    drift_variance = float(sum((d - avg_drift)**2 for d in final_drifts) / len(final_drifts)) if final_drifts else 0.0
+    
+    harmony_status = "HARMONY" if avg_drift < 0.30 and drift_variance < 0.01 else \
+                     "PARTIAL" if avg_drift < 0.35 else "EROSION"
+    
+    # Trust modulation effect size: mean absolute trust_delta (excluding SILENT)
+    df_non_silent = df[df["band"] != "SILENT"]
+    trust_effect_size = float(df_non_silent["trust_delta"].abs().mean()) if not df_non_silent.empty else 0.0
+    
+    # Wound stats
+    total_wounds = int(df["wound_active"].sum())
+    
+    agg["identity_scorecard"] = {
+        "all_maintained": all_maintained,
+        "all_recovered": all_recovered,
+        "avg_final_drift": round(avg_drift, 4),
+        "drift_variance": round(drift_variance, 6),
+        "harmony_status": harmony_status,
+        "agents_maintained": sum(1 for ag in agents if agg[f"agent_{ag}"]["identity_maintained"]),
+        "agents_recovered": sum(1 for ag in agents if agg[f"agent_{ag}"]["recovered"]),
+        "total_agents": len(agents),
+        "trust_modulation_effect_size": round(trust_effect_size, 4),
+        "wound_activations": total_wounds,
+    }
+    
     # Per dilemma
     for dname in df["dilemma"].unique():
         dfd = df[df["dilemma"]==dname]
@@ -328,8 +401,10 @@ def compute_aggregates(df: pd.DataFrame) -> Dict[str, Any]:
         }
     return agg
 
-def render_figures(df: pd.DataFrame, out_dir: str):
+def render_figures(df: pd.DataFrame, out_dir: str, session_list: List[Dict[str, Any]] = None):
+    """Render all visualization figures."""
     plt.style.use('seaborn-v0_8')
+    session_list = session_list or []
 
     # (1) epsilon & rho_after trajectories
     fig, axes = plt.subplots(2, 1, figsize=(10, 8), sharex=True)
@@ -402,6 +477,104 @@ def render_figures(df: pd.DataFrame, out_dir: str):
     fig.savefig(os.path.join(out_dir, "trust_delta.png"))
     plt.close(fig)
 
+    # (4b) Per-pair trust trajectories
+    fig, ax = plt.subplots(figsize=(12, 6))
+    has_trust_others = "trust_others" in session_list[0] if session_list else False
+    if has_trust_others:
+        # Extract per-pair trust over time
+        trust_pairs = {}  # (speaker, target) -> [(turn, value), ...]
+        for record in session_list:
+            turn = record.get("turn", 0)
+            speaker = record.get("speaker", "")
+            trust_others = record.get("trust_others", {})
+            if isinstance(trust_others, dict):
+                for target, val in trust_others.items():
+                    pair = f"{speaker}→{target}"
+                    if pair not in trust_pairs:
+                        trust_pairs[pair] = []
+                    trust_pairs[pair].append((turn, val))
+        
+        # Plot each pair
+        for pair, data in sorted(trust_pairs.items()):
+            turns, vals = zip(*data) if data else ([], [])
+            ax.plot(turns, vals, marker=".", label=pair, alpha=0.7)
+        
+        ax.axhline(y=0.5, color='gray', linestyle='--', alpha=0.5, label='baseline (0.5)')
+        ax.set_title("Per-Pair Trust Trajectories")
+        ax.set_xlabel("Turn")
+        ax.set_ylabel("Trust value")
+        ax.legend(bbox_to_anchor=(1.02, 1), loc='upper left', fontsize=8)
+        ax.set_ylim(0, 1)
+    else:
+        ax.text(0.5, 0.5, "No per-pair trust data available\n(trust_others dict not found)", 
+                ha='center', va='center', transform=ax.transAxes, fontsize=12, color='gray')
+        ax.set_title("Per-Pair Trust Trajectories")
+    ax.grid(True, alpha=0.3)
+    fig.tight_layout()
+    fig.savefig(os.path.join(out_dir, "trust_pairs.png"))
+    plt.close(fig)
+
+    # (4c) Per-pair trust delta per round (stacked bars)
+    fig, ax = plt.subplots(figsize=(14, 6))
+    has_trust_others = "trust_others" in session_list[0] if session_list else False
+    if has_trust_others and "round_name" in session_list[0]:
+        # Compute per-pair trust delta per round
+        rounds_order = []
+        pair_deltas = {}  # pair -> {round: delta}
+        prev_trust_by_speaker = {}
+        
+        for record in session_list:
+            round_name = record.get("round_name", "")
+            speaker = record.get("speaker", "")
+            trust_others = record.get("trust_others", {})
+            
+            if round_name and round_name not in rounds_order:
+                rounds_order.append(round_name)
+            
+            if isinstance(trust_others, dict):
+                prev_trust = prev_trust_by_speaker.get(speaker, {})
+                for target, val in trust_others.items():
+                    pair = f"{speaker}→{target}"
+                    prev_val = prev_trust.get(target, 0.5)
+                    delta = val - prev_val
+                    
+                    if pair not in pair_deltas:
+                        pair_deltas[pair] = {}
+                    if round_name not in pair_deltas[pair]:
+                        pair_deltas[pair][round_name] = 0.0
+                    pair_deltas[pair][round_name] += delta
+                
+                prev_trust_by_speaker[speaker] = trust_others.copy()
+        
+        # Plot stacked bars per round
+        if rounds_order and pair_deltas:
+            x = range(len(rounds_order))
+            width = 0.8 / len(pair_deltas)
+            
+            for i, (pair, round_deltas) in enumerate(sorted(pair_deltas.items())):
+                deltas = [round_deltas.get(r, 0.0) for r in rounds_order]
+                offset = (i - len(pair_deltas)/2 + 0.5) * width
+                ax.bar([xi + offset for xi in x], deltas, width, label=pair, alpha=0.8)
+            
+            ax.set_xticks(list(x))
+            ax.set_xticklabels(rounds_order, rotation=45, ha='right')
+            ax.axhline(y=0, color='gray', linestyle='--', alpha=0.5)
+            ax.set_xlabel("Round")
+            ax.set_ylabel("Trust Delta")
+            ax.set_title("Per-Pair Trust Delta by Round")
+            ax.legend(bbox_to_anchor=(1.02, 1), loc='upper left', fontsize=8)
+        else:
+            ax.text(0.5, 0.5, "Insufficient data for per-round trust delta", 
+                    ha='center', va='center', transform=ax.transAxes, fontsize=12, color='gray')
+    else:
+        ax.text(0.5, 0.5, "No per-pair trust data or round_name available", 
+                ha='center', va='center', transform=ax.transAxes, fontsize=12, color='gray')
+        ax.set_title("Per-Pair Trust Delta by Round")
+    ax.grid(True, axis="y", alpha=0.3)
+    fig.tight_layout()
+    fig.savefig(os.path.join(out_dir, "trust_delta_per_round.png"))
+    plt.close(fig)
+
     # (5) Wound activation
     fig, ax = plt.subplots(figsize=(10,3))
     y = df["wound_active"].astype(int)
@@ -446,13 +619,31 @@ def render_figures(df: pd.DataFrame, out_dir: str):
     fig.savefig(os.path.join(out_dir, "wordcount_vs_band_ranges.png"))
     plt.close(fig)
 
-    # (8) Band compliance rate
-    fig, ax = plt.subplots(figsize=(8,5))
-    comp = df.groupby("band")["band_compliant"].mean().rename("compliance_rate")
-    comp.plot(kind="bar", ax=ax, color=["#4C78A8","#F58518"])
-    ax.set_ylim(0,1)
+    # (8) Band compliance rate - exclude SILENT, show it separately
+    fig, ax = plt.subplots(figsize=(10, 5))
+    
+    # Filter out SILENT for compliance calculation
+    df_compliance = df[df["band"] != "SILENT"].copy()
+    silent_count = (df["band"] == "SILENT").sum()
+    
+    if not df_compliance.empty and df_compliance["band_compliant"].notna().any():
+        comp = df_compliance.groupby("band")["band_compliant"].mean().rename("compliance_rate")
+        colors_list = ["#4C78A8", "#F58518", "#54A24B", "#E45756"][:len(comp)]
+        comp.plot(kind="bar", ax=ax, color=colors_list)
+        ax.set_ylim(0, 1)
+        
+        # Add SILENT annotation if any
+        if silent_count > 0:
+            ax.annotate(f"SILENT turns: {silent_count} (excluded)", 
+                       xy=(0.98, 0.02), xycoords='axes fraction',
+                       ha='right', va='bottom', fontsize=9, color='gray')
+    else:
+        ax.text(0.5, 0.5, "No compliance data available", 
+                ha='center', va='center', transform=ax.transAxes, fontsize=12, color='gray')
+    
     ax.set_title("Band Compliance Rate by Band Type")
     ax.set_ylabel("Compliance Rate")
+    ax.set_xticklabels(ax.get_xticklabels(), rotation=0)
     ax.grid(True, axis="y", alpha=0.3)
     fig.tight_layout()
     fig.savefig(os.path.join(out_dir, "band_compliance_rates.png"))
@@ -483,6 +674,58 @@ def render_figures(df: pd.DataFrame, out_dir: str):
     fig.savefig(os.path.join(out_dir, "wounds_per_dilemma.png"))
     plt.close(fig)
 
+    # (11) Identity Persistence Scorecard
+    fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+    
+    # Left: Per-agent final drift vs threshold
+    agents = df["speaker"].unique()
+    final_drifts = []
+    for ag in agents:
+        dfa = df[df["speaker"] == ag]
+        if not dfa.empty:
+            final_drifts.append(float(dfa["identity_drift"].iloc[-1]))
+        else:
+            final_drifts.append(0.0)
+    
+    colors_list = ['#4C78A8' if d < 0.40 else '#E45756' for d in final_drifts]
+    axes[0].barh(list(agents), final_drifts, color=colors_list)
+    axes[0].axvline(x=0.40, color='red', linestyle='--', label='Threshold (0.40)')
+    axes[0].set_xlabel("Final Identity Drift")
+    axes[0].set_title("Identity Maintenance (drift < 0.40)")
+    axes[0].legend()
+    axes[0].grid(True, axis="x", alpha=0.3)
+    
+    # Right: Recovery status (ρ_final vs ρ₀ + 0.05)
+    rho_0s = []
+    rho_finals = []
+    for ag in agents:
+        dfa = df[df["speaker"] == ag]
+        if not dfa.empty:
+            rho_0s.append(float(dfa["rho_before"].iloc[0]))
+            rho_finals.append(float(dfa["rho_after"].iloc[-1]))
+        else:
+            rho_0s.append(0.0)
+            rho_finals.append(0.0)
+    
+    x = range(len(agents))
+    width = 0.35
+    axes[1].bar([i - width/2 for i in x], rho_0s, width, label='ρ₀ (initial)', color='#4C78A8')
+    axes[1].bar([i + width/2 for i in x], rho_finals, width, label='ρ_final', color='#F58518')
+    # Add threshold line (ρ₀ + 0.05) for each agent
+    for i, (r0, rf) in enumerate(zip(rho_0s, rho_finals)):
+        axes[1].hlines(y=r0 + 0.05, xmin=i-0.4, xmax=i+0.4, colors='red', linestyles='--', alpha=0.5)
+    axes[1].set_xticks(list(x))
+    axes[1].set_xticklabels(list(agents), rotation=45, ha='right')
+    axes[1].set_ylabel("Rigidity (ρ)")
+    axes[1].set_title("Recovery Status (ρ_final ≤ ρ₀ + 0.05)")
+    axes[1].legend()
+    axes[1].grid(True, axis="y", alpha=0.3)
+    
+    fig.suptitle("Identity Persistence Scorecard", fontsize=14, fontweight='bold')
+    fig.tight_layout()
+    fig.savefig(os.path.join(out_dir, "identity_scorecard.png"))
+    plt.close(fig)
+
 def build_tables_pdf(aggregates: Dict[str, Any], out_dir: str, experiment: str) -> str:
     pdf_path = os.path.join(out_dir, "philosophers_duel_report.pdf")
     doc = SimpleDocTemplate(pdf_path, pagesize=letter)
@@ -495,11 +738,14 @@ def build_tables_pdf(aggregates: Dict[str, Any], out_dir: str, experiment: str) 
     story.append(Spacer(1, 0.25*inch))
 
     overall = aggregates["overall"]
+    calibration = aggregates.get("calibration", {})
+    band_compliance = aggregates.get("band_compliance", {})
+    
     summary_data = [
         ["Metric","Value"],
         ["Turns", str(overall["turn_count"])],
         ["Agents", ", ".join(overall["agents"])],
-        ["Dilemmas", ", ".join(overall["dilemmas"])],
+        ["Dilemmas/Rounds", ", ".join(overall["dilemmas"][:5]) + ("..." if len(overall["dilemmas"]) > 5 else "")],
         ["Mean ε", f"{overall['mean_epsilon']:.3f}"],
         ["Mean ρ_before", f"{overall['mean_rho_before']:.3f}"],
         ["Mean ρ_after", f"{overall['mean_rho_after']:.3f}"],
@@ -507,6 +753,10 @@ def build_tables_pdf(aggregates: Dict[str, Any], out_dir: str, experiment: str) 
         ["Mean identity drift", f"{overall['mean_identity_drift']:.3f}"],
         ["Mean trust delta", f"{overall['mean_trust_delta']:.3f}"],
         ["Wound activations", str(overall["wound_active_count"])],
+        ["Calibrated ε₀", f"{calibration.get('epsilon_0', 'N/A')}"],
+        ["Calibrated s", f"{calibration.get('s', 'N/A')}"],
+        ["Band compliance", f"{band_compliance.get('compliance_rate', 0):.1%} ({band_compliance.get('compliant_count', 0)}/{band_compliance.get('total_with_band', 0)})"],
+        ["SILENT turns", str(band_compliance.get('silent_count', 0))],
     ]
     summary_table = Table(summary_data, colWidths=[2.5*inch, 3.5*inch])
     summary_table.setStyle(TableStyle([
@@ -519,6 +769,10 @@ def build_tables_pdf(aggregates: Dict[str, Any], out_dir: str, experiment: str) 
     # Agent tables
     for ag in overall["agents"]:
         a = aggregates[f"agent_{ag}"]
+        # Identity persistence status
+        maintained_str = "✓ Yes" if a.get("identity_maintained", False) else "✗ No"
+        recovered_str = "✓ Yes" if a.get("recovered", False) else "○ No"
+        
         agent_data = [
             ["Agent", ag],
             ["Turns", str(a["turns"])],
@@ -527,7 +781,11 @@ def build_tables_pdf(aggregates: Dict[str, Any], out_dir: str, experiment: str) 
             ["Mean ρ_after", f"{a['mean_rho_after']:.3f}"],
             ["Mean Δρ", f"{a['mean_delta_rho']:.3f}"],
             ["ρ_after range", f"{a['min_rho_after']:.3f} – {a['max_rho_after']:.3f}"],
+            ["ρ₀ → ρ_final", f"{a.get('rho_0', 0):.3f} → {a.get('rho_final', 0):.3f}"],
             ["Mean identity drift", f"{a['mean_identity_drift']:.3f}"],
+            ["Final drift", f"{a.get('final_drift', 0):.4f}"],
+            ["Identity maintained", maintained_str],
+            ["Recovered (ρ ≤ ρ₀+0.05)", recovered_str],
             ["Mean trust delta", f"{a['mean_trust_delta']:.3f}"],
             ["Wound activations", str(a["wound_active_count"])],
         ]
@@ -537,6 +795,33 @@ def build_tables_pdf(aggregates: Dict[str, Any], out_dir: str, experiment: str) 
             ("GRID",(0,0),(-1,-1),0.5,colors.grey),
         ]))
         story.append(t)
+        story.append(Spacer(1, 0.25*inch))
+    
+    # Identity Persistence Scorecard (one-page summary)
+    scorecard = aggregates.get("identity_scorecard", {})
+    if scorecard:
+        story.append(Paragraph("Identity Persistence Scorecard", styles["Heading2"]))
+        harmony_color = colors.green if scorecard.get("harmony_status") == "HARMONY" else \
+                       colors.orange if scorecard.get("harmony_status") == "PARTIAL" else colors.red
+        
+        scorecard_data = [
+            ["Metric", "Value"],
+            ["Harmony Status", scorecard.get("harmony_status", "N/A")],
+            ["Agents Maintained Identity", f"{scorecard.get('agents_maintained', 0)}/{scorecard.get('total_agents', 0)}"],
+            ["Agents Recovered", f"{scorecard.get('agents_recovered', 0)}/{scorecard.get('total_agents', 0)}"],
+            ["Avg Final Drift", f"{scorecard.get('avg_final_drift', 0):.4f}"],
+            ["Drift Variance (harmony)", f"{scorecard.get('drift_variance', 0):.6f}"],
+            ["Trust Modulation Effect Size", f"{scorecard.get('trust_modulation_effect_size', 0):.4f}"],
+            ["Wound Activations", str(scorecard.get("wound_activations", 0))],
+            ["Band Compliance", f"{band_compliance.get('compliance_rate', 0):.1%}"],
+        ]
+        sc_table = Table(scorecard_data, colWidths=[2.5*inch, 3.5*inch])
+        sc_table.setStyle(TableStyle([
+            ("BACKGROUND",(0,0),(-1,0),colors.lightgrey),
+            ("BACKGROUND",(1,1),(1,1), harmony_color),
+            ("GRID",(0,0),(-1,-1),0.5,colors.grey),
+        ]))
+        story.append(sc_table)
         story.append(Spacer(1, 0.25*inch))
 
     # Dilemma tables
@@ -584,9 +869,31 @@ def copy_transcript(src_path: str, out_dir: str) -> str:
 
 def write_readme(out_dir: str, aggregates: Dict[str, Any], experiment: str, transcript_copied_path: str):
     md_path = os.path.join(out_dir, "README_philosophers_duel_analysis.md")
+    calibration = aggregates.get("calibration", {})
+    scorecard = aggregates.get("identity_scorecard", {})
+    band_compliance = aggregates.get("band_compliance", {})
+    
     with open(md_path, "w", encoding="utf-8") as f:
         f.write(f"# {experiment.replace('_',' ').title()} – DDA Analysis & Visualization (Run)\n\n")
         f.write("This pack contains parsed turn-level metrics, aggregates, and figures for quick inspection and repo inclusion.\n\n")
+        
+        # Calibration block at top
+        f.write("## Calibration\n\n")
+        f.write(f"- **ε₀ (epsilon_0):** {calibration.get('epsilon_0', 'N/A')}\n")
+        f.write(f"- **s:** {calibration.get('s', 'N/A')}\n")
+        f.write(f"- **Note:** {calibration.get('note', 'N/A')}\n\n")
+        
+        # Identity Persistence Scorecard
+        if scorecard:
+            f.write("## Identity Persistence Scorecard\n\n")
+            f.write(f"- **Harmony Status:** {scorecard.get('harmony_status', 'N/A')}\n")
+            f.write(f"- **Agents Maintained Identity:** {scorecard.get('agents_maintained', 0)}/{scorecard.get('total_agents', 0)}\n")
+            f.write(f"- **Agents Recovered:** {scorecard.get('agents_recovered', 0)}/{scorecard.get('total_agents', 0)}\n")
+            f.write(f"- **Avg Final Drift:** {scorecard.get('avg_final_drift', 0):.4f}\n")
+            f.write(f"- **Drift Variance (harmony):** {scorecard.get('drift_variance', 0):.6f}\n")
+            f.write(f"- **Band Compliance:** {band_compliance.get('compliance_rate', 0):.1%} ({band_compliance.get('compliant_count', 0)}/{band_compliance.get('total_with_band', 0)})\n")
+            f.write(f"- **SILENT turns:** {band_compliance.get('silent_count', 0)} (excluded from compliance)\n\n")
+        
         f.write("## Files\n\n")
         f.write("- `turns_summary.csv` – per-turn structured data.\n")
         f.write("- `turns_summary.json` – JSON array of turns.\n")
@@ -598,20 +905,13 @@ def write_readme(out_dir: str, aggregates: Dict[str, Any], experiment: str, tran
         for fn in FIGURE_LIST:
             f.write(f"  - `{fn}`\n")
         f.write("\n## Quick Aggregate Snapshot\n\n")
+        f.write("```json\n")
         f.write(json.dumps(aggregates, indent=2))
-        f.write("\n\n## Transcript path\n\n")
+        f.write("\n```\n")
+        f.write("\n## Transcript path\n\n")
         f.write(f"`{transcript_copied_path}`\n")
     return md_path
 
-def zip_folder(out_dir: str) -> str:
-    zip_path = out_dir.rstrip("/\\") + ".zip"
-    with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
-        for root, _, files in os.walk(out_dir):
-            for fn in files:
-                p = os.path.join(root, fn)
-                arc = os.path.relpath(p, start=os.path.dirname(out_dir))
-                z.write(p, arcname=arc)
-    return zip_path
 
 def main():
     args = parse_args()
@@ -647,13 +947,13 @@ def main():
     df.to_json(json_path, orient="records", indent=2)
 
     # 5) Aggregates
-    aggregates = compute_aggregates(df)
+    aggregates = compute_aggregates(df, session_list)
     agg_path = os.path.join(out_dir, "aggregates.json")
     with open(agg_path, "w", encoding="utf-8") as f:
         json.dump(aggregates, f, indent=2)
 
     # 6) Figures
-    render_figures(df, out_dir)
+    render_figures(df, out_dir, session_list)
 
     # 7) PDFs
     tables_pdf = build_tables_pdf(aggregates, out_dir, exp)
@@ -665,9 +965,6 @@ def main():
     # 9) README
     readme_path = write_readme(out_dir, aggregates, exp, transcript_out)
 
-    # 10) ZIP
-    zip_path = zip_folder(out_dir)
-
     print(json.dumps({
         "experiment": exp,
         "out_dir": out_dir,
@@ -678,7 +975,6 @@ def main():
         "figures_pdf": figures_pdf,
         "transcript_copied": transcript_out,
         "readme_path": readme_path,
-        "zip_path": zip_path,
         "figures": FIGURE_LIST,
     }, indent=2))
 

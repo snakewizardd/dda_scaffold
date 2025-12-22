@@ -2,6 +2,22 @@
 
 This pack contains parsed turn-level metrics, aggregates, and figures for quick inspection and repo inclusion.
 
+## Calibration
+
+- **ε₀ (epsilon_0):** 0.688
+- **s:** 0.187
+- **Note:** Estimated from run data (median ε, IQR-based s)
+
+## Identity Persistence Scorecard
+
+- **Harmony Status:** HARMONY
+- **Agents Maintained Identity:** 4/4
+- **Agents Recovered:** 4/4
+- **Avg Final Drift:** 0.2038
+- **Drift Variance (harmony):** 0.006399
+- **Band Compliance:** 95.8% (23/24)
+- **SILENT turns:** 0 (excluded from compliance)
+
 ## Files
 
 - `turns_summary.csv` – per-turn structured data.
@@ -15,15 +31,19 @@ This pack contains parsed turn-level metrics, aggregates, and figures for quick 
   - `rho_before_vs_after.png`
   - `identity_drift.png`
   - `trust_delta.png`
+  - `trust_pairs.png`
+  - `trust_delta_per_round.png`
   - `wound_activation.png`
   - `epsilon_vs_delta_rho_scatter.png`
   - `wordcount_vs_band_ranges.png`
   - `band_compliance_rates.png`
   - `phase_level_avgs.png`
   - `wounds_per_dilemma.png`
+  - `identity_scorecard.png`
 
 ## Quick Aggregate Snapshot
 
+```json
 {
   "overall": {
     "turn_count": 24,
@@ -51,10 +71,16 @@ This pack contains parsed turn-level metrics, aggregates, and figures for quick 
     "mean_trust_delta": 0.013333333333333345,
     "wound_active_count": 6
   },
+  "calibration": {
+    "epsilon_0": 0.688,
+    "s": 0.187,
+    "note": "Estimated from run data (median \u03b5, IQR-based s)"
+  },
   "band_compliance": {
     "total_with_band": 24,
     "compliant_count": 23,
-    "compliance_rate": 0.9583333333333334
+    "compliance_rate": 0.9583333333333334,
+    "silent_count": 0
   },
   "agent_VISIONARY": {
     "turns": 8,
@@ -66,7 +92,12 @@ This pack contains parsed turn-level metrics, aggregates, and figures for quick 
     "max_rho_after": 0.23943521807653909,
     "mean_identity_drift": 0.1577406506985426,
     "mean_trust_delta": 0.012500000000000011,
-    "wound_active_count": 3
+    "wound_active_count": 3,
+    "rho_0": 0.18,
+    "rho_final": 0.024379243451523078,
+    "final_drift": 0.2633420526981354,
+    "identity_maintained": true,
+    "recovered": true
   },
   "agent_CRAFTSMAN": {
     "turns": 8,
@@ -78,7 +109,12 @@ This pack contains parsed turn-level metrics, aggregates, and figures for quick 
     "max_rho_after": 0.24366229362061842,
     "mean_identity_drift": 0.16740718577057123,
     "mean_trust_delta": 0.015000000000000013,
-    "wound_active_count": 3
+    "wound_active_count": 3,
+    "rho_0": 0.2,
+    "rho_final": 0.031186392517198215,
+    "final_drift": 0.27979323267936707,
+    "identity_maintained": true,
+    "recovered": true
   },
   "agent_PROVOCATEUR": {
     "turns": 6,
@@ -90,7 +126,12 @@ This pack contains parsed turn-level metrics, aggregates, and figures for quick 
     "max_rho_after": 0.2977447248411017,
     "mean_identity_drift": 0.12268344250818093,
     "mean_trust_delta": 0.01666666666666668,
-    "wound_active_count": 0
+    "wound_active_count": 0,
+    "rho_0": 0.25,
+    "rho_final": 0.15028407437201044,
+    "final_drift": 0.1956365406513214,
+    "identity_maintained": true,
+    "recovered": true
   },
   "agent_HARMONIZER": {
     "turns": 2,
@@ -102,7 +143,24 @@ This pack contains parsed turn-level metrics, aggregates, and figures for quick 
     "max_rho_after": 0.15691633425496235,
     "mean_identity_drift": 0.060008592903614044,
     "mean_trust_delta": 0.0,
-    "wound_active_count": 0
+    "wound_active_count": 0,
+    "rho_0": 0.15,
+    "rho_final": 0.1261574565063842,
+    "final_drift": 0.07648708671331406,
+    "identity_maintained": true,
+    "recovered": true
+  },
+  "identity_scorecard": {
+    "all_maintained": true,
+    "all_recovered": true,
+    "avg_final_drift": 0.2038,
+    "drift_variance": 0.006399,
+    "harmony_status": "HARMONY",
+    "agents_maintained": 4,
+    "agents_recovered": 4,
+    "total_agents": 4,
+    "trust_modulation_effect_size": 0.0133,
+    "wound_activations": 6
   },
   "dilemma_The Brief": {
     "turns": 3,
@@ -153,6 +211,7 @@ This pack contains parsed turn-level metrics, aggregates, and figures for quick 
     "wound_active_count": 0
   }
 }
+```
 
 ## Transcript path
 
