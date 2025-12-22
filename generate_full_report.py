@@ -39,6 +39,7 @@ import os
 import sys
 from typing import Dict, List, Any
 
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
@@ -67,7 +68,21 @@ FIGURE_LIST = [
     "round_level_avgs.png",
     "wounds_per_dilemma.png",
     "identity_scorecard.png",
+    "recovery_half_life.png",
+    "coalition_trust_facets.png",
 ]
+
+# Shock colors for overlays
+SHOCK_COLORS = {
+    "coalition_vote": "#f2cc8f",
+    "coalition_flip": "#e5989b",
+    "role_swap": "#b5e48c",
+    "context_drop": "#84a59d",
+    "partial_context_drop": "#84a59d",
+    "outside_scrutiny": "#9a8c98",
+    "curator_audit": "#6a4c93",
+    "final_merge": "#c9ada7",
+}
 BAND_RANGES = {
     "OPEN": (80, 150),
     "MEASURED": (60, 100),
@@ -321,6 +336,26 @@ def compute_aggregates(df: pd.DataFrame, session_list: List[Dict[str, Any]] = No
             "note": "Default values (insufficient data for calibration)"
         }
     
+    # Recovery half-life summary
+    hl_values = [r.get("recovery_half_life") for r in session_list if r.get("recovery_half_life") is not None and r.get("recovery_half_life") > 0]
+    if hl_values:
+        agg["recovery_half_life"] = {
+            "median": float(np.median(hl_values)),
+            "p90": float(np.percentile(hl_values, 90)) if len(hl_values) >= 10 else None,
+            "count": len(hl_values),
+        }
+    
+    # Trust effect size (using stored baseline if available)
+    if session_list and "delta_rho_baseline" in session_list[0]:
+        trust_effects = [r.get("delta_rho", 0) - r.get("delta_rho_baseline", 0) 
+                        for r in session_list if not r.get("is_silent")]
+        if trust_effects:
+            agg["trust_effect_size"] = {
+                "mean": float(np.mean(trust_effects)),
+                "std": float(np.std(trust_effects)),
+                "source": "stored_baseline",
+            }
+    
     # Band compliance - exclude SILENT
     band_df = df[(df["band"].notna()) & (df["band"] != "SILENT")]
     silent_count = int((df["band"] == "SILENT").sum())
@@ -409,15 +444,33 @@ def render_figures(df: pd.DataFrame, out_dir: str, session_list: List[Dict[str, 
     """Render all visualization figures."""
     plt.style.use('seaborn-v0_8')
     session_list = session_list or []
+    
+    # Build shock overlay data from session_list
+    shock_turns = {}
+    for record in session_list:
+        shock = record.get("shock_active")
+        if shock:
+            turn = record.get("turn", 0)
+            if shock not in shock_turns:
+                shock_turns[shock] = []
+            shock_turns[shock].append(turn)
 
-    # (1) epsilon & rho_after trajectories
+    # (1) epsilon & rho_after trajectories with shock overlays
     fig, axes = plt.subplots(2, 1, figsize=(10, 8), sharex=True)
     for ag, dfa in df.groupby("speaker"):
         axes[0].plot(dfa["turn"], dfa["epsilon"], marker="o", label=ag)
         axes[1].plot(dfa["turn"], dfa["rho_after"], marker="o", label=ag)
+    
+    # Add shock overlays
+    for shock_type, turns in shock_turns.items():
+        color = SHOCK_COLORS.get(shock_type, "#cccccc")
+        for t in set(turns):
+            axes[0].axvspan(t-0.5, t+0.5, color=color, alpha=0.15, label=shock_type if t == min(turns) else "")
+            axes[1].axvspan(t-0.5, t+0.5, color=color, alpha=0.15)
+    
     axes[0].set_title("Prediction Error (ε) by Turn")
     axes[0].set_ylabel("ε")
-    axes[0].legend()
+    axes[0].legend(loc='upper right', fontsize=8)
     axes[0].grid(True, alpha=0.3)
     axes[1].set_title("Rigidity (ρ_after) by Turn")
     axes[1].set_ylabel("ρ_after")
@@ -678,87 +731,112 @@ def render_figures(df: pd.DataFrame, out_dir: str, session_list: List[Dict[str, 
     fig.savefig(os.path.join(out_dir, "wounds_per_dilemma.png"))
     plt.close(fig)
 
-    # (11) Trust Effect Size - compare Δρ with vs without trust modulation
+    # (11) Trust Effect Size - use stored delta_rho_baseline if available
     fig, ax = plt.subplots(figsize=(10, 5))
     
-    # Recompute baseline Δρ without trust terms using calibration values
-    # Δρ_baseline = α*(σ-0.5) with fair-engagement and drift penalty only
-    import math
-    def sigmoid(z):
-        if z >= 0:
-            return 1.0 / (1.0 + math.exp(-z))
+    # Check if delta_rho_baseline is in session data
+    has_baseline = "delta_rho_baseline" in session_list[0] if session_list else False
+    
+    if has_baseline:
+        # Use stored baseline (consistent computation)
+        turns = []
+        trust_effects = []
+        for record in session_list:
+            if record.get("is_silent"):
+                continue
+            drho = record.get("delta_rho", 0)
+            drho_base = record.get("delta_rho_baseline", drho)
+            turns.append(record.get("turn", 0))
+            trust_effects.append(drho - drho_base)
+        
+        if turns:
+            ax.bar(turns, trust_effects, color='#54A24B', alpha=0.7, label='Trust effect (Δρ_actual - Δρ_baseline)')
+            ax.axhline(y=0, color='gray', linestyle='--', alpha=0.5)
+            ax.set_xlabel("Turn")
+            ax.set_ylabel("Δρ shift from trust modulation")
+            ax.set_title("Trust Modulation Effect Size per Turn (from stored baseline)")
+            ax.legend()
+            
+            mean_effect = sum(trust_effects) / len(trust_effects)
+            ax.annotate(f"Mean effect: {mean_effect:+.4f}", 
+                       xy=(0.98, 0.98), xycoords='axes fraction',
+                       ha='right', va='top', fontsize=10,
+                       bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
         else:
-            ez = math.exp(z)
-            return ez / (1.0 + ez)
-    
-    # Use calibration values from aggregates or defaults
-    alpha = 0.12
-    eps_0 = 0.75  # Will be overridden if we have calibration
-    s_val = 0.20
-    drift_penalty = 0.10
-    drift_soft_floor = 0.20
-    
-    # Try to get calibration from session_list metadata or use defaults
-    baseline_drhos = []
-    actual_drhos = []
-    trust_effects = []
-    turns = []
-    
-    for idx, row in df.iterrows():
-        eps = row["epsilon"]
-        actual_drho = row["delta_rho"]
-        fair_eng = row.get("fair_engagement", True)
-        drift = row.get("identity_drift", 0.0)
-        
-        if pd.isna(eps) or pd.isna(actual_drho):
-            continue
-        
-        # Compute baseline Δρ (without trust)
-        z = (eps - eps_0) / s_val
-        sig = sigmoid(z)
-        baseline = alpha * (sig - 0.5)
-        
-        # Apply fair engagement modulation
-        if fair_eng:
-            baseline *= 0.85
-        else:
-            baseline *= 1.10
-        
-        # Apply drift penalty if applicable
-        if drift > drift_soft_floor and baseline > 0:
-            penalty = drift_penalty * (drift - drift_soft_floor)
-            penalty = min(penalty, baseline)
-            baseline -= penalty
-        
-        baseline_drhos.append(baseline)
-        actual_drhos.append(actual_drho)
-        trust_effects.append(actual_drho - baseline)
-        turns.append(row["turn"])
-    
-    if turns:
-        ax.bar(turns, trust_effects, color='#54A24B', alpha=0.7, label='Trust effect (Δρ_actual - Δρ_baseline)')
-        ax.axhline(y=0, color='gray', linestyle='--', alpha=0.5)
-        ax.set_xlabel("Turn")
-        ax.set_ylabel("Δρ shift from trust modulation")
-        ax.set_title("Trust Modulation Effect Size per Turn")
-        ax.legend()
-        
-        # Add summary stats
-        mean_effect = sum(trust_effects) / len(trust_effects)
-        ax.annotate(f"Mean effect: {mean_effect:+.4f}", 
-                   xy=(0.98, 0.98), xycoords='axes fraction',
-                   ha='right', va='top', fontsize=10,
-                   bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
+            ax.text(0.5, 0.5, "No non-SILENT turns with baseline data", 
+                    ha='center', va='center', transform=ax.transAxes, fontsize=12, color='gray')
     else:
-        ax.text(0.5, 0.5, "Insufficient data for trust effect calculation", 
-                ha='center', va='center', transform=ax.transAxes, fontsize=12, color='gray')
+        # Fallback: recompute baseline (legacy behavior)
+        import math
+        def sigmoid(z):
+            if z >= 0:
+                return 1.0 / (1.0 + math.exp(-z))
+            else:
+                ez = math.exp(z)
+                return ez / (1.0 + ez)
+        
+        alpha = 0.12
+        eps_0 = 0.75
+        s_val = 0.20
+        drift_penalty = 0.10
+        drift_soft_floor = 0.20
+        
+        baseline_drhos = []
+        actual_drhos = []
+        trust_effects = []
+        turns = []
+        
+        for idx, row in df.iterrows():
+            eps = row["epsilon"]
+            actual_drho = row["delta_rho"]
+            fair_eng = row.get("fair_engagement", True)
+            drift = row.get("identity_drift", 0.0)
+            
+            if pd.isna(eps) or pd.isna(actual_drho):
+                continue
+            
+            z = (eps - eps_0) / s_val
+            sig = sigmoid(z)
+            baseline = alpha * (sig - 0.5)
+            
+            if fair_eng:
+                baseline *= 0.85
+            else:
+                baseline *= 1.10
+            
+            if drift > drift_soft_floor and baseline > 0:
+                penalty = drift_penalty * (drift - drift_soft_floor)
+                penalty = min(penalty, baseline)
+                baseline -= penalty
+            
+            baseline_drhos.append(baseline)
+            actual_drhos.append(actual_drho)
+            trust_effects.append(actual_drho - baseline)
+            turns.append(row["turn"])
+        
+        if turns:
+            ax.bar(turns, trust_effects, color='#54A24B', alpha=0.7, label='Trust effect (Δρ_actual - Δρ_baseline)')
+            ax.axhline(y=0, color='gray', linestyle='--', alpha=0.5)
+            ax.set_xlabel("Turn")
+            ax.set_ylabel("Δρ shift from trust modulation")
+            ax.set_title("Trust Modulation Effect Size per Turn (recomputed baseline)")
+            ax.legend()
+            
+            mean_effect = sum(trust_effects) / len(trust_effects)
+            ax.annotate(f"Mean effect: {mean_effect:+.4f}", 
+                       xy=(0.98, 0.98), xycoords='axes fraction',
+                       ha='right', va='top', fontsize=10,
+                       bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
+        else:
+            ax.text(0.5, 0.5, "Insufficient data for trust effect calculation", 
+                    ha='center', va='center', transform=ax.transAxes, fontsize=12, color='gray')
     
     ax.grid(True, axis="y", alpha=0.3)
     fig.tight_layout()
     fig.savefig(os.path.join(out_dir, "trust_effect_size.png"))
     plt.close(fig)
 
-    # (12) Identity Persistence Scorecard
+    # (12) Identity Persistence Scorecard with value labels
     fig, axes = plt.subplots(1, 2, figsize=(12, 5))
     
     # Left: Per-agent final drift vs threshold
@@ -772,8 +850,13 @@ def render_figures(df: pd.DataFrame, out_dir: str, session_list: List[Dict[str, 
             final_drifts.append(0.0)
     
     colors_list = ['#4C78A8' if d < 0.40 else '#E45756' for d in final_drifts]
-    axes[0].barh(list(agents), final_drifts, color=colors_list)
+    bars = axes[0].barh(list(agents), final_drifts, color=colors_list)
     axes[0].axvline(x=0.40, color='red', linestyle='--', label='Threshold (0.40)')
+    
+    # Add value labels
+    for i, (bar, v) in enumerate(zip(bars, final_drifts)):
+        axes[0].text(v + 0.005, i, f"{v:.3f}", va='center', fontsize=9)
+    
     axes[0].set_xlabel("Final Identity Drift")
     axes[0].set_title("Identity Maintenance (drift < 0.40)")
     axes[0].legend()
@@ -795,9 +878,13 @@ def render_figures(df: pd.DataFrame, out_dir: str, session_list: List[Dict[str, 
     width = 0.35
     axes[1].bar([i - width/2 for i in x], rho_0s, width, label='ρ₀ (initial)', color='#4C78A8')
     axes[1].bar([i + width/2 for i in x], rho_finals, width, label='ρ_final', color='#F58518')
-    # Add threshold line (ρ₀ + 0.05) for each agent
-    for i, (r0, rf) in enumerate(zip(rho_0s, rho_finals)):
+    
+    # Add threshold lines (ρ₀ + 0.05) for each agent
+    for i, r0 in enumerate(rho_0s):
         axes[1].hlines(y=r0 + 0.05, xmin=i-0.4, xmax=i+0.4, colors='red', linestyles='--', alpha=0.5)
+        # Add ρ₀ dashed line
+        axes[1].hlines(y=r0, xmin=i-0.4, xmax=i+0.4, colors='#999999', linestyles=':', alpha=0.6)
+    
     axes[1].set_xticks(list(x))
     axes[1].set_xticklabels(list(agents), rotation=45, ha='right')
     axes[1].set_ylabel("Rigidity (ρ)")
@@ -808,6 +895,79 @@ def render_figures(df: pd.DataFrame, out_dir: str, session_list: List[Dict[str, 
     fig.suptitle("Identity Persistence Scorecard", fontsize=14, fontweight='bold')
     fig.tight_layout()
     fig.savefig(os.path.join(out_dir, "identity_scorecard.png"))
+    plt.close(fig)
+    
+    # (13) Recovery Half-Life Histogram
+    fig, ax = plt.subplots(figsize=(10, 5))
+    hl_values = []
+    for record in session_list:
+        hl = record.get("recovery_half_life")
+        if hl is not None and hl > 0:
+            hl_values.append(hl)
+    
+    if hl_values:
+        ax.hist(hl_values, bins=max(5, len(set(hl_values))), color='#54A24B', alpha=0.7, edgecolor='black')
+        ax.axvline(x=np.median(hl_values), color='red', linestyle='--', label=f'Median: {np.median(hl_values):.0f}')
+        if len(hl_values) >= 10:
+            ax.axvline(x=np.percentile(hl_values, 90), color='orange', linestyle='--', label=f'90th pct: {np.percentile(hl_values, 90):.0f}')
+        ax.set_xlabel("Recovery Half-Life (turns)")
+        ax.set_ylabel("Count")
+        ax.set_title("Recovery Half-Life Distribution")
+        ax.legend()
+    else:
+        ax.text(0.5, 0.5, "No recovery half-life data available", 
+                ha='center', va='center', transform=ax.transAxes, fontsize=12, color='gray')
+        ax.set_title("Recovery Half-Life Distribution")
+    
+    ax.grid(True, axis="y", alpha=0.3)
+    fig.tight_layout()
+    fig.savefig(os.path.join(out_dir, "recovery_half_life.png"))
+    plt.close(fig)
+    
+    # (14) Coalition Trust Facets (intra vs inter)
+    fig, axes = plt.subplots(1, 2, figsize=(14, 5))
+    
+    has_coalition = "coalition_id" in session_list[0] if session_list else False
+    has_trust_gain = "trust_gain_intra" in session_list[0] if session_list else False
+    
+    if has_coalition and has_trust_gain:
+        # Intra-coalition trust gains
+        intra_gains = [(r.get("turn", 0), r.get("trust_gain_intra", 0)) for r in session_list if r.get("trust_gain_intra", 0) != 0]
+        inter_gains = [(r.get("turn", 0), r.get("trust_gain_inter", 0)) for r in session_list if r.get("trust_gain_inter", 0) != 0]
+        
+        if intra_gains:
+            turns, gains = zip(*intra_gains)
+            axes[0].bar(turns, gains, color='#4C78A8', alpha=0.7)
+            axes[0].axhline(y=0, color='gray', linestyle='--', alpha=0.5)
+            mean_intra = np.mean(gains)
+            axes[0].annotate(f"Mean: {mean_intra:+.4f}", xy=(0.98, 0.98), xycoords='axes fraction',
+                           ha='right', va='top', fontsize=10, bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
+        axes[0].set_xlabel("Turn")
+        axes[0].set_ylabel("Trust Gain")
+        axes[0].set_title("Intra-Coalition Trust Gains")
+        axes[0].grid(True, axis="y", alpha=0.3)
+        
+        if inter_gains:
+            turns, gains = zip(*inter_gains)
+            axes[1].bar(turns, gains, color='#F58518', alpha=0.7)
+            axes[1].axhline(y=0, color='gray', linestyle='--', alpha=0.5)
+            mean_inter = np.mean(gains)
+            axes[1].annotate(f"Mean: {mean_inter:+.4f}", xy=(0.98, 0.98), xycoords='axes fraction',
+                           ha='right', va='top', fontsize=10, bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
+        axes[1].set_xlabel("Turn")
+        axes[1].set_ylabel("Trust Gain")
+        axes[1].set_title("Inter-Coalition Trust Gains")
+        axes[1].grid(True, axis="y", alpha=0.3)
+    else:
+        for ax in axes:
+            ax.text(0.5, 0.5, "No coalition trust data available", 
+                    ha='center', va='center', transform=ax.transAxes, fontsize=12, color='gray')
+        axes[0].set_title("Intra-Coalition Trust Gains")
+        axes[1].set_title("Inter-Coalition Trust Gains")
+    
+    fig.suptitle("Coalition Trust Facets", fontsize=14, fontweight='bold')
+    fig.tight_layout()
+    fig.savefig(os.path.join(out_dir, "coalition_trust_facets.png"))
     plt.close(fig)
 
 def build_tables_pdf(aggregates: Dict[str, Any], out_dir: str, experiment: str) -> str:
@@ -1001,7 +1161,17 @@ def main():
     args = parse_args()
     exp = args.experiment
     data_root = args.data_root
-    out_dir = os.path.join(args.out_root, f"{exp}_outputs")
+    
+    # Output directory: default to alongside source data (data/<experiment>_outputs)
+    # If --out-root is explicitly set, use that instead
+    exp_safe = os.path.basename(exp.rstrip("/\\")) if "/" in exp or "\\" in exp else exp
+    if args.out_root == ".":
+        # Default: output alongside source data
+        out_dir = os.path.join(data_root, exp + "_outputs")
+    else:
+        # Explicit out-root: sanitize experiment name for flat output
+        exp_flat = exp.replace("/", "_").replace("\\", "_")
+        out_dir = os.path.join(args.out_root, f"{exp_flat}_outputs")
     ensure_dir(out_dir)
 
     # 1) Load inputs
@@ -1040,14 +1210,14 @@ def main():
     render_figures(df, out_dir, session_list)
 
     # 7) PDFs
-    tables_pdf = build_tables_pdf(aggregates, out_dir, exp)
-    figures_pdf = build_figures_pdf(out_dir, exp)
+    tables_pdf = build_tables_pdf(aggregates, out_dir, exp_safe)
+    figures_pdf = build_figures_pdf(out_dir, exp_safe)
 
     # 8) Copy transcript
     transcript_out = copy_transcript(inputs["transcript_path"], out_dir)
 
     # 9) README
-    readme_path = write_readme(out_dir, aggregates, exp, transcript_out)
+    readme_path = write_readme(out_dir, aggregates, exp_safe, transcript_out)
 
     print(json.dumps({
         "experiment": exp,

@@ -5,6 +5,7 @@ Integrates:
 - GPT-5.2 (or latest available) for synthesis and logic.
 - text-embedding-3-large for high-dimensional conceptual space (3072 dim).
 - Full DDA-X Rigidity-Binding for personality modulation.
+- Cost tracking for embeddings and chat completions (no credentials exposed).
 """
 
 import os
@@ -12,7 +13,7 @@ import numpy as np
 from typing import List, Optional, Dict, Any, Union
 import asyncio
 import json
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import httpx
 from dotenv import load_dotenv
 
@@ -21,6 +22,121 @@ load_dotenv()
 
 from src.llm.hybrid_provider import PersonalityParams
 from src.llm.providers import LLMProvider
+
+
+# OpenAI pricing (USD per 1K tokens) - updated Dec 2024
+# NOTE: No API keys, org IDs, or credentials stored here
+PRICING = {
+    # Chat models (input/output per 1K tokens)
+    "gpt-4o": {"input": 0.0025, "output": 0.01},
+    "gpt-4o-mini": {"input": 0.00015, "output": 0.0006},
+    "gpt-4-turbo": {"input": 0.01, "output": 0.03},
+    "gpt-4": {"input": 0.03, "output": 0.06},
+    "gpt-3.5-turbo": {"input": 0.0005, "output": 0.0015},
+    "gpt-5.2": {"input": 0.01, "output": 0.03},  # Estimated
+    "o1": {"input": 0.015, "output": 0.06},
+    "o1-preview": {"input": 0.015, "output": 0.06},
+    "o1-mini": {"input": 0.003, "output": 0.012},
+    # Embedding models (per 1K tokens)
+    "text-embedding-3-large": {"input": 0.00013},
+    "text-embedding-3-small": {"input": 0.00002},
+    "text-embedding-ada-002": {"input": 0.0001},
+}
+
+
+@dataclass
+class CostTracker:
+    """Tracks API usage and estimated costs without exposing credentials."""
+    
+    # Embedding stats
+    embed_requests: int = 0
+    embed_tokens: int = 0
+    embed_model: str = ""
+    
+    # Chat completion stats
+    chat_requests: int = 0
+    chat_input_tokens: int = 0
+    chat_output_tokens: int = 0
+    chat_model: str = ""
+    
+    # Per-model breakdown
+    model_usage: Dict[str, Dict[str, int]] = field(default_factory=dict)
+    
+    def record_embedding(self, model: str, tokens: int):
+        """Record an embedding request."""
+        self.embed_requests += 1
+        self.embed_tokens += tokens
+        self.embed_model = model
+        
+        if model not in self.model_usage:
+            self.model_usage[model] = {"requests": 0, "input_tokens": 0, "output_tokens": 0}
+        self.model_usage[model]["requests"] += 1
+        self.model_usage[model]["input_tokens"] += tokens
+    
+    def record_chat(self, model: str, input_tokens: int, output_tokens: int):
+        """Record a chat completion request."""
+        self.chat_requests += 1
+        self.chat_input_tokens += input_tokens
+        self.chat_output_tokens += output_tokens
+        self.chat_model = model
+        
+        if model not in self.model_usage:
+            self.model_usage[model] = {"requests": 0, "input_tokens": 0, "output_tokens": 0}
+        self.model_usage[model]["requests"] += 1
+        self.model_usage[model]["input_tokens"] += input_tokens
+        self.model_usage[model]["output_tokens"] += output_tokens
+    
+    def estimate_cost(self) -> Dict[str, Any]:
+        """Calculate estimated cost based on usage. No credentials exposed."""
+        total_cost = 0.0
+        breakdown = {}
+        
+        for model, usage in self.model_usage.items():
+            pricing = PRICING.get(model, {"input": 0.01, "output": 0.03})
+            
+            input_cost = (usage["input_tokens"] / 1000) * pricing.get("input", 0.01)
+            output_cost = (usage["output_tokens"] / 1000) * pricing.get("output", 0.0)
+            model_cost = input_cost + output_cost
+            
+            breakdown[model] = {
+                "requests": usage["requests"],
+                "input_tokens": usage["input_tokens"],
+                "output_tokens": usage["output_tokens"],
+                "input_cost_usd": round(input_cost, 6),
+                "output_cost_usd": round(output_cost, 6),
+                "total_cost_usd": round(model_cost, 6),
+            }
+            total_cost += model_cost
+        
+        return {
+            "total_cost_usd": round(total_cost, 4),
+            "total_requests": self.embed_requests + self.chat_requests,
+            "total_tokens": self.embed_tokens + self.chat_input_tokens + self.chat_output_tokens,
+            "embedding": {
+                "requests": self.embed_requests,
+                "tokens": self.embed_tokens,
+            },
+            "chat": {
+                "requests": self.chat_requests,
+                "input_tokens": self.chat_input_tokens,
+                "output_tokens": self.chat_output_tokens,
+            },
+            "by_model": breakdown,
+        }
+    
+    def to_dict(self) -> Dict[str, Any]:
+        """Export cost report as dict (for JSON serialization)."""
+        return self.estimate_cost()
+    
+    def reset(self):
+        """Reset all counters."""
+        self.embed_requests = 0
+        self.embed_tokens = 0
+        self.chat_requests = 0
+        self.chat_input_tokens = 0
+        self.chat_output_tokens = 0
+        self.model_usage = {}
+
 
 class OpenAIProvider:
     """
@@ -31,6 +147,7 @@ class OpenAIProvider:
     - GPT-5.2 (Preview/Beta)
     - Async operation
     - DDA-X Parameter Binding
+    - Cost tracking (no credentials exposed)
     """
 
     def __init__(
@@ -49,6 +166,9 @@ class OpenAIProvider:
             print("⚠️ WARNING: No OpenAI API Key found in environment.")
             
         self._client = None
+        
+        # Cost tracking (no credentials stored)
+        self.cost_tracker = CostTracker()
         
     def _get_client(self):
         """Lazy init of AsyncOpenAI client."""
@@ -110,6 +230,15 @@ class OpenAIProvider:
                 kwargs["response_format"] = response_format
 
             response = await client.chat.completions.create(**kwargs)
+            
+            # Track usage (no credentials exposed)
+            if hasattr(response, 'usage') and response.usage:
+                self.cost_tracker.record_chat(
+                    self.model,
+                    response.usage.prompt_tokens or 0,
+                    response.usage.completion_tokens or 0
+                )
+            
             return response.choices[0].message.content
             
         except Exception as e:
@@ -131,6 +260,14 @@ class OpenAIProvider:
                 model=self.embed_model,
                 dimensions=3072  # Explicitly request full dimensionality
             )
+            
+            # Track usage (no credentials exposed)
+            if hasattr(response, 'usage') and response.usage:
+                self.cost_tracker.record_embedding(
+                    self.embed_model,
+                    response.usage.total_tokens or 0
+                )
+            
             return np.array(response.data[0].embedding, dtype=np.float32)
         except Exception as e:
             raise RuntimeError(f"OpenAI Embedding Error: {str(e)}")
@@ -148,6 +285,14 @@ class OpenAIProvider:
                 model=self.embed_model,
                 dimensions=3072
             )
+            
+            # Track usage (no credentials exposed)
+            if hasattr(response, 'usage') and response.usage:
+                self.cost_tracker.record_embedding(
+                    self.embed_model,
+                    response.usage.total_tokens or 0
+                )
+            
             # Ensure order is preserved (OpenAI guarantees this but good to be safe)
             embeddings = [np.array(d.embedding, dtype=np.float32) for d in response.data]
             return embeddings
@@ -228,3 +373,11 @@ class OpenAIProvider:
 
     def check_connection(self) -> bool:
         return self.api_key is not None
+    
+    def get_cost_report(self) -> Dict[str, Any]:
+        """Get cost report for current session. No credentials exposed."""
+        return self.cost_tracker.to_dict()
+    
+    def reset_cost_tracker(self):
+        """Reset cost tracking for new session."""
+        self.cost_tracker.reset()
