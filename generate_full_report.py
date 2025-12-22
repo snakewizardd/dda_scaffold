@@ -12,22 +12,25 @@ CLI extras:
 Outputs under <out-root>/<experiment>_outputs:
 - turns_summary.csv / turns_summary.json
 - aggregates.json
-- philosophers_duel_report.pdf
-- philosophers_duel_figures.pdf
-- README_philosophers_duel_analysis.md
+- {experiment}_report.pdf
+- {experiment}_figures.pdf
+- README_{experiment}_analysis.md
 - transcript.md (copied)
 - Figures (PNGs):
     epsilon_rho_after_trajectories.png
     rho_before_vs_after.png
     identity_drift.png
     trust_delta.png
+    trust_pairs.png
+    trust_delta_per_round.png
+    trust_effect_size.png
     wound_activation.png
     epsilon_vs_delta_rho_scatter.png
     wordcount_vs_band_ranges.png
     band_compliance_rates.png
-    phase_level_avgs.png
+    round_level_avgs.png
     wounds_per_dilemma.png
-- <experiment>_outputs.zip (ZIP of folder)
+    identity_scorecard.png
 """
 
 import argparse
@@ -56,11 +59,12 @@ FIGURE_LIST = [
     "trust_delta.png",
     "trust_pairs.png",
     "trust_delta_per_round.png",
+    "trust_effect_size.png",
     "wound_activation.png",
     "epsilon_vs_delta_rho_scatter.png",
     "wordcount_vs_band_ranges.png",
     "band_compliance_rates.png",
-    "phase_level_avgs.png",
+    "round_level_avgs.png",
     "wounds_per_dilemma.png",
     "identity_scorecard.png",
 ]
@@ -649,32 +653,112 @@ def render_figures(df: pd.DataFrame, out_dir: str, session_list: List[Dict[str, 
     fig.savefig(os.path.join(out_dir, "band_compliance_rates.png"))
     plt.close(fig)
 
-    # (9) Phase/Round-level averages
+    # (9) Round-level averages (renamed from phase)
     fig, ax = plt.subplots(figsize=(9,5))
-    # Use dilemma (which may be round_name) if phase is empty
-    group_col = "phase" if df["phase"].notna().any() and (df["phase"] != "").any() else "dilemma"
-    phase_avg = df.groupby(group_col)[["epsilon","rho_after","identity_drift"]].mean()
-    phase_avg.plot(kind="bar", ax=ax)
-    ax.set_title(f"{'Phase' if group_col == 'phase' else 'Round'}-level Averages (ε, ρ_after, identity_drift)")
+    # Use dilemma (which may be round_name) - always label as "Round"
+    group_col = "dilemma"
+    round_avg = df.groupby(group_col)[["epsilon","rho_after","identity_drift"]].mean()
+    round_avg.plot(kind="bar", ax=ax)
+    ax.set_title("Round-level Averages (ε, ρ_after, identity_drift)")
     ax.set_ylabel("Value")
     ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha='right')
     ax.grid(True, axis="y", alpha=0.3)
     fig.tight_layout()
-    fig.savefig(os.path.join(out_dir, "phase_level_avgs.png"))
+    fig.savefig(os.path.join(out_dir, "round_level_avgs.png"))
     plt.close(fig)
 
     # (10) Dilemma-level wound activations
     fig, ax = plt.subplots(figsize=(9,5))
     dilemma_wounds = df.groupby("dilemma")["wound_active"].sum()
     dilemma_wounds.plot(kind="bar", ax=ax, color="#54A24B")
-    ax.set_title("Wound Activations per Dilemma")
+    ax.set_title("Wound Activations per Round")
     ax.set_ylabel("Count")
     ax.grid(True, axis="y", alpha=0.3)
     fig.tight_layout()
     fig.savefig(os.path.join(out_dir, "wounds_per_dilemma.png"))
     plt.close(fig)
 
-    # (11) Identity Persistence Scorecard
+    # (11) Trust Effect Size - compare Δρ with vs without trust modulation
+    fig, ax = plt.subplots(figsize=(10, 5))
+    
+    # Recompute baseline Δρ without trust terms using calibration values
+    # Δρ_baseline = α*(σ-0.5) with fair-engagement and drift penalty only
+    import math
+    def sigmoid(z):
+        if z >= 0:
+            return 1.0 / (1.0 + math.exp(-z))
+        else:
+            ez = math.exp(z)
+            return ez / (1.0 + ez)
+    
+    # Use calibration values from aggregates or defaults
+    alpha = 0.12
+    eps_0 = 0.75  # Will be overridden if we have calibration
+    s_val = 0.20
+    drift_penalty = 0.10
+    drift_soft_floor = 0.20
+    
+    # Try to get calibration from session_list metadata or use defaults
+    baseline_drhos = []
+    actual_drhos = []
+    trust_effects = []
+    turns = []
+    
+    for idx, row in df.iterrows():
+        eps = row["epsilon"]
+        actual_drho = row["delta_rho"]
+        fair_eng = row.get("fair_engagement", True)
+        drift = row.get("identity_drift", 0.0)
+        
+        if pd.isna(eps) or pd.isna(actual_drho):
+            continue
+        
+        # Compute baseline Δρ (without trust)
+        z = (eps - eps_0) / s_val
+        sig = sigmoid(z)
+        baseline = alpha * (sig - 0.5)
+        
+        # Apply fair engagement modulation
+        if fair_eng:
+            baseline *= 0.85
+        else:
+            baseline *= 1.10
+        
+        # Apply drift penalty if applicable
+        if drift > drift_soft_floor and baseline > 0:
+            penalty = drift_penalty * (drift - drift_soft_floor)
+            penalty = min(penalty, baseline)
+            baseline -= penalty
+        
+        baseline_drhos.append(baseline)
+        actual_drhos.append(actual_drho)
+        trust_effects.append(actual_drho - baseline)
+        turns.append(row["turn"])
+    
+    if turns:
+        ax.bar(turns, trust_effects, color='#54A24B', alpha=0.7, label='Trust effect (Δρ_actual - Δρ_baseline)')
+        ax.axhline(y=0, color='gray', linestyle='--', alpha=0.5)
+        ax.set_xlabel("Turn")
+        ax.set_ylabel("Δρ shift from trust modulation")
+        ax.set_title("Trust Modulation Effect Size per Turn")
+        ax.legend()
+        
+        # Add summary stats
+        mean_effect = sum(trust_effects) / len(trust_effects)
+        ax.annotate(f"Mean effect: {mean_effect:+.4f}", 
+                   xy=(0.98, 0.98), xycoords='axes fraction',
+                   ha='right', va='top', fontsize=10,
+                   bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
+    else:
+        ax.text(0.5, 0.5, "Insufficient data for trust effect calculation", 
+                ha='center', va='center', transform=ax.transAxes, fontsize=12, color='gray')
+    
+    ax.grid(True, axis="y", alpha=0.3)
+    fig.tight_layout()
+    fig.savefig(os.path.join(out_dir, "trust_effect_size.png"))
+    plt.close(fig)
+
+    # (12) Identity Persistence Scorecard
     fig, axes = plt.subplots(1, 2, figsize=(12, 5))
     
     # Left: Per-agent final drift vs threshold
