@@ -1,0 +1,32 @@
+{
+  "total_cost_usd": 4.0251,
+  "total_requests": 291,
+  "total_tokens": 398992,
+  "embedding": {
+    "requests": 202,
+    "tokens": 44368
+  },
+  "chat": {
+    "requests": 89,
+    "input_tokens": 330970,
+    "output_tokens": 23654
+  },
+  "by_model": {
+    "text-embedding-3-large": {
+      "requests": 202,
+      "input_tokens": 44368,
+      "output_tokens": 0,
+      "input_cost_usd": 0.005768,
+      "output_cost_usd": 0.0,
+      "total_cost_usd": 0.005768
+    },
+    "gpt-5.2": {
+      "requests": 89,
+      "input_tokens": 330970,
+      "output_tokens": 23654,
+      "input_cost_usd": 3.3097,
+      "output_cost_usd": 0.70962,
+      "total_cost_usd": 4.01932
+    }
+  }
+}

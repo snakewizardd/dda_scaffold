@@ -639,7 +639,7 @@ class CollatzReviewSim:
     """Multi-agent peer review simulation for the Collatz proof."""
     
     def __init__(self):
-        self.provider = OpenAIProvider(model="gpt-4o", embed_model="text-embedding-3-large")
+        self.provider = OpenAIProvider(model="gpt-5.2", embed_model="text-embedding-3-large")
         self.agents: Dict[str, AgentState] = {}
         self.results: List[TurnResult] = []
         self.turn = 0
