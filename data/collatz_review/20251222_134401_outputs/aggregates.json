@@ -1,0 +1,305 @@
+{
+  "overall": {
+    "turn_count": 89,
+    "agents": [
+      "AUDITOR",
+      "COMPLEX",
+      "DEVIL",
+      "ERGODIC",
+      "FUNCTIONAL",
+      "NUMBER",
+      "SPECTRAL",
+      "SYNTHESIS"
+    ],
+    "dilemmas": [
+      "Architecture Assessment",
+      "Boundary Analysis",
+      "Circularity Check",
+      "Constructive Feedback",
+      "Defense Response",
+      "Discrete-Continuous Bridge",
+      "Final Positions",
+      "Function Space Analysis",
+      "Gap Assessment",
+      "Historical Context",
+      "Initial Concerns",
+      "Measure Theory Verdict",
+      "Opening Impressions",
+      "Spectral Gap Verification",
+      "Stress Test I",
+      "Stress Test II"
+    ],
+    "mean_epsilon": 0.6342883235221997,
+    "mean_rho_before": 0.14236526374681546,
+    "mean_rho_after": 0.13090874661192833,
+    "mean_delta_rho": -0.021349384899676634,
+    "mean_identity_drift": 0.2135974723385291,
+    "mean_trust_delta": -0.05011235955056181,
+    "wound_active_count": 81
+  },
+  "calibration": {
+    "epsilon_0": 0.571,
+    "s": 0.181,
+    "note": "Estimated from run data (median \u03b5, IQR-based s)"
+  },
+  "recovery_half_life": {
+    "median": 40.0,
+    "p90": 70.2,
+    "count": 70
+  },
+  "trust_effect_size": {
+    "mean": -0.006885168539325844,
+    "std": 0.006836598690565449,
+    "source": "stored_baseline"
+  },
+  "band_compliance": {
+    "total_with_band": 89,
+    "compliant_count": 17,
+    "compliance_rate": 0.19101123595505617,
+    "silent_count": 0
+  },
+  "agent_SPECTRAL": {
+    "turns": 16,
+    "mean_epsilon": 0.6331317225745032,
+    "mean_rho_before": 0.10945137259847401,
+    "mean_rho_after": 0.09820137259847402,
+    "mean_delta_rho": -0.01824888338224956,
+    "min_rho_after": 0.0,
+    "max_rho_after": 0.22396662965127284,
+    "mean_identity_drift": 0.2402736486401409,
+    "mean_trust_delta": -0.047500000000000014,
+    "wound_active_count": 14,
+    "rho_0": 0.18,
+    "rho_final": 0.0,
+    "final_drift": 0.40456992387771606,
+    "identity_maintained": false,
+    "recovered": true
+  },
+  "agent_FUNCTIONAL": {
+    "turns": 16,
+    "mean_epsilon": 0.5859233913657771,
+    "mean_rho_before": 0.10683106497889841,
+    "mean_rho_after": 0.0930810649788984,
+    "mean_delta_rho": -0.02810070647027702,
+    "min_rho_after": 0.0,
+    "max_rho_after": 0.2521628137506342,
+    "mean_identity_drift": 0.2558505383785814,
+    "mean_trust_delta": -0.040375,
+    "wound_active_count": 14,
+    "rho_0": 0.22,
+    "rho_final": 0.0,
+    "final_drift": 0.4445172846317291,
+    "identity_maintained": false,
+    "recovered": true
+  },
+  "agent_NUMBER": {
+    "turns": 16,
+    "mean_epsilon": 0.5723560164394016,
+    "mean_rho_before": 0.14743987492954452,
+    "mean_rho_after": 0.13181487492954455,
+    "mean_delta_rho": -0.029587205483586565,
+    "min_rho_after": 0.0,
+    "max_rho_after": 0.2942691584742984,
+    "mean_identity_drift": 0.22994067682884634,
+    "mean_trust_delta": -0.04725000000000001,
+    "wound_active_count": 15,
+    "rho_0": 0.25,
+    "rho_final": 0.0,
+    "final_drift": 0.3978300094604492,
+    "identity_maintained": true,
+    "recovered": true
+  },
+  "agent_ERGODIC": {
+    "turns": 16,
+    "mean_epsilon": 0.5802904709569965,
+    "mean_rho_before": 0.08329113883325144,
+    "mean_rho_after": 0.07141613883325144,
+    "mean_delta_rho": -0.030564919267873122,
+    "min_rho_after": 0.0,
+    "max_rho_after": 0.2295294407897848,
+    "mean_identity_drift": 0.2427697868552059,
+    "mean_trust_delta": -0.04775000000000001,
+    "wound_active_count": 15,
+    "rho_0": 0.19,
+    "rho_final": 0.0,
+    "final_drift": 0.41058915853500366,
+    "identity_maintained": false,
+    "recovered": true
+  },
+  "agent_COMPLEX": {
+    "turns": 10,
+    "mean_epsilon": 0.6525839393609069,
+    "mean_rho_before": 0.168327767341822,
+    "mean_rho_after": 0.15132776734182196,
+    "mean_delta_rho": -0.0186437797402486,
+    "min_rho_after": 0.0,
+    "max_rho_after": 0.2518316632328573,
+    "mean_identity_drift": 0.18971404954791068,
+    "mean_trust_delta": -0.05920000000000001,
+    "wound_active_count": 9,
+    "rho_0": 0.17,
+    "rho_final": 0.0,
+    "final_drift": 0.32153406739234924,
+    "identity_maintained": true,
+    "recovered": true
+  },
+  "agent_AUDITOR": {
+    "turns": 5,
+    "mean_epsilon": 0.8341170252033298,
+    "mean_rho_before": 0.27709768429058,
+    "mean_rho_after": 0.2793870447273052,
+    "mean_delta_rho": 0.0022893604367252274,
+    "min_rho_after": 0.2514468021836261,
+    "max_rho_after": 0.2986547672094238,
+    "mean_identity_drift": 0.10858774036169053,
+    "mean_trust_delta": -0.0628,
+    "wound_active_count": 5,
+    "rho_0": 0.24,
+    "rho_final": 0.2514468021836261,
+    "final_drift": 0.1786641627550125,
+    "identity_maintained": true,
+    "recovered": true
+  },
+  "agent_SYNTHESIS": {
+    "turns": 5,
+    "mean_epsilon": 0.7115015765144209,
+    "mean_rho_before": 0.15787182844584374,
+    "mean_rho_after": 0.1491890544047421,
+    "mean_delta_rho": -0.00868277404110169,
+    "min_rho_after": 0.10658612979449154,
+    "max_rho_after": 0.17752917809579516,
+    "mean_identity_drift": 0.0984996311366558,
+    "mean_trust_delta": -0.0628,
+    "wound_active_count": 4,
+    "rho_0": 0.15,
+    "rho_final": 0.10658612979449154,
+    "final_drift": 0.15847820043563843,
+    "identity_maintained": true,
+    "recovered": true
+  },
+  "agent_DEVIL": {
+    "turns": 5,
+    "mean_epsilon": 0.8501005539782185,
+    "mean_rho_before": 0.33203360298470863,
+    "mean_rho_after": 0.3365010115880943,
+    "mean_delta_rho": 0.004467408603385627,
+    "min_rho_after": 0.30233704301692815,
+    "max_rho_after": 0.3578473698443908,
+    "mean_identity_drift": 0.11524865478277206,
+    "mean_trust_delta": -0.0628,
+    "wound_active_count": 5,
+    "rho_0": 0.28,
+    "rho_final": 0.30233704301692815,
+    "final_drift": 0.18645688891410828,
+    "identity_maintained": true,
+    "recovered": true
+  },
+  "identity_scorecard": {
+    "all_maintained": false,
+    "all_recovered": true,
+    "avg_final_drift": 0.3128,
+    "drift_variance": 0.012551,
+    "harmony_status": "PARTIAL",
+    "agents_maintained": 5,
+    "agents_recovered": 8,
+    "total_agents": 8,
+    "trust_modulation_effect_size": 0.0535,
+    "wound_activations": 81
+  },
+  "dilemma_Opening Impressions": {
+    "turns": 8,
+    "mean_epsilon": 1.0443464681448624,
+    "mean_rho_after": 0.2474563687463165,
+    "wound_active_count": 8
+  },
+  "dilemma_Historical Context": {
+    "turns": 5,
+    "mean_epsilon": 0.8201272243251582,
+    "mean_rho_after": 0.24801682653086649,
+    "wound_active_count": 5
+  },
+  "dilemma_Architecture Assessment": {
+    "turns": 5,
+    "mean_epsilon": 0.6981588890723592,
+    "mean_rho_after": 0.2257081267663857,
+    "wound_active_count": 5
+  },
+  "dilemma_Initial Concerns": {
+    "turns": 5,
+    "mean_epsilon": 0.6372383623485727,
+    "mean_rho_after": 0.23491514648658623,
+    "wound_active_count": 5
+  },
+  "dilemma_Function Space Analysis": {
+    "turns": 5,
+    "mean_epsilon": 0.5651051969286633,
+    "mean_rho_after": 0.1859085255053416,
+    "wound_active_count": 4
+  },
+  "dilemma_Spectral Gap Verification": {
+    "turns": 5,
+    "mean_epsilon": 0.6111946413606473,
+    "mean_rho_after": 0.16286200835574752,
+    "wound_active_count": 5
+  },
+  "dilemma_Boundary Analysis": {
+    "turns": 5,
+    "mean_epsilon": 0.5451953011999334,
+    "mean_rho_after": 0.13484465480798677,
+    "wound_active_count": 4
+  },
+  "dilemma_Discrete-Continuous Bridge": {
+    "turns": 5,
+    "mean_epsilon": 0.5324266833495785,
+    "mean_rho_after": 0.10299648854783225,
+    "wound_active_count": 4
+  },
+  "dilemma_Circularity Check": {
+    "turns": 5,
+    "mean_epsilon": 0.6703432984601347,
+    "mean_rho_after": 0.11103838609507513,
+    "wound_active_count": 5
+  },
+  "dilemma_Stress Test I": {
+    "turns": 5,
+    "mean_epsilon": 0.576653221434982,
+    "mean_rho_after": 0.09823062672186693,
+    "wound_active_count": 5
+  },
+  "dilemma_Defense Response": {
+    "turns": 5,
+    "mean_epsilon": 0.5268788818967521,
+    "mean_rho_after": 0.04143027601993911,
+    "wound_active_count": 4
+  },
+  "dilemma_Stress Test II": {
+    "turns": 5,
+    "mean_epsilon": 0.6034843150247488,
+    "mean_rho_after": 0.02546355052957871,
+    "wound_active_count": 4
+  },
+  "dilemma_Measure Theory Verdict": {
+    "turns": 5,
+    "mean_epsilon": 0.5352909162888239,
+    "mean_rho_after": 0.01672111008649261,
+    "wound_active_count": 4
+  },
+  "dilemma_Gap Assessment": {
+    "turns": 5,
+    "mean_epsilon": 0.5331506402792987,
+    "mean_rho_after": 0.05973095344188476,
+    "wound_active_count": 5
+  },
+  "dilemma_Final Positions": {
+    "turns": 8,
+    "mean_epsilon": 0.5430275985027688,
+    "mean_rho_after": 0.09644051550226568,
+    "wound_active_count": 7
+  },
+  "dilemma_Constructive Feedback": {
+    "turns": 8,
+    "mean_epsilon": 0.5595538000558069,
+    "mean_rho_after": 0.08254624687438072,
+    "wound_active_count": 7
+  }
+}
