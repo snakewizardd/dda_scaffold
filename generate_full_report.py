@@ -216,6 +216,32 @@ def build_dataframe(session_list: List[Dict[str, Any]]) -> pd.DataFrame:
             else:
                 df[col] = float("nan")
 
+    # Handle trust_others dict → compute trust_delta as mean change from previous turn
+    if "trust_others" in df.columns and df["trust_others"].notna().any():
+        trust_deltas = []
+        prev_trust_by_speaker = {}
+        
+        for idx, row in df.iterrows():
+            speaker = row.get("speaker", "")
+            trust_others = row.get("trust_others")
+            
+            if isinstance(trust_others, dict) and trust_others:
+                # Get previous trust state for this speaker
+                prev_trust = prev_trust_by_speaker.get(speaker, {})
+                
+                # Compute delta as sum of changes across all trust targets
+                delta = 0.0
+                for target, val in trust_others.items():
+                    prev_val = prev_trust.get(target, 0.5)  # default 0.5
+                    delta += (val - prev_val)
+                
+                trust_deltas.append(delta)
+                prev_trust_by_speaker[speaker] = trust_others.copy()
+            else:
+                trust_deltas.append(0.0)
+        
+        df["trust_delta"] = trust_deltas
+
     # Coerce numeric columns that might be strings
     numeric_cols = ["epsilon","rho_before","rho_after","delta_rho","wound_resonance","identity_drift","trust_delta","word_count","turn"]
     for nc in numeric_cols:
@@ -225,11 +251,26 @@ def build_dataframe(session_list: List[Dict[str, Any]]) -> pd.DataFrame:
     if "turn" in df.columns and df["turn"].notna().any():
         df = df.sort_values("turn")
 
+    # Handle round_name as dilemma/phase fallback
+    if "round_name" in df.columns:
+        if df["dilemma"].isna().all() or (df["dilemma"] == "").all():
+            df["dilemma"] = df["round_name"]
+        if df["phase"].isna().all() or (df["phase"] == "").all():
+            df["phase"] = df["round_name"]
+
+    # Ensure cols_order columns exist
+    for col in cols_order:
+        if col not in df.columns:
+            df[col] = float("nan") if col not in ("text", "band", "speaker", "phase", "dilemma") else ""
+
     df = df[cols_order].reset_index(drop=True)
 
-    # Band compliance
+    # Band compliance - include SILENT as neutral (not counted)
     def band_compliant(row):
-        rng = BAND_RANGES.get(row["band"])
+        band = row["band"]
+        if band == "SILENT":
+            return None  # Exclude from compliance stats
+        rng = BAND_RANGES.get(band)
         if not rng:
             return None
         wc = row["word_count"] if pd.notnull(row["word_count"]) else 0
@@ -338,15 +379,25 @@ def render_figures(df: pd.DataFrame, out_dir: str):
     fig.savefig(os.path.join(out_dir, "identity_drift.png"))
     plt.close(fig)
 
-    # (4) Trust delta
+    # (4) Trust delta - improved to show actual trust changes
     fig, ax = plt.subplots(figsize=(10,5))
-    for ag, dfa in df.groupby("speaker"):
-        ax.bar(dfa["turn"], dfa["trust_delta"], label=ag, alpha=0.6)
-    ax.set_title("Trust Delta by Turn")
+    has_trust_data = df["trust_delta"].notna().any() and (df["trust_delta"] != 0).any()
+    if has_trust_data:
+        # Plot as lines per speaker for better visibility
+        for ag, dfa in df.groupby("speaker"):
+            ax.plot(dfa["turn"], dfa["trust_delta"], marker="o", label=ag, alpha=0.8)
+            ax.fill_between(dfa["turn"], 0, dfa["trust_delta"], alpha=0.2)
+        ax.axhline(y=0, color='gray', linestyle='--', alpha=0.5)
+        ax.set_title("Trust Delta by Turn (cumulative change per turn)")
+    else:
+        # Fallback: show message if no trust data
+        ax.text(0.5, 0.5, "No trust delta data available\n(trust_others dict not found or unchanged)", 
+                ha='center', va='center', transform=ax.transAxes, fontsize=12, color='gray')
+        ax.set_title("Trust Delta by Turn")
     ax.set_xlabel("Turn")
-    ax.set_ylabel("Trust delta")
+    ax.set_ylabel("Trust delta (sum of changes)")
     ax.legend()
-    ax.grid(True, axis="y", alpha=0.3)
+    ax.grid(True, alpha=0.3)
     fig.tight_layout()
     fig.savefig(os.path.join(out_dir, "trust_delta.png"))
     plt.close(fig)
@@ -407,12 +458,15 @@ def render_figures(df: pd.DataFrame, out_dir: str):
     fig.savefig(os.path.join(out_dir, "band_compliance_rates.png"))
     plt.close(fig)
 
-    # (9) Phase-level averages
+    # (9) Phase/Round-level averages
     fig, ax = plt.subplots(figsize=(9,5))
-    phase_avg = df.groupby("phase")[["epsilon","rho_after","identity_drift"]].mean()
+    # Use dilemma (which may be round_name) if phase is empty
+    group_col = "phase" if df["phase"].notna().any() and (df["phase"] != "").any() else "dilemma"
+    phase_avg = df.groupby(group_col)[["epsilon","rho_after","identity_drift"]].mean()
     phase_avg.plot(kind="bar", ax=ax)
-    ax.set_title("Phase-level Averages (ε, ρ_after, identity_drift)")
+    ax.set_title(f"{'Phase' if group_col == 'phase' else 'Round'}-level Averages (ε, ρ_after, identity_drift)")
     ax.set_ylabel("Value")
+    ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha='right')
     ax.grid(True, axis="y", alpha=0.3)
     fig.tight_layout()
     fig.savefig(os.path.join(out_dir, "phase_level_avgs.png"))

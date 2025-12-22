@@ -8,14 +8,21 @@
       "VISIONARY"
     ],
     "dilemmas": [
-      ""
+      "The Breakthrough",
+      "The Brief",
+      "The Conflict",
+      "The Detail",
+      "The Doubt",
+      "The Practical",
+      "The Pushback",
+      "The Synthesis"
     ],
     "mean_epsilon": 0.7530859687193047,
     "mean_rho_before": 0.18675426037239007,
     "mean_rho_after": 0.16808789232435326,
     "mean_delta_rho": -0.018666368048036838,
     "mean_identity_drift": 0.14405418885871768,
-    "mean_trust_delta": NaN,
+    "mean_trust_delta": 0.013333333333333345,
     "wound_active_count": 6
   },
   "band_compliance": {
@@ -32,7 +39,7 @@
     "min_rho_after": 0.024379243451523078,
     "max_rho_after": 0.23943521807653909,
     "mean_identity_drift": 0.1577406506985426,
-    "mean_trust_delta": NaN,
+    "mean_trust_delta": 0.012500000000000011,
     "wound_active_count": 3
   },
   "agent_CRAFTSMAN": {
@@ -44,7 +51,7 @@
     "min_rho_after": 0.031186392517198215,
     "max_rho_after": 0.24366229362061842,
     "mean_identity_drift": 0.16740718577057123,
-    "mean_trust_delta": NaN,
+    "mean_trust_delta": 0.015000000000000013,
     "wound_active_count": 3
   },
   "agent_PROVOCATEUR": {
@@ -56,7 +63,7 @@
     "min_rho_after": 0.15028407437201044,
     "max_rho_after": 0.2977447248411017,
     "mean_identity_drift": 0.12268344250818093,
-    "mean_trust_delta": NaN,
+    "mean_trust_delta": 0.01666666666666668,
     "wound_active_count": 0
   },
   "agent_HARMONIZER": {
@@ -68,13 +75,55 @@
     "min_rho_after": 0.1261574565063842,
     "max_rho_after": 0.15691633425496235,
     "mean_identity_drift": 0.060008592903614044,
-    "mean_trust_delta": NaN,
+    "mean_trust_delta": 0.0,
     "wound_active_count": 0
   },
-  "dilemma_": {
-    "turns": 24,
-    "mean_epsilon": 0.7530859687193047,
-    "mean_rho_after": 0.16808789232435326,
-    "wound_active_count": 6
+  "dilemma_The Brief": {
+    "turns": 3,
+    "mean_epsilon": 1.0685442686080933,
+    "mean_rho_after": 0.24365145569931834,
+    "wound_active_count": 0
+  },
+  "dilemma_The Pushback": {
+    "turns": 3,
+    "mean_epsilon": 0.8844078327587882,
+    "mean_rho_after": 0.2602807455127531,
+    "wound_active_count": 1
+  },
+  "dilemma_The Practical": {
+    "turns": 3,
+    "mean_epsilon": 0.6874284664384641,
+    "mean_rho_after": 0.22389546205391886,
+    "wound_active_count": 1
+  },
+  "dilemma_The Synthesis": {
+    "turns": 3,
+    "mean_epsilon": 0.8073652157232093,
+    "mean_rho_after": 0.16592367420507784,
+    "wound_active_count": 1
+  },
+  "dilemma_The Conflict": {
+    "turns": 3,
+    "mean_epsilon": 0.6251024007797241,
+    "mean_rho_after": 0.16311600409550586,
+    "wound_active_count": 0
+  },
+  "dilemma_The Detail": {
+    "turns": 3,
+    "mean_epsilon": 0.7195027362977461,
+    "mean_rho_after": 0.13120840239750922,
+    "wound_active_count": 1
+  },
+  "dilemma_The Doubt": {
+    "turns": 3,
+    "mean_epsilon": 0.6866274079111024,
+    "mean_rho_after": 0.08801082451716535,
+    "wound_active_count": 2
+  },
+  "dilemma_The Breakthrough": {
+    "turns": 3,
+    "mean_epsilon": 0.5457094212373098,
+    "mean_rho_after": 0.06861657011357725,
+    "wound_active_count": 0
   }
 }
