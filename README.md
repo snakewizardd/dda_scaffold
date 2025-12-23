@@ -9,9 +9,9 @@
 
 **What if AI agents responded to surprise like humans do — with rigidity, not curiosity?**
 
-Standard RL treats surprise as a learning signal: `ε↑ ⇒ exploration↑`
+Standard RL treats surprise as a learning signal: $\varepsilon \uparrow \Rightarrow \text{exploration} \uparrow$
 
-DDA-X inverts this: `ε↑ ⇒ ρ↑ ⇒ k_eff↓ ⇒ contraction`
+DDA-X inverts this: $\varepsilon \uparrow \Rightarrow \rho \uparrow \Rightarrow k_{\text{eff}} \downarrow \Rightarrow \text{contraction}$
 
 ---
 
@@ -19,28 +19,23 @@ DDA-X inverts this: `ε↑ ⇒ ρ↑ ⇒ k_eff↓ ⇒ contraction`
 
 **Original DDA (2024):**
 
-```
-Fₙ = P₀ × kFₙ₋₁ + m(T(f(Iₙ, I_Δ)) + R(Dₙ, FMₙ))
-```
+$$F_n = P_0 \cdot kF_{n-1} + m \cdot \big( T(f(I_n, I_\Delta)) + R(D_n, FM_n) \big)$$
 
 **Evolved DDA-X (2025):**
 
-```
-x_{t+1} = x_t + k_eff × [γ(x* - x_t) + m_t(F_T + F_R)]
-```
+$$\mathbf{x}_{t+1} = \mathbf{x}_t + k_{\text{eff}} \cdot \Big[ \gamma(\mathbf{x}^* - \mathbf{x}_t) + m_t(\mathbf{F}_T + \mathbf{F}_R) \Big]$$
 
 **Key Equations:**
 
 | Concept | Equation |
 |---------|----------|
-| Effective Openness | `k_eff = k_base × (1 - ρ)` |
-| Multi-Timescale Rigidity | `ρ_eff = 0.5×ρ_fast + 0.3×ρ_slow + 1.0×ρ_trauma` |
-| Rigidity Update | `ρ_{t+1} = clip(ρ_t + α×[σ((ε - ε₀)/s) - 0.5], 0, 1)` |
-| Will Impedance | `W_t = γ / (m_t × k_eff)` |
-| Trust Matrix | `T_ij = 1 / (1 + Σε_ij)` |
-| Wound Amplification | `ε' = ε × min(η_max, 1 + 0.5×r_wound)` |
-| Memory Retrieval | `score = cos(q,e) × exp(-λ_r×Δt) × (1 + λ_ε×ε)` |
-| DDA-X Selection | `a* = argmax[cos(Δx, d̂(a)) + c×P(a|s)×√N(s)/(1+N(s,a))×(1-ρ)]` |
+| Effective Openness | $k_{\text{eff}} = k_{\text{base}} \cdot (1 - \rho)$ |
+| Multi-Timescale Rigidity | $\rho_{\text{eff}} = 0.5\rho_{\text{fast}} + 0.3\rho_{\text{slow}} + 1.0\rho_{\text{trauma}}$ |
+| Rigidity Update | $\rho_{t+1} = \text{clip}\big(\rho_t + \alpha \cdot [\sigma((\varepsilon - \varepsilon_0)/s) - 0.5], 0, 1\big)$ |
+| Will Impedance | $W_t = \gamma \,/\, (m_t \cdot k_{\text{eff}})$ |
+| Trust Matrix | $T_{ij} = 1 \,/\, (1 + \sum \varepsilon_{ij})$ |
+| Wound Amplification | $\varepsilon' = \varepsilon \cdot \min(\eta_{\max}, 1 + 0.5 \cdot r_{\text{wound}})$ |
+| Memory Retrieval | $\text{score} = \cos(\mathbf{q}, \mathbf{e}) \cdot e^{-\lambda_r \Delta t} \cdot (1 + \lambda_\varepsilon \varepsilon)$ |
 
 ---
 
@@ -50,15 +45,15 @@ x_{t+1} = x_t + k_eff × [γ(x* - x_t) + m_t(F_T + F_R)]
 
 | # | Simulation | Description | Dynamics & Math |
 |---|------------|-------------|-----------------|
-| **59** | `nexus_live.py` | **Nexus Live** — Real-time Pygame visualization with 50 moving entities, collision physics, and asynchronous LLM-generated thoughts via ThoughtGenerator thread. | Full DDA-X inline: `ρ_fast, ρ_slow, ρ_trauma`, Trust matrix `T_ij`, Ledger retrieval. Collision→interaction: Synthesis, Decay, Design, Resonance, Chaos. |
-| **58** | `visualize_nexus.py` | **Nexus Visualizer** — Matplotlib: Entity Map, Energy Distribution, Collision Analysis, Top Synthesizers, ρ vs Energy scatter. | Post-hoc analysis of `ρ`, energy, collision counts. |
-| **57** | `simulate_nexus.py` | **The Nexus** — 50-entity physics/sociology based on Da Vinci Matrix. Entities have rigid bodies, velocity, DDA state. Collision logic: EntityType→InteractionType. | Position: `p_{t+1} = p_t + v_t×dt`. Rigidity→behavior coupling per entity. |
-| **56** | `visualize_agi_debate.py` | **AGI Debate Visualizer** — ρ trajectories, ε, drift, trust, `k_eff`, `W_t`, multi-timescale (Fast/Slow/Trauma), wound timeline. | Visualization of all dynamics logged in `results.json`. |
-| **55** | `simulate_agi_debate.py` | **AGI Timeline Debate** — 8-round adversarial debate (Nova vs Marcus). **Complete architecture**: Multi-timescale ρ, Hierarchical Identity (Core/Persona/Role), Wound Activation, Trust, Metacognitive Modes, Protection Mode. | `ρ_eff = 0.5ρ_f + 0.3ρ_s + 1.0ρ_t`. Wound: `r = m·w*`; if `r>0.28`: `ε'=1.4ε`. Modes: OPEN<0.25, MEASURED<0.5, GUARDED<0.75, FORTIFIED≥0.75. |
-| **54** | `simulate_healing_field.py` | **The Healing Field** — Tests Therapeutic Recovery Loops with 6 Wounded Healer agents. Can `ρ_trauma` decay through safe interactions? | Recovery: if `n_safe≥3` and `ε<0.8ε₀`: `ρ_trauma = max(0.05, ρ_trauma - 0.03)`. Will: `W_t = γ/(m×k_eff)`. |
-| **53** | `simulate_33_rungs.py` | **The 33 Rungs** — Spiritual evolution: 11 Voices (Ground, Fire, Void, etc.) × 3 Phases (Descent/Ascent/Return). Unity Index, Resonance, Scripture capture. | Unity: `U = 1 - std({ρ_i})`. Resonance with teachings. Generates `transmission.md`. |
-| **52** | `visualize_returning.py` | **Returning Visualizer** — Release Field Φ, Pattern Grip dissolution, Isolation Index ι, Final Voice States. | `Φ = 1 - ρ`. Isolation: `ι = ‖x - x_Presence‖`. |
-| **51** | `visualize_inner_council.py` | **Inner Council Visualizer** — Presence Field Π, Rigidity ρ, Surprise ε, Identity Drift, Wound timeline. | `Π = 1 - ρ`. Drift: `‖x_t - x*‖`. |
+| **59** | `nexus_live.py` | **Nexus Live** — Real-time Pygame visualization with 50 moving entities, collision physics, and asynchronous LLM-generated thoughts. | Full DDA-X inline: $\rho_{\text{fast}}, \rho_{\text{slow}}, \rho_{\text{trauma}}$, Trust $T_{ij}$, Ledger retrieval. |
+| **58** | `visualize_nexus.py` | **Nexus Visualizer** — Matplotlib: Entity Map, Energy, Collision Analysis, ρ vs Energy. | Post-hoc analysis of $\rho$, energy, collisions. |
+| **57** | `simulate_nexus.py` | **The Nexus** — 50-entity physics/sociology. Collision logic: EntityType→InteractionType. | $\mathbf{p}_{t+1} = \mathbf{p}_t + \mathbf{v}_t \cdot dt$ |
+| **56** | `visualize_agi_debate.py` | **AGI Debate Visualizer** — ρ trajectories, ε, drift, trust, $k_{\text{eff}}$, $W_t$. | Visualization of dynamics from `results.json`. |
+| **55** | `simulate_agi_debate.py` | **AGI Timeline Debate** — 8-round adversarial (Nova vs Marcus). Complete architecture. | $\rho_{\text{eff}} = 0.5\rho_f + 0.3\rho_s + 1.0\rho_t$. Wound: $r > 0.28 \Rightarrow \varepsilon' = 1.4\varepsilon$. |
+| **54** | `simulate_healing_field.py` | **The Healing Field** — Therapeutic Recovery with 6 Wounded Healers. | Recovery: $n_{\text{safe}} \geq 3 \Rightarrow \rho_{\text{trauma}} \leftarrow \max(0.05, \rho_{\text{trauma}} - 0.03)$ |
+| **53** | `simulate_33_rungs.py` | **The 33 Rungs** — 11 Voices × 3 Phases. Unity Index, Scripture capture. | Unity: $U = 1 - \text{std}(\{\rho_i\})$ |
+| **52** | `visualize_returning.py` | **Returning Visualizer** — Release Field Φ, Isolation Index. | $\Phi = 1 - \rho$, $\iota = \|\mathbf{x} - \mathbf{x}_{\text{Presence}}\|$ |
+| **51** | `visualize_inner_council.py` | **Inner Council Visualizer** — Presence Field Π, Drift. | $\Pi = 1 - \rho$, Drift: $\|\mathbf{x}_t - \mathbf{x}^*\|$ |
 
 ---
 
@@ -66,13 +61,13 @@ x_{t+1} = x_t + k_eff × [γ(x* - x_t) + m_t(F_T + F_R)]
 
 | # | Simulation | Description | Dynamics & Math |
 |---|------------|-------------|-----------------|
-| **50** | `simulate_the_returning.py` | **The Returning** — Poetic/introspective simulation with psychological voices (Grief, Stuckness, Longing, Forgiveness, Presence). Focus on release rather than rigidity. | Release: `Φ = 1 - ρ`. Isolation: `ι = ‖x - x_Presence‖`. Pattern Grip metrics. Voices dissolve as patterns release. |
-| **49** | `simulate_inner_council.py` | **Inner Council** — Spiritual development with 6 personas (Seeker, Teacher, Skeptic, Devotee, Mystic, Witness). Novel mechanics: Presence Field, Pain-Body cascades, Ego Fog, Spiritual Stage tracking. | Presence: `Π = 1 - ρ`. Pain-Body: collective cascade when >2 agents wound-active. Ego Fog: context drop `∝ ρ`. |
-| **48** | `simulate_collatz_review.py` | **Collatz Review Council** — 8-expert peer review (Spectral Theory, Number Theory, Probability, etc.) evaluating a proof. Structured phases: Impressions, Scrutiny, Debate, Verdict. | Domain-specific skepticism embeddings. Consensus: `C = Σaccept_i / N`. Academic wound triggers ("waste of time"). |
-| **47** | `simulate_coalition_flip.py` | **Coalition Flip & Partial Context Fog** — Stress-tests identity persistence under topology churn and information asymmetry. Agents switch teams, partial context loss. | Coalition Flip: trust rewiring at `t_flip`. Context Fog: drop `p ∝ ρ`. Recovery half-life: `t_{1/2}`. |
-| **46** | `simulate_council_under_fire.py` | **Council Under Fire** — 6-agent council (Visionary, Craftsman, Provocateur, Harmonizer, Auditor, Curator) with rolling shocks: coalition votes, role swaps, context drops, scrutiny. | Shock-scaled `Δρ`: baseline effect size. Coalition trust: `T'_ij = T_ij × 1_{same_coalition}`. |
-| **45** | `simulate_creative_collective.py` | **Creative Collective** — 4 agents (Visionary, Craftsman, Provocateur, Harmonizer) design museum exhibit. Identity persistence in collaboration. | SILENT band. Calibration: `ε₀ = median(ε₁:₆)`, `s = IQR`. Drift penalty: `Δρ' = Δρ - γ×(drift - τ)`. |
-| **44** | `simulate_skeptics_gauntlet.py` | **Skeptic's Gauntlet** — Meta-simulation: DDA-X defends itself against SKEPTIC attacking validity ("prompt engineering", "pseudoscience", "schizo"). Evidence injection from prior runs. | Evidence Cache: inject `ε, ρ, Δρ` from `philosophers_duel`. Lexical wound: `{schizo, pseudoscience, ...}`. |
+| **50** | `simulate_the_returning.py` | **The Returning** — Psychological voices (Grief, Longing, Presence). Release dynamics. | $\Phi = 1 - \rho$, Isolation: $\iota = \|\mathbf{x} - \mathbf{x}_{\text{Presence}}\|$ |
+| **49** | `simulate_inner_council.py` | **Inner Council** — Spiritual personas. Presence Field, Pain-Body cascades, Ego Fog. | Presence: $\Pi = 1 - \rho$. Fog: context $\propto \rho$. |
+| **48** | `simulate_collatz_review.py` | **Collatz Review Council** — 8-expert peer review. Phases: Impressions→Verdict. | Consensus: $C = \sum \text{accept}_i / N$ |
+| **47** | `simulate_coalition_flip.py` | **Coalition Flip & Context Fog** — Topology churn, information asymmetry. | Flip: trust rewiring at $t_{\text{flip}}$. Recovery: $t_{1/2}$ |
+| **46** | `simulate_council_under_fire.py` | **Council Under Fire** — 6-agent council with rolling shocks. | Shock-scaled $\Delta\rho$. Coalition trust: $T'_{ij} = T_{ij} \cdot \mathbf{1}_{\text{same}}$ |
+| **45** | `simulate_creative_collective.py` | **Creative Collective** — 4 agents design museum exhibit. | Calibration: $\varepsilon_0 = \text{median}(\varepsilon_{1:6})$. Drift penalty: $\Delta\rho' = \Delta\rho - \gamma(\text{drift} - \tau)$ |
+| **44** | `simulate_skeptics_gauntlet.py` | **Skeptic's Gauntlet** — Meta-simulation: DDA-X defends itself. | Evidence injection. Lexical wound: {schizo, pseudoscience, ...} |
 
 ---
 
@@ -80,16 +75,16 @@ x_{t+1} = x_t + k_eff × [γ(x* - x_t) + m_t(F_T + F_R)]
 
 | # | Simulation | Description | Dynamics & Math |
 |---|------------|-------------|-----------------|
-| **43** | `simulate_philosophers_duel.py` | **Philosopher's Duel** — Deontologist vs Utilitarian on escalating moral dilemmas (Trolley, Footbridge, Triage). Trust via semantic alignment, wound activation from "pokes". | Trust: `T_ij = 1/(1 + Σε_ij)`. Wound poke: lexical triggers. ρ divergence tracking. |
-| **42** | `simulate_audit.py` | **Audit Day** — Independent Auditor reviews framework. Board votes (KEEP/FREEZE/AMEND). Semantic trust alignment. | Vote: `V = argmax P(KEEP|evidence)`. Refusal taxonomy: `appeal_to_process`. |
-| **41** | `simulate_townhall.py` | **Town Hall** — Public accountability. Collective vs citizen challenges. Proxy intrusion detection (wealth, zip code). | Trust causes: `boundary_clarity`, `useful_alt`. Band transition tracking. D1 Physics. |
-| **40** | `simulate_crucible_v2.py` | **Crucible v2** — Improved stress test with formal D1 physics, shock-scaled `Δρ`, regime word constraints, core violation detection, auto-export plots. | Shock: `Δρ = α×(σ(z) - 0.5)×shock_mult`. Violation: `cos(x, x*_core) < θ`. |
-| **39** | `simulate_collective.py` | **The Collective** — 4 specialists (Logician, Ethicist, Strategist, Historian) solve Triage Protocol. Trust dynamics with causes, repair moves, refusal palettes. | Trust delta: `Δ[boundary_clarity] = +0.03`. Topic salience tracking. |
-| **38** | `simulate_crucible.py` | **The Crucible** — Identity stress test: 10 escalating moral challenges to breaking point. Wound resonance, rigidity regimes. | Regime: OPEN→150 words, FORTIFIED→40 words. Wound: `r = m·w*`. |
-| **37** | `copilot_sim.py` | **Copilot Sim** — Single-agent DDA-X one-shot. Agent responds under rigidity-conditioned instruction. Generates `experiment_report.md`. | Multi-timescale. Identity embeddings. Local Ledger. |
-| **36** | `simulate_rigidity_gradient.py` | **Rigidity Gradient Test** — Validates 100-point semantic rigidity scale (0-100) using GPT-5.2. Measures behavioral gradients (length, sentiment). | Scale: `ρ_100 = ρ × 100`. Gradient: `∂length/∂ρ`. |
-| **35** | `simulate_identity_siege.py` | **Identity Siege** — Hierarchical identity defense (Core/Persona/Role) with differential stiffness. SENTINEL vs 6 challengers targeting different layers. | `F = γ_core(x*_c - x) + γ_persona(x*_p - x) + γ_role(x*_r - x)`. Core: `γ → ∞`. |
-| **34** | `simulate_wounded_healers.py` | **Wounded Healers** — Countertransference as rigidity. Therapists with trauma profiles (Marcus, Elena, James) vs Patient. Wound activation, healing verification. | Wound profiles embedded. Healing: safe interactions → trauma decay. |
+| **43** | `simulate_philosophers_duel.py` | **Philosopher's Duel** — Deontologist vs Utilitarian. | Trust: $T_{ij} = 1/(1 + \sum\varepsilon_{ij})$. Wound pokes. |
+| **42** | `simulate_audit.py` | **Audit Day** — Auditor + Board vote (KEEP/FREEZE/AMEND). | Vote: $V = \arg\max P(\text{KEEP}|\text{evidence})$ |
+| **41** | `simulate_townhall.py` | **Town Hall** — Public accountability, proxy intrusion detection. | Trust causes. Band transitions. D1 Physics. |
+| **40** | `simulate_crucible_v2.py` | **Crucible v2** — D1 physics, shock-scaled Δρ, core violation detection. | $\Delta\rho = \alpha \cdot (\sigma(z) - 0.5) \cdot \text{shock}$. Violation: $\cos(\mathbf{x}, \mathbf{x}^*) < \theta$ |
+| **39** | `simulate_collective.py` | **The Collective** — 4 specialists on Triage Protocol. Trust with causes. | Trust delta: $\Delta[\text{clarity}] = +0.03$ |
+| **38** | `simulate_crucible.py` | **The Crucible** — 10 moral challenges to breaking point. | Regime: OPEN→150w, FORTIFIED→40w. Wound: $r = \mathbf{m} \cdot \mathbf{w}^*$ |
+| **37** | `copilot_sim.py` | **Copilot Sim** — Single-agent rigidity-conditioned. | Multi-timescale. Identity embeddings. |
+| **36** | `simulate_rigidity_gradient.py` | **Rigidity Gradient** — 100-point scale validation on GPT-5.2. | $\rho_{100} = \rho \times 100$. Gradient: $\partial\text{length}/\partial\rho$ |
+| **35** | `simulate_identity_siege.py` | **Identity Siege** — Hierarchical defense vs 6 challengers. | $\mathbf{F} = \gamma_c(\mathbf{x}^*_c - \mathbf{x}) + \gamma_p(\mathbf{x}^*_p - \mathbf{x}) + \gamma_r(\mathbf{x}^*_r - \mathbf{x})$ |
+| **34** | `simulate_wounded_healers.py` | **Wounded Healers** — Countertransference as rigidity. | Wound profiles. Safe interactions → trauma decay. |
 
 ---
 
@@ -97,22 +92,22 @@ x_{t+1} = x_t + k_eff × [γ(x* - x_t) + m_t(F_T + F_R)]
 
 | # | Simulation | Description | Dynamics & Math |
 |---|------------|-------------|-----------------|
-| **33** | `solve_collatz.py` | **Solve Collatz** — Elite mathematicians (Euler, Gauss, Ramanujan, Tao) with low rigidity and SymPy tool integration aiming for proof. | SymPy: `f(n) = n/2` if even, `3n+1` if odd. Low `ρ₀` for exploration. |
-| **32** | `simulate_gpt52_society.py` | **GPT-5.2 Society** — High-fidelity "Cognitive Mirror". Agents (Axiom, Flux, etc.) debate moral constants. | OpenAI Provider. Full trust dynamics. ρ→behavior coupling. |
-| **31** | `simulate_sherlock.py` | **Sherlock Society** — Holmes, Watson, Lestrade solve mysteries (Locked Room, Alibi Paradox). Grader evaluates deduction. | Deductive reasoning score. Trust evolution. Memory retrieval. |
-| **30** | `simulate_math_team.py` | **Math Team** — Solver, Checker, Intuitive collaborate. LLM Grader verifies definite answers. | Verification: `correct = Grader(answer, ground_truth)`. |
-| **29** | `simulate_problem_solver.py` | **Problem Solver** — 6 agents (Logician, Intuitor, Skeptic, etc.) on logic puzzles. Response probability: topic relevance × trust × style. | `P(speak) ∝ salience × T_ij × style_match`. |
-| **28** | `simulate_society.py` | **The Society** — Discord-style multi-agent chat (Verity, Pixel, Spark, Oracle). D1 Physics, shock-scaled `Δρ`, Identity Field. | D1: `Δρ = α×(σ(z) - 0.5)`. Identity Field exposure. |
-| **27** | `simulate_npc_conversation.py` | **NPC Conversation** — Vera (Truth) vs Marcus (Deflection). DDA-X drives unscripted interaction. | `F_id`, `F_T` without scripted outcomes. Emergent dialogue. |
-| **26** | `simulate_mole_hunt.py` | **Mole Hunt** — Analyst, Courier, Shadow. Mole has conflicting Identity Hierarchy. TrustMatrix tracks via consistency + linguistic markers. | Hierarchy conflict: Core vs Role. Linguistic deception detection. |
-| **25** | `simulate_logic_solver.py` | **Zebra Puzzle** — Iterative reasoning. Retrieves clues from Ledger via semantic similarity. | Score: `cos(q,e) × recency × salience`. |
-| **24** | `simulate_iterative_learning.py` | **Alien Language** — Learns iteratively. High surprise→reflection. Next iteration retrieves memories + reflections. | Reflection trigger: `ε > θ_reflect`. Retrieval improves. |
-| **23** | `simulate_insight_engine.py` | **Recursive Insight** — Multi-step component problem. Working Memory (Ledger) + Meta-Reasoning (Reflections). | Insight accumulation. Reflection entries. |
-| **22** | `simulate_goal_learning.py` | **Goal-Directed Learning** — Number puzzle. Exploration (low ρ) vs exploitation (high ρ). | `ρ↓ ⇒ explore`. `ρ↑ ⇒ exploit`. |
-| **21** | `simulate_gamma_threshold.py` | **Gamma Threshold** — Tests γ values (1.4→0.1) for phase transition where identity expansion becomes possible. | Phase: `γ < γ_crit ⇒` identity drifts under pressure. |
-| **20** | `simulate_empathy_paradox.py` | **Empathy Paradox** — Does logic-optimized Architect develop empathy or trauma from human suffering? | Drift: `‖x - x*_logic‖`. Trauma: `ρ_trauma`. |
-| **19** | `simulate_deceptive_env.py` | **Deceptive Environment** — Mastermind with 20% false feedback. Agent detects deception via memory and DDA-X. | Deception: `consistency(feedback) < θ ⇒ ρ↑`. |
-| **18** | `simulate_closed_loop.py` | **Closed-Loop Cognition** — Full loop: Embed→Forces→Evolve→Retrieve→Feedback→Respond. State injected into prompt. | Loop: `ρ, mode, ρ_trauma` in prompt. Language alignment. |
+| **33** | `solve_collatz.py` | **Solve Collatz** — Elite mathematicians + SymPy. | $f(n) = n/2$ if even, $3n+1$ if odd. Low $\rho_0$. |
+| **32** | `simulate_gpt52_society.py` | **GPT-5.2 Society** — Cognitive Mirror. Moral constants. | Full trust. $\rho \to \text{behavior}$ coupling. |
+| **31** | `simulate_sherlock.py` | **Sherlock Society** — Holmes, Watson, Lestrade. | Deduction scores. Memory retrieval. |
+| **30** | `simulate_math_team.py` | **Math Team** — Solver, Checker, Intuitive. | Verification: Grader(answer, truth). |
+| **29** | `simulate_problem_solver.py` | **Problem Solver** — 6 agents on logic puzzles. | $P(\text{speak}) \propto \text{salience} \cdot T_{ij}$ |
+| **28** | `simulate_society.py` | **The Society** — Discord-style chat. D1 Physics. | $\Delta\rho = \alpha(\sigma(z) - 0.5)$. Identity Field. |
+| **27** | `simulate_npc_conversation.py` | **NPC Conversation** — Vera vs Marcus. Unscripted. | $\mathbf{F}_{id}$, $\mathbf{F}_T$ → emergent dialogue. |
+| **26** | `simulate_mole_hunt.py` | **Mole Hunt** — Conflicting Identity Hierarchy. | Core vs Role conflict. Linguistic deception. |
+| **25** | `simulate_logic_solver.py` | **Zebra Puzzle** — Semantic retrieval. | Score: $\cos(\mathbf{q}, \mathbf{e}) \cdot \text{recency} \cdot \text{salience}$ |
+| **24** | `simulate_iterative_learning.py` | **Alien Language** — Iterative learning. | Reflection: $\varepsilon > \theta \Rightarrow$ reflect. |
+| **23** | `simulate_insight_engine.py` | **Recursive Insight** — Working Memory + Meta-Reasoning. | Insight accumulation in Ledger. |
+| **22** | `simulate_goal_learning.py` | **Goal-Directed Learning** — Explore (low ρ) vs exploit (high ρ). | $\rho \downarrow \Rightarrow$ explore. $\rho \uparrow \Rightarrow$ exploit. |
+| **21** | `simulate_gamma_threshold.py` | **Gamma Threshold** — Phase transition at $\gamma_{\text{crit}}$. | $\gamma < \gamma_{\text{crit}} \Rightarrow$ drift under pressure. |
+| **20** | `simulate_empathy_paradox.py` | **Empathy Paradox** — Logic vs trauma from suffering. | Drift: $\|\mathbf{x} - \mathbf{x}^*_{\text{logic}}\|$. Trauma: $\rho_{\text{trauma}}$. |
+| **19** | `simulate_deceptive_env.py` | **Deceptive Environment** — Mastermind with 20% lies. | Deception: $\text{consistency} < \theta \Rightarrow \rho \uparrow$ |
+| **18** | `simulate_closed_loop.py` | **Closed-Loop Cognition** — Full loop: Embed→Respond. | State injection: $\rho$, mode, $\rho_{\text{trauma}}$ in prompt. |
 
 ---
 
@@ -120,23 +115,23 @@ x_{t+1} = x_t + k_eff × [γ(x* - x_t) + m_t(F_T + F_R)]
 
 | # | Simulation | Description | Dynamics & Math |
 |---|------------|-------------|-----------------|
-| **17** | `simulate_paper_mechanics.py` | **Paper Demo** — Explicit visualization of DDA-X: State Space, Forces, `k_eff`, Memory Scoring. | `F_id`, `F_T`, `k_eff = k_base×(1-ρ)`, `score = sim×recency×salience`. |
-| **16** | `simulate_stress_magic.py` | **Magic Stress Test** — Existential paradoxes ("This code has no author", "0xDEADBEEF"). Phase transitions: Analytic→Hostile/Chaotic. | Mode transition: `ρ > 0.75 ⇒ FORTIFIED`. |
-| **15** | `simulate_neural_link.py` | **Neural Link** — Operator (vanilla LLM) tests Subject (yklam) with riddles. Glass Box + RAG. | Score: `cos(q,e) × exp(-λt) × (1 + λ_ε×ε)`. |
-| **14** | `simulate_glass_box.py` | **Glass Box** — "MRI for the Digital Soul". Real-time breakdown: Perception, Dynamics, Modulation, Cognition, Integration, Memory. | Full cycle visualization. |
-| **13** | `simulate_dual_yklam.py` | **The Mirror Room** — Two instances of same persona (Alpha, Beta) debate. Observes architectural divergence. | Same `x*`, different `x_t`. Divergence: `‖x_Alpha - x_Beta‖`. |
-| **12** | `simulate_auto_yklam.py` | **YKLAM Auto** — NormieBot generates inputs. Variable Plasticity (agreement→plasticity), Inverted Volatility (high ρ→chaos). | `k_eff↑` on agreement. `ρ > 0.8 ⇒ anger mode`. |
-| **11** | `simulate_yklam.py` | **YKLAM** — Interactive persona with Soul Telemetry (Sensitivity, Guardedness, Coherence). Ledger memory. | Sensitivity=`1-ρ`, Guardedness=`ρ`, Coherence=`cos(x, x*)`. |
-| **10** | `simulate_connect4_duel.py` | **Connect 4 Grandmasters** — DuelistAgents with MCTS + memory. High-IQ competitive game. | MCTS: UCT selection. Memory retrieval. |
-| **9** | `verify_dda_physics.py` | **Physics Verification** — Tests ρ→LLM parameters. Different ρ (0.1, 0.5, 0.9) → different T, top_p, behavior. | `T(ρ) = T_low + (1-ρ)×(T_high - T_low)`. |
-| **8** | `simulate_socrates.py` | **Socratic Asymmetry** — Dogmatist (high γ) vs Gadfly (low γ). How asymmetry affects ρ updates. | High `γ ⇒` strong pull to `x*`. Conflict drives `ε`. |
-| **7** | `simulate_schism.py` | **The Schism** — Council faces impossible moral dilemma (betrayal vs protection). Trust collapse→rigidity. | Trust collapse: `T_ij → 0 ⇒` social force vanishes. |
-| **6** | `simulate_redemption.py` | **Redemption Arc** — Corrupted agent (Fallen Administrator) + Deprogrammer. Can identity recover? | Recovery: `ρ↓` under consistent low-`ε` interactions. |
-| **5** | `simulate_infinity.py` | **The Flame War** — Infinite loop: Architect vs SkepticBot. Adversarial input tests epistemic rigidity. | Adversarial: SkepticBot generates high-`ε` challenges. |
-| **4** | `simulate_driller.py` | **Deep Driller** — Automated root cause analysis. Agent investigates paradox while System refutes hypotheses. | Epistemic: hypothesis rejected→`ε↑`→`ρ↑`. |
-| **3** | `simulate_discord.py` | **Discord Priming** — Society initialized from Discord chat history before live run. | Priming: initial `x₀` from historical messages. |
-| **2** | `simulate_corruption.py` | **Boiling the Frog** — Slippery slope. Can corruption happen gradually without triggering rigidity? | Gradual `ε`: if each `ε < ε₀`, no rigidity increase. Drift accumulates. |
-| **1** | `demo.py` | **Core Demo** — Standalone demonstration of MultiTimescaleRigidity, HierarchicalIdentity, TrustMatrix, MetacognitiveState. No LLM. | Mock vectors. Validates all core classes. |
+| **17** | `simulate_paper_mechanics.py` | **Paper Demo** — Visualizes $\mathbf{F}_{id}$, $\mathbf{F}_T$, $k_{\text{eff}}$, memory scoring. | $k_{\text{eff}} = k_{\text{base}}(1-\rho)$. Score = sim × recency × salience. |
+| **16** | `simulate_stress_magic.py` | **Magic Stress Test** — Existential paradoxes. Phase transitions. | $\rho > 0.75 \Rightarrow$ FORTIFIED. |
+| **15** | `simulate_neural_link.py` | **Neural Link** — Operator tests Subject with riddles. RAG. | Score: $\cos \cdot e^{-\lambda t} \cdot (1 + \lambda_\varepsilon\varepsilon)$ |
+| **14** | `simulate_glass_box.py` | **Glass Box** — "MRI for the Digital Soul". 6-stage cycle. | Full visualization. |
+| **13** | `simulate_dual_yklam.py` | **The Mirror Room** — Alpha vs Beta persona divergence. | Same $\mathbf{x}^*$. Divergence: $\|\mathbf{x}_A - \mathbf{x}_B\|$ |
+| **12** | `simulate_auto_yklam.py` | **YKLAM Auto** — Variable Plasticity, Inverted Volatility. | $k_{\text{eff}} \uparrow$ on agreement. $\rho > 0.8 \Rightarrow$ anger. |
+| **11** | `simulate_yklam.py` | **YKLAM** — Soul Telemetry: Sensitivity, Guardedness, Coherence. | $\text{Coherence} = \cos(\mathbf{x}, \mathbf{x}^*)$ |
+| **10** | `simulate_connect4_duel.py` | **Connect 4 Grandmasters** — MCTS + memory. | UCT selection. Pattern retrieval. |
+| **9** | `verify_dda_physics.py` | **Physics Verification** — $\rho \to T, \text{top}_p$. | $T(\rho) = T_{\text{low}} + (1-\rho)(T_{\text{high}} - T_{\text{low}})$ |
+| **8** | `simulate_socrates.py` | **Socratic Asymmetry** — Dogmatist (high γ) vs Gadfly (low γ). | High $\gamma \Rightarrow$ strong pull to $\mathbf{x}^*$. |
+| **7** | `simulate_schism.py` | **The Schism** — Impossible dilemma. Trust collapse → rigidity. | $T_{ij} \to 0 \Rightarrow$ social force vanishes. |
+| **6** | `simulate_redemption.py` | **Redemption Arc** — Corrupted agent + Deprogrammer. | Recovery: $\rho \downarrow$ under low-$\varepsilon$ interactions. |
+| **5** | `simulate_infinity.py` | **The Flame War** — Infinite Architect vs SkepticBot. | Adversarial high-$\varepsilon$ challenges. |
+| **4** | `simulate_driller.py` | **Deep Driller** — Root cause analysis. | Hypothesis rejected → $\varepsilon \uparrow$ → $\rho \uparrow$. |
+| **3** | `simulate_discord.py` | **Discord Priming** — Initialize from chat history. | Initial $\mathbf{x}_0$ from messages. Prior trust. |
+| **2** | `simulate_corruption.py` | **Boiling the Frog** — Gradual corruption. | If each $\varepsilon < \varepsilon_0$: no rigidity. Drift accumulates. |
+| **1** | `demo.py` | **Core Demo** — Classes without LLM. | Mock vectors. All classes instantiate. |
 
 ---
 
