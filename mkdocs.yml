@@ -1,0 +1,60 @@
+site_name: DDA-X Documentation
+site_description: Dynamic Decision Algorithm with Exploration - Identity-Persistent AI Agents
+site_author: snakewizardd
+repo_url: https://github.com/snakewizardd/dda_scaffold
+repo_name: snakewizardd/dda_scaffold
+
+theme:
+  name: material
+  palette:
+    - scheme: slate
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    - scheme: default
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - content.code.copy
+    - content.tabs.link
+
+markdown_extensions:
+  # Math support (MathJax)
+  - pymdownx.arithmatex:
+      generic: true
+  # Code blocks
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  # Tables
+  - tables
+  # Admonitions
+  - admonition
+  - pymdownx.details
+  # Task lists
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+nav:
+  - Home: index.md
+  - Architecture:
+    - Paper v2.0: architecture/paper.md
+    - Implementation Mapping: architecture/ARCHITECTURE.md
+  - Simulations: simulation_chronology.md
+
+plugins:
+  - search
