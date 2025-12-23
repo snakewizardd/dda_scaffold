@@ -1,9 +1,11 @@
 window.MathJax = {
     tex: {
-        inlineMath: [["\\(", "\\)"]],
-        displayMath: [["\\[", "\\]"]],
+        // Support BOTH GitHub ($...$, $$...$$) AND MkDocs (\(...\), \[...\]) syntax
+        inlineMath: [["\\(", "\\)"], ["$", "$"]],
+        displayMath: [["\\[", "\\]"], ["$$", "$$"]],
         processEscapes: true,
-        processEnvironments: true
+        processEnvironments: true,
+        tags: 'ams'
     },
     options: {
         ignoreHtmlClass: ".*|",
@@ -12,5 +14,8 @@ window.MathJax = {
 };
 
 document$.subscribe(() => {
+    MathJax.startup.output.clearCache()
+    MathJax.typesetClear()
+    MathJax.texReset()
     MathJax.typesetPromise()
 })

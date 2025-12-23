@@ -1,63 +1,8 @@
-# DDA-X: Surprise → Rigidity → Contraction
-**A Dynamical Framework for Agent Behavior**
+# Simulation Chronology
 
-> **Standard RL:** surprise → exploration  
-> **DDA-X:** **surprise → rigidity → contraction**
+This section catalogs the complete evolution of the DDA-X framework across **59 simulations**, organized in reverse chronological order (Pinnacle $\to$ Foundation).
 
-DDA-X is a cognitive-dynamics framework in which **prediction error (surprise) increases rigidity** (defensive contraction) rather than immediately driving exploration. Across 59 simulations, agents maintain a continuous latent state (via 3072-D text embeddings), measure surprise as embedding-space prediction error, and bind that internal rigidity to externally visible behavior—constraining bandwidth, altering decoding styles, and injecting semantic "cognitive state" instructions.
-
-This repository demonstrates the evolution of this framework from basic physics demos to "pinnacle" simulations involving adversarial debate, therapeutic recovery loops, and multi-agent peer review coalitions.
-
----
-
-## The Core Insight
-
-In standard Reinforcement Learning, surprise is often treated as an "intrinsic motivation" signal (curiosity) to explore. DDA-X inverts this. It models the behavior of organisms that **freeze and contract** when startled.
-
-1.  **Startle Response**: High prediction error ($\epsilon$) triggers a spike in rigidity ($\rho$).
-2.  **Contraction**: High rigidity reduces the "step size" of state updates ($k_{\text{eff}}$) and constrains the "bandwidth" of output (word counts, topic variance).
-3.  **Safety & Recovery**: Only when prediction error remains low for a sustained period does rigidity decay, allowing the system to reopen (Trauma Decay).
-
-## Core Equations
-
-The system dynamics are governed by continuous state-space updates.
-
-### 1. State Update with Identity Attractor
-The agent's state $x_t$ evolves under the influence of an **Identity Attractor** $x^*$ (who they are), environmental observation $F_T$ (truth), and their own response $F_R$ (reflection).
-
-$$
-x_{t+1} = x_t + k_{\text{eff}} \cdot \eta \Big( \underbrace{\gamma(x^* - x_t)}_{\text{Identity Pull}} + m(\underbrace{e(o_t) - x_t}_{\text{Truth}} + \underbrace{e(a_t) - x_t}_{\text{Reflection}}) \Big)
-$$
-
-### 2. Rigidity-Modulated Step Size
-Rigidity $\rho \in [0,1]$ acts as a "brake" on learning and movement.
-
-$$
-k_{\text{eff}} = k_{\text{base}} (1 - \rho_t)
-$$
-
-### 3. Rigidity Update (Logistic Gate)
-Rigidity increases when prediction error $\epsilon_t$ exceeds a threshold $\epsilon_0$.
-
-$$
-z_t = \frac{\epsilon_t - \epsilon_0}{s}, \quad \Delta\rho_t = \alpha(\sigma(z_t) - 0.5)
-$$
-
-### 4. Multi-Timescale Decomposition
-We decompose rigidity into three distinct timescales:
-*   $\rho_{\text{fast}}$: Startle response (seconds)
-*   $\rho_{\text{slow}}$: Stress accumulation (minutes)
-*   $\rho_{\text{trauma}}$: Permanent/Semi-permanent scarring (asymmetric accumulation)
-
-$$
-\rho_{\text{eff}} = \min(1, w_f \rho_{\text{fast}} + w_s \rho_{\text{slow}} + w_t \rho_{\text{trauma}})
-$$
-
----
-
-## 59 Simulations: The Evolution of DDA-X
-
-This repository contains **59 simulations** tracing the development of the architecture.
+## The Catalog
 
 | Tier | Sim Index | Name | Key Dynamics Tested |
 | :--- | :--- | :--- | :--- |
@@ -120,42 +65,3 @@ This repository contains **59 simulations** tracing the development of the archi
 | **1** | 03 | `simulate_technology.py` | Tool discovery. |
 | **1** | 02 | `simulate_singularity.py` | Recursive improvement. |
 | **1** | 01 | `simulate_omega_point.py` | Final convergence. |
-
----
-
-## Infrastructure
-
-*   **`src/llm/openai_provider.py`**: Handles coupling between Rigidity ($\rho$) and LLM generation. For reasoning models (o1/GPT-5.2), it injects semantic "Cognitive State" instructions. For standard models, it modulates temperature/top_p.
-*   **`src/memory/ledger.py`**: Implements **Surprise-Weighted Memory**. Experiences are retrieved based on Similarity $\times$ Recency $\times$ Salience (where Salience scales with Prediction Error).
-
-## Running the Simulations
-
-Set your OpenAI API key:
-
-```bash
-export OPENAI_API_KEY="sk-..."
-```
-
-Run any simulation:
-
-```bash
-# Run the pinnacle debate simulation
-python simulations/simulate_agi_debate.py
-
-# Run the therapeutic recovery test
-python simulations/simulate_healing_field.py
-
-# Run the real-time Pygame visualization
-python simulations/nexus_live.py
-```
-
-## Unique Contributions
-
-1.  **Rigidity as a Control Variable**: We explicitly model "defensiveness" as a state variable that shrinks learning rates ($k_{\text{eff}}$) and output bandwidth.
-2.  **Inverted Exploration**: Unlike RL, surprise leads to *less* exploration (contraction) initially.
-3.  **Wounds as Threat Priors**: Content-addressable "wounds" (semantic embeddings) amplify surprise and trigger defensive responses.
-4.  **Therapeutic Recovery**: We demonstrate mathematically how "safe" (low-error) interactions can decay trauma over time.
-
----
-
-*(c) 2025 DDA-X Research Team*
