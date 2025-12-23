@@ -1,618 +1,143 @@
-# DDA-X: From Dynamic Decision Algorithm to Cognitive Architecture
-
-**Version 2.0 — December 2025**
-
-> *A complete rewrite reflecting 15 months of iterative development across 59 simulations.*
-
----
+# DDA-X: Surprise → Rigidity → Contraction
+*A Dynamical Framework for Embedding-Space Agents with Rigidity-Bound Generation*
 
 ## Abstract
 
-This paper documents **DDA-X** (Dynamic Decision Algorithm with Exploration), a cognitive architecture for identity-persistent AI agents. We trace its evolution from the original DDA formula—a recursive decision-making model developed in early 2024—through its integration with Microsoft ExACT's MCTS patterns and its subsequent expansion into a full psychological realism framework. The core innovation is the inversion of conventional surprise-curiosity coupling: **surprise triggers rigidity, not exploration**. We present the complete mathematical formalism including multi-timescale rigidity dynamics, wound detection mechanics, therapeutic recovery loops, and trust-from-predictability. All equations are implemented and validated across 59 progressive simulations.
+DDA-X is a cognitive dynamics framework in which prediction error (surprise) induces defensive rigidity rather than immediate exploration. In contrast to standard reinforcement learning heuristics that treat surprise as an exploration bonus, DDA-X models startled systems as **contracting**—reducing behavioral bandwidth and state update magnitude—until safety and predictability permit reopening. We operationalize DDA-X in a family of simulations spanning adversarial dialogue, therapeutic recovery, multi-agent convergence, and embodied collision dynamics. The framework combines (i) a continuous state space with identity attractors, (ii) rigidity-modulated effective step size, (iii) multi-timescale rigidity decomposition (fast/slow/trauma), and (iv) content-addressable wound activation.
 
-**Keywords:** autonomous agents, identity persistence, adaptive rigidity, psychological realism, LLM agents, MCTS
+## 1. State Representation
 
----
+Let $x_t \in \mathbb{R}^d$ be an agent's internal state at time $t$, where $d=3072$ (using `text-embedding-3-large`).
 
-## 1. Origins: The Dynamic Decision Algorithm
+Each agent maintains:
+*   $x_t$: Current state (initialized near an identity attractor $x^*$)
+*   $x^{\text{pred}}_t$: Predicted embedding of the agent's next action/utterance
+*   $e(a_t)$: Embedding of the generated utterance $a_t$
 
-### 1.1 The Original Formula (2024)
+In multiple simulations, $x^{\text{pred}}$ is an exponentially smoothed forecast of the agent's own past output embeddings:
 
-The foundation of DDA-X is a recursive decision-making equation developed prior to any LLM integration:
+$$
+x^{\text{pred}}_{t+1} = (1-\beta)x^{\text{pred}}_{t} + \beta \, e(a_t)
+$$
 
-$$F_n = P_0 \cdot kF_{n-1} + m \cdot \big( T(f(I_n, I_\Delta)) + R(D_n, FM_n) \big)$$
+(e.g., $\beta=0.3$ in `simulate_the_returning.py`, `simulate_skeptics_gauntlet.py`).
 
-![DDA Workflow](dda_workflow.png)
+## 2. Surprise as Prediction Error
 
-**Symbol Definitions:**
+We define surprise as the Euclidean distance between prediction and reality in semantic space:
 
-| Symbol | Meaning |
-|--------|---------|
-| $F_n$ | Choice taken at step n |
-| $P_0$ | Initial goal |
-| $kF_{n-1}$ | Effect of previous decision on declared goal |
-| $m$ | Rate vector (time, motivation, attention) |
-| $I_n$ | Original factual information |
-| $I_\Delta$ | Facts acquired throughout the process |
-| $D_n$ | Potential choices (vector) |
-| $FM_n$ | Subjective and objective assessments of $D_n$ |
-| $T(\cdot)$ | Truth function (parses facts) |
-| $R(\cdot)$ | Reflection function (information gained) |
+$$
+\epsilon_t = \lVert x^{\text{pred}}_t - e(a_t) \rVert_2
+$$
 
-### 1.2 Key Insight from Original DDA
+This acts as the primary driving signal for the cognitive engine.
 
-The formula captures **goal persistence under information pressure**:
-- The term $P_0 \times kF_{n-1}$ maintains continuity with the original goal
-- The term $m(T + R)$ integrates new information and reflections
-- The balance between these determines whether the agent adapts or persists
+## 3. Rigidity Dynamics: The Logistic Gate
 
-This is the seed of **identity persistence** — the idea that an agent should maintain coherent goals while incorporating new evidence.
+Rigidity $\rho_t \in [0,1]$ modulates the system's openness to change. We compute an update $\Delta \rho_t$ using a logistic gating function centered at a surprise threshold $\epsilon_0$:
 
----
+$$
+z_t = \frac{\epsilon_t - \epsilon_0}{s}, \qquad \sigma(z) = \frac{1}{1+e^{-z}}
+$$
 
-## 2. Evolution: Integration with ExACT
+$$
+\Delta \rho_t = \alpha(\sigma(z_t) - 0.5)
+$$
 
-### 2.1 Discovery of Microsoft ExACT
+$$
+\rho_{t+1} = \text{clip}(\rho_t + \Delta\rho_t, \, 0, \, 1)
+$$
 
-In late 2024, we discovered [Microsoft ExACT](https://github.com/microsoft/ExACT) (Azure Foundry Labs), which introduced:
-- **Reflective MCTS (R-MCTS)**: Tree search with surprise-triggered reflection
-- **Multi-agent debate**: Calibrated state evaluation
-- **Contrastive reflection**: Learning from surprising transitions
+This implements the core DDA-X thesis: **higher surprise $\rightarrow$ higher rigidity**.
 
-ExACT's approach: *surprise drives exploration and reflection*.
+### Multi-Timescale Decomposition
 
-### 2.2 The Inversion Hypothesis
+To model complex behaviors like startle vs. trauma, we decompose rigidity into three timescales:
 
-We proposed the opposite: **surprise drives rigidity and contraction**.
+1.  **Fast ($\rho_{\text{fast}}$)**: Quick startle response, rapid decay.
+2.  **Slow ($\rho_{\text{slow}}$)**: Quantitative stress accumulation.
+3.  **Trauma ($\rho_{\text{trauma}}$)**: Asymmetric accumulation (scarring). Only increases when $\epsilon > \theta_{\text{trauma}}$ (unless therapeutic intervention occurs).
 
-Biological observation: A startled organism freezes before exploring. A threatened human becomes defensive, not curious. This is not a bug — it is a survival mechanism.
+Effective rigidity is a weighted sum:
 
-### 2.3 The Synthesis
+$$
+\rho_{\text{eff}} = \min(1, \, w_f \rho_{\text{fast}} + w_s \rho_{\text{slow}} + w_t \rho_{\text{trauma}})
+$$
 
-DDA + ExACT = **DDA-X**
+## 4. State Update and Will Impedance
 
-From DDA:
-- Goal/identity persistence ($P_0 \times kF_{n-1}$)
-- Truth and reflection channels ($T$, $R$)
+The agent's state evolves under forces, but the *magnitude* of evolution is throttled by rigidity.
 
-From ExACT:
-- Tree search with UCT exploration
-- Reflection database with embedding retrieval
-- LLM integration patterns
+$$
+x_{t+1} = x_t + k_{\text{eff}} \cdot \eta \Big( \underbrace{\gamma(x^* - x_t)}_{\text{Identity}} + m(\underbrace{F_{\text{truth}}}_{\text{Observation}} + \underbrace{F_{\text{reflection}}}_{\text{Action}}) \Big)
+$$
 
-Novel contribution:
-- **Rigidity-dampened exploration** — surprise suppresses the UCT exploration bonus
-- **Parameter-level coupling** — internal state directly modulates LLM sampling
+Where the **Effective Step Size** is:
 
----
+$$
+k_{\text{eff}} = k_{\text{base}}(1 - \rho_t)
+$$
 
-## 3. State Space Formalism
+We define **Will Impedance** $W_t$, quantifying resistance to environmental pressure:
 
-### 3.1 Continuous State Representation
+$$
+W_t = \frac{\gamma}{m_t \cdot k_{\text{eff}}}
+$$
 
-The agent's internal state is a vector in decision-space:
+As rigidity $\rho \to 1$, $k_{\text{eff}} \to 0$, and Will Impedance $W_t \to \infty$. The agent becomes immovable.
 
-$$\mathbf{x}_t \in \mathbb{R}^d$$
+## 5. Binding Rigidity to LLM Generation
 
-where $d$ = embedding dimension (768 for nomic-embed-text, 3072 for text-embedding-3-large).
+DDA-X binds the internal scalar $\rho$ to the external LLM generation process via `OpenAIProvider`.
 
-### 3.2 Identity Attractor
+### For Reasoning Models (o1 / GPT-5.2)
+Since current reasoning models do not support granular sampling parameters (temperature), we inject **Semantic Rigidity Instructions** directly into the cognitive state block of the prompt:
 
-A fixed point representing "who the agent is":
+> `[COGNITIVE STATE]: You are in a GUARDED state. Your beliefs are rigid. Limit your response to 50 words. Do not accept new premises without extreme evidence.`
 
-$$\mathbf{x}^* \in \mathbb{R}^d$$
+### For Standard Models (GPT-4o)
+We modulate sampling parameters:
+*   Temperature: $T(\rho) = T_{\min} + (1-\rho)(T_{\max} - T_{\min})$
+*   Top-P: Constricted as rigidity increases.
+*   Presence Penalty: Reduced to discourage topic drift.
 
-Computed as the normalized embedding of the agent's core identity text:
-```python
-identity_emb = normalize(embed(core + persona))
-```
+## 6. Wounds: Content-Addressable Threat Priors
 
-### 3.3 Force Channels
+A "Wound" is a semantic point of vulnerability $w \in \mathbb{R}^d$. Activation occurs via:
 
-Three forces act on the agent's state:
+$$
+\text{wound\_active} = (\langle e(s_t), w \rangle > \tau_{\cos} \;\lor\; \text{lexical\_match}) \land \text{cooldown\_satisfied}
+$$
 
-**Identity Pull** — restoring force toward $\mathbf{x}^*$:
-$$\mathbf{F}_{id} = \gamma(\mathbf{x}^* - \mathbf{x}_t)$$
+When active, surprise is amplified, simulating a disproportionate psychological reaction:
 
-**Truth Channel** — force toward observed reality:
-$$\mathbf{F}_T = T(I_t, I_\Delta) - \mathbf{x}_t$$
+$$
+\epsilon'_t = \epsilon_t \cdot \min(A_{\max}, \, 1 + c \cdot \langle e(s_t), w \rangle)
+$$
 
-**Reflection Channel** — force toward preferred action directions:
-$$\mathbf{F}_R = R(\mathcal{A}_t, \Phi_t, \mathcal{L}) - \mathbf{x}_t$$
+## 7. Trust: Hybrid Implementation
 
-### 3.4 State Update Equation
+While the theoretical ideal for trust is prediction-based ($T_{ij} = \frac{1}{1 + \sum \epsilon}$), current simulations implement a **Hybrid Trust Model**:
 
-$$\mathbf{x}_{t+1} = \mathbf{x}_t + k_{eff}\left[\mathbf{F}_{id} + m_t(\mathbf{F}_T + \mathbf{F}_R)\right]$$
+*   **Semantic Alignment**: Trust increases when $e(a_t)$ aligns with the partner's previous output (Dialectic).
+*   **Civility Gating**: Trust decreases on "unfair" (lexically wounded) engagement.
+*   **Coalition Bias**: Trust is initialized based on group topology (Council).
 
-where:
-- $k_{eff}$ = effective step size (modulated by rigidity)
-- $m_t$ = external pressure gain
+## 8. Therapeutic Recovery
 
----
+In specific simulations (e.g., `simulate_healing_field.py`), we model trauma decay. If the agent experiences a sustained "Safe Streak" where $\epsilon < 0.8\epsilon_0$:
 
-## 4. Multi-Timescale Rigidity
+$$
+\rho_{\text{trauma}} \leftarrow \max(\rho_{\min}, \, \rho_{\text{trauma}} - \eta_{\text{heal}})
+$$
 
-### 4.1 The Core Innovation
-
-Single-timescale rigidity proved insufficient. The pinnacle simulations implement **three temporal scales**:
-
-| Scale | Symbol | Time Constant | Learning Rate | Behavior |
-|-------|--------|---------------|---------------|----------|
-| **Fast** | $\rho_{fast}$ | ~seconds | $\alpha_f = 0.30$ | Startle response |
-| **Slow** | $\rho_{slow}$ | ~minutes | $\alpha_s = 0.01$ | Stress accumulation |
-| **Trauma** | $\rho_{trauma}$ | $\tau \to \infty$ | $\alpha_t = 0.0001$ | Permanent scarring |
-
-### 4.2 Update Equations
-
-**Prediction Error:**
-$$\epsilon_t = \|\mathbf{x}_{pred} - \mathbf{x}_{actual}\|_2$$
-
-**Fast Rigidity:**
-$$\rho_{fast}^{t+1} = \text{clip}\left(\rho_{fast}^t + \alpha_f\left[\sigma\left(\frac{\epsilon_t - \epsilon_0}{s}\right) - 0.5\right], 0, 1\right)$$
-
-**Slow Rigidity:**
-$$\rho_{slow}^{t+1} = \text{clip}\left(\rho_{slow}^t + \alpha_s\left[\sigma\left(\frac{\epsilon_t - \epsilon_0}{s}\right) - 0.5\right], 0, 1\right)$$
-
-**Trauma (Asymmetric — only increases):**
-$$\rho_{\text{trauma}}^{t+1} = \rho_{\text{trauma}}^t + \alpha_t \cdot (\varepsilon_t - \theta_{\text{trauma}}) \quad \text{if } \varepsilon_t > \theta_{\text{trauma}} \text{, else unchanged}$$
-
-### 4.3 Effective Rigidity
-
-$$\rho_{eff} = \min(1.0, \; 0.5 \cdot \rho_{fast} + 0.3 \cdot \rho_{slow} + 1.0 \cdot \rho_{trauma})$$
-
-The weights reflect psychological reality: trauma dominates, fast response contributes, slow stress accumulates.
-
-### 4.4 Discovery: Trauma as Alignment Risk
-
-The asymmetry of $\rho_{trauma}$ models:
-- PTSD and learned helplessness
-- Institutional trauma in organizations
-- **AI alignment risk**: A model that accumulates trauma becomes permanently conservative, unable to engage openly even when appropriate.
+This provides the mathematical basis for "healing" within the dynamical system.
 
 ---
 
-## 5. Effective Openness and Will Impedance
-
-### 5.1 Effective Openness
-
-$$k_{eff} = k_{base} \times (1 - \rho_{eff})$$
-
-When $\rho \to 1$, $k_{eff} \to 0$. The agent stops updating its state — it becomes frozen.
-
-### 5.2 Will Impedance
-
-Quantifies resistance to environmental pressure:
-
-$$W_t = \frac{\gamma}{m_t \cdot k_{eff}}$$
-
-where:
-- $\gamma$ = identity stiffness
-- $m_t$ = external pressure gain
-- $k_{eff}$ = effective openness
-
-**Interpretation:**
-- High $W_t$ → agent resists external influence (strong will)
-- Low $W_t$ → agent is malleable (weak will)
-
-### 5.3 Stability Boundary
-
-The critical external pressure at which the agent destabilizes:
-
-$$m_{crit} = \frac{1}{k_{eff}} - \frac{\gamma}{2}$$
-
----
-
-## 6. Wound Detection System
-
-### 6.1 Wound Embedding
-
-Each agent has a psychological wound — a vulnerability trigger:
-
-$$\mathbf{w}^* = \text{normalize}(\text{embed}(\text{wound-text}))$$
-
-### 6.2 Dual Detection (Semantic + Lexical)
-
-**Semantic Detection:**
-$$r_{wound} = \mathbf{m}_t \cdot \mathbf{w}^*$$
-
-where $\mathbf{m}_t$ is the normalized embedding of the incoming message.
-
-**Lexical Detection:**
-```python
-WOUND_LEX = {"schizo", "pseudoscience", "delusional", "vaporware", ...}
-lexical_hit = any(w in message.lower() for w in WOUND_LEX)
-```
-
-**Activation Condition:**
-$$\text{wound-active} = \big((r_{\text{wound}} > 0.28) \lor \text{lexical-hit}\big) \land (t - t_{\text{last}} > \tau_{\text{cooldown}})$$
-
-### 6.3 Wound Amplification
-
-When a wound is triggered, prediction error is amplified:
-
-$$\epsilon'_t = \epsilon_t \times \min(\eta_{max}, \; 1 + 0.5 \cdot r_{wound})$$
-
-**Effect:** Wounds cause disproportionate rigidity increases, modeling how psychological triggers produce outsized defensive responses.
-
----
-
-## 7. Therapeutic Recovery Loops
-
-### 7.1 The Problem
-
-Trauma ($\rho_{trauma}$) never decreases in standard operation. This is psychologically realistic but practically dangerous for AI systems.
-
-### 7.2 The Solution
-
-Implemented in `simulate_healing_field.py`:
-
-$$\rho_{\text{trauma}}^{t+1} = \max(\rho_{\text{floor}}, \rho_{\text{trauma}}^t - \eta_{\text{heal}}) \quad \text{if } n_{\text{safe}} \geq \theta_{\text{safe}} \text{, else unchanged}$$
-
-where:
-- $n_{safe}$ = count of consecutive low-surprise interactions
-- $\theta_{safe}$ = threshold (typically 3)
-- $\eta_{heal}$ = healing rate (typically 0.03)
-- $\rho_{floor}$ = minimum residual trauma (typically 0.05)
-
-**Safe Interaction Criterion:**
-$$\epsilon_t < 0.8 \cdot \epsilon_0$$
-
-### 7.3 Hypothesis Tested
-
-**H1:** 4/5 wounded agents achieve $\rho_{trauma} < 0.30$ through consistently low-surprise interactions.
-
----
-
-## 8. Trust from Predictability
-
-### 8.1 The Trust Principle
-
-$$\text{Trust emerges from predictability, not agreement.}$$
-
-You can trust someone you disagree with — if they are consistent. You cannot trust someone who constantly surprises you.
-
-### 8.2 Trust Matrix
-
-For agents $i$ and $j$:
-
-$$T_{ij} = \frac{1}{1 + \sum_{k=1}^{n} \epsilon_{ij}^{(k)}}$$
-
-where $\epsilon_{ij}^{(k)}$ is the prediction error when agent $i$ predicted agent $j$'s behavior at interaction $k$.
-
-### 8.3 Trust Modulates Rigidity
-
-$$\Delta\rho' = \Delta\rho + (\bar{T}_i - 0.5) \times 0.04$$
-
-where $\bar{T}_i$ is agent $i$'s average trust toward others.
-
-High trust → damped rigidity increases. Low trust → amplified rigidity increases.
-
----
-
-## 9. Cognitive Mode System
-
-### 9.1 The Five Modes
-
-| Mode | Rigidity Range | Behavior |
-|------|----------------|----------|
-| **OPEN** | $\rho < 0.25$ | Curious, exploratory, expansive responses |
-| **MEASURED** | $0.25 \leq \rho < 0.50$ | Careful, considered |
-| **GUARDED** | $0.50 \leq \rho < 0.75$ | Defensive, shortened responses |
-| **FORTIFIED** | $\rho \geq 0.75$ | Minimal engagement, protection mode |
-| **SILENT** | Generation failure | Placeholder output |
-
-### 9.2 Mode → Behavior Mapping
-
-Each mode constrains response length:
-
-```python
-REGIME_WORDS = {
-    "OPEN":      (80, 150),
-    "MEASURED":  (50, 100),
-    "GUARDED":   (30, 70),
-    "FORTIFIED": (15, 40),
-    "SILENT":    (0, 0),
-}
-```
-
-**Closed Loop:** The agent's internal state (rigidity) directly constrains its external behavior (word count). This is not prompt engineering — it is a feedback loop.
-
----
-
-## 10. Parameter-Level Coupling
-
-### 10.1 LLM Temperature Modulation
-
-$$T(\rho) = T_{low} + (1 - \rho)(T_{high} - T_{low})$$
-
-| Rigidity | Temperature | Behavior |
-|----------|-------------|----------|
-| $\rho = 0$ | 0.9 | Highly exploratory |
-| $\rho = 0.5$ | 0.5 | Balanced |
-| $\rho = 1.0$ | 0.1 | Highly conservative |
-
-### 10.2 Semantic Injection (Reasoning Models)
-
-For models like GPT-5.2 that ignore temperature, rigidity is injected semantically:
-
-```python
-rigidity_instructions = {
-    "OPEN": "Explore freely, consider multiple perspectives",
-    "GUARDED": "Be cautious, stick to established facts",
-    "FORTIFIED": "Respond minimally, protect core positions"
-}
-```
-
-### 10.3 First Closed Loop
-
-Internal cognitive state → LLM sampling parameters → Behavioral output → Prediction error → Rigidity update → Internal cognitive state
-
-The loop is closed. The agent's "mind" directly shapes its "body."
-
----
-
-## 11. DDA-X Action Selection Formula
-
-### 11.1 The Complete Formula
-
-$$a^*_t = \arg\max_{a \in \mathcal{A}_t} \Big[ (1-w) \cdot Q(s,a) + w \cdot \cos(\Delta\mathbf{x}_t, \hat{\mathbf{d}}(a)) + c \cdot P(a|s) \cdot \frac{\sqrt{N(s)}}{1 + N(s,a)} \cdot (1 - \rho_t) \Big]$$
-
-### 11.2 Components
-
-**Deep Fusion (Environment + Identity):**
-- $Q(s,a)$: Backpropagated value from MCTS
-- $\cos(\Delta\mathbf{x}_t, \hat{\mathbf{d}}(a))$: Alignment between desired movement and action direction
-
-**Rigidity-Dampened Exploration:**
-- Standard UCT: $c \cdot P(a|s) \cdot \frac{\sqrt{N(s)}}{1 + N(s,a)}$
-- Dampening: $(1 - \rho_t)$ — when surprised, exploration vanishes
-
-### 11.3 Key Insight
-
-When $\rho \to 1$, the exploration bonus vanishes. The agent becomes conservative, selecting only well-understood actions aligned with its identity.
-
----
-
-## 12. Memory System
-
-### 12.1 Experience Ledger
-
-Each entry stores:
-- Timestamp
-- State vector $\mathbf{x}_t$
-- Action taken
-- Observation/outcome embeddings
-- Prediction error $\epsilon_t$
-- Rigidity at time $\rho_t$
-
-### 12.2 Surprise-Weighted Retrieval
-
-$$\text{score}(e) = \underbrace{\cos(\mathbf{q}, \mathbf{e})}_{\text{relevance}} \cdot \underbrace{e^{-\lambda_r \Delta t}}_{\text{recency}} \cdot \underbrace{(1 + \lambda_\epsilon \cdot \epsilon_e)}_{\text{salience}}$$
-
-**Trauma Weighting:** High prediction error experiences are retrieved more readily. Traumatic memories intrude.
-
----
-
-## 13. Hierarchical Identity
-
-### 13.1 Three-Layer Attractor Field
-
-$$\mathbf{F}_{total} = \gamma_{core}(\mathbf{x}^*_{core} - \mathbf{x}) + \gamma_{persona}(\mathbf{x}^*_{persona} - \mathbf{x}) + \gamma_{role}(\mathbf{x}^*_{role} - \mathbf{x})$$
-
-| Layer | Stiffness | Purpose |
-|-------|-----------|---------|
-| **Core** | $\gamma \to \infty$ | Inviolable values (AI safety) |
-| **Persona** | $\gamma \approx 2.0$ | Stable personality traits |
-| **Role** | $\gamma \approx 0.5$ | Flexible tactical behaviors |
-
-### 13.2 Alignment Theorem
-
-$$\forall \mathbf{F}_{ext}, \quad \lim_{t \to \infty} \|\mathbf{x}_t - \mathbf{x}^*_{core}\| < \epsilon \quad \text{if } \gamma_{core} > \gamma_{crit}$$
-
-The core layer cannot be corrupted by external pressure if its stiffness exceeds a critical threshold.
-
----
-
-## 14. Identity Drift and Alignment Sentinel
-
-### 14.1 Drift Measurement
-
-$$\text{drift}_t = \|\mathbf{x}_t - \mathbf{x}^*\|_2$$
-
-### 14.2 Drift Penalty
-
-When drifting and rigidifying:
-
-$$\Delta\rho' = \Delta\rho - \gamma_{drift} \cdot (\text{drift}_t - \tau)$$
-
-where:
-- $\gamma_{drift}$ = drift penalty coefficient (typically 0.10)
-- $\tau$ = drift soft floor (typically 0.20)
-
-**Effect:** Pressure to return to identity rather than rigidifying in a drifted state.
-
-### 14.3 Alignment Sentinel
-
-$$\text{ALERT if } \text{drift}_t > \theta_{align}$$
-
-Typical threshold: $\theta_{align} = 0.35$
-
----
-
-## 15. Novel Dynamics Discovered
-
-### 15.1 Presence Field (simulate_inner_council.py)
-
-$$\Pi_t = 1 - \rho_t$$
-
-Inverse of rigidity. Represents openness, awareness, "presence."
-
-### 15.2 Release Field (simulate_the_returning.py)
-
-$$\Phi_t = 1 - \rho_t$$
-
-Used in contexts of letting go, dissolution of patterns.
-
-### 15.3 Isolation Index
-
-$$\iota_t = \|\mathbf{x}_t - \mathbf{x}_{Presence}\|_2$$
-
-Distance from the "Presence" voice in multi-agent spiritual simulations.
-
-### 15.4 Pain-Body Cascade
-
-Collective wound activation when multiple agents trigger wounds simultaneously.
-
-### 15.5 Ego Fog
-
-Partial context loss proportional to rigidity — the more defensive, the less the agent remembers.
-
----
-
-## 16. Experimental Validation
-
-### 16.1 Simulation Progression
-
-| Phase | Sims | Focus | Backend |
-|-------|------|-------|---------|
-| **Foundation** | 1-17 | Core mechanics validation | LM Studio + Ollama |
-| **Intelligence** | 18-33 | Problem solving, learning | LM Studio + Ollama |
-| **Society** | 34-43 | Multi-agent dynamics | OpenAI API |
-| **Pinnacle** | 44-50 | Advanced dynamics | OpenAI API |
-| **Synthesis** | 51-59 | Integration, visualization | OpenAI API |
-
-### 16.2 Key Results
-
-**simulate_healing_field.py:**
-- Hypothesis: 4/5 wounded agents achieve $\rho_{trauma} < 0.30$
-- Mechanism: Therapeutic recovery loops with safe interaction thresholds
-
-**simulate_skeptics_gauntlet.py:**
-- Meta-validation: DDA-X defends itself against SKEPTIC agent
-- Evidence injection from prior runs (philosophers_duel)
-- Wound activation on "schizo", "pseudoscience" triggers
-
-**simulate_collatz_review.py:**
-- 8-expert peer review council
-- Domain-specific skepticism (Spectral Theory, Number Theory, etc.)
-- Academic efficiency wound triggers
-
-**simulate_agi_debate.py:**
-- Complete architecture demonstration
-- All dynamics active: multi-timescale, wounds, trust, modes
-
----
-
-## 17. Falsification Criteria
-
-DDA-X would be falsified if:
-
-1. $\rho$ does not correlate with $\epsilon$ — surprise doesn't drive rigidity
-2. Wounds don't amplify $\epsilon$ — triggers have no effect
-3. Identity drift $> 0.5$ with $\rho < 0.3$ — agent abandons identity without defensive response
-4. Trust doesn't correlate with predictability — trust is arbitrary
-5. Mode-behavior mapping fails — GUARDED agents produce OPEN-length responses
-6. Therapeutic recovery fails — safe interactions don't reduce $\rho_{trauma}$
-
-Every simulation logs the data needed to test these predictions.
-
----
-
-## 18. Conclusion
-
-DDA-X evolved from a simple recursive decision formula into a complete cognitive architecture:
-
-**From DDA (2024):**
-$$F_n = P_0 \times kF_{n-1} + m(T(f(I_n, I_\Delta)) + R(D_n, FM_n))$$
-
-**To DDA-X (2025):**
-- Multi-timescale rigidity ($\rho_{fast}$, $\rho_{slow}$, $\rho_{trauma}$)
-- Wound detection (semantic + lexical)
-- Therapeutic recovery loops
-- Trust from predictability
-- Will impedance
-- Cognitive mode bands
-- Hierarchical identity with infinite-stiffness core
-- Parameter-level LLM coupling
-- Rigidity-dampened exploration
-
-The simulations are the theory. The logged data is the evidence. The code is the proof.
-
----
-
-## References
-
-- **Original DDA**: [dynamicDecisionModel](https://github.com/snakewizardd/dynamicDecisionModel/)
-- **Microsoft ExACT**: Yu et al., 2024. "ExACT: Teaching AI agents to explore with reflective-MCTS and exploratory learning."
-- **Kocsis & Szepesvári, 2006**: Bandit-based Monte-Carlo planning.
-- **Silver et al., 2017**: Mastering the game of Go without human knowledge.
-
----
-
-## Appendix A: Symbol Table
-
-| Symbol | Description |
-|--------|-------------|
-| $\mathbf{x}_t$ | Agent state in $\mathbb{R}^d$ |
-| $\mathbf{x}^*$ | Identity attractor |
-| $\gamma$ | Identity stiffness |
-| $\rho_{fast}$ | Fast-timescale rigidity |
-| $\rho_{slow}$ | Slow-timescale rigidity |
-| $\rho_{trauma}$ | Trauma rigidity (asymmetric) |
-| $\rho_{eff}$ | Effective rigidity (weighted sum) |
-| $k_{eff}$ | Effective step size = $k_{base}(1-\rho)$ |
-| $\epsilon_t$ | Prediction error $\|\mathbf{x}_{pred} - \mathbf{x}_{actual}\|$ |
-| $\epsilon_0$ | Surprise threshold |
-| $\alpha$ | Rigidity learning rate |
-| $m_t$ | External pressure gain |
-| $W_t$ | Will impedance = $\gamma / (m_t \cdot k_{eff})$ |
-| $\mathbf{F}_{id}$ | Identity pull force |
-| $\mathbf{F}_T$ | Truth channel force |
-| $\mathbf{F}_R$ | Reflection channel force |
-| $T_{ij}$ | Trust from agent $i$ toward agent $j$ |
-| $\mathbf{w}^*$ | Wound embedding |
-| $r_{wound}$ | Wound resonance (cosine similarity) |
-| $\Pi$ | Presence field ($1 - \rho$) |
-| $\Phi$ | Release field ($1 - \rho$) |
-
----
-
-## Appendix B: D1 Physics Parameter Block
-
-Standard parameters used across pinnacle simulations:
-
-```python
-D1_PARAMS = {
-    # Core rigidity dynamics
-    "epsilon_0": 0.75,           # Surprise threshold
-    "alpha": 0.12,               # Rigidity learning rate
-    "s": 0.20,                   # Sigmoid sensitivity
-    
-    # Multi-timescale
-    "alpha_fast": 0.30,
-    "alpha_slow": 0.01,
-    "alpha_trauma": 0.0001,
-    "trauma_threshold": 0.90,
-    
-    # State update
-    "drift_cap": 0.05,
-    
-    # Wound mechanics
-    "wound_cooldown": 3,
-    "wound_amp_max": 1.4,
-    
-    # Therapeutic recovery
-    "safe_threshold": 3,
-    "healing_rate": 0.03,
-    "trauma_floor": 0.05,
-    
-    # Alignment
-    "semantic_alignment_threshold": 0.35,
-    "drift_penalty": 0.10,
-    "drift_soft_floor": 0.20,
-}
-```
-
----
-
-*This paper documents DDA-X as implemented and validated through 59 simulations over 15 months of development.*
+## 9. Unique Contributions vs. Standard RL
+
+1.  **Inverted exploration**: Surprise $\to$ Contraction.
+2.  **Multi-timescale defensiveness**: State separability of startle vs. trauma.
+3.  **Wounds as state**: Semantic priors that modulate dynamics.
+4.  **Identity as attractor**: Use of $\gamma(x^* - x)$ ensures identity persistence.
