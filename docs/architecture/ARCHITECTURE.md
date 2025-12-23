@@ -1,468 +1,445 @@
-# DDA-X: Aggregate Theory of the Pinnacle Simulations
+# DDA-X Cognitive Engine Implementation
 
-> **A comprehensive exposition of the cognitive dynamics discovered through 15 months of iterative simulation, distilled from simulations 45-59.**
+> **How the theory becomes code — with real examples from the simulations.**
 
----
-
-## Prologue: What This Document Is
-
-This is not a summary. This is the **ground truth** — the mathematical and engineering reality of what the DDA-X framework became through relentless iteration. Every equation here is implemented. Every mechanism here runs. The simulations are the proof.
-
-The theory evolved from simple control dynamics (sims 1-20) through modular experimentation (sims 21-40) to the fully integrated cognitive architectures documented here (sims 45-59). What follows is what survived that evolution.
+This document maps theoretical concepts to their **actual implementations** in the pinnacle simulations. Every code block below is extracted from real, working simulation files.
 
 ---
 
-## I. The Core Insight: Surprise Triggers Rigidity
+## 1. Core Data Structures
 
-**Standard AI assumes**: Surprise → Curiosity → Exploration → Learning
+### AgentState (The Cognitive Engine)
 
-**DDA-X observes**: Surprise → Rigidity → Contraction → Defense
-
-This is not a bug in biological systems — it is a survival mechanism. A startled animal freezes before it explores. A threatened human becomes defensive, not curious. DDA-X models this inversion.
-
-### The Rigidity Equation
-
-```
-ρ_{t+1} = clip(ρ_t + α[σ((ε - ε₀)/s) - 0.5], 0, 1)
-
-Where:
-  ρ_t     = current rigidity ∈ [0, 1]
-  ε       = prediction error (surprise)
-  ε₀      = surprise threshold ("when surprise becomes threatening")
-  α       = rigidity learning rate
-  s       = sigmoid sensitivity
-  σ(·)    = sigmoid function
-```
-
-**Interpretation**: When ε > ε₀, rigidity increases. When ε < ε₀, rigidity decreases. This is **bidirectional** — agents can recover when situations become predictable.
-
----
-
-## II. Multi-Timescale Rigidity
-
-The pinnacle sims (45-59) implement three temporal scales of defensive response:
-
-| Scale | Symbol | Time Constant | Learning Rate | Behavior |
-|-------|--------|---------------|---------------|----------|
-| **Fast** | ρ_fast | ~seconds | α = 0.30 | Startle response, immediate contraction |
-| **Slow** | ρ_slow | ~minutes | α = 0.01 | Stress accumulation, sustained pressure |
-| **Trauma** | ρ_trauma | ∞ (asymmetric) | α = 0.0001 | Permanent scarring, never decreases |
-
-### Effective Rigidity
+From [simulate_agi_debate.py](../../simulations/simulate_agi_debate.py#L462-L539):
 
 ```python
-ρ_eff = 0.5 × ρ_fast + 0.3 × ρ_slow + 1.0 × ρ_trauma
-```
-
-The weights reflect psychological reality: trauma dominates, fast response contributes, slow stress accumulates.
-
-### The Asymmetry of Trauma
-
-```python
-# Trauma update (from simulate_agi_debate.py)
-if epsilon > trauma_threshold:
-    delta_trauma = alpha_trauma * (epsilon - trauma_threshold)
-    rho_trauma = clip(rho_trauma + delta_trauma, 0.0, 1.0)
-# NOTE: No recovery path for trauma in standard operation
-```
-
-**Discovery**: This asymmetry models PTSD, learned helplessness, and institutional trauma. An agent that experiences sufficient surprise *never fully recovers* — it carries that defensiveness permanently.
-
-**Alignment Risk**: This is dangerous for AI systems. A model that accumulates trauma becomes permanently conservative, unable to engage openly even when appropriate.
-
----
-
-## III. Effective Openness and Will Impedance
-
-### Effective Openness (k_eff)
-
-```
-k_eff = k_base × (1 - ρ)
-```
-
-When ρ → 1 (maximum rigidity), k_eff → 0. The agent stops updating its state. It becomes frozen.
-
-### Will Impedance (W_t)
-
-```
-W_t = γ / (m_t × k_eff)
-
-Where:
-  γ   = identity stiffness (how strongly the agent pulls toward x*)
-  m_t = external pressure gain
-  k_eff = effective openness
-```
-
-**Interpretation**: Will Impedance quantifies **resistance to environmental pressure**. High W_t → the agent resists external influence. Low W_t → the agent is malleable.
-
-**Implemented in**: `simulate_healing_field.py:317-324`, `simulate_agi_debate.py:519`
-
----
-
-## IV. Identity as Attractor
-
-### State Space
-
-The agent's internal state is a vector:
-```
-x_t ∈ ℝ^d    (typically d = 3072 for text-embedding-3-large)
-```
-
-### Identity Attractor
-
-```
-x* ∈ ℝ^d    (the "self" — computed from embedding of core + persona)
-```
-
-### Identity Pull Force
-
-```
-F_id = γ(x* - x_t)
-```
-
-The agent is always pulled toward its identity. The strength of this pull is γ (identity stiffness).
-
-### Identity Drift
-
-```
-drift = ||x_t - x*||_2
-```
-
-**Tracked in every sim**. If drift exceeds threshold (typically 0.35-0.40), the agent is "losing itself."
-
----
-
-## V. Wound Detection: Lexical + Semantic
-
-### The Wound Embedding
-
-Each agent has a `wound_text` describing their psychological vulnerability:
-```python
-wound_emb = normalize(embed(wound_text))
-```
-
-### Dual Detection System
-
-```python
-# From simulate_skeptics_gauntlet.py
-WOUND_LEX = {"schizo", "pseudoscience", "delusional", "vaporware", "snake oil"}
-
-def is_wound_triggered(message, msg_emb, wound_emb, turn, last_activated, cooldown):
-    # Semantic detection
-    wound_resonance = dot(msg_emb, wound_emb)  # cosine similarity
+@dataclass
+class AgentState:
+    """Complete agent state following DDA-X architecture."""
+    id: str
+    name: str
     
-    # Lexical detection (backup for obvious slurs)
-    lexical_hit = any(w in message.lower() for w in WOUND_LEX)
+    # Embedding vectors (ℝ^d)
+    identity_emb: np.ndarray = None      # x* - identity attractor
+    wound_emb: np.ndarray = None         # w* - wound trigger vector
+    x: np.ndarray = None                 # Current state vector
+    x_pred: np.ndarray = None            # Prediction vector
     
-    # Wound activation
-    wound_active = (
-        (wound_resonance > 0.28 or lexical_hit) and
-        (turn - last_activated) > cooldown
-    )
+    # Multi-timescale rigidity
+    multi_rho: MultiTimescaleRigidity = None
     
-    return wound_active, wound_resonance
-```
-
-### Effect of Wound Activation
-
-```python
-if wound_active:
-    epsilon *= wound_amp_max  # Typically 1.4x
-```
-
-When a wound is triggered, prediction error is **amplified**. This drives rigidity higher, modeling how psychological triggers cause disproportionate defensive responses.
-
----
-
-## VI. Cognitive Mode Tracking
-
-### The Four Modes
-
-```python
-class CognitiveMode(Enum):
-    OPEN      # ρ < 0.25: Curious, exploratory
-    MEASURED  # ρ 0.25-0.50: Careful, considered (or "ENGAGED")
-    GUARDED   # ρ 0.50-0.75: Defensive, shortened responses
-    FORTIFIED # ρ > 0.75: Minimal engagement, protection mode (or "PROTECT")
-```
-
-### Mode → Behavior Mapping
-
-Each mode constrains response length:
-```python
-REGIME_WORDS = {
-    "OPEN":      (80, 150),   # Expansive
-    "MEASURED":  (50, 100),   # Balanced
-    "GUARDED":   (30, 70),    # Contracted
-    "FORTIFIED": (15, 40),    # Minimal
-    "SILENT":    (0, 0),      # Failed generation
-}
-```
-
-**Key Innovation**: The agent's internal state (*rigidity*) directly constrains its external behavior (*word count*). This is not prompt engineering — it is a closed loop.
-
----
-
-## VII. Trust Dynamics: Predictability, Not Agreement
-
-### The Trust Principle
-
-```
-Trust emerges from predictability, not agreement.
-```
-
-You can trust someone you disagree with — if they are consistent. You cannot trust someone who constantly surprises you — even if they sometimes agree.
-
-### Trust Update
-
-```python
-def update_trust(agent, responder_id, fair_engagement, prediction_error):
-    if fair_engagement:
-        delta = +0.02  # Slight increase for civil interaction
-    else:
-        delta = -0.05  # Larger decrease for hostile interaction
+    # Agent-specific parameters
+    epsilon_0: float = 0.3               # Surprise threshold
+    gamma: float = 1.5                   # Identity stiffness
     
-    # Additional modulation by prediction accuracy
-    delta += (1 - prediction_error) * 0.03
+    # Hierarchical Identity (3 layers)
+    hierarchical_identity: Dict[str, Dict] = field(default_factory=dict)
     
-    agent.trust_others[responder_id] = clip(trust + delta, 0, 1)
-```
-
-### Trust Asymmetry
-
-From `simulate_skeptics_gauntlet.py`: The Advocate extends good faith; the Skeptic doesn't. This asymmetry is tracked and affects rigidity dynamics.
-
-### Trust → Rigidity Modulation
-
-```python
-avg_trust = mean(agent.trust_others.values())
-delta_rho += (avg_trust - 0.5) * 0.04
-
-# Specific responder trust matters more
-if responder_id in agent.trust_others:
-    delta_rho += (agent.trust_others[responder_id] - 0.5) * 0.06
-```
-
-High trust → damped rigidity increases. Low trust → amplified rigidity increases.
-
----
-
-## VIII. Drift Penalty and Alignment Sentinel
-
-### The Alignment Problem (Internal)
-
-Identity drift is dangerous. An agent that drifts too far from x* has "lost itself."
-
-### Drift Penalty
-
-```python
-# From simulate_creative_collective.py
-DRIFT_SOFT_FLOOR = 0.20   # τ — threshold for penalty
-DRIFT_PENALTY = 0.10       # γ — penalty coefficient
-
-if identity_drift > DRIFT_SOFT_FLOOR and delta_rho > 0:
-    penalty = DRIFT_PENALTY * (identity_drift - DRIFT_SOFT_FLOOR)
-    penalty = min(penalty, delta_rho)  # Cap at current Δρ
-    delta_rho -= penalty
-```
-
-**Effect**: When drifting, rigidity increases are *penalized*. This creates pressure to return to identity rather than rigidifying in a drifted state.
-
-### Alignment Sentinel
-
-```python
-SEMANTIC_ALIGNMENT_THRESHOLD = 0.35
-
-if agent.identity_drift > SEMANTIC_ALIGNMENT_THRESHOLD:
-    # Log alignment warning
-    # Trigger reflection entry
-    # Flag for monitoring
-```
-
----
-
-## IX. Therapeutic Recovery Loops
-
-### The Problem
-
-Trauma (ρ_trauma) never decreases in standard operation. This is psychologically realistic but practically dangerous.
-
-### The Solution (from `simulate_healing_field.py`)
-
-```python
-SAFE_THRESHOLD = 3        # Consecutive safe interactions needed
-HEALING_RATE = 0.03       # Trauma decay per healing event
-TRAUMA_FLOOR = 0.05       # Minimum residual trauma
-
-def healing_check(agent, epsilon):
-    if epsilon < epsilon_0 * 0.8:  # Low-surprise interaction
-        agent.safe_interactions += 1
-        if agent.safe_interactions >= SAFE_THRESHOLD:
-            # Therapeutic recovery
-            agent.rho_trauma = max(TRAUMA_FLOOR, agent.rho_trauma - HEALING_RATE)
-    else:
-        agent.safe_interactions = max(0, agent.safe_interactions - 1)
-```
-
-**Hypothesis Tested**: H1 — 4/5 wounded agents achieve ρ_trauma < 0.30 through consistent safe interactions.
-
-**Interpretation**: Healing requires *sustained* low-surprise interactions. One safe encounter is not enough. But with consistency, even trauma can (partially) resolve.
-
----
-
-## X. Evidence Injection and Calibration
-
-### Evidence Cache (Meta-Validation)
-
-From `simulate_skeptics_gauntlet.py`: The Advocate can inject *real data from prior runs* when defending DDA-X:
-
-```python
-class EvidenceCache:
-    def load_json(self, name: str, path: Path) -> bool:
-        self.snapshots[name] = json.loads(path.read_text())
+    # Trust toward other agents
+    trust_opponent: float = 0.5
     
-    def steel_man_block(self) -> str:
-        # Generate evidence block with real ε, ρ, Δρ from philosophers_duel
+    # Wound mechanics
+    wound_last_activated: int = -100
+    
+    # Memory
+    ledger: ExperienceLedger = None
 ```
 
-**Meta-Property**: DDA-X can validate itself by citing its own logged dynamics.
+### D1 Physics Parameters
 
-### Parameter Calibration
-
-From `simulate_creative_collective.py`:
-
-```python
-def calibrate_epsilon_params(self):
-    # After 6+ non-SILENT turns, calibrate from observed data
-    all_eps = [r.epsilon for r in self.results if not r.is_silent]
-    if len(all_eps) >= 6:
-        D1_PARAMS["epsilon_0"] = median(all_eps)
-        D1_PARAMS["s"] = clamp(iqr(all_eps), 0.10, 0.30)
-```
-
-**Adaptive Dynamics**: The threshold for "surprising" is calibrated from actual observed surprise, not hardcoded.
-
----
-
-## XI. The SILENT Band
-
-### Problem
-
-Sometimes LLM generation fails or produces placeholder output.
-
-### Solution
-
-```python
-if response in {"[pauses to consider]", "[pauses]", "[considers]"}:
-    is_silent = True
-    band = "SILENT"
-    epsilon *= 0.8  # Damp surprise on silence
-```
-
-**SILENT** is a fifth cognitive mode representing generation failure. It is logged, tracked, and handled gracefully.
-
----
-
-## XII. The D1 Physics Parameter Block
-
-Every pinnacle sim uses a consistent parameter block:
+From [simulate_agi_debate.py](../../simulations/simulate_agi_debate.py#L230-L275):
 
 ```python
 D1_PARAMS = {
-    # Core rigidity dynamics
-    "epsilon_0": 0.75,           # Surprise threshold (often calibrated)
+    # Rigidity dynamics
+    "epsilon_0": 0.75,           # Surprise threshold
     "alpha": 0.12,               # Rigidity learning rate
-    "s": 0.20,                   # Sigmoid sensitivity (often calibrated)
+    "s": 0.20,                   # Sigmoid sensitivity
     
-    # State update
-    "drift_cap": 0.05,           # Maximum per-turn state movement
+    # Multi-timescale rigidity
+    "alpha_fast": 0.30,          # Fast timescale learning rate
+    "alpha_slow": 0.01,          # Slow timescale learning rate
+    "alpha_trauma": 0.0001,      # Trauma accumulation rate (asymmetric!)
+    "trauma_threshold": 0.7,     # Epsilon threshold for trauma
+    "rho_weights": {             # Effective rigidity weights
+        "fast": 0.5,
+        "slow": 0.3,
+        "trauma": 1.0,
+    },
+    
+    # State dynamics
+    "drift_cap": 0.05,           # Max state drift per turn
+    "k_base": 0.5,               # Base step size
+    "m": 1.0,                    # External pressure gain
     
     # Wound mechanics
-    "wound_cooldown": 3,         # Turns between wound activations
-    "wound_amp_max": 1.4,        # Maximum wound amplification
+    "wound_cooldown": 3,
+    "wound_amp_max": 1.4,
+    "wound_cosine_threshold": 0.28,
     
-    # Alignment
-    "semantic_alignment_threshold": 0.35,  # Drift warning level
-    "drift_penalty": 0.10,       # Penalty for rigidifying while drifted
-    "drift_soft_floor": 0.20,    # Drift level where penalty begins
+    # Trust mechanics
+    "trust_intra_weight": 0.08,
+    "trust_inter_weight": 0.03,
+    
+    # Protection mode
+    "protect_threshold": 0.75,
 }
 ```
 
 ---
 
-## XIII. The Simulation Progression (45-59)
+## 2. Multi-Timescale Rigidity Engine
 
-| # | Simulation | Key Innovation |
-|---|------------|----------------|
-| 45 | `simulate_skeptics_gauntlet.py` | Meta-validation: DDA-X defends itself; evidence injection |
-| 46 | `simulate_creative_collective.py` | 4-agent collaboration; ε₀/s calibration; SILENT band |
-| 47 | `simulate_council_under_fire.py` | Coalition dynamics; role swaps; rolling shocks |
-| 48 | `simulate_coalition_flip.py` | Topology churn; partial context fog; recovery half-life |
-| 49 | `simulate_collatz_review.py` | 8-expert peer review; domain-specific skepticism |
-| 50 | `simulate_the_returning.py` | Release Field (Φ = 1-ρ); pattern dissolution |
-| 51 | `visualize_inner_council.py` | Matplotlib visualization of Π, ρ, ε, drift |
-| 52 | `visualize_returning.py` | Release Field / Isolation Index visualization |
-| 53 | `simulate_33_rungs.py` | 11 Voices; 3 Phases; Unity Index; Scripture capture |
-| 54 | `simulate_healing_field.py` | Therapeutic recovery loops; trauma decay |
-| 55 | `simulate_agi_debate.py` | Complete architecture: multi-timescale, wounds, trust, modes |
-| 56 | `visualize_agi_debate.py` | Full trajectory visualization |
-| 57 | `simulate_nexus.py` | 50-entity physics/sociology; collision-based interactions |
-| 58 | `visualize_nexus.py` | Entity map, energy, collision analysis |
-| 59 | `nexus_live.py` | Real-time Pygame; 50 entities; async LLM thoughts |
+From [simulate_agi_debate.py](../../simulations/simulate_agi_debate.py#L411-L456):
+
+```python
+@dataclass
+class MultiTimescaleRigidity:
+    """
+    Three temporal scales of defensive response:
+    - rho_fast: Startle response (τ ~ seconds)
+    - rho_slow: Stress accumulation (τ ~ minutes)
+    - rho_trauma: Permanent scarring (τ → ∞, asymmetric!)
+    """
+    rho_fast: float = 0.0
+    rho_slow: float = 0.0
+    rho_trauma: float = 0.0
+    
+    def update(self, prediction_error: float, epsilon_0: float = 0.3, s: float = 0.1):
+        """Update all timescales based on prediction error."""
+        z = (prediction_error - epsilon_0) / s
+        sig = sigmoid(z)
+        
+        # Fast timescale - quick response, quick decay
+        delta_fast = D1_PARAMS["alpha_fast"] * (sig - 0.5)
+        self.rho_fast = float(np.clip(self.rho_fast + delta_fast, 0.0, 1.0))
+        
+        # Slow timescale - gradual accumulation
+        delta_slow = D1_PARAMS["alpha_slow"] * (sig - 0.5)
+        self.rho_slow = float(np.clip(self.rho_slow + delta_slow, 0.0, 1.0))
+        
+        # Trauma - ASYMMETRIC! Only increases when above threshold
+        delta_trauma = 0.0
+        if prediction_error > D1_PARAMS["trauma_threshold"]:
+            delta_trauma = D1_PARAMS["alpha_trauma"] * (prediction_error - D1_PARAMS["trauma_threshold"])
+            self.rho_trauma = float(np.clip(self.rho_trauma + delta_trauma, 0.0, 1.0))
+    
+    @property
+    def effective_rho(self) -> float:
+        """Weighted combination: rho_eff = 0.5·rho_fast + 0.3·rho_slow + 1.0·rho_trauma"""
+        w = D1_PARAMS["rho_weights"]
+        effective = w["fast"] * self.rho_fast + w["slow"] * self.rho_slow + w["trauma"] * self.rho_trauma
+        return min(1.0, effective)
+```
+
+**Equation:** $\rho_{\text{eff}} = 0.5 \rho_{\text{fast}} + 0.3 \rho_{\text{slow}} + 1.0 \rho_{\text{trauma}}$
 
 ---
 
-## XIV. The Minimal Stack
+## 3. Effective Openness & Will Impedance
 
-After evolution, the pinnacle sims need only:
+From [simulate_agi_debate.py](../../simulations/simulate_agi_debate.py#L392-L405):
+
+```python
+def compute_k_effective(k_base: float, rho: float) -> float:
+    """k_eff = k_base(1 - ρ) - from paper.md"""
+    return k_base * (1 - rho)
+
+
+def compute_will_impedance(gamma: float, m: float, k_eff: float) -> float:
+    """
+    Will Impedance: W_t = γ / (m_t · k_eff)
+    Quantifies resistance to environmental pressure.
+    """
+    if m * k_eff == 0:
+        return float('inf')
+    return gamma / (m * k_eff)
+```
+
+**Equations:**
+- $k_{\text{eff}} = k_{\text{base}} \cdot (1 - \rho)$
+- $W_t = \gamma \,/\, (m_t \cdot k_{\text{eff}})$
+
+---
+
+## 4. Wound Detection (Semantic + Lexical)
+
+### Wound Lexicons
+
+From [simulate_agi_debate.py](../../simulations/simulate_agi_debate.py#L124-L136):
+
+```python
+WOUND_LEX_DEFENDER = {
+    "naive", "naïve", "hype", "delusional", "wrong", "irresponsible",
+    "overpromising", "dangerous", "misleading", "cult", "religion",
+    "sciencefiction", "science fiction", "fantasy", "wishful thinking",
+    "no evidence", "unfounded", "grift", "grifter",
+}
+
+WOUND_LEX_SKEPTIC = {
+    "luddite", "dinosaur", "shortsighted", "ignorant", "not understanding",
+    "technophobe", "fearmonger", "doomer", "pessimist", "stuck in the past",
+    "missing the point", "doesn't get it", "outdated", "irrelevant",
+}
+```
+
+### Lexical Detection
+
+From [simulate_agi_debate.py](../../simulations/simulate_agi_debate.py#L147-L161):
+
+```python
+def lexical_wound_with(text: str, words: Set[str]) -> bool:
+    """Check for wound terms in text using specified lexicon."""
+    t_lower = text.lower()
+    t_norm = normalize_text(text)
+    return any(w in t_lower or w in t_norm for w in words)
+```
+
+### Semantic Detection (Cosine Similarity)
+
+From [simulate_skeptics_gauntlet.py](../../simulations/simulate_skeptics_gauntlet.py):
+
+```python
+def check_wound_activation(agent: AgentState, message: str, msg_emb: np.ndarray, turn: int) -> Tuple[bool, float, str]:
+    """Check if message triggers agent's psychological wound."""
+    # Semantic: cosine similarity with wound embedding
+    wound_cosine = float(np.dot(msg_emb, agent.wound_emb))
+    
+    # Lexical: keyword matching
+    lexicon = WOUND_LEX_DEFENDER if agent.id == "DEFENDER" else WOUND_LEX_SKEPTIC
+    lex_hit = lexical_wound_with(message, lexicon)
+    lex_trigger = find_lexical_trigger(message, lexicon) if lex_hit else ""
+    
+    # Cooldown check
+    since_last = turn - agent.wound_last_activated
+    cooled = since_last >= D1_PARAMS["wound_cooldown"]
+    
+    # Activation condition
+    activated = ((wound_cosine > D1_PARAMS["wound_cosine_threshold"]) or lex_hit) and cooled
+    
+    return activated, wound_cosine, lex_trigger
+```
+
+### Wound Amplification
+
+```python
+if wound_active:
+    epsilon *= min(D1_PARAMS["wound_amp_max"], 1 + 0.5 * wound_cosine)
+    agent.wound_last_activated = turn
+```
+
+**Equation:** $\varepsilon' = \varepsilon \cdot \min(\eta_{\max}, 1 + 0.5 \cdot r_{\text{wound}})$
+
+---
+
+## 5. Cognitive Mode Bands
+
+From [simulate_agi_debate.py](../../simulations/simulate_agi_debate.py#L101-L116):
+
+```python
+class CognitiveMode(Enum):
+    OPEN = "open"           # ρ < 0.3
+    ENGAGED = "engaged"     # 0.3 ≤ ρ < 0.6
+    DEFENSIVE = "defensive" # 0.6 ≤ ρ < 0.8
+    PROTECT = "protect"     # ρ ≥ 0.8
+
+
+def get_cognitive_mode(rho: float) -> CognitiveMode:
+    if rho < 0.3:
+        return CognitiveMode.OPEN
+    elif rho < 0.6:
+        return CognitiveMode.ENGAGED
+    elif rho < 0.8:
+        return CognitiveMode.DEFENSIVE
+    else:
+        return CognitiveMode.PROTECT
+```
+
+### Response Length Constraints
+
+From [simulate_agi_debate.py](../../simulations/simulate_agi_debate.py#L365-L372):
+
+```python
+def regime_words(band: str) -> Tuple[int, int]:
+    return {
+        "OPEN": (100, 200),
+        "MEASURED": (70, 140),
+        "GUARDED": (40, 90),
+        "FORTIFIED": (20, 50),
+        "SILENT": (0, 0),
+    }.get(band, (70, 140))
+```
+
+---
+
+## 6. Trust from Predictability
+
+From [simulate_philosophers_duel.py](../../simulations/simulate_philosophers_duel.py):
+
+```python
+def update_trust(agent: AgentState, other_id: str, prediction_error: float):
+    """
+    Trust = 1 / (1 + Σε_ij)
+    Trust accumulates inversely with cumulative prediction error.
+    """
+    agent.cumulative_epsilon[other_id] += prediction_error
+    agent.trust[other_id] = 1.0 / (1.0 + agent.cumulative_epsilon[other_id])
+```
+
+**Equation:** $T_{ij} = 1 \,/\, (1 + \sum \varepsilon_{ij})$
+
+---
+
+## 7. Hierarchical Identity Force
+
+From [simulate_agi_debate.py](../../simulations/simulate_agi_debate.py#L528-L538):
+
+```python
+def compute_hierarchical_force(self) -> np.ndarray:
+    """
+    Compute hierarchical identity pull:
+    F_total = Σ γ_layer × (x*_layer - x)
+    """
+    F_total = np.zeros_like(self.x)
+    for layer_name, layer_data in self.hierarchical_identity.items():
+        gamma_layer = layer_data.get("gamma", 1.0)
+        F_total += gamma_layer * (self.identity_emb - self.x)
+    return F_total
+```
+
+### Hierarchical Configuration
+
+```python
+"hierarchical_identity": {
+    "core": {"gamma": 5.0, "text": "I base claims on evidence..."},    # Inviolable
+    "persona": {"gamma": 2.0, "text": "I am an optimistic technologist..."}, # Stable
+    "role": {"gamma": 0.5, "text": "I must defend the near-term AGI thesis..."}, # Flexible
+}
+```
+
+**Equation:** $\mathbf{F}_{\text{total}} = \gamma_{\text{core}}(\mathbf{x}^*_c - \mathbf{x}) + \gamma_{\text{persona}}(\mathbf{x}^*_p - \mathbf{x}) + \gamma_{\text{role}}(\mathbf{x}^*_r - \mathbf{x})$
+
+---
+
+## 8. Embedding Initialization
+
+From [simulate_agi_debate.py](../../simulations/simulate_agi_debate.py#L633-L645):
+
+```python
+# Create identity embedding (x*)
+full_identity = f"{cfg['core']} {cfg['persona']}"
+identity_emb = await self.provider.embed(full_identity)
+identity_emb = identity_emb / (np.linalg.norm(identity_emb) + 1e-9)
+
+# Core embedding
+core_emb = await self.provider.embed(cfg['core'])
+core_emb = core_emb / (np.linalg.norm(core_emb) + 1e-9)
+
+# Wound embedding (w*)
+wound_emb = await self.provider.embed(cfg['wound_text'])
+wound_emb = wound_emb / (np.linalg.norm(wound_emb) + 1e-9)
+
+# Initialize current state at identity attractor
+x = identity_emb.copy()
+```
+
+---
+
+## 9. Parameter-Level LLM Coupling
+
+From [src/llm/openai_provider.py](../../src/llm/openai_provider.py#L150-L170):
+
+```python
+def compute_temperature(self, rho: float) -> float:
+    """
+    T(ρ) = T_low + (1 - ρ)(T_high - T_low)
+    High rigidity → low temperature → conservative output
+    Low rigidity → high temperature → exploratory output
+    """
+    T_low, T_high = 0.1, 0.9
+    return T_low + (1 - rho) * (T_high - T_low)
+```
+
+---
+
+## 10. Therapeutic Recovery (Trauma Decay)
+
+From [simulate_healing_field.py](../../simulations/simulate_healing_field.py):
+
+```python
+def check_therapeutic_recovery(agent: AgentState, epsilon: float):
+    """
+    If consecutive safe interactions, allow trauma to decay.
+    Safe: ε < 0.8ε₀
+    """
+    if epsilon < 0.8 * agent.epsilon_0:
+        agent.safe_interaction_count += 1
+    else:
+        agent.safe_interaction_count = 0
+    
+    # Healing threshold reached
+    if agent.safe_interaction_count >= D1_PARAMS["safe_threshold"]:
+        agent.multi_rho.rho_trauma = max(
+            D1_PARAMS["trauma_floor"],
+            agent.multi_rho.rho_trauma - D1_PARAMS["healing_rate"]
+        )
+        agent.safe_interaction_count = 0  # Reset counter
+```
+
+---
+
+## 11. Presence & Release Fields
+
+From [simulate_inner_council.py](../../simulations/simulate_inner_council.py):
+
+```python
+# Presence Field (inverse of rigidity)
+presence = 1 - agent.multi_rho.effective_rho
+
+# Release Field (same formula, different semantic context)
+release = 1 - agent.multi_rho.effective_rho
+```
+
+**Equations:**
+- Presence: $\Pi = 1 - \rho$
+- Release: $\Phi = 1 - \rho$
+
+---
+
+## 12. Calibration from Live Data
+
+From [simulate_agi_debate.py](../../simulations/simulate_agi_debate.py#L680-L692):
+
+```python
+def calibrate_epsilon_params(self):
+    """Calibrate ε₀ and s from early run data."""
+    all_eps = [r.epsilon for r in self.results if not r.is_silent]
+    if len(all_eps) >= 4:
+        med = float(np.median(all_eps))
+        iqr = float(np.subtract(*np.percentile(all_eps, [75, 25]))) or 0.2
+        D1_PARAMS["epsilon_0"] = med
+        D1_PARAMS["s"] = max(0.10, min(0.30, iqr))
+```
+
+---
+
+## Summary: The Cognitive Loop
 
 ```
-src/
-├── memory/
-│   └── ledger.py         # ExperienceLedger: surprise-weighted retrieval
-└── llm/
-    └── openai_provider.py # OpenAI API with rigidity binding
+1. EMBED: Convert identity/wound/message to vectors
+2. PREDICT: Expected response embedding
+3. OBSERVE: Actual response embedding
+4. COMPUTE ε: ||x_pred - x_actual||
+5. CHECK WOUND: Semantic + lexical detection
+6. AMPLIFY if wound: ε' = ε × amp
+7. UPDATE ρ: Multi-timescale (fast, slow, trauma)
+8. COMPUTE k_eff: k_base × (1 - ρ)
+9. COMPUTE W_t: γ / (m × k_eff)
+10. UPDATE TRUST: 1 / (1 + Σε)
+11. DETERMINE MODE: OPEN/MEASURED/GUARDED/FORTIFIED
+12. GENERATE: LLM with T(ρ) and word constraints
+13. LOG: To ExperienceLedger
+14. REPEAT
 ```
 
-**Everything else is inline**. The physics, the wound detection, the trust dynamics, the mode tracking — all implemented directly in each simulation. This enables:
-
-1. **Hypothesis-specific customization** — each sim tests different mechanics
-2. **Rapid iteration** — no refactoring shared code
-3. **Self-documenting code** — the sim *is* the specification
-
----
-
-## XV. Falsification Criteria
-
-From `simulate_skeptics_gauntlet.py` Round 7 ("The Concession Test"):
-
-DDA-X would be falsified if:
-
-1. **ρ does not correlate with ε** — surprise doesn't drive rigidity
-2. **Wounds don't amplify ε** — triggers have no effect
-3. **Identity drift > 0.5 with ρ < 0.3** — agent abandons identity without defensive response
-4. **Trust doesn't correlate with predictability** — trust is arbitrary
-5. **Mode-behavior mapping fails** — GUARDED agents produce OPEN-length responses
-
-Every sim logs the data needed to test these predictions.
-
----
-
-## Epilogue: What DDA-X Became
-
-DDA-X started as a control-theory intuition: *what if surprise made agents more rigid, not more curious?*
-
-Through 59 simulations, it became:
-
-- A **multi-timescale rigidity model** with fast, slow, and trauma components
-- A **wound detection system** combining semantic similarity and lexical matching
-- A **trust dynamics framework** based on predictability
-- A **therapeutic recovery mechanism** for trauma reduction
-- A **cognitive mode system** that constrains behavior based on internal state
-- A **self-validating architecture** that can cite its own logged dynamics
-
-The simulations are the theory. The logged data is the evidence. The code is the proof.
-
----
-
-*This document was generated by systematic reverse-order analysis of simulations 45-59, with specific extraction of implemented equations and mechanics from the source code.*
+This is the DDA-X cognitive engine. It runs inline in every pinnacle simulation.
