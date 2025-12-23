@@ -54,6 +54,9 @@ nav:
     - Paper v2.0: architecture/paper.md
     - Implementation Mapping: architecture/ARCHITECTURE.md
   - Simulations: simulation_chronology.md
+  - Research Review:
+    - Final GPT-5.2 Report: gpt52_review/gpt52_feedback_final.md
+    - Preliminary Feedback: gpt52_review/gpt52_feedback.md
 
 plugins:
   - search

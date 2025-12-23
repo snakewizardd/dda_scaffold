@@ -1,44 +1,47 @@
-# DDA-X: Dynamic Decision Algorithm with Exploration
+# DDA-X: Surprise → Rigidity → Contraction
+**A Dynamical Framework for Agent Behavior**
 
-> **A research-grade architecture for identity-persistent AI agents.**
+> **Standard RL:** surprise → exploration  
+> **DDA-X:** **surprise → rigidity → contraction**
 
-Built on original DDA research, evolved through Microsoft ExACT integration.
+DDA-X is a cognitive-dynamics framework in which **prediction error (surprise) increases rigidity** (defensive contraction) rather than immediately driving exploration. Across 59 simulations, agents maintain a continuous latent state (via 3072-D text embeddings), measure surprise as embedding-space prediction error, and bind that internal rigidity to externally visible behavior—constraining bandwidth, altering decoding styles, and injecting semantic "cognitive state" instructions.
 
-## Quick Links
+---
 
-- [Paper v2.0](architecture/paper.md) — Full theoretical framework with equations
-- [Implementation Mapping](architecture/ARCHITECTURE.md) — Theory→Code bridging
-- [Simulation Chronology](simulation_chronology.md) — 59 progressive experiments
+## The Core Insight
 
-## Core Innovation
+In standard Reinforcement Learning, surprise is often treated as an "intrinsic motivation" signal (curiosity) to explore. DDA-X inverts this. It models the behavior of organisms that **freeze and contract** when startled.
 
-Standard RL: surprise → exploration
+1.  **Startle Response**: High prediction error ($\epsilon$) triggers a spike in rigidity ($\rho$).
+2.  **Contraction**: High rigidity reduces the "step size" of state updates ($k_{\text{eff}}$) and constrains the "bandwidth" of output (word counts, topic variance).
+3.  **Safety & Recovery**: Only when prediction error remains low for a sustained period does rigidity decay, allowing the system to reopen (Trauma Decay).
 
-DDA-X: **surprise → rigidity → contraction**
+## Core Equations
 
-## Key Equations
+### Rigidity Update
+$$
+z_t = \frac{\epsilon_t - \epsilon_0}{s}, \quad \Delta\rho_t = \alpha(\sigma(z_t) - 0.5)
+$$
 
-**Rigidity Update:**
-\[
-\rho_{t+1} = \text{clip}\left(\rho_t + \alpha\left[\sigma\left(\frac{\epsilon - \epsilon_0}{s}\right) - 0.5\right], 0, 1\right)
-\]
+### Effective Step Size
+$$
+k_{\text{eff}} = k_{\text{base}} (1 - \rho_t)
+$$
 
-**Effective Openness:**
-\[
-k_{eff} = k_{base} \times (1 - \rho)
-\]
+### State Evolution
+$$
+x_{t+1} = x_t + k_{\text{eff}} \cdot \eta \Big( \gamma(x^* - x_t) + m(F_T + F_R) \Big)
+$$
 
-**Multi-Timescale Rigidity:**
-\[
-\rho_{eff} = 0.5 \rho_{fast} + 0.3 \rho_{slow} + 1.0 \rho_{trauma}
-\]
+---
 
-## Repository Structure
+## Explore the Documentation
 
-```
-dda_scaffold/
-├── simulations/          # 59 progressive experiments
-├── docs/architecture/    # Theory and implementation docs
-├── src/                  # Core modules (ledger, LLM providers)
-└── simulation_chronology.csv
-```
+*   **[Paper v2.0](architecture/paper.md)**: The full theoretical framework with rigorous math.
+*   **[Implementation Mapping](architecture/ARCHITECTURE.md)**: See how the theory runs in actual Python code.
+*   **[Simulation Chronology](simulation_chronology.md)**: Catalog of all 59 simulations.
+*   **[Research Review](gpt52_review/gpt52_feedback_final.md)**: Independent review by GPT-5.2 reasoning models.
+
+---
+
+*(c) 2025 DDA-X Research Team*
