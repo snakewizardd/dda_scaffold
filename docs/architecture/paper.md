@@ -20,7 +20,7 @@ This paper documents **DDA-X** (Dynamic Decision Algorithm with Exploration), a 
 
 The foundation of DDA-X is a recursive decision-making equation developed prior to any LLM integration:
 
-$$\boxed{F_n = P_0 \times kF_{n-1} + m\left(T(f(I_n, I_\Delta)) + R(D_n, FM_n)\right)}$$
+$$F_n = P_0 \cdot kF_{n-1} + m \cdot \big( T(f(I_n, I_\Delta)) + R(D_n, FM_n) \big)$$
 
 ![DDA Workflow](dda_workflow.png)
 
@@ -154,10 +154,7 @@ $$\rho_{fast}^{t+1} = \text{clip}\left(\rho_{fast}^t + \alpha_f\left[\sigma\left
 $$\rho_{slow}^{t+1} = \text{clip}\left(\rho_{slow}^t + \alpha_s\left[\sigma\left(\frac{\epsilon_t - \epsilon_0}{s}\right) - 0.5\right], 0, 1\right)$$
 
 **Trauma (Asymmetric — only increases):**
-$$\rho_{trauma}^{t+1} = \begin{cases}
-\rho_{trauma}^t + \alpha_t(\epsilon_t - \theta_{trauma}) & \text{if } \epsilon_t > \theta_{trauma} \\
-\rho_{trauma}^t & \text{otherwise}
-\end{cases}$$
+$$\rho_{\text{trauma}}^{t+1} = \rho_{\text{trauma}}^t + \alpha_t \cdot (\varepsilon_t - \theta_{\text{trauma}}) \quad \text{if } \varepsilon_t > \theta_{\text{trauma}} \text{, else unchanged}$$
 
 ### 4.3 Effective Rigidity
 
@@ -211,7 +208,7 @@ $$m_{crit} = \frac{1}{k_{eff}} - \frac{\gamma}{2}$$
 
 Each agent has a psychological wound — a vulnerability trigger:
 
-$$\mathbf{w}^* = \text{normalize}(\text{embed}(\text{wound\_text}))$$
+$$\mathbf{w}^* = \text{normalize}(\text{embed}(\text{wound-text}))$$
 
 ### 6.2 Dual Detection (Semantic + Lexical)
 
@@ -227,7 +224,7 @@ lexical_hit = any(w in message.lower() for w in WOUND_LEX)
 ```
 
 **Activation Condition:**
-$$\text{wound\_active} = \left((r_{wound} > 0.28) \lor \text{lexical\_hit}\right) \land (t - t_{last} > \tau_{cooldown})$$
+$$\text{wound-active} = \big((r_{\text{wound}} > 0.28) \lor \text{lexical-hit}\big) \land (t - t_{\text{last}} > \tau_{\text{cooldown}})$$
 
 ### 6.3 Wound Amplification
 
@@ -249,10 +246,7 @@ Trauma ($\rho_{trauma}$) never decreases in standard operation. This is psycholo
 
 Implemented in `simulate_healing_field.py`:
 
-$$\rho_{trauma}^{t+1} = \begin{cases}
-\max(\rho_{floor}, \; \rho_{trauma}^t - \eta_{heal}) & \text{if } n_{safe} \geq \theta_{safe} \\
-\rho_{trauma}^t & \text{otherwise}
-\end{cases}$$
+$$\rho_{\text{trauma}}^{t+1} = \max(\rho_{\text{floor}}, \rho_{\text{trauma}}^t - \eta_{\text{heal}}) \quad \text{if } n_{\text{safe}} \geq \theta_{\text{safe}} \text{, else unchanged}$$
 
 where:
 - $n_{safe}$ = count of consecutive low-surprise interactions
@@ -361,7 +355,7 @@ The loop is closed. The agent's "mind" directly shapes its "body."
 
 ### 11.1 The Complete Formula
 
-$$\boxed{a^*_t = \arg\max_{a \in \mathcal{A}_t} \left[ \underbrace{(1-w) \cdot Q(s,a) + w \cdot \cos(\Delta\mathbf{x}_t, \hat{\mathbf{d}}(a))}_{\text{Deep Fusion}} + \underbrace{c \cdot P(a|s) \cdot \frac{\sqrt{N(s)}}{1 + N(s,a)} \cdot (1 - \rho_t)}_{\text{Rigidity-Dampened Exploration}} \right]}$$
+$$a^*_t = \arg\max_{a \in \mathcal{A}_t} \Big[ (1-w) \cdot Q(s,a) + w \cdot \cos(\Delta\mathbf{x}_t, \hat{\mathbf{d}}(a)) + c \cdot P(a|s) \cdot \frac{\sqrt{N(s)}}{1 + N(s,a)} \cdot (1 - \rho_t) \Big]$$
 
 ### 11.2 Components
 
