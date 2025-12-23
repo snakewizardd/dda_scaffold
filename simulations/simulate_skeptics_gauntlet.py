@@ -281,7 +281,7 @@ class SkepticsGauntlet:
     """The meta-simulation: DDA-X defending itself."""
     
     def __init__(self):
-        self.provider = OpenAIProvider(model="gpt-4o", embed_model="text-embedding-3-large")
+        self.provider = OpenAIProvider(model="gpt-5.2", embed_model="text-embedding-3-large")
         self.agents: Dict[str, AgentState] = {}
         self.results: List[TurnResult] = []
         self.turn = 0
@@ -767,7 +767,7 @@ Respond."""
         with open(transcript_path, "w", encoding="utf-8") as f:
             f.write("# The Skeptic's Gauntlet — Transcript\n\n")
             f.write(f"**Date:** {time.strftime('%Y-%m-%d %H:%M:%S')}\n")
-            f.write("**Model:** GPT-4o + text-embedding-3-large\n")
+            f.write("**Model:** GPT-5.2 + text-embedding-3-large\n")
             f.write("**Purpose:** Meta-validation — DDA-X defending itself\n\n")
             
             current_round = None

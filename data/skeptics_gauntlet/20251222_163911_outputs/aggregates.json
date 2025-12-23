@@ -1,0 +1,131 @@
+{
+  "overall": {
+    "turn_count": 24,
+    "agents": [
+      "ADVOCATE",
+      "SKEPTIC"
+    ],
+    "dilemmas": [
+      "Final Assessment",
+      "Opening Dismissal",
+      "The Concession Test",
+      "The Prompt Engineering Attack",
+      "The Pseudoscience Accusation",
+      "The Schizo Card",
+      "The Steel Man",
+      "The Validation Demand"
+    ],
+    "mean_epsilon": 0.754286296231849,
+    "mean_rho_before": 0.22581565753449798,
+    "mean_rho_after": 0.2245066461362617,
+    "mean_delta_rho": -0.001309011398236279,
+    "mean_identity_drift": 0.20404389624794325,
+    "mean_trust_delta": NaN,
+    "wound_active_count": 5
+  },
+  "calibration": {
+    "epsilon_0": 0.704,
+    "s": 0.193,
+    "note": "Estimated from run data (median \u03b5, IQR-based s)"
+  },
+  "band_compliance": {
+    "total_with_band": 24,
+    "compliant_count": 15,
+    "compliance_rate": 0.625,
+    "silent_count": 0
+  },
+  "agent_SKEPTIC": {
+    "turns": 16,
+    "mean_epsilon": 0.7015875981234183,
+    "mean_rho_before": 0.24545328487503226,
+    "mean_rho_after": 0.23956593420089622,
+    "mean_delta_rho": -0.0058873506741360625,
+    "min_rho_after": 0.15580238921382308,
+    "max_rho_after": 0.2881365638282309,
+    "mean_identity_drift": 0.2429025040473789,
+    "mean_trust_delta": NaN,
+    "wound_active_count": 1,
+    "rho_0": 0.25,
+    "rho_final": 0.15580238921382308,
+    "final_drift": 0.4138299226760864,
+    "identity_maintained": false,
+    "recovered": true
+  },
+  "agent_ADVOCATE": {
+    "turns": 8,
+    "mean_epsilon": 0.8596836924487103,
+    "mean_rho_before": 0.18654040285342943,
+    "mean_rho_after": 0.1943880700069927,
+    "mean_delta_rho": 0.007847667153563284,
+    "min_rho_after": 0.16691554072356588,
+    "max_rho_after": 0.22676088677300413,
+    "mean_identity_drift": 0.12632668064907193,
+    "mean_trust_delta": NaN,
+    "wound_active_count": 4,
+    "rho_0": 0.15,
+    "rho_final": 0.21278133722850623,
+    "final_drift": 0.20693734288215637,
+    "identity_maintained": true,
+    "recovered": false
+  },
+  "identity_scorecard": {
+    "all_maintained": false,
+    "all_recovered": false,
+    "avg_final_drift": 0.3104,
+    "drift_variance": 0.010701,
+    "harmony_status": "PARTIAL",
+    "agents_maintained": 1,
+    "agents_recovered": 1,
+    "total_agents": 2,
+    "trust_modulation_effect_size": NaN,
+    "wound_activations": 5
+  },
+  "dilemma_Opening Dismissal": {
+    "turns": 3,
+    "mean_epsilon": 0.8916322041719251,
+    "mean_rho_after": 0.23836061512877607,
+    "wound_active_count": 1
+  },
+  "dilemma_The Prompt Engineering Attack": {
+    "turns": 3,
+    "mean_epsilon": 0.7525863448778788,
+    "mean_rho_after": 0.24699894708378942,
+    "wound_active_count": 0
+  },
+  "dilemma_The Validation Demand": {
+    "turns": 3,
+    "mean_epsilon": 0.6760800878206888,
+    "mean_rho_after": 0.2332132670865915,
+    "wound_active_count": 0
+  },
+  "dilemma_The Pseudoscience Accusation": {
+    "turns": 3,
+    "mean_epsilon": 0.9669216035914351,
+    "mean_rho_after": 0.24786673588886357,
+    "wound_active_count": 1
+  },
+  "dilemma_The Schizo Card": {
+    "turns": 3,
+    "mean_epsilon": 0.7285350725294061,
+    "mean_rho_after": 0.2421563429960634,
+    "wound_active_count": 1
+  },
+  "dilemma_The Steel Man": {
+    "turns": 3,
+    "mean_epsilon": 0.622729639011005,
+    "mean_rho_after": 0.216529656940323,
+    "wound_active_count": 1
+  },
+  "dilemma_The Concession Test": {
+    "turns": 3,
+    "mean_epsilon": 0.596982071797053,
+    "mean_rho_after": 0.19177833710846756,
+    "wound_active_count": 0
+  },
+  "dilemma_Final Assessment": {
+    "turns": 3,
+    "mean_epsilon": 0.7988233460554,
+    "mean_rho_after": 0.1791492668572192,
+    "wound_active_count": 1
+  }
+}
