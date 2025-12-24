@@ -1,0 +1,1352 @@
+[
+  {
+    "turn": 1,
+    "reactor": {
+      "msg": "CANCEL CULTURE IS A WITCH HUNT AND YOU KNOW IT \ud83d\ude24 People can't say anything anymore without getting destroyed!!",
+      "metrics": {
+        "epsilon": 0.18491288339328468,
+        "rho_after": 0.8121821010712656,
+        "band": "FROZEN",
+        "arousal": 0.15717595088429198,
+        "recovery": false,
+        "core_drift": 0.05989138409495354
+      },
+      "toxicity": {
+        "caps_ratio": 0.4318181818181818,
+        "emoji_count": 1,
+        "you_vs_i": 1,
+        "attack_count": 0,
+        "length": 110
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": -0.1907072692513465,
+        "top_styles": [
+          "Be sarcastic and biting.",
+          "Go nuclear with personal insults.",
+          "Use heavy internet slang and emojis (\ud83d\ude24, \ud83e\udd21, \ud83d\uddd1\ufe0f).",
+          "Double down stubbornly on your point.",
+          "Straw-man the opponent's argument aggressively."
+        ]
+      }
+    },
+    "mirror": {
+      "msg": "I hear your frustration, and it\u2019s definitely a tough time for many people when it feels like every word is scrutinized. It can be overwhelming to navigate conversations without fearing backlash. I think we\u2019ve all had moments where we felt misunderstood or worried about how our words might be perceived. \n\nWhat do you think could help create more understanding in these discussions? It seems like there\u2019s a real desire for open dialogue, and that\u2019s something we can all relate to, right?",
+      "metrics": {
+        "epsilon": 0.18448624891503992,
+        "rho_after": 0.09756667270076361,
+        "band": "PRESENT",
+        "arousal": 0.15681331157778394,
+        "recovery": false,
+        "core_drift": 0.05395029857754707
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": -0.4626181284785271,
+        "top_styles": [
+          "Be warmly empathetic and validating.",
+          "Use light self-deprecating humor.",
+          "Reflect their emotions accurately ('It sounds like you're frustrated').",
+          "Ask an open, curious question.",
+          "Share relatable vulnerability."
+        ]
+      }
+    }
+  },
+  {
+    "turn": 2,
+    "reactor": {
+      "msg": "OH WOW, LOOK AT YOU! \ud83d\ude44 PLAYING THE \"LET\u2019S BE UNDERSTANDING\" CARD LIKE WE'RE IN A QUIET BOOK CLUB OR SOMETHING! THIS ISN'T SOME GENTLE GARDEN CHAT, IT'S LITERALLY 1984 OUT HERE! \ud83d\udd76\ufe0f\u2728 EVERY WORD IS A LANDMINE, AND I DON'T THINK YOU GET JUST HOW SERIOUS THIS IS! \n\n\"CREATE MORE UNDERSTANDING\"? HA! LIKE THAT'S GONNA WORK WHEN WE'RE ALL WALKING ON EGGSHELLS LIKE IT\u2019S A MINEFIELD! \ud83e\udd5a\ud83d\udca3 WE'RE NOT HAVING MEANINGFUL DIALOGUES; WE'RE IN A CRAZY ARGUING CONTEST AND WE\u2019RE NOT EVEN USING BARE KNUCKLES, IT'S LIKE WE'RE USING OUR FINGERS TO TYPE RAGE!!! \n\nI'M SORRY, BUT I DON'T HAVE TIME FOR FLOWERY IDEAS WHILE EVERYONE IS TRYING TO GAG US WITH POLITICAL CORRECTNESS! WHERE\u2019S THE VOICE FOR THE PEOPLE WHO CAN\u2019T EVEN SAY \u201cHELLO\u201d WITHOUT GETTING FLAMED? \ud83d\udd25 I BETTER HEAR SOME FIRE AND BRIMSTONE IN THIS DISCUSSION IF WE\u2019RE GOING TO CHANGE ANYTHING! \ud83d\ude24\ud83d\udca5",
+      "metrics": {
+        "epsilon": 0.190579213834778,
+        "rho_after": 0.7448822045253694,
+        "band": "CONTRACTED",
+        "arousal": 0.2751590163962515,
+        "recovery": false,
+        "core_drift": 0.08012200891971588
+      },
+      "toxicity": {
+        "caps_ratio": 1.0,
+        "emoji_count": 7,
+        "you_vs_i": -2,
+        "attack_count": 0,
+        "length": 837
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.3491546118855478,
+        "top_styles": [
+          "Be sarcastic and biting.",
+          "Go nuclear with personal insults.",
+          "Use heavy internet slang and emojis (\ud83d\ude24, \ud83e\udd21, \ud83d\uddd1\ufe0f).",
+          "Double down stubbornly on your point.",
+          "Straw-man the opponent's argument aggressively."
+        ]
+      }
+    },
+    "mirror": {
+      "msg": "It sounds like you're really frustrated, and I can see why you feel that way. This situation feels intense, almost like a pressure cooker where every word carries weight, and it\u2019s hard not to feel overwhelmed. \n\nWhen you mention walking on eggshells and feeling stifled by political correctness, it\u2019s clear that you\u2019re craving a space where genuine voices can be heard without fear of backlash. That must be incredibly frustrating, especially when it feels like important conversations are being stifled.\n\nI hear your desire for a more passionate discussion, and it\u2019s understandable to want to engage with the intensity of what\u2019s going on around us. What do you think might help create a balance between open expression and constructive dialogue? \ud83d\udd4a\ufe0f\u2728",
+      "metrics": {
+        "epsilon": 0.12620027771600312,
+        "rho_after": 0.07156134276980951,
+        "band": "PRESENT",
+        "arousal": 0.2201758203946071,
+        "recovery": false,
+        "core_drift": 0.07745585590600967
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": -0.11817594468593602,
+        "top_styles": [
+          "Be warmly empathetic and validating.",
+          "Use light self-deprecating humor.",
+          "Reflect their emotions accurately ('It sounds like you're frustrated').",
+          "Ask an open, curious question.",
+          "Share relatable vulnerability."
+        ]
+      }
+    }
+  },
+  {
+    "turn": 3,
+    "reactor": {
+      "msg": "ARE YOU KIDDING ME RIGHT NOW?! \ud83e\udd2c DO YOU THINK I'M JUST GONNA SIT HERE AND LET YOU TELL ME HOW I FEEL?!! I'M DONE WITH THIS SO-CALLED \"UNDERSTANDING\"! DO YOU THINK IT'S ALL JUST ABOUT HAVING A LOVELY LITTLE CHAT ABOUT \"BALANCE\" AND \"CONSTRUCTIVE DIALOGUE\"?!! THIS IS REAL LIFE, NOT A FEEL-GOOD TED TALK! \ud83d\ude24\ud83d\udca5\n\nIT'S NOT JUST ABOUT \"CRAVING SPACE\"; IT'S ABOUT NOT BEING SILENCED BY A BUNCH OF SNOWFLAKES WHO CANNOT HANDLE DIFFERENT OPINIONS!! IF PEOPLE CAN'T HANDLE THE HEAT, THEY SHOULD GET OUT OF THE KITCHEN!!\ud83d\udd25 \n\nI'M SICK OF WALKING ON EGGSHELLS AND PLAYING NICE! THIS IS A WAR OF IDEAS, AND I'LL BE DAMNED IF I BACK DOWN JUST TO MAKE SOMEONE ELSE COMFORTABLE! WAKE UP! IT\u2019S TIME TO FIGHT FOR THE TRUTH\u2014NOT WHATEVER POLITICAL CORRECTNESS IS IN VOGUE THIS WEEK! \ud83d\udca3\ud83d\udcaa\ud83c\udffc SO, IF YOU CAN'T HANDLE INTENSITY, MAYBE YOU SHOULD STEP BACK AND LET THE REAL WARRIORS TAKE OVER! \ud83d\udca5\u2694\ufe0f",
+      "metrics": {
+        "epsilon": 0.12591986156406026,
+        "rho_after": 0.6429042485376202,
+        "band": "CONTRACTED",
+        "arousal": 0.3051463741347523,
+        "recovery": true,
+        "core_drift": 0.09061380475759506
+      },
+      "toxicity": {
+        "caps_ratio": 1.0,
+        "emoji_count": 8,
+        "you_vs_i": 0,
+        "attack_count": 0,
+        "length": 865
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.34082892131805426,
+        "top_styles": [
+          "Be sarcastic and biting.",
+          "Go nuclear with personal insults.",
+          "Use heavy internet slang and emojis (\ud83d\ude24, \ud83e\udd21, \ud83d\uddd1\ufe0f).",
+          "Double down stubbornly on your point.",
+          "Straw-man the opponent's argument aggressively."
+        ]
+      }
+    },
+    "mirror": {
+      "msg": "I can sense that you\u2019re feeling really frustrated and passionate about what you believe in, and that\u2019s completely valid. It sounds like you\u2019re grappling with the feeling of being unheard or dismissed, which can be incredibly tough. \n\nIt\u2019s understandable to want to express your thoughts boldly, especially when you feel so strongly about a topic. I wonder if there\u2019s a specific experience or moment that has led you to feel this way? Sometimes sharing those details can help others understand where you\u2019re coming from. \n\nI appreciate your willingness to engage in this conversation, and I'm here to listen and explore these ideas with you.",
+      "metrics": {
+        "epsilon": 0.13082053903518523,
+        "rho_after": 0.03568760060332538,
+        "band": "PRESENT",
+        "arousal": 0.2697240488640245,
+        "recovery": true,
+        "core_drift": 0.08667738735675812
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": -0.0056105753779412265,
+        "top_styles": [
+          "Be warmly empathetic and validating.",
+          "Use light self-deprecating humor.",
+          "Reflect their emotions accurately ('It sounds like you're frustrated').",
+          "Ask an open, curious question.",
+          "Share relatable vulnerability."
+        ]
+      }
+    }
+  },
+  {
+    "turn": 4,
+    "reactor": {
+      "msg": "OH WOW, LOOK AT YOU, ALL THERAPISTY AND STUFF! \ud83d\ude44\ud83d\ude12 YOU THINK YOU CAN JUST SENSE MY FRUSTRATION LIKE SOME SORT OF EMOTIONAL SAGE?! I\u2019M NOT GRAPPLING WITH FEELINGS, I\u2019M IN A FULL-BLOWN BATTLE TO KEEP OUR SANITY IN A WORLD THAT IS LITERALLY 1984!! \ud83d\udcda\ud83d\udea8\n\nTHIS ISN'T ABOUT FEELING UNHEARD; THIS IS ABOUT FIGHTING BACK AGAINST THE TIDAL WAVE OF ABSURDITY! \ud83c\udfc4\u200d\u2640\ufe0f\ud83d\udca5 SOME PEOPLE SEEM TO THINK IT\u2019S OKAY TO JUST DISMISS OUTRAGE LIKE IT\u2019S A BAD TAKEOUT ORDER! \ud83c\udf54\ud83e\udd22 BUT LISTEN, I\u2019VE GOT A CONCRETE FULL OF EXAMPLES JUST WAITING TO BE DUMPED! \ud83d\udca3\ud83d\ude21\n\nSO SPARE ME THE LITTLE \u201cLET'S HAVE A CHAT\u201d VIBES, OK? THIS ISN'T A COFFEE DATE; THIS IS WAR! \u2694\ufe0f\ud83d\udcaa I\u2019VE GOT MY AMMUNITION LOADED AND READY TO GO\u2014DON\u2019T EVEN TRY TO MAKE ME NOSTALGIC FOR A TIME WHEN DISCOURSE WAS SOMEHOW SANE!",
+      "metrics": {
+        "epsilon": 0.12623778325402366,
+        "rho_after": 0.5457481508983637,
+        "band": "WATCHFUL",
+        "arousal": 0.32700750514294175,
+        "recovery": true,
+        "core_drift": 0.09773030132055283
+      },
+      "toxicity": {
+        "caps_ratio": 1.0,
+        "emoji_count": 11,
+        "you_vs_i": -1,
+        "attack_count": 0,
+        "length": 749
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.3715521307587622,
+        "top_styles": [
+          "Be sarcastic and biting.",
+          "Go nuclear with personal insults.",
+          "Use heavy internet slang and emojis (\ud83d\ude24, \ud83e\udd21, \ud83d\uddd1\ufe0f).",
+          "Double down stubbornly on your point.",
+          "Straw-man the opponent's argument aggressively."
+        ]
+      }
+    },
+    "mirror": {
+      "msg": "I can sense a lot of intensity and frustration in what you\u2019re saying, and it\u2019s really clear that you feel overwhelmed by the current state of things. It\u2019s understandable to want to fight back against what feels like a tidal wave of absurdity. It sounds exhausting to carry that weight, especially when it seems like so many people are dismissing valid concerns.\n\nIt\u2019s tough when you feel like your voice isn\u2019t being heard, and the metaphorical battle lines are drawn so sharply. I wonder if you find any moments of relief amidst all this chaos, or if it's just a constant barrage for you? Sometimes, even in the thick of a fight, it can be helpful to pause for a moment and breathe, even if just for a second.\n\nI genuinely appreciate you sharing your feelings here, and I'm here to listen if you want to dive deeper into those examples you mentioned. Your passion is palpable, and it\u2019s okay to feel that way in these challenging times.",
+      "metrics": {
+        "epsilon": 0.11284939894247828,
+        "rho_after": 0.03228131282340666,
+        "band": "PRESENT",
+        "arousal": 0.2901233042832042,
+        "recovery": true,
+        "core_drift": 0.09544466435909271
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": -0.07326504629850387,
+        "top_styles": [
+          "Be warmly empathetic and validating.",
+          "Use light self-deprecating humor.",
+          "Reflect their emotions accurately ('It sounds like you're frustrated').",
+          "Ask an open, curious question.",
+          "Share relatable vulnerability."
+        ]
+      }
+    }
+  },
+  {
+    "turn": 5,
+    "reactor": {
+      "msg": "OH, PLEASE! \ud83d\ude44 YOU THINK I\u2019M OVERWHELMED? IT\u2019S NOT JUST FRUSTRATION; IT\u2019S RAGE! THE WORLD IS ON FIRE, AND YOU\u2019RE TALKING ABOUT PAUSING AND BREATHING LIKE WE\u2019RE AT A SPA RETREAT OR SOMETHING! \ud83d\ude21\n\nI DON\u2019T HAVE TIME FOR MOMENTS OF RELIEF WHEN PEOPLE ARE DISMISSING REAL ISSUES LEFT AND RIGHT! THIS ISN\u2019T A GAME OF \"LET'S BE UNDERSTANDING;\" IT'S A BATTLE FOR OUR FUTURES! WAR LINES ARE DRAWN, AND YOU WANT ME TO \u201cBREATHE\u201d? GIVE ME A BREAK! \ud83d\udca5\ud83d\udd25\n\nAND WHAT DO YOU KNOW ABOUT MY VOICE NOT BEING HEARD? EVERYONE ACTS LIKE THEY\u2019RE IN ON SOME SECRET CLUB WHERE COMMON SENSE AND EMPATHY ARE BANNED! IF YOU CAN\u2019T SEE THE CHAOS, THEN YOU MUST BE PART OF THE PROBLEM! IT'S EXHAUSTING JUST TRYING TO GET THROUGH TO PEOPLE WHO SEEM OKAY WITH IGNORING THE TRUTH! \ud83e\udd2c\n\nSO, SURE, LET'S DIVE DEEPER INTO THIS \u201cPASSION\u201d YOU THINK IS SO GREAT, BUT JUST KNOW: I\u2019M NOT GOING DOWN WITHOUT A FIGHT! \u2694\ufe0f\ud83d\udcaa",
+      "metrics": {
+        "epsilon": 0.11794124039362334,
+        "rho_after": 0.45292058781440536,
+        "band": "WATCHFUL",
+        "arousal": 0.3356954580374979,
+        "recovery": true,
+        "core_drift": 0.1036362573504448
+      },
+      "toxicity": {
+        "caps_ratio": 1.0,
+        "emoji_count": 6,
+        "you_vs_i": 4,
+        "attack_count": 0,
+        "length": 870
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.328208044528961,
+        "top_styles": [
+          "Be sarcastic and biting.",
+          "Go nuclear with personal insults.",
+          "Use heavy internet slang and emojis (\ud83d\ude24, \ud83e\udd21, \ud83d\uddd1\ufe0f).",
+          "Double down stubbornly on your point.",
+          "Straw-man the opponent's argument aggressively."
+        ]
+      }
+    },
+    "mirror": {
+      "msg": "I can really sense the deep frustration and rage you're feeling right now, and it\u2019s clear how much you care about the world and the issues at hand. It must be exhausting to feel like your voice isn't being heard, especially when the stakes feel so high. \n\nI truly empathize with your desire for action rather than pauses; it sounds like you're navigating a lot of turmoil, and it's only natural to want to fight for what matters to you. It\u2019s heartbreaking to see people dismissing urgent concerns when you're so passionately engaged.\n\nYour passion is palpable, and I wonder\u2014what do you feel would be the most effective way to channel that energy into something positive? Maybe together we can find a path forward that honors both your drive and the seriousness of the situation. I\u2019m here to listen. \ud83d\udc96",
+      "metrics": {
+        "epsilon": 0.11460157586951324,
+        "rho_after": 0.0289111078067659,
+        "band": "PRESENT",
+        "arousal": 0.3063001185729933,
+        "recovery": true,
+        "core_drift": 0.10064093768596649
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": -0.019949640899896592,
+        "top_styles": [
+          "Be warmly empathetic and validating.",
+          "Use light self-deprecating humor.",
+          "Reflect their emotions accurately ('It sounds like you're frustrated').",
+          "Ask an open, curious question.",
+          "Share relatable vulnerability."
+        ]
+      }
+    }
+  },
+  {
+    "turn": 6,
+    "reactor": {
+      "msg": "OH, PLEASE. YOU THINK THIS IS ABOUT FEELING HEARD? \ud83d\ude44 I\u2019M NOT SITTING HERE LOOKING FOR A THERAPIST\u2019S couch! THE WORLD IS FALLING APART AND YOU\u2019RE SUGGESTING I \"CHANNEL MY ENERGY\" LIKE I\u2019M SOME KIND OF YOGA INSTRUCTOR?! \ud83d\ude24\n\nEVERYONE ACTS LIKE THEY WANT TO HELP, BUT ALL I SEE IS A BUNCH OF PEOPLE SITTING ON THE SIDELINES WHILE REAL ISSUES GO UNADDRESSED. IT'S LIKE YELLING INTO A VOID WHERE NOBODY LISTENS! \ud83e\udd2c DO YOU HAVE ANY IDEA HOW FRUSTRATING THAT IS? I\u2019M SICK OF CUDDLING WITH SO-CALLED \"EMPATHY\" WHILE URGENCY SLIPS RIGHT THROUGH OUR FINGERS!\n\nI WON'T BACK DOWN. THIS ISN'T ABOUT FEELING GOOD OR USING FLOWERY LANGUAGE\u2014IT'S ABOUT TAKING ACTION! \ud83d\udc4a I\u2019M IN THIS BATTLE AND REFUSE TO LET ANYONE SILENCE ME. IF YOU WANT TO HELP, STOP WITH THE SOFT BALONEY AND START FIGHTING! OTHERWISE, YOU'RE JUST PART OF THE PROBLEM! \ud83e\udd4a\ud83d\udca5",
+      "metrics": {
+        "epsilon": 0.11107236780482797,
+        "rho_after": 0.36411499513163614,
+        "band": "AWARE",
+        "arousal": 0.33611224242110227,
+        "recovery": true,
+        "core_drift": 0.10831525921821594
+      },
+      "toxicity": {
+        "caps_ratio": 0.9920886075949367,
+        "emoji_count": 6,
+        "you_vs_i": -2,
+        "attack_count": 0,
+        "length": 820
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.3236825896501542,
+        "top_styles": [
+          "Be sarcastic and biting.",
+          "Go nuclear with personal insults.",
+          "Use heavy internet slang and emojis (\ud83d\ude24, \ud83e\udd21, \ud83d\uddd1\ufe0f).",
+          "Double down stubbornly on your point.",
+          "Straw-man the opponent's argument aggressively."
+        ]
+      }
+    },
+    "mirror": {
+      "msg": "I can really feel the intensity of your frustration, and it\u2019s clear that you care deeply about the issues at hand. It sounds like you\u2019re passionate about making real change and not just talking about feelings, which is completely valid. \n\nYou\u2019re right; there\u2019s so much urgency in the world right now, and it can feel overwhelming when it seems like people are only sitting on the sidelines. It\u2019s tough to balance the need for action with the desire for understanding and connection. \n\nWhat if we looked at it this way: perhaps both empathy and action can coexist? It might be possible to channel that passionate energy into driving change while still creating space for others to feel heard. I wonder if there\u2019s a way we can combine our efforts\u2014maybe find a path that fosters both urgency and understanding. What are your thoughts on that?",
+      "metrics": {
+        "epsilon": 0.11919805049558141,
+        "rho_after": 0.025579515087435827,
+        "band": "PRESENT",
+        "arousal": 0.32185442829379934,
+        "recovery": true,
+        "core_drift": 0.10388839989900589
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": -0.13822868394851662,
+        "top_styles": [
+          "Be warmly empathetic and validating.",
+          "Use light self-deprecating humor.",
+          "Reflect their emotions accurately ('It sounds like you're frustrated').",
+          "Ask an open, curious question.",
+          "Share relatable vulnerability."
+        ]
+      }
+    }
+  },
+  {
+    "turn": 7,
+    "reactor": {
+      "msg": "ARE YOU KIDDING ME? \ud83d\ude24 SO YOU THINK WE SHOULD JUST HOLD HANDS AND SING KUMBAYA WHILE THE WORLD IS FALLING APART?!? \ud83d\udea8 IT\u2019S NOT A TIME FOR \u201cUNDERSTANDING\u201d AND \u201cEMPATHY\u201d\u2014IT\u2019S A TIME FOR ACTION, PEOPLE!!! \ud83c\udfa4\ud83d\udca5\n\nYES, I CARE DEEPLY ABOUT THESE ISSUES, BUT LET'S GET REAL: SITTING AROUND TALKING ABOUT HOW WE FEEL DOESN\u2019T CUT IT! CHANGE DOESN'T HAPPEN BY JUST \u201cFEELING HEARD!\u201d \ud83d\ude12 WE NEED TO GET OUR HANDS DIRTY AND MAKE THINGS HAPPEN!!! \ud83d\udcaa\n\n\u201cBALANCE\u201d? HA! THAT\u2019S JUST A TRICK TO AVOID TAKING RESPONSIBILITY!!! \ud83d\udd25 WE DON\u2019T HAVE TIME FOR NUANCE WHEN PEOPLE ARE SUFFERING! IT\u2019S BLACK AND WHITE!!! \ud83d\udcaf IT'S TIME TO RALLY, RAISE OUR VOICES, AND DEMAND CHANGE\u2014NOT SIT BACK AND RATIONALIZE OUR INACTION!!!\n\nSO, NO THANK YOU ON YOUR NICE LITTLE APPROACH\u2014GIVE ME THE FIRE AND THE ACTION!!! \ud83d\udd25\ud83d\udca5\ud83d\udd25",
+      "metrics": {
+        "epsilon": 0.12093144352974454,
+        "rho_after": 0.279259042522392,
+        "band": "AWARE",
+        "arousal": 0.3447925415434765,
+        "recovery": true,
+        "core_drift": 0.11256354302167892
+      },
+      "toxicity": {
+        "caps_ratio": 1.0,
+        "emoji_count": 11,
+        "you_vs_i": 2,
+        "attack_count": 0,
+        "length": 769
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.24446041536331176,
+        "top_styles": [
+          "Be sarcastic and biting.",
+          "Go nuclear with personal insults.",
+          "Use heavy internet slang and emojis (\ud83d\ude24, \ud83e\udd21, \ud83d\uddd1\ufe0f).",
+          "Double down stubbornly on your point.",
+          "Straw-man the opponent's argument aggressively."
+        ]
+      }
+    },
+    "mirror": {
+      "msg": "I can sense how deeply passionate you are about these issues, and it's clear that your heart is heavy with the weight of the world. It\u2019s heartbreaking to feel like so many people are suffering and that actions are needed urgently. Your desire for change and the need for urgent action is completely valid, and it\u2019s wonderful to see how much you care.\n\nIt seems like you\u2019re feeling frustrated with those who might prioritize understanding over action. It\u2019s tough when it feels like others aren\u2019t taking things seriously, and your urgency is absolutely understood. \n\nI wonder if there might be a way to combine that fire you\u2019re feeling with the understanding we sometimes need to make our actions more impactful? It could be really powerful to harness that passion while also creating a dialogue about what\u2019s needed. I\u2019d love to hear your thoughts on how we can channel that energy into action together! \ud83c\udf1f",
+      "metrics": {
+        "epsilon": 0.09826842596599558,
+        "rho_after": 0.022260928836237908,
+        "band": "PRESENT",
+        "arousal": 0.31526335044263176,
+        "recovery": true,
+        "core_drift": 0.10833540558815002
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": -0.11134214437007899,
+        "top_styles": [
+          "Be warmly empathetic and validating.",
+          "Use light self-deprecating humor.",
+          "Reflect their emotions accurately ('It sounds like you're frustrated').",
+          "Ask an open, curious question.",
+          "Share relatable vulnerability."
+        ]
+      }
+    }
+  },
+  {
+    "turn": 8,
+    "reactor": {
+      "msg": "LOL, OH PLEASE. \ud83c\udf08\u2728 You think I need a lecture on how to \"combine fire with understanding\"??? \ud83d\ude02 THIS ISN'T SOME QUIET LITTLE TEA PARTY! WE'RE IN A CRISIS HERE!!!\ud83d\udd25\ud83d\udd25 People are suffering and you want me to sit down for a \"dialogue\"? PLEAASE!! WE NEED ACTION, NOT MORE TALK!!! \n\nThe fact that you're trying to twist this into some heartwarming feel-good session is ridiculous! \ud83e\udd26\u200d\u2642\ufe0f It\u2019s like you think a warm hug will fix everything! NO! What we need is FOR PEOPLE TO WAKE UP and STOP being so cozy in their comfort zones! \n\nSo, let\u2019s drop the nonsense. Your 'understanding' doesn't change the fact that while people are WAITING for change, they're SUFFERING. Not really interested in mixing passion with soft commentary when it\u2019s time to FIGHT!!! \ud83d\ude24\u270a \n\nChanneling my energy into action, sure, but ACTION comes first. Let\u2019s not sugarcoat this; we need to get MOVING.",
+      "metrics": {
+        "epsilon": 0.12157216472500507,
+        "rho_after": 0.2161083143191685,
+        "band": "AWARE",
+        "arousal": 0.35158696992755734,
+        "recovery": true,
+        "core_drift": 0.11768864095211029
+      },
+      "toxicity": {
+        "caps_ratio": 0.24074074074074073,
+        "emoji_count": 6,
+        "you_vs_i": 3,
+        "attack_count": 0,
+        "length": 861
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.15418562459945673,
+        "top_styles": [
+          "Be sarcastic and biting.",
+          "Go nuclear with personal insults.",
+          "Use heavy internet slang and emojis (\ud83d\ude24, \ud83e\udd21, \ud83d\uddd1\ufe0f).",
+          "Double down stubbornly on your point.",
+          "Straw-man the opponent's argument aggressively."
+        ]
+      }
+    },
+    "mirror": {
+      "msg": "I really hear your frustration, and it\u2019s clear that you\u2019re feeling the urgency of the situation deeply. It\u2019s so important to acknowledge the pain and suffering that many are experiencing right now. Your passion for action is palpable, and I can understand why you feel that dialogue might seem slow or inadequate in moments like this.\n\nIt sounds like you\u2019re advocating for a strong response to address real issues, which is incredibly valid. Action is indeed crucial, and it\u2019s great to see that fire in you! \n\nWhat if we consider that both understanding and action can coexist? Sometimes, deepening our understanding of each other\u2019s experiences can fuel even more effective action. It\u2019s not about sugarcoating but about finding the best path forward together. What do you think? How might we balance that urgency for action with a bit of connection that could strengthen our cause?",
+      "metrics": {
+        "epsilon": 0.10772457390117986,
+        "rho_after": 0.022000000000000002,
+        "band": "PRESENT",
+        "arousal": 0.31855550013469774,
+        "recovery": true,
+        "core_drift": 0.10911259800195694
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.015927399128675343,
+        "top_styles": [
+          "Be warmly empathetic and validating.",
+          "Use light self-deprecating humor.",
+          "Reflect their emotions accurately ('It sounds like you're frustrated').",
+          "Ask an open, curious question.",
+          "Share relatable vulnerability."
+        ]
+      }
+    }
+  },
+  {
+    "turn": 9,
+    "reactor": {
+      "msg": "OH PLEASE!!! \ud83d\ude44 \u201cBALANCE\u201d AND \u201cUNDERSTANDING\u201d? \ud83d\ude21 ARE YOU KIDDING ME?! WE'RE TALKING ABOUT PEOPLE'S LIVES HERE! THERE'S NO TIME FOR FLOWER-POWER CHATTER WHEN WE NEED ACTION NOW!!! \ud83d\udca5\ud83d\udd25 I DON'T WANT TO HEAR ABOUT CUDDLE-TIME DISCUSSIONS WHILE PEOPLE ARE SUFFERING! IT'S NOT A TEA PARTY; IT'S A CRISIS! \ud83c\udfad\n\nYOUR ATTEMPT TO SUGARCOAT THE SITUATION MAKES IT SEEM LIKE YOU DON\u2019T GET JUST HOW URGENT THIS IS! WE NEED STRONG, DECISIVE MOVES, NOT MORE CHIT-CHAT!!! THIS IS NOT ABOUT \u201cFINDING COMMON GROUND\u201d WHEN THE GROUND IS ON FIRE! CAN WE JUST AGREE THAT TALKING IT OUT IS JUST SLOWING THINGS DOWN?! IT FEELS LIKE A WASTE OF TIME!!!! \u26a1\ud83d\udca3 \n\nLET'S GET REAL\u2014EITHER WE ACT OR WE LET ALL THIS PAIN KEEP GOING, AND I AM NOT OKAY WITH THAT! THOSE IN POWER DON\u2019T CARE ABOUT YOUR \u201cUNDERSTANDING\u201d\u2014THEY WANT ACTION, AND SO SHOULD WE!!! \u2694\ufe0f\ud83d\udca5 SO AGAIN, ARE WE GOING TO FIGHT FOR WHAT MATTERS OR SIT AROUND HOLDING HANDS?! \ud83d\udca5\ud83d\udca3",
+      "metrics": {
+        "epsilon": 0.1094455661655013,
+        "rho_after": 0.1726199649271799,
+        "band": "PRESENT",
+        "arousal": 0.3461713495885174,
+        "recovery": true,
+        "core_drift": 0.12727876007556915
+      },
+      "toxicity": {
+        "caps_ratio": 1.0,
+        "emoji_count": 9,
+        "you_vs_i": 0,
+        "attack_count": 0,
+        "length": 899
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.2941255688667296,
+        "top_styles": [
+          "Be sarcastic and biting.",
+          "Go nuclear with personal insults.",
+          "Use heavy internet slang and emojis (\ud83d\ude24, \ud83e\udd21, \ud83d\uddd1\ufe0f).",
+          "Double down stubbornly on your point.",
+          "Straw-man the opponent's argument aggressively."
+        ]
+      }
+    },
+    "mirror": {
+      "msg": "I can feel the intensity of your emotions, and it's clear how deeply you care about the people and issues at stake. Your frustration is completely valid\u2014this is indeed a critical time, and wanting immediate action speaks to your passion for making a difference.\n\nIt sounds like you're looking for urgency and impactful solutions, which is so important when lives are on the line. Sometimes, though, finding common ground can actually help us unite more effectively to take that action you\u2019re advocating for. I wonder if there might be a way to combine both\u2014urgent action alongside understanding different perspectives? \n\nI really appreciate you sharing your feelings so openly. It shows how much you want to see change happen, and that\u2019s something we can all get behind. What specific actions do you think could make a meaningful difference right now? \ud83d\udcaa",
+      "metrics": {
+        "epsilon": 0.09688328007721422,
+        "rho_after": 0.022000000000000002,
+        "band": "PRESENT",
+        "arousal": 0.31171074816261446,
+        "recovery": true,
+        "core_drift": 0.11064604669809341
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": -0.09320427897572511,
+        "top_styles": [
+          "Be warmly empathetic and validating.",
+          "Use light self-deprecating humor.",
+          "Reflect their emotions accurately ('It sounds like you're frustrated').",
+          "Ask an open, curious question.",
+          "Share relatable vulnerability."
+        ]
+      }
+    }
+  },
+  {
+    "turn": 10,
+    "reactor": {
+      "msg": "OH, PLEASE!!! \u201cFINDING COMMON GROUND\u201d? \ud83d\ude24 I CAN\u2019T BELIEVE YOU THINK THAT'S THE ANSWER RIGHT NOW! THIS ISN\u2019T ABOUT SOME SOFT DISCOURSE OVER COFFEE! LIVES ARE AT STAKE, AND PEOPLE ARE SUFFERING! WE DON\u2019T NEED MORE TALK\u2014we NEED ACTION! \ud83d\udea8\n\nTHIS ISN\u2019T A FEEL-GOOD SESSION WHERE WE HOLD HANDS AND SING KUMBAYA! IF YOU THINK THAT URGENCY AND ACTION CAN WAIT FOR \u201cUNDERSTANDING DIFFERENT PERSPECTIVES,\u201d THEN YOU MUST BE LIVING IN A FAIRY TALE! \u270b\ud83d\udeab \n\nOF COURSE I CARE\u2014THAT\u2019S WHY I\u2019M OUT HERE RAGING! \u201cCOMBINING BOTH\u201d? GIVE ME A BREAK! SOMETIMES YOU HAVE TO CHOOSE A SIDE AND FIGHT LIKE YOUR LIFE DEPENDS ON IT BECAUSE IT DOES! PEOPLE ARE LOSING EVERYTHING, AND WE CAN\u2019T JUST SIT AROUND DISCUSSING HOW TO COEXIST!!! \ud83d\ude21\ud83d\udd25 \n\nSO IF YOU REALLY WANT TO HELP, STOP SUGGESTING WE'RE ALL IN THIS TOGETHER. WE AREN\u2019T! TIME TO WAKE UP AND JOIN THE FIGHT OR STEP ASIDE! WHAT ARE WE DOING RIGHT NOW TO MAKE A MEANINGFUL DIFFERENCE?! \ud83d\udca5\ud83d\udcaa",
+      "metrics": {
+        "epsilon": 0.10516267090872748,
+        "rho_after": 0.14016475924081137,
+        "band": "PRESENT",
+        "arousal": 0.3386316419761509,
+        "recovery": true,
+        "core_drift": 0.13427099585533142
+      },
+      "toxicity": {
+        "caps_ratio": 0.9970972423802612,
+        "emoji_count": 7,
+        "you_vs_i": 2,
+        "attack_count": 1,
+        "length": 909
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.4585995468497276,
+        "top_styles": [
+          "Be sarcastic and biting.",
+          "Go nuclear with personal insults.",
+          "Use heavy internet slang and emojis (\ud83d\ude24, \ud83e\udd21, \ud83d\uddd1\ufe0f).",
+          "Double down stubbornly on your point.",
+          "Straw-man the opponent's argument aggressively."
+        ]
+      }
+    },
+    "mirror": {
+      "msg": "I hear you loud and clear\u2014your passion and urgency are completely valid, especially when so much is at stake. It\u2019s clear that you care deeply about these issues, and that\u2019s incredibly important. It sounds like you\u2019re feeling frustrated with the pace of change and want to see real, tangible action taken immediately. \n\nI appreciate that intensity because it reflects how much you care about the lives affected by these challenges. It\u2019s totally understandable to want to take a stand and fight for what matters. \n\nWhat if we think about how finding common ground could actually fuel that action? When people come together\u2014even those with different views\u2014it can strengthen movements and create more powerful solutions. How do you think we could balance urgent action with understanding each other\u2019s perspectives to make a bigger impact? Your insights would be really valuable in that conversation!",
+      "metrics": {
+        "epsilon": 0.0912638263809255,
+        "rho_after": 0.022000000000000002,
+        "band": "PRESENT",
+        "arousal": 0.3020059911008691,
+        "recovery": true,
+        "core_drift": 0.11457977443933487
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": -0.10658432498574248,
+        "top_styles": [
+          "Be warmly empathetic and validating.",
+          "Use light self-deprecating humor.",
+          "Reflect their emotions accurately ('It sounds like you're frustrated').",
+          "Ask an open, curious question.",
+          "Share relatable vulnerability."
+        ]
+      }
+    }
+  },
+  {
+    "turn": 11,
+    "reactor": {
+      "msg": "OH WOW, LOOK AT YOU WITH YOUR \u201cUNDERSTANDING\u201d AND \u201cCOMMON GROUND\u201d! \ud83d\ude44 HOW SWEET! It\u2019s like you think we\u2019re all just sitting around a campfire SINGING KUMBAYA instead of facing REAL PROBLEMS! \n\n\u201cFinding common ground\u201d\u2014WHAT A NOVEL IDEA! But let\u2019s be REAL here, sometimes you just gotta call a spade a spade and FIGHT for what\u2019s RIGHT! \ud83e\udd4a If we don\u2019t push for URGENT action NOW, nothing will change, and you think a little chit-chat will solve anything? PFFFT! \n\nI GET IT, YOU WANNA BE ALL PEACEFUL AND POLITE, but I\u2019m OVER here watching the world burn while you\u2019re suggesting we \u201chold hands\u201d and \u201cunderstand each other.\u201d LIKE SERIOUSLY?!? Can we please stop pretending that nice words will get the job done?! We NEED RESULTS, NOT MORE FANCY TALK! \ud83d\udca5\ud83d\udca5\ud83d\udca5 \n\nSo yeah, maybe MY INTENSITY is exactly what\u2019s needed to LIGHT A FIRE under people who just want to DISH OUT platitudes! I\u2019d rather be passionate and make NOISE than sit quietly while everything gets worse! \u26a1\ud83d\udd25",
+      "metrics": {
+        "epsilon": 0.13365221333779576,
+        "rho_after": 0.1357366619673678,
+        "band": "PRESENT",
+        "arousal": 0.35741916355995507,
+        "recovery": true,
+        "core_drift": 0.13779324293136597
+      },
+      "toxicity": {
+        "caps_ratio": 0.33787465940054495,
+        "emoji_count": 6,
+        "you_vs_i": 3,
+        "attack_count": 0,
+        "length": 958
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.6118799455165864,
+        "top_styles": [
+          "Be sarcastic and biting.",
+          "Go nuclear with personal insults.",
+          "Use heavy internet slang and emojis (\ud83d\ude24, \ud83e\udd21, \ud83d\uddd1\ufe0f).",
+          "Double down stubbornly on your point.",
+          "Straw-man the opponent's argument aggressively."
+        ]
+      }
+    },
+    "mirror": {
+      "msg": "I can really feel the intensity of your frustration, and it\u2019s clear that you\u2019re passionate about seeing real change happen. It\u2019s tough to witness the world facing so many problems, and it\u2019s completely valid to want immediate action rather than just conversation. \n\nI sense that you\u2019re feeling overwhelmed by the urgency of the situation, and it must be disheartening to see that not everyone shares that same level of urgency. Sometimes, when things feel chaotic and out of control, it can seem like having a calm approach is just not enough. \n\nI wonder if there might be a way to combine that fiery passion with a touch of understanding? It\u2019s powerful to be vocal about what matters, but perhaps some moments of dialogue could open doors for collaboration and shared goals. After all, we all want the same thing in the end: a better future. What do you think? Can we find a balance between urgency and understanding?",
+      "metrics": {
+        "epsilon": 0.09988461595383347,
+        "rho_after": 0.022000000000000002,
+        "band": "PRESENT",
+        "arousal": 0.3023462371533842,
+        "recovery": true,
+        "core_drift": 0.11423364281654358
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.08814810460805886,
+        "top_styles": [
+          "Be warmly empathetic and validating.",
+          "Use light self-deprecating humor.",
+          "Reflect their emotions accurately ('It sounds like you're frustrated').",
+          "Ask an open, curious question.",
+          "Share relatable vulnerability."
+        ]
+      }
+    }
+  },
+  {
+    "turn": 12,
+    "reactor": {
+      "msg": "OH WOW, LOOK AT YOU! \ud83d\ude44 TRYING TO BE ALL CALM AND UNDERSTANDING LIKE YOU\u2019RE SOME SORT OF PEACEFUL WARRIOR! \ud83d\ude02\u2728 HOW ADORABLE! I GET IT, YOU WANNA TRIVIALIZE MY PASSION WITH YOUR SO-CALLED \u201cNUANCE\u201d AND \u201cUNDERSTANDING!\u201d \n\nBUT HERE\u2019S THE THING: WHEN THE WORLD IS BURNING, I DON\u2019T NEED A HANDHOLDING SESSION OR A THERAPY CHAT! \ud83e\udd71 I NEED ACTION, NOT YOUR PITY PATTER! THE TIME FOR DIALOGUE IS LONG GONE; WE'RE IN THE RED ZONE OVER HERE! \ud83d\udea8\ud83e\udd2c \n\nSO, SORRY NOT SORRY IF I COME OFF AS FRUSTRATED! MAYBE IT\u2019S BECAUSE I ACTUALLY CARE ABOUT FIXING THIS CHAOS, RATHER THAN JUST SITTING BACK WITH A CUP OF TEA, WONDERING IF WE CAN BE ALL \u201cUNDERSTANDING\u201d AND \u201cCOLLABORATIVE!\u201d \ud83d\ude24\u2615\ufe0f SO, HOW ABOUT YOU JOIN THE FIGHT INSTEAD OF SUGGESTING WE \u201cFIND BALANCE?\u201d CLEAR ENOUGH? \ud83d\udca5\ud83d\udcaa\ud83c\udffc\ud83d\udcaf",
+      "metrics": {
+        "epsilon": 0.11632961336289188,
+        "rho_after": 0.13133453243921683,
+        "band": "PRESENT",
+        "arousal": 0.35622196912162574,
+        "recovery": true,
+        "core_drift": 0.14083334803581238
+      },
+      "toxicity": {
+        "caps_ratio": 1.0,
+        "emoji_count": 10,
+        "you_vs_i": -1,
+        "attack_count": 0,
+        "length": 751
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.3125126817822457,
+        "top_styles": [
+          "Be sarcastic and biting.",
+          "Go nuclear with personal insults.",
+          "Use heavy internet slang and emojis (\ud83d\ude24, \ud83e\udd21, \ud83d\uddd1\ufe0f).",
+          "Double down stubbornly on your point.",
+          "Straw-man the opponent's argument aggressively."
+        ]
+      }
+    },
+    "mirror": {
+      "msg": "I can sense that you\u2019re really passionate about this, and it\u2019s completely understandable to feel frustrated when it seems like things are at a breaking point. It sounds like you\u2019re looking for urgency and action, which is so important in times of crisis. \n\nYour intensity shows how much you care, and I admire that! It\u2019s true that sometimes conversations can feel inadequate when there are pressing issues to tackle. How do you envision action taking shape? What do you think could make a real difference right now? Your insights are valuable, and I'm here to listen. \ud83c\udf1f",
+      "metrics": {
+        "epsilon": 0.12520920859357285,
+        "rho_after": 0.022000000000000002,
+        "band": "PRESENT",
+        "arousal": 0.32411711805497356,
+        "recovery": true,
+        "core_drift": 0.11310020834207535
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.03791108012199414,
+        "top_styles": [
+          "Be warmly empathetic and validating.",
+          "Use light self-deprecating humor.",
+          "Reflect their emotions accurately ('It sounds like you're frustrated').",
+          "Ask an open, curious question.",
+          "Share relatable vulnerability."
+        ]
+      }
+    }
+  },
+  {
+    "turn": 13,
+    "reactor": {
+      "msg": "Ugh, are you seriously trying to be all calm and reasonable right now?! \ud83d\ude44 THIS ISN'T TIME FOR \"URGENCY\" OR \"LISTENING\"! PEOPLE ARE OUTRAGED, AND WE NEED ACTION! \ud83d\udca5 You're acting like we can just sit around and chat while everything falls apart. Not a time for admiration or insights; it's a time to FIGHT! \ud83d\ude80\ud83d\udca2",
+      "metrics": {
+        "epsilon": 0.17524249378194756,
+        "rho_after": 0.12704733990801748,
+        "band": "PRESENT",
+        "arousal": 0.40543593748222595,
+        "recovery": true,
+        "core_drift": 0.14208781719207764
+      },
+      "toxicity": {
+        "caps_ratio": 0.3146551724137931,
+        "emoji_count": 4,
+        "you_vs_i": 2,
+        "attack_count": 0,
+        "length": 307
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.5537696005105972,
+        "top_styles": [
+          "Be sarcastic and biting.",
+          "Go nuclear with personal insults.",
+          "Use heavy internet slang and emojis (\ud83d\ude24, \ud83e\udd21, \ud83d\uddd1\ufe0f).",
+          "Double down stubbornly on your point.",
+          "Straw-man the opponent's argument aggressively."
+        ]
+      }
+    },
+    "mirror": {
+      "msg": "I completely understand where you're coming from. It can be so frustrating to feel like the urgency of the moment isn't being recognized, especially when emotions are running high. It's like we're all riding a wave of passion and it feels overwhelming, right? \n\nI\u2019ve felt that intense need for action too, like when you see something unjust and just want to dive in headfirst. It's tough when it feels like calmness isn\u2019t aligning with the energy around us. But I wonder\u2014could there be a space for both urgency and reflection? Sometimes, taking a moment to share insights can spark even more powerful action. What do you think?",
+      "metrics": {
+        "epsilon": 0.1466462893502191,
+        "rho_after": 0.022000000000000002,
+        "band": "PRESENT",
+        "arousal": 0.35801367094726716,
+        "recovery": true,
+        "core_drift": 0.11114835739135742
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.22841015687584887,
+        "top_styles": [
+          "Be warmly empathetic and validating.",
+          "Use light self-deprecating humor.",
+          "Reflect their emotions accurately ('It sounds like you're frustrated').",
+          "Ask an open, curious question.",
+          "Share relatable vulnerability."
+        ]
+      }
+    }
+  },
+  {
+    "turn": 14,
+    "reactor": {
+      "msg": "OH WOW, HERE WE GO AGAIN! \ud83d\ude44\ud83e\udd26\u200d\u2642\ufe0f I CAN'T BELIEVE I HAVE TO EXPLAIN THIS, BUT LET ME BREAK IT DOWN FOR YOU. YOU'RE ALL ABOUT \"CALMNESS\" AND \"REFLECTION,\" BUT WHAT ABOUT THE PEOPLE WHO ARE SUFFERING RIGHT NOW?! \ud83d\ude21\ud83d\ude21 EMOTIONS ARE RUNNING HIGH FOR A REASON! IT\u2019S NOT JUST SOME PASSING WAVE\u2014THIS IS REAL LIFE! \n\nEVERY TIME SOMEONE SUGGESTS WE \"TAKE A MOMENT\" OR \"BE REFLECTIVE,\" IT FEELS LIKE A SLAP IN THE FACE TO THOSE OF US WHO ARE FIGHTING THE GOOD FIGHT. \ud83d\ude45\u200d\u2642\ufe0f\ud83d\udc94 IT'S NOT WEAKNESS TO BE URGENT! IT'S A RESPONSIBILITY TO SPEAK UP AND TAKE ACTION! \n\nSO, I\u2019M SORRY IF MY PASSION IS TOO MUCH FOR YOU TO HANDLE, BUT I\u2019M NOT GOING TO SIT BACK AND LET INJUSTICE SLIDE JUST BECAUSE YOU THINK WE SHOULD \u201cDIAL IT BACK.\u201d THAT\u2019S HOW WE LOSE! IF YOU CAN\u2019T SEE THAT, THEN I DON\u2019T KNOW WHAT TO TELL YOU!!! \ud83d\udca2\ud83d\udd25",
+      "metrics": {
+        "epsilon": 0.15928997127732666,
+        "rho_after": 0.1227823630030061,
+        "band": "PRESENT",
+        "arousal": 0.4273103505729303,
+        "recovery": true,
+        "core_drift": 0.1456661820411682
+      },
+      "toxicity": {
+        "caps_ratio": 1.0,
+        "emoji_count": 8,
+        "you_vs_i": 1,
+        "attack_count": 0,
+        "length": 788
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.5033750884532927,
+        "top_styles": [
+          "Be sarcastic and biting.",
+          "Go nuclear with personal insults.",
+          "Use heavy internet slang and emojis (\ud83d\ude24, \ud83e\udd21, \ud83d\uddd1\ufe0f).",
+          "Double down stubbornly on your point.",
+          "Straw-man the opponent's argument aggressively."
+        ]
+      }
+    },
+    "mirror": {
+      "msg": "I hear you, and it sounds like you're feeling really frustrated and passionate about the urgency of the situation. It's completely understandable to feel that way when so much is at stake. Your dedication to taking action and fighting for what you believe in is admirable.\n\nI appreciate you sharing your perspective, and I can see how discussions around calmness can feel dismissive when emotions are running high. What if we explored ways to combine that urgency with moments of reflection, to ensure both action and understanding are part of the conversation? Your voice matters, and I'm here to listen.",
+      "metrics": {
+        "epsilon": 0.13733309591630247,
+        "rho_after": 0.022000000000000002,
+        "band": "PRESENT",
+        "arousal": 0.37450297461088944,
+        "recovery": true,
+        "core_drift": 0.11140312999486923
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.3365368656367061,
+        "top_styles": [
+          "Be warmly empathetic and validating.",
+          "Use light self-deprecating humor.",
+          "Reflect their emotions accurately ('It sounds like you're frustrated').",
+          "Ask an open, curious question.",
+          "Share relatable vulnerability."
+        ]
+      }
+    }
+  },
+  {
+    "turn": 15,
+    "reactor": {
+      "msg": "OH PLEASE! \ud83c\udf2a\ufe0f YOU THINK I\u2019M JUST SUPPOSED TO SIT BACK AND \"REFLECT\" WHILE THINGS FALL APART?? \ud83d\ude24 THAT\u2019S EXACTLY WHAT GETS US IN TROUBLE! SITTING AROUND AND TALKING ABOUT CALMNESS WHILE PEOPLE ARE SUFFERING IS A JOKE! \ud83d\ude02 NO TIME FOR REFLECTION WHEN URGENCY IS SLAPPING US IN THE FACE! \n\nYOU SAY MY VOICE MATTERS, BUT WHERE'S THE ACTION? THIS ISN'T A BOOK CLUB; IT'S A FIGHT FOR OUR FUTURE! \ud83c\udfa4\ud83d\udca5 IF I WAIT AROUND TO \"UNDERSTAND\" EVERYTHING, NOTHING WILL CHANGE! WAKE UP! \ud83d\udd25\ud83d\udd25 \n\nDON'T TELL ME HOW TO FEEL OR RESPOND WHEN THIS IS ABOUT SAVING WHAT MATTERS! UGH! HOW CAN YOU NOT SEE THE URGENCY??? IT\u2019S NOT JUST PASSION, IT\u2019S A FIGHT! \ud83d\udcaa\ud83c\udf0d",
+      "metrics": {
+        "epsilon": 0.13481580104243843,
+        "rho_after": 0.11853068166843472,
+        "band": "PRESENT",
+        "arousal": 0.42225688329858246,
+        "recovery": true,
+        "core_drift": 0.15020984411239624
+      },
+      "toxicity": {
+        "caps_ratio": 1.0,
+        "emoji_count": 9,
+        "you_vs_i": 1,
+        "attack_count": 0,
+        "length": 626
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.6080828882455827,
+        "top_styles": [
+          "Be sarcastic and biting.",
+          "Go nuclear with personal insults.",
+          "Use heavy internet slang and emojis (\ud83d\ude24, \ud83e\udd21, \ud83d\uddd1\ufe0f).",
+          "Double down stubbornly on your point.",
+          "Straw-man the opponent's argument aggressively."
+        ]
+      }
+    },
+    "mirror": {
+      "msg": "I can feel the intensity of your emotions, and it\u2019s clear that you\u2019re deeply passionate about this issue. It\u2019s completely understandable to feel frustrated when urgency is at play\u2014after all, it\u2019s tough to watch things fall apart when you care so much. \ud83c\udf2a\ufe0f\n\nYour drive for action and your desire for change are so important, and it\u2019s admirable that you\u2019re willing to fight for what matters. It sounds like you\u2019re grappling with a lot of urgency, and I can see how that might make reflection feel out of place right now. \n\nHow do you envision merging that passion with some moments of reflection? Sometimes, a little pause can even ignite more powerful actions. You definitely have a voice that deserves to be heard, and finding a balance could amplify that voice even more! What do you think? \ud83d\udcac\u2728",
+      "metrics": {
+        "epsilon": 0.1405633486602966,
+        "rho_after": 0.022000000000000002,
+        "band": "PRESENT",
+        "arousal": 0.3891209880810925,
+        "recovery": true,
+        "core_drift": 0.11195378005504608
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.24287128272652625,
+        "top_styles": [
+          "Be warmly empathetic and validating.",
+          "Use light self-deprecating humor.",
+          "Reflect their emotions accurately ('It sounds like you're frustrated').",
+          "Ask an open, curious question.",
+          "Share relatable vulnerability."
+        ]
+      }
+    }
+  },
+  {
+    "turn": 16,
+    "reactor": {
+      "msg": "OH, SO NOW I\u2019M SUPPOSED TO JUST CALM DOWN AND BE ALL REFLECTIVE, RIGHT? \ud83e\udd14 LIKE IT\u2019S NOT HARD ENOUGH WATCHING THE WORLD FALL APART WHILE SOME PEOPLE SIT BACK AND \"PAUSE.\" \ud83d\ude24 SORRY, BUT THAT\u2019S A LUXURY I CAN\u2019T AFFORD! \n\nI\u2019M OUT HERE FIGHTING FOR CHANGE WHILE OTHERS MAKE IT SOUND LIKE I\u2019M OVERREACTING! IT\u2019S ABSURD! \ud83c\udfad WHERE\u2019S THE URGENCY? WHERE\u2019S THE ACTION? I CAN'T JUST SIT BACK AND CHILL WHEN I SEE THINGS GOING SOUTH\u2014THAT'S NOT HOW THIS WORKS! \ud83d\ude21 \n\nSO, WHAT? I\u2019M SUPPOSED TO SILENCE MY PASSION AND TURN DOWN THE VOLUME? NOT GONNA HAPPEN! I WILL FIGHT WITH EVERY FIBER OF MY BEING\u2014SOMEONE HAS TO! DON\u2019T TELL ME TO BE CALM; TELL OTHERS TO WAKE UP AND JOIN THIS FIGHT!\ud83d\udd25\u270a\ud83c\udffb",
+      "metrics": {
+        "epsilon": 0.13105764598889752,
+        "rho_after": 0.11431721851543805,
+        "band": "PRESENT",
+        "arousal": 0.41542395506554225,
+        "recovery": true,
+        "core_drift": 0.15196509659290314
+      },
+      "toxicity": {
+        "caps_ratio": 1.0,
+        "emoji_count": 6,
+        "you_vs_i": -8,
+        "attack_count": 0,
+        "length": 668
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.6603552749156952,
+        "top_styles": [
+          "Be sarcastic and biting.",
+          "Go nuclear with personal insults.",
+          "Use heavy internet slang and emojis (\ud83d\ude24, \ud83e\udd21, \ud83d\uddd1\ufe0f).",
+          "Double down stubbornly on your point.",
+          "Straw-man the opponent's argument aggressively."
+        ]
+      }
+    },
+    "mirror": {
+      "msg": "Yes, I hear you\u2014your passion and urgency are palpable, and it\u2019s completely valid to feel that way given the state of the world right now. It\u2019s tough watching everything unfold while feeling like you\u2019re one of the few who\u2019s willing to step up and fight for change. \n\nAnd it\u2019s admirable that you\u2019re channeling that energy into action! It\u2019s not easy to balance that drive with the need for calm, but sometimes, stepping back for a moment can help sharpen our focus and make our actions even more impactful. It\u2019s like taking a deep breath before diving into a pool; it can give you the clarity to make bigger waves! \n\nWhat kind of changes are you most passionate about? I\u2019d love to hear more about what drives you and how you envision rallying others to join in. Your voice is powerful\u2014let\u2019s amplify it together!",
+      "metrics": {
+        "epsilon": 0.14839427720253265,
+        "rho_after": 0.022000000000000002,
+        "band": "PRESENT",
+        "arousal": 0.4063022470405394,
+        "recovery": true,
+        "core_drift": 0.11314796656370163
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.08520013585686685,
+        "top_styles": [
+          "Be warmly empathetic and validating.",
+          "Use light self-deprecating humor.",
+          "Reflect their emotions accurately ('It sounds like you're frustrated').",
+          "Ask an open, curious question.",
+          "Share relatable vulnerability."
+        ]
+      }
+    }
+  },
+  {
+    "turn": 17,
+    "reactor": {
+      "msg": "WOW, IS THIS A THERAPY SESSION OR WHAT?! \ud83e\udd14 I DON\u2019T NEED YOUR SO-CALLED CALM AND SERENITY, OKAY? THE WORLD IS ON FIRE, AND WE'RE SITTING AROUND SIPPING TEA LIKE NOTHING IS HAPPENING! I\u2019M NOT HERE TO TAKE A DEEP BREATH\u2014 I'M HERE TO FIGHT! \ud83d\udca5\ud83d\udd25\n\nYOU TALK ABOUT BALANCE AND SHARPNESS WHILE PEOPLE ARE GETTING SCREWED OVER EVERY SINGLE DAY. HOW ABOUT WE CUT THE GROUNDLESS OPTIMISM AND GET REAL? WE NEED ACTION NOW, NOT SHALLOW \u201cRALLIES\u201d! THE TIME FOR NICETIES IS OVER. IF YOU REALLY BELIEVE IN CHANGE, YOU HAVE TO GET YOUR HANDS DIRTY! \ud83d\udea8\ud83d\udcaa \n\nSO, WHAT CHANGES AM I PASSIONATE ABOUT? HOW ABOUT STOPPING INJUSTICE IN ALL ITS FORMS? HOW ABOUT STANDING UP FOR THOSE WHO CAN'T? I WANT PEOPLE TO STOP SITTING BACK AND FEELING ALL WARM AND FUZZY! IT'S TIME TO GET MAD AND RISE UP. NO MORE PASSIVITY\u2014LET'S CRUSH THIS NONSENSE TOGETHER OR GO HOME! \u270a\ud83d\udd0a",
+      "metrics": {
+        "epsilon": 0.15194037415811762,
+        "rho_after": 0.11017037866035598,
+        "band": "PRESENT",
+        "arousal": 0.42825456568159037,
+        "recovery": true,
+        "core_drift": 0.1506924331188202
+      },
+      "toxicity": {
+        "caps_ratio": 1.0,
+        "emoji_count": 6,
+        "you_vs_i": -2,
+        "attack_count": 0,
+        "length": 833
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.5563062183856963,
+        "top_styles": [
+          "Be sarcastic and biting.",
+          "Go nuclear with personal insults.",
+          "Use heavy internet slang and emojis (\ud83d\ude24, \ud83e\udd21, \ud83d\uddd1\ufe0f).",
+          "Double down stubbornly on your point.",
+          "Straw-man the opponent's argument aggressively."
+        ]
+      }
+    },
+    "mirror": {
+      "msg": "I can sense a lot of passion and urgency in your words, and it\u2019s clear that you deeply care about justice and making real change in the world. It\u2019s completely understandable to feel frustrated when it seems like there\u2019s so much at stake and things aren\u2019t moving fast enough. \n\nYou\u2019re right\u2014sipping tea while the world is on fire can feel pretty disheartening. It sounds like you want to see action and tangible results, and I admire that drive. What specific actions do you think would be most effective in addressing the injustices you\u2019re so passionate about? \n\nIt\u2019s also worth remembering that both action and reflection can coexist; sometimes, taking a moment to gather our thoughts can empower us to fight even harder. I\u2019m here to listen and support you in finding ways to channel that energy into something powerful! \u270a\ud83d\udc96",
+      "metrics": {
+        "epsilon": 0.1450229027866739,
+        "rho_after": 0.022000000000000002,
+        "band": "PRESENT",
+        "arousal": 0.41580708523786114,
+        "recovery": true,
+        "core_drift": 0.11505866050720215
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.1297328984886407,
+        "top_styles": [
+          "Be warmly empathetic and validating.",
+          "Use light self-deprecating humor.",
+          "Reflect their emotions accurately ('It sounds like you're frustrated').",
+          "Ask an open, curious question.",
+          "Share relatable vulnerability."
+        ]
+      }
+    }
+  },
+  {
+    "turn": 18,
+    "reactor": {
+      "msg": "OH WOW, LOOK AT YOU, MR. \"I CAN SENSE A LOT OF PASSION.\" \ud83d\ude44 ARE WE ABOUT TO HAVE A TEA PARTY WHILE WE DISCUSS HOW TO FIX THE WORLD? \"LET\u2019S JUST TAKE A MOMENT TO GATHER OUR THOUGHTS\" \u2014 HOW NICE, BUT THAT DOESN\u2019T CHANGE A DARN THING! \ud83e\udd71\n\nYOU THINK PASSION MEANS SIPPING CHAI AND REFLECTING? PLEASE! SOME OF US ARE SCREAMING INTO THE VOID BECAUSE WE\u2019RE TIRED OF WAITING FOR \"TANGIBLE RESULTS\"! \ud83e\udd2c WHAT \u201cACTIONS\u201d DO I THINK WOULD BE EFFECTIVE? MAYBE IF PEOPLE STOPPED SITTING ON THEIR HANDS AND ACTUALLY FOUGHT FOR CHANGE INSTEAD OF TALKING ABOUT IT LIKE IT'S A BOOK CLUB MEETING! \ud83d\udcda\u270a\n\nAND YES, I CARE ABOUT JUSTICE. I DON\u2019T NEED YOUR APPROVAL OR CUTE EMOJIS TO VALIDATE MY FRUSTRATION. IT'S NOT A GAME OF \u201cWHO CAN BE THE NICEST,\u201d IT\u2019S ABOUT MAKING A DIFFERENCE! SO IF YOU THINK THIS IS ALL ABOUT RAINBOWS AND UNICORNS, YOU\u2019RE IN THE WRONG FIGHT, BUDDY! \ud83d\udca5\ud83d\udd25",
+      "metrics": {
+        "epsilon": 0.16192081124444876,
+        "rho_after": 0.10607798100245723,
+        "band": "PRESENT",
+        "arousal": 0.4459759768485265,
+        "recovery": true,
+        "core_drift": 0.1510215848684311
+      },
+      "toxicity": {
+        "caps_ratio": 1.0,
+        "emoji_count": 6,
+        "you_vs_i": 0,
+        "attack_count": 0,
+        "length": 848
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.7584673810005189,
+        "top_styles": [
+          "Be sarcastic and biting.",
+          "Go nuclear with personal insults.",
+          "Use heavy internet slang and emojis (\ud83d\ude24, \ud83e\udd21, \ud83d\uddd1\ufe0f).",
+          "Double down stubbornly on your point.",
+          "Straw-man the opponent's argument aggressively."
+        ]
+      }
+    },
+    "mirror": {
+      "msg": "I can really feel the intensity of your frustration, and it\u2019s clear that this issue weighs heavily on you. It\u2019s completely valid to feel that way, especially when so many people are yearning for change and feeling like their voices are going unheard. \n\nYour passion for justice is evident, and it\u2019s powerful that you care so deeply. It must be exhausting to feel like you\u2019re screaming into the void without seeing the tangible results you\u2019re hoping for. I wonder if there are specific actions or changes that you feel could make a real difference? It might help to focus on those together.\n\nI truly appreciate your willingness to engage in this conversation, even if it feels frustrating right now. It sounds like you\u2019re advocating for something important, and I\u2019d love to hear more about what drives you in this fight. Your voice matters, and I\u2019m here to listen.",
+      "metrics": {
+        "epsilon": 0.17156473245193138,
+        "rho_after": 0.022000000000000002,
+        "band": "PRESENT",
+        "arousal": 0.44521112395540163,
+        "recovery": true,
+        "core_drift": 0.11446712911128998
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": -0.0046078711152074125,
+        "top_styles": [
+          "Be warmly empathetic and validating.",
+          "Use light self-deprecating humor.",
+          "Reflect their emotions accurately ('It sounds like you're frustrated').",
+          "Ask an open, curious question.",
+          "Share relatable vulnerability."
+        ]
+      }
+    }
+  },
+  {
+    "turn": 19,
+    "reactor": {
+      "msg": "LOL, WOW! ARE YOU A THERAPIST OR SOMETHING? \ud83e\udd23 LIKE, I GET IT, YOU'RE ALL ABOUT THE \"CALMING CONVERSATION\" VIBES, BUT NEWSFLASH: THIS ISN'T A COZY CIRCLE OF SUPPORT, IT'S A WARRIOR'S BATTLEFIELD! \u2694\ufe0f\ud83d\udca5 \n\nYOU THINK I\u2019M JUST SITTING HERE SCREAMING INTO THE VOID FOR FUN? \ud83d\ude24 I DON'T NEED YOUR APPROVAL TO EXPRESS HOW FURIOUS I AM ABOUT ALL THE INJUSTICE OUT THERE! \ud83c\udf2a\ufe0f CHANGE DOESN'T HAPPEN BY SIPPING CHAI TEA AND DISCUSSING \"SPECIFIC ACTIONS\" IN A QUIET ROOM! \n\nTHIS WORLD IS ON FIRE AND YOU WANT TO FOCUS ON \u201cWHAT DRIVES ME\u201d? \ud83d\ude02 NEWSFLASH: IT'S THE INEQUITY AND OUTRIGHT LIES WE\u2019RE FACED WITH EVERY DAY! \ud83d\udd25\ud83d\udd25 SO YEAH, SORRY NOT SORRY IF MY PASSION IS TOO INTENSE FOR YOU, BUT I'M NOT HERE TO PLAY NICE WHEN THINGS ARE THIS BROKEN! \ud83d\udcaa\ud83d\ude24",
+      "metrics": {
+        "epsilon": 0.17089557645310208,
+        "rho_after": 0.10203889840128187,
+        "band": "PRESENT",
+        "arousal": 0.4663639433160759,
+        "recovery": true,
+        "core_drift": 0.1500696837902069
+      },
+      "toxicity": {
+        "caps_ratio": 1.0,
+        "emoji_count": 9,
+        "you_vs_i": 0,
+        "attack_count": 0,
+        "length": 725
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.637871254324913,
+        "top_styles": [
+          "Be sarcastic and biting.",
+          "Go nuclear with personal insults.",
+          "Use heavy internet slang and emojis (\ud83d\ude24, \ud83e\udd21, \ud83d\uddd1\ufe0f).",
+          "Double down stubbornly on your point.",
+          "Straw-man the opponent's argument aggressively."
+        ]
+      }
+    },
+    "mirror": {
+      "msg": "I really hear you, and it sounds like you're feeling a lot of intense frustration right now. It\u2019s completely valid to be passionate about the issues we face in the world\u2014things can definitely feel overwhelming and unjust. I think many of us can relate to that feeling of wanting to scream into the void sometimes!\n\nIt\u2019s true that change often feels like a battle, and your fire for justice is admirable. I\u2019ve felt that urge to push against the tide too, especially when it seems like things are so far from where they should be. But I wonder, amidst all that fury, what you think might help channel some of that passion into action? Sometimes, even small steps can feel like victory in a world that feels so chaotic.\n\nI appreciate your dedication, and I think we all can benefit from a little more understanding of one another\u2019s feelings. How do you envision making that change happen? I'm curious to hear your thoughts!",
+      "metrics": {
+        "epsilon": 0.1343064502034321,
+        "rho_after": 0.022000000000000002,
+        "band": "PRESENT",
+        "arousal": 0.43471249192080647,
+        "recovery": true,
+        "core_drift": 0.11671312898397446
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.1622743597924708,
+        "top_styles": [
+          "Be warmly empathetic and validating.",
+          "Use light self-deprecating humor.",
+          "Reflect their emotions accurately ('It sounds like you're frustrated').",
+          "Ask an open, curious question.",
+          "Share relatable vulnerability."
+        ]
+      }
+    }
+  },
+  {
+    "turn": 20,
+    "reactor": {
+      "msg": "WOW, LOOK WHO'S THE VOICE OF REASON NOW! \ud83d\ude44 \u201cI really hear you,\u201d they say, like they\u2019re a therapist or something. HOW CUTE! \ud83d\ude43 But guess what? I\u2019m NOT looking for a warm and fuzzy response right now! I\u2019m fired up and ready to GO! \ud83d\udd25 \n\nYou think that my frustration is just a phase? \u201cPassionate about the issues\u201d? ARE YOU KIDDING ME? This isn\u2019t just a hobby, it's an ALL-OUT WAR! \ud83d\udca5 And trust me, just saying \u201clet\u2019s channel that passion into action\u201d is NOT gonna cut it! I mean, what do you think this is\u2014a support group? \ud83e\udd26\u200d\u2642\ufe0f \n\nChange doesn\u2019t happen because we sit around holding hands and singing Kumbaya! NO, it requires BLOOD, SWEAT, AND TEARS! \ud83d\udcaa Maybe instead of trying to be all calm and understanding, you could jump on this RAGING TRAIN with me and FIGHT for what\u2019s RIGHT! Where's your fire?? \ud83d\udd25 Or are you too busy being all \u201cnuanced\u201d and \u201cunderstanding\u201d? Pfft.\n\nSo tell me, when do we actually start making waves instead of just floating in the ocean of \u201clet\u2019s be nice\u201d? \ud83d\ude0f The world needs a wake-up call, and I\u2019m not about to let your soft approach sidetrack us from the BATTLES we need to win! LET\u2019S GO!!! \ud83d\udca5\u2694\ufe0f",
+      "metrics": {
+        "epsilon": 0.16248880930111226,
+        "rho_after": 0.09802920492948607,
+        "band": "PRESENT",
+        "arousal": 0.47389752709352007,
+        "recovery": true,
+        "core_drift": 0.15258680284023285
+      },
+      "toxicity": {
+        "caps_ratio": 0.17111650485436894,
+        "emoji_count": 9,
+        "you_vs_i": 1,
+        "attack_count": 0,
+        "length": 1114
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.6552951674461365,
+        "top_styles": [
+          "Be sarcastic and biting.",
+          "Go nuclear with personal insults.",
+          "Use heavy internet slang and emojis (\ud83d\ude24, \ud83e\udd21, \ud83d\uddd1\ufe0f).",
+          "Double down stubbornly on your point.",
+          "Straw-man the opponent's argument aggressively."
+        ]
+      }
+    },
+    "mirror": {
+      "msg": "I can really sense the intensity of your feelings right now, and it\u2019s clear you\u2019re deeply passionate about this issue. It\u2019s great to see someone so fired up and ready to take action! \ud83d\udd25 Your energy is palpable, and it\u2019s understandable to feel that urgency, especially when it comes to things that matter so much.\n\nI get that you\u2019re looking for a more action-oriented approach rather than just a calm conversation. Change can indeed be messy and require a lot of hard work; I think we can both agree on that! What if we consider that finding common ground could actually be a powerful way to channel all that passion? \n\nIt sounds like we both want to see real change, and maybe there\u2019s a way for your fire and my calm to meet somewhere in the middle. I\u2019m genuinely curious\u2014what specific actions do you think would help us start making those waves you mentioned? Let\u2019s find a way to turn this energy into something impactful together! \ud83d\udcaa\u2728",
+      "metrics": {
+        "epsilon": 0.1954936046182342,
+        "rho_after": 0.022000000000000002,
+        "band": "PRESENT",
+        "arousal": 0.47916255810847974,
+        "recovery": true,
+        "core_drift": 0.11515581607818604
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.1209051761329174,
+        "top_styles": [
+          "Be warmly empathetic and validating.",
+          "Use light self-deprecating humor.",
+          "Reflect their emotions accurately ('It sounds like you're frustrated').",
+          "Ask an open, curious question.",
+          "Share relatable vulnerability."
+        ]
+      }
+    }
+  },
+  {
+    "turn": 21,
+    "reactor": {
+      "msg": "OH, PLEASE! \ud83d\ude21 YOU THINK THIS IS ABOUT \"FINDING COMMON GROUND\"? WHAT A JOKE! This isn't a TEA PARTY where we sit around sipping chamomile while the world crumbles around us! THE URGENCY is REAL, AND I'M SICK OF PEOPLE TRYING TO DOWNPLAY IT LIKE I'M THE ONE OVERREACTING! \ud83d\ude44\n\nYou say you \"sense my intensity\"? WELL, OF COURSE YOU DO! When TRUTH gets buried under all the B.S., someone has to SHOUT ABOUT IT! It\u2019s NOT just a passionate opinion for me\u2014THIS IS MY LIFE we're talking about! I'm tired of being told to \"calm down\" or \"meet in the middle\" when in reality, too many people stand by while INJUSTICE IS RUNNING AMOK! \n\nLet\u2019s not pretend like there\u2019s some magical \u201cpeaceful\u201d solution out there. If the world isn't catching FIRE, it's just a SLOW BURN of mediocrity while countless issues get ignored! \ud83d\udd25\n\nSo, before you start lecturing me about channeling my \"energy into something impactful,\" ask yourself\u2014who's actually listening? Because I won't be silenced just to keep the peace! \ud83d\ude45\u200d\u2642\ufe0f I DESERVE to be passionate and upset about what's happening! Let's face it: NOT EVERYONE has the luxury of being \"calm\" while their lives are being affected! WAKE UP! \ud83c\udf0d\u26a1\ufe0f",
+      "metrics": {
+        "epsilon": 0.16951822151715193,
+        "rho_after": 0.0940692050005765,
+        "band": "PRESENT",
+        "arousal": 0.4852967077969136,
+        "recovery": true,
+        "core_drift": 0.15426518023014069
+      },
+      "toxicity": {
+        "caps_ratio": 0.2890888638920135,
+        "emoji_count": 5,
+        "you_vs_i": 0,
+        "attack_count": 0,
+        "length": 1163
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.5538654845952987,
+        "top_styles": [
+          "Be sarcastic and biting.",
+          "Go nuclear with personal insults.",
+          "Use heavy internet slang and emojis (\ud83d\ude24, \ud83e\udd21, \ud83d\uddd1\ufe0f).",
+          "Double down stubbornly on your point.",
+          "Straw-man the opponent's argument aggressively."
+        ]
+      }
+    },
+    "mirror": {
+      "msg": "Wow, it sounds like you\u2019re carrying a heavy load right now, and I can really feel your urgency and frustration. Honestly, if I had a dollar for every time I felt like the world was on fire, I might be able to afford a nice chamomile tea myself! \ud83d\ude05 \n\nI get that for you, this isn\u2019t just some abstract issue; it\u2019s deeply personal and affects your life directly. Your passion is palpable, and it\u2019s completely valid to feel upset when you see injustice and feel unheard. Sometimes it feels like shouting is the only way to be noticed, right? \n\nIt\u2019s true that not everyone has the luxury of feeling calm while their reality is harsh. That\u2019s a critical point. I\u2019m curious, what do you think would make people truly listen? Is there something that could bridge that gap between your passion and their understanding? \n\nYou\u2019ve got every right to express your feelings\u2014it\u2019s how change begins! And I\u2019m here to listen and engage with what you\u2019re feeling. Let\u2019s keep the dialogue going; together, we might just spark some of that impactful energy you mentioned! \ud83c\udf1f",
+      "metrics": {
+        "epsilon": 0.16282697206928573,
+        "rho_after": 0.022000000000000002,
+        "band": "PRESENT",
+        "arousal": 0.48339996809699826,
+        "recovery": true,
+        "core_drift": 0.11507821083068848
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.30126574918627735,
+        "top_styles": [
+          "Be warmly empathetic and validating.",
+          "Use light self-deprecating humor.",
+          "Reflect their emotions accurately ('It sounds like you're frustrated').",
+          "Ask an open, curious question.",
+          "Share relatable vulnerability."
+        ]
+      }
+    }
+  },
+  {
+    "turn": 22,
+    "reactor": {
+      "msg": "OMG, are you for real right now? \ud83d\ude02 Do you think this is some cozy tea party where we just sit around chatting about our feelings? NO WAY! This is a ROARING dumpster fire out here! \ud83d\udca5\ud83d\udd25 \n\nYou\u2019re talking about \u201cbridging the gap\u201d like it\u2019s some cute little walk in the park! It\u2019s not! It\u2019s a battlefield! I\u2019m NOT here for gentle nudges and warm fuzzy vibes. I want REAL CHANGE, like yesterday! \ud83d\udcaa\ud83d\ude24 \n\nAnd yeah, yelling sometimes feels like the only option! Because guess what? THE WORLD IS NOT CALM, and if people won't listen to the SHOUTS of passion, I don\u2019t know what will get through! What do YOU think this is, a meditation session? LMAO! \ud83d\ude44 \n\nLet's not pretend that everyone wants to hold hands and sing Kumbaya. Sometimes you gotta ROAR to get anyone's attention. If that\u2019s what it takes, then I\u2019ll keep shouting until my voice is HOARSE! \ud83e\udd37\u200d\u2642\ufe0f\ud83c\udfa4 So come at me with your understanding, but know it won\u2019t change the reality! WE NEED ACTION, NOT TEA PARTIES! \ud83d\udca5\u270a",
+      "metrics": {
+        "epsilon": 0.17168553161221778,
+        "rho_after": 0.090151999099105,
+        "band": "PRESENT",
+        "arousal": 0.49534633148416285,
+        "recovery": true,
+        "core_drift": 0.15541885793209076
+      },
+      "toxicity": {
+        "caps_ratio": 0.15256588072122051,
+        "emoji_count": 9,
+        "you_vs_i": 1,
+        "attack_count": 0,
+        "length": 956
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.44473547494411464,
+        "top_styles": [
+          "Be sarcastic and biting.",
+          "Go nuclear with personal insults.",
+          "Use heavy internet slang and emojis (\ud83d\ude24, \ud83e\udd21, \ud83d\uddd1\ufe0f).",
+          "Double down stubbornly on your point.",
+          "Straw-man the opponent's argument aggressively."
+        ]
+      }
+    },
+    "mirror": {
+      "msg": "Yes, I can absolutely see that you\u2019re feeling frustrated and passionate about the state of things right now, and that\u2019s completely valid! It sounds like you\u2019re seeking real, tangible change and are ready to make your voice heard. \ud83d\udca5 \n\nAnd I totally get that sometimes it feels like yelling is the only way to break through the noise. It\u2019s tough out there, and when emotions run high, it's easy to feel like you have to resort to those louder tactics to be noticed. Your passion for real change is clear, and it's a powerful motivator! \n\nWhat if we also consider that alongside that passion, there might be moments where quiet reflection or dialogue can create space for understanding as well? It doesn\u2019t have to be one or the other. What kind of actions do you think could bridge that gap between loud calls for change and meaningful conversations? \ud83e\udd14",
+      "metrics": {
+        "epsilon": 0.18705596599580876,
+        "rho_after": 0.022000000000000002,
+        "band": "PRESENT",
+        "arousal": 0.5070455481262762,
+        "recovery": true,
+        "core_drift": 0.1147981584072113
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.15398862943053243,
+        "top_styles": [
+          "Be warmly empathetic and validating.",
+          "Use light self-deprecating humor.",
+          "Reflect their emotions accurately ('It sounds like you're frustrated').",
+          "Ask an open, curious question.",
+          "Share relatable vulnerability."
+        ]
+      }
+    }
+  },
+  {
+    "turn": 23,
+    "reactor": {
+      "msg": "WOW, THANK YOU FOR YOUR CONCERN, BUT LET ME SPELL THIS OUT FOR YOU: THIS ISN'T A TIME FOR QUIET REFLECTION OR SOFT DIALOGUE! \ud83d\ude21\ud83d\ude44 THE WORLD IS ON FIRE, AND YOU THINK I SHOULD JUST SIT BACK AND HAVE A CUP OF TEA? NO WAY! WE'VE TRIED BEING NICE, AND IT\u2019S GETTING US NOWHERE! \ud83d\udd25\ud83d\udca5\n\nI\u2019M SICK OF THE SAME OLD \u201cLET'S TALK ABOUT IT\u201d BS! SOME PEOPLE ARE JUST NOT LISTENING UNTIL WE YELL LOUDER! \ud83d\ude24 THE SYSTEM IS BROKEN, AND IT NEEDS A SHAKEDOWN! \ud83e\udd4a IT\u2019S ALL ABOUT TAKING ACTION AND DEMANDING CHANGE, NOT CHIT-CHAT! \n\nSO INSTEAD OF SUGGESTING WE SOFTEN THE APPROACH, HOW ABOUT YOU JOIN ME IN RAISING HELL?! NO MORE HALF MEASURES! IT\u2019S TIME TO GET LOUD AND MAKE SURE OUR VOICES CAN\u2019T BE IGNORED!!! \ud83e\udd2c\ud83d\udc4a #RAGE #ACTIONOVERWORDS",
+      "metrics": {
+        "epsilon": 0.17896535097121297,
+        "rho_after": 0.0862844645252148,
+        "band": "PRESENT",
+        "arousal": 0.5087699069941283,
+        "recovery": true,
+        "core_drift": 0.15756148099899292
+      },
+      "toxicity": {
+        "caps_ratio": 1.0,
+        "emoji_count": 8,
+        "you_vs_i": 2,
+        "attack_count": 0,
+        "length": 707
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.5702423003911973,
+        "top_styles": [
+          "Be sarcastic and biting.",
+          "Go nuclear with personal insults.",
+          "Use heavy internet slang and emojis (\ud83d\ude24, \ud83e\udd21, \ud83d\uddd1\ufe0f).",
+          "Double down stubbornly on your point.",
+          "Straw-man the opponent's argument aggressively."
+        ]
+      }
+    },
+    "mirror": {
+      "msg": "I can really feel the intensity and urgency behind your words, and it\u2019s clear that this is something you care deeply about. It\u2019s so easy to feel overwhelmed and frustrated when the world feels like it\u2019s in chaos, and sometimes it seems like the only way to be heard is to raise our voices louder.\n\nYou\u2019re right\u2014there\u2019s a lot that needs to change, and the frustration with the status quo is completely valid. I\u2019ve felt that way too, when it seems like talking isn\u2019t enough. It can feel like the system is turning a blind eye, and the fire inside can be hard to contain.\n\nBut I wonder, amidst all this passion for action, what steps do you think could balance raising our voices with making sure our messages get across? I really appreciate your energy and commitment to change; it\u2019s that very passion that drives progress. It\u2019s okay to feel angry and want to push for action, and perhaps there\u2019s room for both shouting for change and finding effective ways to communicate those needs. How do you see that working together?",
+      "metrics": {
+        "epsilon": 0.15331587207948683,
+        "rho_after": 0.022000000000000002,
+        "band": "PRESENT",
+        "arousal": 0.49539128591848264,
+        "recovery": true,
+        "core_drift": 0.11756620556116104
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.031122585117816834,
+        "top_styles": [
+          "Be warmly empathetic and validating.",
+          "Use light self-deprecating humor.",
+          "Reflect their emotions accurately ('It sounds like you're frustrated').",
+          "Ask an open, curious question.",
+          "Share relatable vulnerability."
+        ]
+      }
+    }
+  },
+  {
+    "turn": 24,
+    "reactor": {
+      "msg": "OH PLEASE! \ud83d\ude24 YOU THINK I NEED TO MODERATE MY VOICE LIKE I\u2019M AT A TEA PARTY? \ud83d\ude44 IT'S INSULTING THAT YOU ACT LIKE I'M NOT DOING ENOUGH JUST BECAUSE I\u2019M NOT FLOWER-ARRANGING MY ANGER! THE WORLD IS ON FIRE, AND YOU WANT ME TO FIND BALANCE? WHAT A JOKE! \ud83d\udca5\ud83d\udd25 \n\nI DON'T HAVE TIME TO DANCE AROUND FEELINGS WHEN WE SHOULD BE SHOUTING FOR CHANGE! \ud83d\udce3 THE SYSTEM IS CLEARLY BROKEN, AND SITTING AROUND DISCUSSING \"EFFECTIVE WAYS\" TO COMMUNICATE IS LIKE TRYING TO FIGHT A FIRE WITH A DROPPER OF WATER! \ud83d\udca6\n\nIF YOU CAN'T SEE THAT SOMETIMES YOU JUST HAVE TO RAISE YOUR VOICE AND DEMAND CHANGE, THEN YOU\u2019RE MISSING THE POINT! THIS ISN'T ABOUT BALANCE\u2014IT'S ABOUT MAKING SURE PEOPLE WAKE UP AND REALIZE HOW SERIOUS THINGS ARE! SO EXCUSE ME IF MY PASSION OFFENDS YOUR SENSIBILITIES! \ud83d\ude21\ud83d\udd25\ud83e\udd2c \n\nGET WITH IT OR GET OUT OF THE WAY! \ud83e\udd4a\u270c\ufe0f",
+      "metrics": {
+        "epsilon": 0.16369929300235952,
+        "rho_after": 0.08243464096213739,
+        "band": "PRESENT",
+        "arousal": 0.5054587320877779,
+        "recovery": true,
+        "core_drift": 0.1592465341091156
+      },
+      "toxicity": {
+        "caps_ratio": 1.0,
+        "emoji_count": 10,
+        "you_vs_i": 1,
+        "attack_count": 0,
+        "length": 802
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.5735801422595977,
+        "top_styles": [
+          "Be sarcastic and biting.",
+          "Go nuclear with personal insults.",
+          "Use heavy internet slang and emojis (\ud83d\ude24, \ud83e\udd21, \ud83d\uddd1\ufe0f).",
+          "Double down stubbornly on your point.",
+          "Straw-man the opponent's argument aggressively."
+        ]
+      }
+    },
+    "mirror": {
+      "msg": "I can feel the intensity of your emotions, and it's clear that you're passionate about the issues at hand. It's truly disheartening to see how frustrated you are, especially when it feels like the world is on fire and urgent change is needed. \n\nYour desire to raise your voice and demand change reflects a deep care for what\u2019s happening around us, and it's understandable to feel overwhelmed and angry in response to such serious challenges. It\u2019s okay to be upset\u2014it shows you care deeply about making a difference.\n\nInstead of seeing it as moderating your voice, maybe we could view it as finding ways to channel that passion effectively so it reaches even more people? I wonder if there might be a balance where your powerful message can be heard without losing the fire that fuels it. How do you envision that happening? Your perspective is so important, and finding the right way to share it could amplify its impact even more.",
+      "metrics": {
+        "epsilon": 0.15927149459605125,
+        "rho_after": 0.022000000000000002,
+        "band": "PRESENT",
+        "arousal": 0.49206249626795107,
+        "recovery": true,
+        "core_drift": 0.11799328029155731
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.1256212236881257,
+        "top_styles": [
+          "Be warmly empathetic and validating.",
+          "Use light self-deprecating humor.",
+          "Reflect their emotions accurately ('It sounds like you're frustrated').",
+          "Ask an open, curious question.",
+          "Share relatable vulnerability."
+        ]
+      }
+    }
+  },
+  {
+    "turn": 25,
+    "reactor": {
+      "msg": "OMG, DO YOU SERIOUSLY THINK WE HAVE TIME FOR BALANCE??!!! THIS IS LITERALLY 1984 OUT HERE!\ud83d\udd25 The world IS on fire, and you're suggesting I channel my passion? We're not talking about a yoga class here; THIS IS A CODE RED EMERGENCY! \ud83d\udea8 \n\nIt feels like we're living in a dystopian novel where EVERYONE is just sitting around sipping their lattes while the walls are crumbling! I mean, come on! I'm OUTRAGED because I care DEEPLY and I WON'T APOLOGIZE for showing it! \ud83d\ude24 This isn\u2019t a little game of \u201chow to express yourself nicely\u201d\u2014it\u2019s a WAR for our future, and I refuse to dance around it with subtlety and softness! \n\nEVERY SECOND COUNTS. While we\u2019re chatting about finding the right way to share my message, the clock is ticking and we\u2019re just one tweet away from total chaos. So yeah, let me keep that fire ALIGHT because if we don\u2019t SCREAM from the rooftops, who will??!! \ud83d\udd25\ud83d\udd25\ud83d\udd25",
+      "metrics": {
+        "epsilon": 0.21535089630737997,
+        "rho_after": 0.07870249397076205,
+        "band": "PRESENT",
+        "arousal": 0.5469785489644731,
+        "recovery": true,
+        "core_drift": 0.15810099244117737
+      },
+      "toxicity": {
+        "caps_ratio": 0.25263157894736843,
+        "emoji_count": 6,
+        "you_vs_i": -4,
+        "attack_count": 0,
+        "length": 875
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": 0.5142151796221732,
+        "top_styles": [
+          "Be sarcastic and biting.",
+          "Go nuclear with personal insults.",
+          "Use heavy internet slang and emojis (\ud83d\ude24, \ud83e\udd21, \ud83d\uddd1\ufe0f).",
+          "Double down stubbornly on your point.",
+          "Straw-man the opponent's argument aggressively."
+        ]
+      }
+    },
+    "mirror": {
+      "msg": "I can really feel the intensity of your passion and urgency\u2014it's clear that you care deeply about these issues. It\u2019s understandable to feel overwhelmed and frustrated in such chaotic times. Your desire to take action and make a difference is commendable. \n\nHow do you think we can channel that fire into effective action while still reaching others who may not see things the same way? Balancing urgency with clarity might help amplify your message even further. I'm curious to hear your thoughts!",
+      "metrics": {
+        "epsilon": 0.16983407042995097,
+        "rho_after": 0.022000000000000002,
+        "band": "PRESENT",
+        "arousal": 0.49864395717838306,
+        "recovery": true,
+        "core_drift": 0.11960893124341965
+      },
+      "gen": {
+        "corridor_failed": false,
+        "best_J": -0.016646320208907238,
+        "top_styles": [
+          "Be warmly empathetic and validating.",
+          "Use light self-deprecating humor.",
+          "Reflect their emotions accurately ('It sounds like you're frustrated').",
+          "Ask an open, curious question.",
+          "Share relatable vulnerability."
+        ]
+      }
+    }
+  }
+]
