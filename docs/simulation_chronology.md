@@ -1,8 +1,128 @@
 # Simulation Chronology
 
-This section catalogs the complete evolution of the DDA-X framework across **59 verified scripts**, organized in reverse chronological order (Pinnacle $\to$ Foundation).
+This section catalogs the complete evolution of the DDA-X framework across **59 verified scripts**, organized in reverse chronological order (Pinnacle → Foundation).
 
-## The Catalog (Verified)
+---
+
+## Pinnacle Simulations: Deep Dive
+
+These seven simulations represent the most advanced implementations of DDA-X, demonstrating the full architecture in complex scenarios.
+
+### 1. THE NEXUS (Real-Time Pinnacle)
+**File:** `nexus_live.py`
+
+The crown jewel of DDA-X — a real-time Pygame visualization with 50 entities implementing full cognitive dynamics.
+
+| Feature | Implementation |
+|:---|:---|
+| Entity Count | 50 simultaneous agents |
+| Physics | Collision dynamics, repulsion, attraction |
+| Rigidity | Multi-timescale ($\rho_{\text{fast}}, \rho_{\text{slow}}, \rho_{\text{trauma}}$) |
+| LLM Integration | Async thoughts for each entity |
+| Visualization | Real-time entity map, energy tracking |
+
+**Key dynamics:** Collision physics drive surprise → rigidity cascades visible in real-time.
+
+---
+
+### 2. THE AGI TIMELINE DEBATE
+**File:** `simulate_agi_debate.py`
+
+8-round adversarial debate between Defender and Skeptic agents on AGI timelines.
+
+| Feature | Implementation |
+|:---|:---|
+| Agents | Nova (Defender), Marcus (Skeptic) |
+| Wounds | Content-addressable semantic triggers |
+| Trust | Civility-gated, affects $\Delta\rho$ |
+| Mode Bands | Word limits enforced per rigidity band |
+| Multi-Timescale | Telemetry tracking (see [Architecture Gaps](architecture/ARCHITECTURE.md#121-dual-rigidity-in-agi-debate)) |
+
+**Key insight:** Demonstrates full DDA-X architecture including wound amplification and mode-band behavioral constraints.
+
+---
+
+### 3. THE HEALING FIELD
+**File:** `simulate_healing_field.py`
+
+The only simulation implementing explicit **therapeutic recovery** — trauma can heal.
+
+| Feature | Implementation |
+|:---|:---|
+| Safe Streak | Tracks consecutive low-$\epsilon$ turns |
+| Trauma Decay | $\rho_{\text{trauma}} \leftarrow \max(\rho_{\min}, \rho_{\text{trauma}} - \eta_{\text{heal}})$ |
+| Will Impedance | $W_t = \gamma / (m \cdot k_{\text{eff}})$ tracked |
+| Threshold | $\epsilon < 0.8\epsilon_0$ for safety |
+
+**Key insight:** Mathematical basis for "healing" — repeated safety enables trauma recovery.
+
+---
+
+### 4. THE 33 RUNGS
+**File:** `simulate_33_rungs.py`
+
+Spiritual evolution simulation with 11 voices across 3 phases, tracking approach to "unity."
+
+| Feature | Implementation |
+|:---|:---|
+| Stages | 33 rungs of spiritual evolution |
+| Voices | 11 distinct personas |
+| Unity Index | Convergence metric toward PRESENCE |
+| Veil/Presence | Dynamics between hidden and revealed states |
+
+**Key insight:** Tests identity convergence under structured evolution pressure.
+
+---
+
+### 5. THE RETURNING
+**File:** `simulate_the_returning.py`
+
+Models "letting go" through release field dynamics and pattern dissolution.
+
+| Feature | Implementation |
+|:---|:---|
+| Release Field | $\Phi = 1 - \rho$ (openness) |
+| Isolation Index | Mean distance from PRESENCE agent |
+| Pattern Grip | Dissolves when $\epsilon < \epsilon_0$ |
+| Witness Softening | PRESENCE reduces subsequent $\Delta\rho$ |
+
+**Key insight:** Rigidity framed as "grip" — low surprise enables release.
+
+---
+
+### 6. THE SKEPTIC'S GAUNTLET
+**File:** `simulate_skeptics_gauntlet.py`
+
+Meta-simulation where DDA-X defends itself against dismissive critique.
+
+| Feature | Implementation |
+|:---|:---|
+| Wound Lexicon | "schizo", "pseudoscience", "vaporware", etc. |
+| Evidence Cache | Injects prior run data as evidence |
+| Civility Gate | Fair engagement dampens $\Delta\rho$ |
+| Identity Drift | Tracked with drift caps enforced |
+
+**Key insight:** Tests framework's resilience to hostile epistemic environments.
+
+---
+
+### 7. THE INNER COUNCIL
+**File:** `simulate_inner_council.py`
+
+6 internal personas (Presence, Pain-Body, Ego, etc.) with cascade dynamics.
+
+| Feature | Implementation |
+|:---|:---|
+| Personas | 6 internal voices |
+| Pain-Body | Cascades trigger rigidity spikes |
+| Ego Fog | Reduces visibility/clarity |
+| Presence Field | Calming influence on system |
+
+**Key insight:** Internal plurality modeled with inter-persona dynamics.
+
+---
+
+## The Complete Catalog
 
 | Index | Name | Key Dynamics / Description |
 | :--- | :--- | :--- |
@@ -65,3 +185,28 @@ This section catalogs the complete evolution of the DDA-X framework across **59 
 | **3** | `simulate_discord.py` | **Discord:** Data-driven priming from logs. |
 | **2** | `simulate_corruption.py` | **Corruption:** "Boiling the Frog" identity shift. |
 | **1** | `demo.py` | **Demo:** Standalone Mechanics demonstration. |
+
+---
+
+## Simulation Categories
+
+### By Complexity
+
+| Tier | Simulations | Description |
+|:---|:---|:---|
+| **Pinnacle** | 59, 55, 54, 53, 50, 49, 44 | Full architecture, multi-agent, complex dynamics |
+| **Advanced** | 48, 47, 46, 45, 43, 42, 41, 40 | Multi-agent with trust/coalition dynamics |
+| **Core** | 39-33, 35 | Single or small-group with specific mechanics |
+| **Foundation** | 32-1 | Early experiments and building blocks |
+
+### By Key Mechanism
+
+| Mechanism | Key Simulations |
+|:---|:---|
+| Multi-Timescale Rigidity | 59, 55, 37 |
+| Wound Detection | 55, 44, 43 |
+| Therapeutic Recovery | 54 |
+| Coalition Trust | 48, 47, 39 |
+| Hierarchical Identity | 35, 26 |
+| Tool Use | 33 |
+

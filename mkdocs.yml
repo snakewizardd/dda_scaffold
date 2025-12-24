@@ -53,10 +53,15 @@ nav:
   - Architecture:
     - Paper v2.0: architecture/paper.md
     - Implementation Mapping: architecture/ARCHITECTURE.md
+    - Mechanism Reference: architecture/mechanisms.md
   - Simulations: simulation_chronology.md
+  - Framework:
+    - Unique Contributions: unique_contributions.md
+    - Known Limitations: limitations.md
   - Research Review:
     - Final GPT-5.2 Report: gpt52_review/gpt52_feedback_final.md
     - Preliminary Feedback: gpt52_review/gpt52_feedback.md
 
 plugins:
   - search
+

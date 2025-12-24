@@ -141,3 +141,87 @@ This provides the mathematical basis for "healing" within the dynamical system.
 2.  **Multi-timescale defensiveness**: State separability of startle vs. trauma.
 3.  **Wounds as state**: Semantic priors that modulate dynamics.
 4.  **Identity as attractor**: Use of $\gamma(x^* - x)$ ensures identity persistence.
+
+---
+
+## 10. Relation to RL and LLM Agents
+
+DDA-X differs from typical RL/LLM-agent designs in several fundamental ways:
+
+| Aspect | Standard RL/LLM | DDA-X |
+|:---|:---|:---|
+| Response to surprise | Explore more (curiosity bonus) | Contract (reduce $k_{\text{eff}}$) |
+| Threat modeling | Reward shaping or constraints | Content-addressable wound embeddings |
+| Temporal dynamics | Single timescale or none | Fast/Slow/Trauma decomposition |
+| Output control | Fixed or random verbosity | Mode bands constrain word counts |
+| Recovery from harm | Implicit or absent | Explicit trauma decay dynamics |
+| Identity | Stateless (context window only) | Attractor dynamics with stiffness $\gamma$ |
+
+The key insight is that DDA-X treats surprise as a **contraction signal** rather than an **exploration signal**, and makes defensiveness, wounds, and trauma explicit state variables that directly modulate update magnitudes and policy bandwidth.
+
+---
+
+## 11. Limitations and Open Problems
+
+!!! warning "Transparency"
+    This section documents known gaps between theory and implementation. See [Known Limitations](../limitations.md) for full details.
+
+### 11.1 Trust Equation Mismatch
+
+The theoretical trust equation $T_{ij} = \frac{1}{1+\sum\epsilon}$ is not implemented in current simulations. The hybrid trust model (Section 7) is the actual implementation.
+
+### 11.2 Calibration Asymmetry
+
+While $\epsilon_0$ and $s$ are calibrated from runtime statistics, wound thresholds ($\tau_{\cos}$), trauma thresholds ($\theta_{\text{trauma}}$), and multi-timescale weights ($w_f, w_s, w_t$) remain hardcoded. These may require domain-specific tuning.
+
+### 11.3 Measurement Validity
+
+The prediction error $\epsilon_t = \|x_{\text{pred}} - e(a_t)\|$ conflates semantic novelty with style/verbosity shifts. Future work could decompose embeddings into content vs. tone components.
+
+### 11.4 Model Dependency
+
+For reasoning models (GPT-5.2, o1), rigidity cannot modulate sampling parameters—semantic injection is the only option. Effectiveness may vary across models.
+
+### 11.5 Open Research Questions
+
+1. Can multi-timescale weights be learned from data?
+2. How do thresholds transfer across domains?
+3. What safe interaction patterns most effectively heal trauma?
+
+---
+
+## Appendix A: Parameter Schema (D1_PARAMS)
+
+Most simulations use a consistent "physics dictionary" pattern for configuration:
+
+| Parameter | Symbol | Typical Value | Description |
+|:---|:---:|:---:|:---|
+| `epsilon_0` | $\epsilon_0$ | Calibrated | Surprise baseline (median of early epsilons) |
+| `s` | $s$ | Calibrated | Sigmoid steepness (IQR-based) |
+| `alpha` | $\alpha$ | 0.05–0.15 | Base learning rate for $\Delta\rho$ |
+| `alpha_fast` | $\alpha_f$ | 0.20 | Fast rigidity learning rate |
+| `alpha_slow` | $\alpha_s$ | 0.02 | Slow rigidity learning rate |
+| `alpha_trauma` | $\alpha_t$ | 0.10 | Trauma accumulation rate |
+| `trauma_threshold` | $\theta_t$ | 0.9–1.0 | Epsilon required for trauma increase |
+| `wound_cosine_threshold` | $\tau_{\cos}$ | 0.28 | Semantic resonance trigger |
+| `wound_cooldown` | — | 3–5 turns | Wound refractory period |
+| `drift_cap` | — | 0.05–0.10 | Maximum per-turn state movement |
+| `k_base` | $k$ | 0.1–0.3 | Base step size |
+| `gamma` | $\gamma$ | 0.1–0.5 | Identity stiffness |
+
+**Note:** Calibration of `epsilon_0` and `s` occurs after a warm-up period using observed prediction error statistics (median + IQR).
+
+---
+
+## Citation
+
+```bibtex
+@misc{ddax2025,
+  author = {DDA-X Research Team},
+  title = {DDA-X: Surprise → Rigidity → Contraction},
+  year = {2025},
+  publisher = {GitHub},
+  url = {https://github.com/snakewizardd/dda_scaffold}
+}
+```
+

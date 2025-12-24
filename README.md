@@ -81,64 +81,59 @@ This repository contains **59 verified simulations** tracing the development of 
 | **42** | `simulate_audit.py` | **Audit Day:** Independent Auditor agent, board votes (KEEP/FREEZE/AMEND). |
 | **41** | `simulate_townhall.py` | **The Town Hall:** Public accountability, proxy intrusion detection, refusal taxonomy. |
 | **40** | `simulate_crucible_v2.py` | **Crucible v2:** Improved Rigidity physics, shock-scaled delta-rho. |
-| **39** | `simulate_collective.py` | **The Collective:** 4 specialized agents, trust deltas with causes. |
-| **38** | `simulate_crucible.py` | **The Crucible:** Identity stress test for single agent (VERITY). |
-| **37** | `copilot_sim.py` | **Copilot Sim:** One-shot experiment, Multi-Timescale Rigidity + Local Ledger. |
-| **36** | `simulate_rigidity_gradient.py` | **Rigidity Gradient:** Validates 100-point semantic scale on GPT-5.2. |
-| **35** | `simulate_identity_siege.py` | **Identity Siege:** Hierarchical identity (Core/Persona/Role) with differential stiffness. |
-| **34** | `simulate_wounded_healers.py` | **Wounded Healers:** Countertransference, trauma profiles, healing verification. |
-| **33** | `solve_collatz.py` | **Solve Collatz:** Tool use (SymPy), low rigidity, rigorous proof attempt. |
-| **32** | `simulate_gpt52_society.py` | **GPT-5.2 Society:** High-fidelity "Cognitive Mirror" simulation. |
-| **31** | `simulate_sherlock.py` | **Sherlock Society:** Detective agents solving mysteries with Deductive Grader. |
-| **30** | `simulate_math_team.py` | **Math Team:** Collaborative solving (Solver, Checker, Grader). |
-| **29** | `simulate_problem_solver.py` | **Problem Solver:** 6-agent society solving logic puzzles. |
-| **28** | `simulate_society.py` | **The Society:** Discord-style multi-agent chat, basic D1 physics. |
-| **27** | `simulate_npc_conversation.py` | **NPC Conversation:** Unscripted interaction driven by Identity Pull. |
-| **26** | `simulate_mole_hunt.py` | **Mole Hunt:** Deception detection, conflicting identity hierarchy. |
-| **25** | `simulate_logic_solver.py` | **Logic Solver:** Iterative reasoning ("Who Owns the Zebra?") via Ledger. |
-| **24** | `simulate_iterative_learning.py` | **Iterative Learning:** Alien language acquisition via Reflection loop. |
-| **23** | `simulate_insight_engine.py` | **Insight Engine:** Recursive insight accumulation (Working Memory). |
-| **22** | `simulate_goal_learning.py` | **Goal Learning:** Exploration vs Exploitation adaptation. |
-| **21** | `simulate_gamma_threshold.py` | **Gamma Threshold:** Phase transition testing (Identity Stiffness). |
-| **20** | `simulate_empathy_paradox.py` | **Empathy Paradox:** Logic vs Empathy drift measurement. |
-| **19** | `simulate_deceptive_env.py` | **Deceptive Env:** Intelligence amplification against noisy feedback. |
-| **18** | `simulate_closed_loop.py` | **Closed Loop:** Full Embed-Force-Evolve-Retrieve-Respond loop. |
-| **17** | `simulate_paper_mechanics.py` | **Paper Mechanics:** Explicit visualization of framework math. |
-| **16** | `simulate_stress_magic.py` | **Stress Magic:** Existential paradox injection (Chaos Mode trigger). |
-| **15** | `simulate_neural_link.py` | **Neural Link:** Real-time Operator vs Subject (Glass Box monitoring). |
-| **14** | `simulate_glass_box.py` | **Glass Box:** Real-time breakdown of cognitive cycle stages. |
-| **13** | `simulate_dual_yklam.py` | **Dual YKLAM:** "The Mirror Room" - divergent instances of same persona. |
-| **12** | `simulate_auto_yklam.py` | **Auto YKLAM:** Natural simulation with variable plasticity. |
-| **11** | `simulate_yklam.py` | **YKLAM:** Soulful Proxy with "Soul Telemetry" visualization. |
-| **10** | `simulate_connect4_duel.py` | **Connect 4 Duel:** Competitive game agents (MCTS + Memory). |
-| **9** | `verify_dda_physics.py` | **Physics Verification:** Testing Rigidity $\to$ Temp mapping. |
-| **8** | `simulate_socrates.py` | **Socratic Asymmetry:** Dogmatist vs Gadfly (High vs Low Gamma). |
-| **7** | `simulate_schism.py` | **The Schism:** Trust collapse driving rigidity (Live API). |
-| **6** | `simulate_redemption.py` | **Redemption Arc:** Corrupted agent recovery via Deprogrammer. |
-| **5** | `simulate_infinity.py` | **Infinity:** Infinite dialectic loop (" The Flame War"). |
-| **4** | `simulate_driller.py` | **Deep Driller:** Forensic root cause analysis (Rigidity vs Plasticity). |
-| **3** | `simulate_discord.py` | **Discord:** Data-driven priming from logs. |
-| **2** | `simulate_corruption.py` | **Corruption:** "Boiling the Frog" identity shift. |
-| **1** | `demo.py` | **Demo:** Standalone Mechanics demonstration. |
+| ... | ... | *See full catalog in documentation* |
 
 ---
 
 ## Infrastructure
 
-*   **`src/llm/openai_provider.py`**: Handles coupling between Rigidity ($\rho$) and LLM generation. For reasoning models (o1/GPT-5.2), it injects semantic "Cognitive State" instructions. For standard models, it modulates temperature/top_p.
-*   **`src/memory/ledger.py`**: Implements **Surprise-Weighted Memory**. Experiences are retrieved based on Similarity $\times$ Recency $\times$ Salience (where Salience scales with Prediction Error).
+### LLM Provider
+**File:** `src/llm/openai_provider.py`
 
-## Running the Simulations
+Handles coupling between Rigidity ($\rho$) and LLM generation:
 
-Set your OpenAI API key:
+- **For reasoning models (o1/GPT-5.2)**: Injects semantic "Cognitive State" instructions
+- **For standard models (GPT-4o)**: Modulates temperature/top_p sampling parameters
+- Includes cost tracking for all API calls
+
+### Experience Ledger
+**File:** `src/memory/ledger.py`
+
+Implements **Surprise-Weighted Memory**:
+
+$$
+\text{score} = \text{similarity} \times \text{recency} \times \text{salience}
+$$
+
+where $\text{salience} = 1 + \lambda_\epsilon \cdot \epsilon_t$
+
+High-surprise episodes remain more retrievable — memory is "emotionally shaped."
+
+---
+
+## Quick Start
+
+### Installation
 
 ```bash
-export OPENAI_API_KEY="sk-..."
+# Clone the repository
+git clone https://github.com/snakewizardd/dda_scaffold.git
+cd dda_scaffold
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
 ```
 
-Run any simulation:
+### Running Simulations
 
 ```bash
+# Set your API key
+export OPENAI_API_KEY="sk-..."
+
 # Run the pinnacle debate simulation
 python simulations/simulate_agi_debate.py
 
@@ -149,12 +144,67 @@ python simulations/simulate_healing_field.py
 python simulations/nexus_live.py
 ```
 
+### View Documentation
+
+```bash
+# Serve MkDocs locally
+mkdocs serve
+
+# Then open http://localhost:8000
+```
+
+---
+
+## Documentation
+
+This repository includes comprehensive MkDocs documentation:
+
+| Page | Description |
+|:---|:---|
+| [Paper v2.0](docs/architecture/paper.md) | Full theoretical framework with rigorous math |
+| [Implementation Mapping](docs/architecture/ARCHITECTURE.md) | How theory runs in actual Python code |
+| [Mechanism Reference](docs/architecture/mechanisms.md) | Complete mechanism documentation |
+| [Simulation Chronology](docs/simulation_chronology.md) | Catalog of all 59 simulations |
+| [Unique Contributions](docs/unique_contributions.md) | What makes DDA-X novel |
+| [Known Limitations](docs/limitations.md) | Honest critical assessment |
+| [GPT-5.2 Review](docs/gpt52_review/gpt52_feedback_final.md) | Independent review by reasoning models |
+
+---
+
 ## Unique Contributions
 
 1.  **Rigidity as a Control Variable**: We explicitly model "defensiveness" as a state variable that shrinks learning rates ($k_{\text{eff}}$) and output bandwidth.
 2.  **Inverted Exploration**: Unlike RL, surprise leads to *less* exploration (contraction) initially.
 3.  **Wounds as Threat Priors**: Content-addressable "wounds" (semantic embeddings) amplify surprise and trigger defensive responses.
-4.  **Therapeutic Recovery**: We demonstrate mathematically how "safe" (low-error) interactions can decay trauma over time.
+4.  **Multi-Timescale Defensiveness**: Fast/Slow/Trauma decomposition with asymmetric accumulation.
+5.  **Therapeutic Recovery**: We demonstrate mathematically how "safe" (low-error) interactions can decay trauma over time.
+6.  **Identity as Attractor**: Dynamical systems framing with $\gamma(x^* - x)$ ensures identity persistence.
+
+---
+
+## Known Limitations
+
+This project maintains transparency about gaps between theory and implementation:
+
+- **Trust equation mismatch**: Theory describes $T_{ij} = \frac{1}{1+\sum\epsilon}$; implementation uses hybrid civility-based trust
+- **Dual rigidity models**: AGI debate sim runs multi-timescale for telemetry but uses legacy single-scale for behavior
+- **Uncalibrated thresholds**: Wound and trauma thresholds are hardcoded, unlike $\epsilon_0$ and $s$
+
+See [Known Limitations](docs/limitations.md) for full details.
+
+---
+
+## Citation
+
+```bibtex
+@misc{ddax2025,
+  author = {DDA-X Research Team},
+  title = {DDA-X: Surprise → Rigidity → Contraction},
+  year = {2025},
+  publisher = {GitHub},
+  url = {https://github.com/snakewizardd/dda_scaffold}
+}
+```
 
 ---
 

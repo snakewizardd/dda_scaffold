@@ -10,6 +10,25 @@ This document maps the DDA-X theoretical components to the concrete **verified c
 
 A typical simulation turn follows this specific sequence:
 
+```mermaid
+flowchart TD
+    A["1. Embed Stimulus"] --> B["2. Wound Check"]
+    B --> C["3. Generate Response"]
+    C --> D["4. Embed Response"]
+    D --> E["5. Compute ε"]
+    E --> F["6. Update ρ"]
+    F --> G["7. Update State x"]
+    G --> H["8. Log to Ledger"]
+    
+    B -->|"wound_active"| B2["Amplify ε"]
+    B2 --> C
+    
+    C -.->|"ρ binds to"| C2["complete_with_rigidity()"]
+    F -.->|"multi-timescale"| F2["ρ_fast + ρ_slow + ρ_trauma"]
+```
+
+**Step-by-step:**
+
 1.  **Embed**: Convert stimulus $o_t$ to `msg_emb`.
 2.  **Wound Check**: (Optional) Check semantic/lexical triggers $\to$ modulate $\epsilon$.
 3.  **Generate**: Call `OpenAIProvider.complete_with_rigidity(..., rho)`.
@@ -194,3 +213,46 @@ Data is stored as `LedgerEntry` (numpy vectors) and `ReflectionEntry` (LLM lesso
 ### Collatz Review Council
 *   **Dyadic Trust**: Trust map `trust[advocacy_group]` modulates $\Delta \rho$.
 *   **Calibration**: Calculates $\epsilon_0$ and $s$ dynamically from early-run statistics.
+
+---
+
+## 12. Architecture Gaps (Transparency)
+
+This section documents known architectural issues identified during independent review.
+
+!!! warning "Note"
+    These are documented gaps, not bugs. The simulations work correctly. See [Known Limitations](../limitations.md) for full context.
+
+### 12.1 Dual Rigidity in AGI Debate
+
+In `simulate_agi_debate.py`, two rigidity models run in parallel:
+
+| Model | Variable | Used For |
+|:---|:---|:---|
+| Multi-timescale | `agent.multi_rho` | Telemetry/logging only |
+| Legacy single-scale | `agent.rho` | Actual behavior control |
+
+The `multi_rho.effective_rho` is computed but not used to drive generation or mode bands.
+
+### 12.2 Hierarchical Identity Degeneracy
+
+In `simulate_identity_siege.py`, the hierarchical identity has degenerate embeddings:
+
+```python
+# Current: all layers use same embedding
+core_emb = identity_emb
+persona_emb = identity_emb  # Same direction
+role_emb = identity_emb     # Same direction
+```
+
+Layers differ only by $\gamma$ magnitude, not direction. True hierarchy would require separate embeddings for each layer.
+
+### 12.3 Missing Module References
+
+Some modules are referenced in feedback but may not be fully implemented:
+
+- `src/core/state.py` (DDAState) — referenced in Collatz Solver
+- `src/core/dynamics.py` (MultiTimescaleRigidity) — currently inline in sims
+- `src/society/trust.py` (TrustMatrix) — referenced in Collatz Solver
+
+These represent potential future refactoring targets.
