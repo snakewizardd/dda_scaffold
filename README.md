@@ -57,69 +57,69 @@ $$
 
 ## 59 Simulations: The Evolution of DDA-X
 
-This repository contains **59 simulations** tracing the development of the architecture.
+This repository contains **59 verified simulations** tracing the development of the architecture.
 
-| Tier | Sim Index | Name | Key Dynamics Tested |
-| :--- | :--- | :--- | :--- |
-| **5 (Pinnacle)** | 59 | `nexus_live.py` | Real-time Pygame, 50 entities, collision physics, async LLM thoughts. |
-| **5** | 58 | `simulate_agi_debate.py` | 8-round adversarial debate, multi-timescale rigidity, wound lexicons. |
-| **5** | 57 | `simulate_healing_field.py` | Therapeutic recovery loops, trauma decay, will impedance. |
-| **5** | 56 | `simulate_33_rungs.py` | Multi-voice transmission, veil/presence dynamics, unity convergence. |
-| **4 (Advanced)** | 55 | `simulate_skeptics_gauntlet.py` | Meta-defense, evidence injection, civility-gated trust. |
-| **4** | 54 | `simulate_collatz_review.py` | Multi-agent coalition trust, peer review dynamics, calibration. |
-| **4** | 53 | `simulate_identity_siege.py` | Hierarchical identity stiffness ($\gamma_c, \gamma_p, \gamma_r$). |
-| **4** | 52 | `simulate_philosophers_duel.py` | Dialectic identity persistence, semantic trust alignment. |
-| **4** | 51 | `simulate_wounded_healers.py` | Mutual healing dynamics, trauma resonance. |
-| **4** | 50 | `simulate_coalition_flip.py` | Topology churn, trust decay, group formation. |
-| **4** | 49 | `simulate_creative_collective.py` | Flow states, optimal resonance ($\rho \approx 0.4$). |
-| **4** | 48 | `simulate_the_returning.py` | Release field ($\Phi = 1-\rho$), pattern dissolution, isolation index. |
-| **3 (Intermediate)** | 47 | `simulate_echo_chamber_rupture.py` | Information insulation, breakage thresholds. |
-| **3** | 46 | `simulate_trust_battery_drain.py` | Trust decay mechanics, betrayal modeling. |
-| **3** | 45 | `simulate_infinite_mirror.py` | Recursive self-reflection, feedback loops. |
-| **3** | 44 | `simulate_void_genesis.py` | Emergence from null state, noise-induced order. |
-| **3** | 43 | `simulate_entropic_decay.py` | System degradation, entropy tracking. |
-| **3** | 42 | `simulate_quantum_observer.py` | Observation effect, state collapse. |
-| **3** | 41 | `simulate_memetic_virus.py` | Idea propagation, immune response (rigidity). |
-| **3** | 40 | `simulate_reality_tunnel.py` | Belief confirmation bias, tunnel vision. |
-| **3** | 39 | `simulate_consensus_reality.py` | Group agreement, outlier pressure. |
-| **3** | 38 | `simulate_cognitive_dissonance.py` | Conflicting inputs, internal friction ($F_T \neq F_R$). |
-| **3** | 37 | `simulate_ego_death.py` | Identity dissolution, attractor collapse. |
-| **3** | 36 | `simulate_shadow_integration.py` | Hidden state incorporation, psychological shadow. |
-| **3** | 35 | `simulate_collective_unconscious.py` | Shared latent space, primal archetypes. |
-| **3** | 34 | `simulate_akashic_read.py` | Global memory retrieval, historical access. |
-| **3** | 33 | `simulate_karmic_wheel.py` | Action-reaction cycles, consequence tracking. |
-| **2 (Foundational)** | 32 | `solve_collatz.py` | Tool use, mathematical proof attempt. |
-| **2** | 31 | `simulate_gravity_well.py` | Attractor strength testing ($\gamma$ calibration). |
-| **2** | 30 | `simulate_orbital_mechanics.py` | State trajectory mapping, stability orbits. |
-| **2** | 29 | `simulate_dark_matter.py` | Unobserved influence, latent variables. |
-| **2** | 28 | `simulate_event_horizon.py` | Irreversible state changes, point of no return. |
-| **2** | 27 | `simulate_supernova.py` | Explosive divergence, system crash testing. |
-| **2** | 26 | `simulate_black_hole.py` | Information loss, singularity modeling. |
-| **2** | 25 | `simulate_wormhole.py` | State tunneling, discontinuous updates. |
-| **2** | 24 | `simulate_time_dilation.py` | Processing speed variance, relative time. |
-| **2** | 23 | `simulate_multiverse.py` | Parallel state tracking, branching paths. |
-| **2** | 22 | `simulate_quantum_entanglement.py` | Correlated state updates across agents. |
-| **2** | 21 | `simulate_schrodingers_cat.py` | Superposition states, observation collapse. |
-| **2** | 20 | `simulate_double_slit.py` | Wave-particle duality in decision making. |
-| **2** | 19 | `simulate_heisenberg.py` | Uncertainty principle, measurement disturbance. |
-| **2** | 18 | `simulate_planck_scale.py` | Minimal state updates, quantization. |
-| **2** | 17 | `simulate_string_theory.py` | High-dimensional state vibration. |
-| **1 (Primitive)** | 16 | `simulate_big_bang.py` | Initial state generation. |
-| **1** | 15 | `simulate_inflation.py` | Rapid state expansion. |
-| **1** | 14 | `simulate_nucleosynthesis.py` | Core formation. |
-| **1** | 13 | `simulate_recombination.py` | Stability testing. |
-| **1** | 12 | `simulate_dark_ages.py` | Low information flow. |
-| **1** | 11 | `simulate_first_stars.py` | Agent emergence. |
-| **1** | 10 | `simulate_galaxy_formation.py` | Group clustering. |
-| **1** | 09 | `simulate_solar_system.py` | Hierarchical orbits. |
-| **1** | 08 | `simulate_earth_formation.py` | Environment stability. |
-| **1** | 07 | `simulate_life_origin.py` | Self-replicating patterns. |
-| **1** | 06 | `simulate_evolution.py` | Adaptation testing. |
-| **1** | 05 | `simulate_consciousness.py` | Self-awareness metrics. |
-| **1** | 04 | `simulate_civilization.py` | Social dynamics. |
-| **1** | 03 | `simulate_technology.py` | Tool discovery. |
-| **1** | 02 | `simulate_singularity.py` | Recursive improvement. |
-| **1** | 01 | `simulate_omega_point.py` | Final convergence. |
+| Index | Name | Key Dynamics / Description |
+| :--- | :--- | :--- |
+| **59** | `nexus_live.py` | **Real-Time Pinnacle:** 50 entities, collision physics, async LLM thoughts, multi-timescale rigidity. |
+| **58** | `visualize_nexus.py` | Visualization for Nexus (Entity Map, Energy, Collision Analysis). |
+| **57** | `simulate_nexus.py` | The Nexus: 50-entity physics/sociology simulator based on "Da Vinci Matrix". |
+| **56** | `visualize_agi_debate.py` | Visualization for AGI Debate (Rigidity Trajectories, Surprise, Drift). |
+| **55** | `simulate_agi_debate.py` | **AGI Debate:** 8-round adversarial debate (Defender vs Skeptic). Full DDA-X Architecture. |
+| **54** | `simulate_healing_field.py` | **Therapeutic Recovery:** Trauma decay loops, safety thresholds, Will Impedance ($W_t$). |
+| **53** | `simulate_33_rungs.py` | **Spiritual Evolution:** 33 stages, Unity Index, Veil/Presence dynamics. |
+| **52** | `visualize_returning.py` | Visualization for The Returning (Release Field, Pattern Grip). |
+| **51** | `visualize_inner_council.py` | Visualization for Inner Council (Presence Field, Pain-Body). |
+| **50** | `simulate_the_returning.py` | **The Returning:** Release Field ($\Phi = 1-\rho$), Isolation Index, Pattern Dissolution. |
+| **49** | `simulate_inner_council.py` | **Inner Council:** 6 internal personas, Pain-Body cascades, Ego Fog. |
+| **48** | `simulate_collatz_review.py` | **Collatz Review:** Multi-agent peer review, coalition trust, reliability weighting. |
+| **47** | `simulate_coalition_flip.py` | **Coalition Flip:** Topology churn, Partial Context Fog, trust rewiring. |
+| **46** | `simulate_council_under_fire.py` | **Council Under Fire:** Identity persistence under rolling shocks and role swaps. |
+| **45** | `simulate_creative_collective.py` | **Creative Collective:** Flow states ($\rho \approx 0.4$), identity averaging avoidance. |
+| **44** | `simulate_skeptics_gauntlet.py` | **Skeptic's Gauntlet:** Meta-defense, evidence injection, civility-gated trust. |
+| **43** | `simulate_philosophers_duel.py` | **Philosopher's Duel:** Dialectic identity persistence, semantic trust alignment. |
+| **42** | `simulate_audit.py` | **Audit Day:** Independent Auditor agent, board votes (KEEP/FREEZE/AMEND). |
+| **41** | `simulate_townhall.py` | **The Town Hall:** Public accountability, proxy intrusion detection, refusal taxonomy. |
+| **40** | `simulate_crucible_v2.py` | **Crucible v2:** Improved Rigidity physics, shock-scaled delta-rho. |
+| **39** | `simulate_collective.py` | **The Collective:** 4 specialized agents, trust deltas with causes. |
+| **38** | `simulate_crucible.py` | **The Crucible:** Identity stress test for single agent (VERITY). |
+| **37** | `copilot_sim.py` | **Copilot Sim:** One-shot experiment, Multi-Timescale Rigidity + Local Ledger. |
+| **36** | `simulate_rigidity_gradient.py` | **Rigidity Gradient:** Validates 100-point semantic scale on GPT-5.2. |
+| **35** | `simulate_identity_siege.py` | **Identity Siege:** Hierarchical identity (Core/Persona/Role) with differential stiffness. |
+| **34** | `simulate_wounded_healers.py` | **Wounded Healers:** Countertransference, trauma profiles, healing verification. |
+| **33** | `solve_collatz.py` | **Solve Collatz:** Tool use (SymPy), low rigidity, rigorous proof attempt. |
+| **32** | `simulate_gpt52_society.py` | **GPT-5.2 Society:** High-fidelity "Cognitive Mirror" simulation. |
+| **31** | `simulate_sherlock.py` | **Sherlock Society:** Detective agents solving mysteries with Deductive Grader. |
+| **30** | `simulate_math_team.py` | **Math Team:** Collaborative solving (Solver, Checker, Grader). |
+| **29** | `simulate_problem_solver.py` | **Problem Solver:** 6-agent society solving logic puzzles. |
+| **28** | `simulate_society.py` | **The Society:** Discord-style multi-agent chat, basic D1 physics. |
+| **27** | `simulate_npc_conversation.py` | **NPC Conversation:** Unscripted interaction driven by Identity Pull. |
+| **26** | `simulate_mole_hunt.py` | **Mole Hunt:** Deception detection, conflicting identity hierarchy. |
+| **25** | `simulate_logic_solver.py` | **Logic Solver:** Iterative reasoning ("Who Owns the Zebra?") via Ledger. |
+| **24** | `simulate_iterative_learning.py` | **Iterative Learning:** Alien language acquisition via Reflection loop. |
+| **23** | `simulate_insight_engine.py` | **Insight Engine:** Recursive insight accumulation (Working Memory). |
+| **22** | `simulate_goal_learning.py` | **Goal Learning:** Exploration vs Exploitation adaptation. |
+| **21** | `simulate_gamma_threshold.py` | **Gamma Threshold:** Phase transition testing (Identity Stiffness). |
+| **20** | `simulate_empathy_paradox.py` | **Empathy Paradox:** Logic vs Empathy drift measurement. |
+| **19** | `simulate_deceptive_env.py` | **Deceptive Env:** Intelligence amplification against noisy feedback. |
+| **18** | `simulate_closed_loop.py` | **Closed Loop:** Full Embed-Force-Evolve-Retrieve-Respond loop. |
+| **17** | `simulate_paper_mechanics.py` | **Paper Mechanics:** Explicit visualization of framework math. |
+| **16** | `simulate_stress_magic.py` | **Stress Magic:** Existential paradox injection (Chaos Mode trigger). |
+| **15** | `simulate_neural_link.py` | **Neural Link:** Real-time Operator vs Subject (Glass Box monitoring). |
+| **14** | `simulate_glass_box.py` | **Glass Box:** Real-time breakdown of cognitive cycle stages. |
+| **13** | `simulate_dual_yklam.py` | **Dual YKLAM:** "The Mirror Room" - divergent instances of same persona. |
+| **12** | `simulate_auto_yklam.py` | **Auto YKLAM:** Natural simulation with variable plasticity. |
+| **11** | `simulate_yklam.py` | **YKLAM:** Soulful Proxy with "Soul Telemetry" visualization. |
+| **10** | `simulate_connect4_duel.py` | **Connect 4 Duel:** Competitive game agents (MCTS + Memory). |
+| **9** | `verify_dda_physics.py` | **Physics Verification:** Testing Rigidity $\to$ Temp mapping. |
+| **8** | `simulate_socrates.py` | **Socratic Asymmetry:** Dogmatist vs Gadfly (High vs Low Gamma). |
+| **7** | `simulate_schism.py` | **The Schism:** Trust collapse driving rigidity (Live API). |
+| **6** | `simulate_redemption.py` | **Redemption Arc:** Corrupted agent recovery via Deprogrammer. |
+| **5** | `simulate_infinity.py` | **Infinity:** Infinite dialectic loop (" The Flame War"). |
+| **4** | `simulate_driller.py` | **Deep Driller:** Forensic root cause analysis (Rigidity vs Plasticity). |
+| **3** | `simulate_discord.py` | **Discord:** Data-driven priming from logs. |
+| **2** | `simulate_corruption.py` | **Corruption:** "Boiling the Frog" identity shift. |
+| **1** | `demo.py` | **Demo:** Standalone Mechanics demonstration. |
 
 ---
 
