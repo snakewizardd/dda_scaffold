@@ -185,7 +185,7 @@ class OpenAIProvider:
         prompt: str,
         system_prompt: Optional[str] = None,
         temperature: float = 0.7,
-        max_tokens: int = 1024,
+        max_tokens: Optional[int] = 1024,
         top_p: float = 1.0,
         frequency_penalty: float = 0.0,
         presence_penalty: float = 0.0,
@@ -203,6 +203,43 @@ class OpenAIProvider:
 
         client = self._get_client()
         
+        # gpt-5-nano requires the Responses API, not Chat Completions
+        if "gpt-5-nano" in self.model:
+            try:
+                # Build input with system prompt if provided
+                full_input = prompt
+                if system_prompt:
+                    full_input = f"[SYSTEM]: {system_prompt}\n\n[USER]: {prompt}"
+                
+                kwargs = {
+                    "model": self.model,
+                    "input": full_input,
+                }
+                if max_tokens is not None:
+                    kwargs["max_output_tokens"] = max(500, max_tokens)
+
+                response = await client.responses.create(**kwargs)
+                
+                # Track usage
+                if hasattr(response, 'usage') and response.usage:
+                    self.cost_tracker.record_chat(
+                        self.model,
+                        response.usage.input_tokens or 0,
+                        response.usage.output_tokens or 0
+                    )
+                
+                # Extract text from message items
+                if response.output:
+                    for item in response.output:
+                        if item.type == 'message':
+                            for content in item.content:
+                                if hasattr(content, 'text') and content.text:
+                                    return content.text
+                return ""
+            except Exception as e:
+                raise RuntimeError(f"OpenAI Responses API Error: {str(e)}")
+        
+        # Standard Chat Completions API for other models
         messages = []
         if system_prompt:
             messages.append({"role": "system", "content": system_prompt})
@@ -215,12 +252,14 @@ class OpenAIProvider:
             }
             
             # Reasoning models (o1/gpt-5.2) often don't support standard sampling params
-            if "gpt-5.2" in self.model or "o1" in self.model:
-                 kwargs["max_completion_tokens"] = max_tokens
+            if "gpt-5" in self.model or "o1" in self.model:
+                 if max_tokens is not None:
+                     kwargs["max_completion_tokens"] = max_tokens
                  # Explicitly exclude temp, top_p, penalties as they cause 400 errors
             else:
                 # Standard GPT-4/3.5/4o parameters
-                kwargs["max_tokens"] = max_tokens
+                if max_tokens is not None:
+                    kwargs["max_tokens"] = max_tokens
                 kwargs["temperature"] = temperature
                 kwargs["top_p"] = top_p
                 kwargs["frequency_penalty"] = frequency_penalty

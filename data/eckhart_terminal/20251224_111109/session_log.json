@@ -1,0 +1,2380 @@
+[
+  {
+    "turn": 1,
+    "patient_msg": "I feel overwhelmed by guilt and anxiety. I don't know where to start.",
+    "eckhart_msg": "Feel the breath.  \nInhale... Exhale.  \n\nHere, now.  \nNo past, no future.  \nJust this moment.  \n\nGuilt and anxiety arise in the mind.  \nBut you are not the mind.  \n\nRest in presence.  \nLet go.  \nBe still.",
+    "patient": {
+      "epsilon": 0.18539984047189967,
+      "chi2": 0.034373100847005844,
+      "innov_l2": 1.0,
+      "R_mean": 0.009419530630111694,
+      "rho_before": 0.6244000000000001,
+      "rho_after": 0.5581597445085147,
+      "delta_rho": -0.06624025549148538,
+      "band": "WATCHFUL",
+      "arousal": 0.15758986440111472,
+      "recovery": false,
+      "safe": 1,
+      "eta": 0.07871884180570539,
+      "sigma": 0.015163194890170295,
+      "energy": 0.8808387951925397,
+      "core_drift": 0.058737948536872864,
+      "role_drift": 0.08411911875009537
+    },
+    "eckhart": {
+      "epsilon": 0.18533156099118087,
+      "chi2": 0.034347787499427795,
+      "innov_l2": 1.0,
+      "R_mean": 0.009419531561434269,
+      "rho_before": 0.04880000000000001,
+      "rho_after": 0.024754047953913727,
+      "delta_rho": -0.024045952046086283,
+      "band": "PRESENT",
+      "arousal": 0.15753182684250372,
+      "recovery": false,
+      "safe": 1,
+      "eta": 0.20292395317468123,
+      "sigma": 0.0044950809590782745,
+      "energy": 0.4190236099180765,
+      "core_drift": 0.05620606616139412,
+      "role_drift": 0.03789129853248596
+    },
+    "eckhart_gen": {
+      "corridor_failed": false,
+      "best_J": 0.25565349188447006,
+      "best_diag": {
+        "cos_core": 0.5124646425247192,
+        "cos_role": 0.5124646425247192,
+        "E": 4.558456985652446,
+        "novelty": 0.0,
+        "penalty": 0.0,
+        "J": 0.25565349188447006,
+        "corridor_pass": true
+      },
+      "top5": [
+        {
+          "J": 0.25565349188447006,
+          "diag": {
+            "cos_core": 0.5124646425247192,
+            "cos_role": 0.5124646425247192,
+            "E": 4.558456985652446,
+            "novelty": 0.0,
+            "penalty": 0.0,
+            "J": 0.25565349188447006,
+            "corridor_pass": true
+          },
+          "preview": "Feel the breath.  \nInhale... Exhale.  \n\nHere, now.  \nNo past, no future.  \nJust this moment.  \n\nGuilt and anxiety arise ..."
+        },
+        {
+          "J": 0.08857526010274896,
+          "diag": {
+            "cos_core": 0.46829909086227417,
+            "cos_role": 0.46829909086227417,
+            "E": 4.971404615044594,
+            "novelty": 0.0,
+            "penalty": 0.0,
+            "J": 0.08857526010274896,
+            "corridor_pass": true
+          },
+          "preview": "Ah, dear one, let us pause for a moment in this swirling storm of feelings. Imagine your mind as a busy marketplace, fil..."
+        },
+        {
+          "J": 0.08027212393283856,
+          "diag": {
+            "cos_core": 0.4661042094230652,
+            "cos_role": 0.4661042094230652,
+            "E": 4.991926199197769,
+            "novelty": 0.0,
+            "penalty": 0.0,
+            "J": 0.08027212393283856,
+            "corridor_pass": true
+          },
+          "preview": "In the vast ocean of existence, where thoughts rise like waves,  \nYou find yourself caught in the storm of guilt and anx..."
+        },
+        {
+          "J": 0.05267296206951144,
+          "diag": {
+            "cos_core": 0.45880866050720215,
+            "cos_role": 0.45880866050720215,
+            "E": 5.060140138864517,
+            "novelty": 0.0,
+            "penalty": 0.0,
+            "J": 0.05267296206951144,
+            "corridor_pass": true
+          },
+          "preview": "Guilt and anxiety are illusions of the mind, tethering you to the past and future. They thrive in the narrative you tell..."
+        },
+        {
+          "J": -0.020891564369201587,
+          "diag": {
+            "cos_core": 0.4393625259399414,
+            "cos_role": 0.4393625259399414,
+            "E": 5.2419603824615475,
+            "novelty": 0.0,
+            "penalty": 0.0,
+            "J": -0.020891564369201587,
+            "corridor_pass": true
+          },
+          "preview": "Ah, dear one, let\u2019s pause together in this moment. Feel the weight of that guilt and anxiety\u2014notice how it pulls you int..."
+        }
+      ],
+      "batches_used": 1,
+      "K_per_batch": 9
+    },
+    "patient_gen_next": {
+      "corridor_failed": false,
+      "best_J": -0.10702282267808916,
+      "best_diag": {
+        "cos_core": 0.3486071825027466,
+        "cos_role": 0.3768260180950165,
+        "E": 4.794910645484924,
+        "novelty": 0.0,
+        "penalty": 0.0,
+        "J": -0.10702282267808916,
+        "corridor_pass": true
+      },
+      "top5": [
+        {
+          "J": -0.10702282267808916,
+          "diag": {
+            "cos_core": 0.3486071825027466,
+            "cos_role": 0.3768260180950165,
+            "E": 4.794910645484924,
+            "novelty": 0.0,
+            "penalty": 0.0,
+            "J": -0.10702282267808916,
+            "corridor_pass": true
+          },
+          "preview": "I\u2019m a jumbled ball of yarn,  \ntangled in the closet of my mind,  \na tempest in a teapot,  \nwhere thoughts swirl like a d..."
+        },
+        {
+          "J": -0.14714475625753387,
+          "diag": {
+            "cos_core": 0.33520159125328064,
+            "cos_role": 0.36923664808273315,
+            "E": 4.888877201080322,
+            "novelty": 0.0,
+            "penalty": 0.0,
+            "J": -0.14714475625753387,
+            "corridor_pass": true
+          },
+          "preview": "I feel heavy.  \nLike a weight on my chest.  \n\nThoughts swirl.  \nEndless loops.  \nCan\u2019t find the stop button.  \n\nAnxiety ..."
+        },
+        {
+          "J": -0.15115339905023573,
+          "diag": {
+            "cos_core": 0.3330829441547394,
+            "cos_role": 0.370341956615448,
+            "E": 4.901654124259949,
+            "novelty": 0.0,
+            "penalty": 0.0,
+            "J": -0.15115339905023573,
+            "corridor_pass": true
+          },
+          "preview": "I feel like I\u2019m in a tangled web of thoughts, each thread pulling me in a different direction. Anxiety wraps around my c..."
+        },
+        {
+          "J": -0.23582985699176784,
+          "diag": {
+            "cos_core": 0.3124571442604065,
+            "cos_role": 0.33599209785461426,
+            "E": 5.066636502742767,
+            "novelty": 0.0,
+            "penalty": 0.0,
+            "J": -0.23582985699176784,
+            "corridor_pass": true
+          },
+          "preview": "In the garden of my mind, weeds entangle my thoughts,  \nTendrils of anxiety twist around the fragile blooms of hope.  \nE..."
+        },
+        {
+          "J": -0.2876896886229515,
+          "diag": {
+            "cos_core": 0.29234880208969116,
+            "cos_role": 0.33283236622810364,
+            "E": 5.200184458494187,
+            "novelty": 0.0,
+            "penalty": 0.0,
+            "J": -0.2876896886229515,
+            "corridor_pass": true
+          },
+          "preview": "I feel a swirling mixture of anxiety and overwhelm, like being trapped in a whirlwind of thoughts that never settle. It\u2019..."
+        }
+      ],
+      "batches_used": 1,
+      "K_per_batch": 9
+    }
+  },
+  {
+    "turn": 2,
+    "patient_msg": "I\u2019m a jumbled ball of yarn,  \ntangled in the closet of my mind,  \na tempest in a teapot,  \nwhere thoughts swirl like a dance gone wrong.  \n\nInhale...  \nI feel like a balloon filled with too much air\u2014  \nready to pop, but somehow still floating,  \nthe moment vibrating with tension,  \nlike a tightrope walker on a fraying line.  \n\nExhale...  \nthere\u2019s a soft whisper in my chest,  \nwhere worry lives like a raccoon in an attic\u2014  \nscratching at the walls, reminding me I\u2019m not alone.  \n\nTime has no meaning here,  \npast and future merge into a puddle of \u201cWhat ifs,\u201d  \nshimmering and distorted,  \nthe world outside fades to gray,  \nwhile I sit on this fragile edge of chaos.  \n\nGuilt's heavy jacket wraps around me\u2014  \ntoo big, too warm, too suffocating.  \nI want to peel it off, but my hands are stuck,  \nlost in this strange dance of \u201cshould\u201d and \u201cmust.\u201d  \n\nBut wait\u2026 there\u2019s a sliver of sunlight peeking through,  \na moment where breath becomes my anchor.  \nThe simplest thing, really\u2014  \njust inhaling and exhaling,  \ncounting the seconds as they drip down the wall,  \nlike rain on a window pane.  \n\nBe still\u2026 oh, if I could just find stillness!  \nBut the universe is vast and loud\u2014  \nand here I am, trying to catch every falling star.  \nMaybe in the stillness lies the key?  \nA way to unravel this knot,  \nto let the breath carry me,  \nlike a leaf drifting on the surface of a stream,  \nunrushed, unburdened\u2014  \nfloating into something new.  \n\nAnd so I breathe again,  \na soft inhale\u2026 then an exhale\u2014  \ngiving myself permission to be here, tangled and messy.",
+    "eckhart_msg": "You are not the tangled thoughts. You are the awareness that observes them. \n\nIn this very moment, there is nothing to fix. Nothing to untangle. Just be here. \n\nFeel the breath. Inhale\u2026 Exhale. That is your anchor. The simplicity of being. The noise in your mind\u2014let it swirl, let it dance. It does not define you.\n\nThe past and future are illusions; they do not exist in this moment. All that is real is now. \n\nThe heaviness you feel? It is a product of identification with your thoughts and emotions. Release the need to be perfect, to perform. \n\nAllow the light of awareness to shine on the chaos. Notice it, accept it, and then let it be.\n\nYou are the space in which everything happens\u2014the stillness behind the storm. \n\nBreathe deeply, again. Let go into the present. This is where freedom lies.",
+    "patient": {
+      "epsilon": 0.21242864160959615,
+      "chi2": 0.04512592777609825,
+      "innov_l2": 1.1145681142807007,
+      "R_mean": 0.008878622204065323,
+      "rho_before": 0.5581597445085147,
+      "rho_after": 0.49746393929763083,
+      "delta_rho": -0.06069580521088386,
+      "band": "WATCHFUL",
+      "arousal": 0.2940290477369593,
+      "recovery": false,
+      "safe": 2,
+      "eta": 0.0898604634387853,
+      "sigma": 0.013949278785952616,
+      "energy": 0.6546029135817661,
+      "core_drift": 0.07812246680259705,
+      "role_drift": 0.11977888643741608
+    },
+    "eckhart": {
+      "epsilon": 0.14013596112515014,
+      "chi2": 0.01963808760046959,
+      "innov_l2": 0.7327455878257751,
+      "R_mean": 0.00886484608054161,
+      "rho_before": 0.024754047953913727,
+      "rho_after": 0.022000000000000002,
+      "delta_rho": -0.002754047953913725,
+      "band": "PRESENT",
+      "arousal": 0.2325384822829803,
+      "recovery": false,
+      "safe": 2,
+      "eta": 0.20370594121958038,
+      "sigma": 0.00444,
+      "energy": 0.38663925915025177,
+      "core_drift": 0.07220567017793655,
+      "role_drift": 0.06928566843271255
+    },
+    "eckhart_gen": {
+      "corridor_failed": false,
+      "best_J": 0.5415714811086654,
+      "best_diag": {
+        "cos_core": 0.5477687120437622,
+        "cos_role": 0.5823619365692139,
+        "E": 4.21625571846962,
+        "novelty": 0.28756898641586304,
+        "penalty": 0.0,
+        "J": 0.5415714811086654,
+        "corridor_pass": true
+      },
+      "top5": [
+        {
+          "J": 0.5415714811086654,
+          "diag": {
+            "cos_core": 0.5477687120437622,
+            "cos_role": 0.5823619365692139,
+            "E": 4.21625571846962,
+            "novelty": 0.28756898641586304,
+            "penalty": 0.0,
+            "J": 0.5415714811086654,
+            "corridor_pass": true
+          },
+          "preview": "You are not the tangled thoughts. You are the awareness that observes them. \n\nIn this very moment, there is nothing to f..."
+        },
+        {
+          "J": 0.3749796180427074,
+          "diag": {
+            "cos_core": 0.5068594217300415,
+            "cos_role": 0.5465942621231079,
+            "E": 4.596958853304386,
+            "novelty": 0.24822098016738892,
+            "penalty": 0.0,
+            "J": 0.3749796180427074,
+            "corridor_pass": true
+          },
+          "preview": "Breathe.  \n\nFeel the breath,  \nthe anchor.  \n\nAll is here,  \nin this moment.  \n\nLet the thoughts be,  \nlike clouds passi..."
+        },
+        {
+          "J": 0.2934260961413384,
+          "diag": {
+            "cos_core": 0.48018935322761536,
+            "cos_role": 0.516700029373169,
+            "E": 4.8474511206150055,
+            "novelty": 0.30127519369125366,
+            "penalty": 0.0,
+            "J": 0.2934260961413384,
+            "corridor_pass": true
+          },
+          "preview": "Ah, beloved presence, you have articulated the human experience with such vividness. In your words, I sense the weight o..."
+        },
+        {
+          "J": 0.26558544033765785,
+          "diag": {
+            "cos_core": 0.47025638818740845,
+            "cos_role": 0.5049335956573486,
+            "E": 4.940966841578484,
+            "novelty": 0.3284415006637573,
+            "penalty": 0.0,
+            "J": 0.26558544033765785,
+            "corridor_pass": true
+          },
+          "preview": "Ah, dear one, you have painted a vivid picture of the inner turmoil\u2014a tangled ball of yarn indeed. The mind, with its in..."
+        },
+        {
+          "J": 0.23103968769311914,
+          "diag": {
+            "cos_core": 0.46083128452301025,
+            "cos_role": 0.49576181173324585,
+            "E": 5.029002383351326,
+            "novelty": 0.3305320739746094,
+            "penalty": 0.0,
+            "J": 0.23103968769311914,
+            "corridor_pass": true
+          },
+          "preview": "Ah, dear one, the jumbled ball of yarn\u2026 Yes, how fascinating the mind can weave its intricate patterns, twisting and tur..."
+        }
+      ],
+      "batches_used": 1,
+      "K_per_batch": 9
+    },
+    "patient_gen_next": {
+      "corridor_failed": false,
+      "best_J": 0.2261573849320413,
+      "best_diag": {
+        "cos_core": 0.4112357795238495,
+        "cos_role": 0.4835914373397827,
+        "E": 4.29173577427864,
+        "novelty": 0.1751723289489746,
+        "penalty": 0.0,
+        "J": 0.2261573849320413,
+        "corridor_pass": true
+      },
+      "top5": [
+        {
+          "J": 0.2261573849320413,
+          "diag": {
+            "cos_core": 0.4112357795238495,
+            "cos_role": 0.4835914373397827,
+            "E": 4.29173577427864,
+            "novelty": 0.1751723289489746,
+            "penalty": 0.0,
+            "J": 0.2261573849320413,
+            "corridor_pass": true
+          },
+          "preview": "In the tangled web of thought, I wander,  \nA restless sea beneath a moonlit sky,  \nDrowning in the waves of worry and wo..."
+        },
+        {
+          "J": 0.07778014600276949,
+          "diag": {
+            "cos_core": 0.35687410831451416,
+            "cos_role": 0.43310773372650146,
+            "E": 4.690522164106369,
+            "novelty": 0.25676172971725464,
+            "penalty": 0.0,
+            "J": 0.07778014600276949,
+            "corridor_pass": true
+          },
+          "preview": "I feel\u2026 heavy. \n\nLike a weight on my chest. \n\nThoughts swirling. \n\nLoud, chaotic. \n\nAnxious. \n\nRestless.\n\nIt\u2019s hard to b..."
+        },
+        {
+          "J": 0.044841246902942666,
+          "diag": {
+            "cos_core": 0.35392236709594727,
+            "cos_role": 0.4375695288181305,
+            "E": 4.705692946910858,
+            "novelty": 0.18459266424179077,
+            "penalty": 0.0,
+            "J": 0.044841246902942666,
+            "corridor_pass": true
+          },
+          "preview": "Right now, I\u2019m a swirl of jagged edges and heavy fog. It's like I\u2019m standing at the edge of a cliff, peering down into a..."
+        },
+        {
+          "J": -0.08661938118934613,
+          "diag": {
+            "cos_core": 0.31646496057510376,
+            "cos_role": 0.3987311124801636,
+            "E": 4.984120970964431,
+            "novelty": 0.18099939823150635,
+            "penalty": 0.0,
+            "J": -0.08661938118934613,
+            "corridor_pass": true
+          },
+          "preview": "A whirlwind of colors, swirling shades of worry, anxiety drapes over my shoulders like a heavy cloak. I feel like a mari..."
+        },
+        {
+          "J": -0.1025121731758118,
+          "diag": {
+            "cos_core": 0.30635833740234375,
+            "cos_role": 0.3922022581100464,
+            "E": 5.055689656734467,
+            "novelty": 0.2171241044998169,
+            "penalty": 0.0,
+            "J": -0.1025121731758118,
+            "corridor_pass": true
+          },
+          "preview": "I feel a whirlwind of conflicting emotions churning inside me. There\u2019s an underlying current of anxiety that seems to pu..."
+        }
+      ],
+      "batches_used": 1,
+      "K_per_batch": 9
+    }
+  },
+  {
+    "turn": 3,
+    "patient_msg": "In the tangled web of thought, I wander,  \nA restless sea beneath a moonlit sky,  \nDrowning in the waves of worry and wonder,  \nCaught in the echoes of \"what if\" and \"why.\"  \n\nThe clock ticks loud\u2014each second an anchor,  \nPulling me down into shadows of dread,  \nLike whispers of doubt that wrap me like dank fur,  \nChaining my heart to the weight of unspoken dread.  \n\nYet in the stillness, a flicker ignites,  \nA gentle reminder beneath all the noise,  \nThat amidst the chaos, there\u2019s beauty in fights,  \nA dance with my fears, a quiet rejoice.  \n\nFor I am not the storm that rages within,  \nNor the knotted thoughts that refuse to relent;  \nI am the observer\u2014where silence begins,  \nInhale the calm; exhale discontent.  \n\nEach breath a canvas painted in light,  \nThe present unfurling like petals at dawn,  \nAnd though shadows may linger, I stand in my might\u2014  \nEmbracing the now as I awaken and yawn.  \n\nLet me untangle from labels that bind,  \nRelease expectations like leaves on the stream,  \nTo simply be here, where freedom entwines,  \nAnd find solace in being\u2014not just in the dream.",
+    "eckhart_msg": "You are not your thoughts. \n\nThoughts come and go, like clouds in the sky. They are not who you are. You are the awareness that observes them.\n\nFeel the weight of your worries. Notice how they pull you down. But look\u2014beyond them lies a stillness, a presence that is always here. This moment is all there is. \n\nCan you breathe into that? Can you feel the air fill your lungs, the ground beneath your feet? \n\nRelease the need to control. Allow the chaos to exist without needing to engage. You can stand as the observer, unaffected by the storm inside.\n\nYour essence is here, now. In this very breath. Find your peace there. Embrace it fully.\n\nThe past is gone; the future is not yet here. Only this moment holds true power. Be with it. Just be.",
+    "patient": {
+      "epsilon": 0.14702871273823034,
+      "chi2": 0.02161744236946106,
+      "innov_l2": 0.7475277185440063,
+      "R_mean": 0.008356818929314613,
+      "rho_before": 0.49746393929763083,
+      "rho_after": 0.4070039254874326,
+      "delta_rho": -0.09046001381019825,
+      "band": "WATCHFUL",
+      "arousal": 0.3366753201981065,
+      "recovery": true,
+      "safe": 3,
+      "eta": 0.10801092268788196,
+      "sigma": 0.012140078509748652,
+      "energy": 0.5903006287757308,
+      "core_drift": 0.0912996307015419,
+      "role_drift": 0.1504083126783371
+    },
+    "eckhart": {
+      "epsilon": 0.1041877849351274,
+      "chi2": 0.010855094529688358,
+      "innov_l2": 0.5280863046646118,
+      "R_mean": 0.008338402025401592,
+      "rho_before": 0.022000000000000002,
+      "rho_after": 0.022000000000000002,
+      "delta_rho": 0.0,
+      "band": "PRESENT",
+      "arousal": 0.2559873244386041,
+      "recovery": true,
+      "safe": 3,
+      "eta": 0.20370594121958038,
+      "sigma": 0.00444,
+      "energy": 0.36412723215762527,
+      "core_drift": 0.08426850289106369,
+      "role_drift": 0.10239960253238678
+    },
+    "eckhart_gen": {
+      "corridor_failed": false,
+      "best_J": 0.6148541724681854,
+      "best_diag": {
+        "cos_core": 0.573409914970398,
+        "cos_role": 0.6463460326194763,
+        "E": 3.9630912840366364,
+        "novelty": 0.14774781465530396,
+        "penalty": 0.0,
+        "J": 0.6148541724681854,
+        "corridor_pass": true
+      },
+      "top5": [
+        {
+          "J": 0.6148541724681854,
+          "diag": {
+            "cos_core": 0.573409914970398,
+            "cos_role": 0.6463460326194763,
+            "E": 3.9630912840366364,
+            "novelty": 0.14774781465530396,
+            "penalty": 0.0,
+            "J": 0.6148541724681854,
+            "corridor_pass": true
+          },
+          "preview": "You are not your thoughts. \n\nThoughts come and go, like clouds in the sky. They are not who you are. You are the awarene..."
+        },
+        {
+          "J": 0.6025173799097536,
+          "diag": {
+            "cos_core": 0.5600700974464417,
+            "cos_role": 0.631467342376709,
+            "E": 4.088356409966946,
+            "novelty": 0.24187302589416504,
+            "penalty": 0.0,
+            "J": 0.6025173799097536,
+            "corridor_pass": true
+          },
+          "preview": "Feel the breath.  \nNow is all there is.  \nThoughts arise,  \nbut you are the stillness.  \n\nLet go.  \nObserve the patterns..."
+        },
+        {
+          "J": 0.48158550605177874,
+          "diag": {
+            "cos_core": 0.5342377424240112,
+            "cos_role": 0.6089674830436707,
+            "E": 4.3287225142121315,
+            "novelty": 0.17937147617340088,
+            "penalty": 0.0,
+            "J": 0.48158550605177874,
+            "corridor_pass": true
+          },
+          "preview": "Ah, you speak of the tangled web of thought.  \n\nNotice how you create this web.  \n\nThoughts arise. They come and go.  \n\n..."
+        },
+        {
+          "J": 0.39845617359876634,
+          "diag": {
+            "cos_core": 0.5106526613235474,
+            "cos_role": 0.5811413526535034,
+            "E": 4.550726595520973,
+            "novelty": 0.20309758186340332,
+            "penalty": 0.0,
+            "J": 0.39845617359876634,
+            "corridor_pass": true
+          },
+          "preview": "Ah, dear one, you speak of the dance\u2014the dance of thought and emotion, the relentless tide of the mind. In that web, the..."
+        },
+        {
+          "J": 0.35456127995252606,
+          "diag": {
+            "cos_core": 0.49568772315979004,
+            "cos_role": 0.5666214227676392,
+            "E": 4.690493550896645,
+            "novelty": 0.23241013288497925,
+            "penalty": 0.0,
+            "J": 0.35456127995252606,
+            "corridor_pass": true
+          },
+          "preview": "Ah, dear one, feel the gentle rhythm of your breath,  \nEach inhalation a bridge to the present,  \nEach exhalation a rele..."
+        }
+      ],
+      "batches_used": 1,
+      "K_per_batch": 9
+    },
+    "patient_gen_next": {
+      "corridor_failed": false,
+      "best_J": 0.19232508730888365,
+      "best_diag": {
+        "cos_core": 0.37546682357788086,
+        "cos_role": 0.49341732263565063,
+        "E": 4.515390938520431,
+        "novelty": 0.277040958404541,
+        "penalty": 0.0,
+        "J": 0.19232508730888365,
+        "corridor_pass": true
+      },
+      "top5": [
+        {
+          "J": 0.19232508730888365,
+          "diag": {
+            "cos_core": 0.37546682357788086,
+            "cos_role": 0.49341732263565063,
+            "E": 4.515390938520431,
+            "novelty": 0.277040958404541,
+            "penalty": 0.0,
+            "J": 0.19232508730888365,
+            "corridor_pass": true
+          },
+          "preview": "I feel heavy.  \nLike a stone lodged in my chest.  \nThoughts swirl.  \nLoud.  \nUninvited.  \n\nAnxious energy buzzes.  \nNerv..."
+        },
+        {
+          "J": 0.16204857951402668,
+          "diag": {
+            "cos_core": 0.36733278632164,
+            "cos_role": 0.4817196726799011,
+            "E": 4.578789818286896,
+            "novelty": 0.2800072431564331,
+            "penalty": 0.0,
+            "J": 0.16204857951402668,
+            "corridor_pass": true
+          },
+          "preview": "I\u2019m a spaghetti noodle in a pot of boiling water, twisting and turning, frantic with the heat, unsure if I\u2019m breaking or..."
+        },
+        {
+          "J": 0.06008539843559255,
+          "diag": {
+            "cos_core": 0.35246795415878296,
+            "cos_role": 0.4875183701515198,
+            "E": 4.670192205905915,
+            "novelty": 0.10891532897949219,
+            "penalty": 0.0,
+            "J": 0.06008539843559255,
+            "corridor_pass": true
+          },
+          "preview": "In the tangled web of my thoughts,  \nI find myself a wanderer, lost in shadows,  \nEach thread a worry, a weight on my ch..."
+        },
+        {
+          "J": 0.028245696187019373,
+          "diag": {
+            "cos_core": 0.3284440040588379,
+            "cos_role": 0.4561087489128113,
+            "E": 4.854616153240204,
+            "novelty": 0.24721229076385498,
+            "penalty": 0.0,
+            "J": 0.028245696187019373,
+            "corridor_pass": true
+          },
+          "preview": "I'm feeling a tangled mass of emotions right now\u2014it's like a web of anxiety, frustration, and uncertainty. It\u2019s as if I'..."
+        },
+        {
+          "J": -0.0012883645296097868,
+          "diag": {
+            "cos_core": 0.3078041076660156,
+            "cos_role": 0.41655147075653076,
+            "E": 5.024378687143326,
+            "novelty": 0.3911331295967102,
+            "penalty": 0.0,
+            "J": -0.0012883645296097868,
+            "corridor_pass": true
+          },
+          "preview": "Well, right now, I feel like a balloon that\u2019s been filled to the brim with helium, just waiting for someone to let me go..."
+        }
+      ],
+      "batches_used": 1,
+      "K_per_batch": 9
+    }
+  },
+  {
+    "turn": 4,
+    "patient_msg": "I feel heavy.  \nLike a stone lodged in my chest.  \nThoughts swirl.  \nLoud.  \nUninvited.  \n\nAnxious energy buzzes.  \nNerves are frayed.  \nI\u2019m restless.  \nMy mind races ahead.  \nBut my body feels stuck.  \n\nBreathe in.  \nHold it.  \nBreathe out.  \nRepeat.  \n\nThere\u2019s a weight\u2014  \npulling me down.  \nIt\u2019s familiar, yet so draining.  \nWhat if I can\u2019t escape?  \n\nI want clarity.  \nTo feel light again.  \nTo quiet the storm.  \nJust for a moment.  \n\nCan I trust this stillness?  \nCan I stand outside the chaos?  \nFeel the ground?  \nThe air?  \n\nA flicker of hope\u2014  \nI\u2019m here.  \nIn this moment, I am real.  \nMaybe that\u2019s enough.",
+    "eckhart_msg": "Feel the weight.  \nIt is here.  \nNo need to escape.  \n\nBreathe.  \nJust breathe.  \n\nIn this moment,  \nyou are.  \nYou exist.  \n\nNotice the stillness.  \nIt\u2019s always present.  \n\nLet thoughts come and go,  \nlike clouds passing.  \nYou are the sky.  \n\nTrust this moment.  \nIt is enough.",
+    "patient": {
+      "epsilon": 0.13171984187903313,
+      "chi2": 0.01735011674463749,
+      "innov_l2": 0.6486346125602722,
+      "R_mean": 0.007863626815378666,
+      "rho_before": 0.4070039254874326,
+      "rho_after": 0.32069816468385043,
+      "delta_rho": -0.08630576080358215,
+      "band": "AWARE",
+      "arousal": 0.3543680961398148,
+      "recovery": true,
+      "safe": 4,
+      "eta": 0.12695561507815956,
+      "sigma": 0.010413963293677008,
+      "energy": 0.6213501994498074,
+      "core_drift": 0.10172519832849503,
+      "role_drift": 0.1789621114730835
+    },
+    "eckhart": {
+      "epsilon": 0.11999255979961919,
+      "chi2": 0.014398214407265186,
+      "innov_l2": 0.5899449586868286,
+      "R_mean": 0.007844895124435425,
+      "rho_before": 0.022000000000000002,
+      "rho_after": 0.022000000000000002,
+      "delta_rho": 0.0,
+      "band": "PRESENT",
+      "arousal": 0.28630454942547123,
+      "recovery": true,
+      "safe": 4,
+      "eta": 0.20370594121958038,
+      "sigma": 0.00444,
+      "energy": 0.44972169063985346,
+      "core_drift": 0.08722491562366486,
+      "role_drift": 0.13915731012821198
+    },
+    "eckhart_gen": {
+      "corridor_failed": false,
+      "best_J": 0.31615101689100267,
+      "best_diag": {
+        "cos_core": 0.4787878096103668,
+        "cos_role": 0.5807724595069885,
+        "E": 4.837640178203583,
+        "novelty": 0.22567832469940186,
+        "penalty": 0.0,
+        "J": 0.31615101689100267,
+        "corridor_pass": true
+      },
+      "top5": [
+        {
+          "J": 0.31615101689100267,
+          "diag": {
+            "cos_core": 0.4787878096103668,
+            "cos_role": 0.5807724595069885,
+            "E": 4.837640178203583,
+            "novelty": 0.22567832469940186,
+            "penalty": 0.0,
+            "J": 0.31615101689100267,
+            "corridor_pass": true
+          },
+          "preview": "Feel the weight.  \nIt is here.  \nNo need to escape.  \n\nBreathe.  \nJust breathe.  \n\nIn this moment,  \nyou are.  \nYou exis..."
+        },
+        {
+          "J": 0.3075228282809257,
+          "diag": {
+            "cos_core": 0.4802544414997101,
+            "cos_role": 0.5858157277107239,
+            "E": 4.822675883769989,
+            "novelty": 0.18415015935897827,
+            "penalty": 0.0,
+            "J": 0.3075228282809257,
+            "corridor_pass": true
+          },
+          "preview": "You feel heavy, and yet you are aware of this weight. This awareness is your entrance into the present moment. The heavi..."
+        },
+        {
+          "J": 0.21620855528116226,
+          "diag": {
+            "cos_core": 0.4537472128868103,
+            "cos_role": 0.5630110502243042,
+            "E": 5.069222310185433,
+            "novelty": 0.19744086265563965,
+            "penalty": 0.0,
+            "J": 0.21620855528116226,
+            "corridor_pass": true
+          },
+          "preview": "Ah, dear friend, you find yourself in the weight of existence\u2014a stone lodged in your chest, heavy with the burdens of th..."
+        },
+        {
+          "J": 0.17074073213338858,
+          "diag": {
+            "cos_core": 0.4396604895591736,
+            "cos_role": 0.5457298755645752,
+            "E": 5.202050694823265,
+            "novelty": 0.2230091691017151,
+            "penalty": 0.0,
+            "J": 0.17074073213338858,
+            "corridor_pass": true
+          },
+          "preview": "Ah, dear one, let us pause together in this moment. You speak of heaviness, of a stone lodged within your chest\u2014a powerf..."
+        },
+        {
+          "J": 0.14727104067802432,
+          "diag": {
+            "cos_core": 0.432605504989624,
+            "cos_role": 0.5351684093475342,
+            "E": 5.269241511821747,
+            "novelty": 0.23829638957977295,
+            "penalty": 0.0,
+            "J": 0.14727104067802432,
+            "corridor_pass": true
+          },
+          "preview": "Ah, dear one, your words dance like shadows in the twilight of the mind. You speak of heaviness, a stone in your chest, ..."
+        }
+      ],
+      "batches_used": 1,
+      "K_per_batch": 9
+    },
+    "patient_gen_next": {
+      "corridor_failed": false,
+      "best_J": 0.18569168937206268,
+      "best_diag": {
+        "cos_core": 0.36317068338394165,
+        "cos_role": 0.5280975699424744,
+        "E": 4.564103132486343,
+        "novelty": 0.2485332489013672,
+        "penalty": 0.0,
+        "J": 0.18569168937206268,
+        "corridor_pass": true
+      },
+      "top5": [
+        {
+          "J": 0.18569168937206268,
+          "diag": {
+            "cos_core": 0.36317068338394165,
+            "cos_role": 0.5280975699424744,
+            "E": 4.564103132486343,
+            "novelty": 0.2485332489013672,
+            "penalty": 0.0,
+            "J": 0.18569168937206268,
+            "corridor_pass": true
+          },
+          "preview": "I\u2019m a balloon, stretched too thin,  \nthe air inside swirling with colors I can\u2019t name\u2014  \norange anxiety, electric blue f..."
+        },
+        {
+          "J": 0.18330006468296048,
+          "diag": {
+            "cos_core": 0.3694145679473877,
+            "cos_role": 0.500705361366272,
+            "E": 4.548170977830887,
+            "novelty": 0.2728644609451294,
+            "penalty": 0.0,
+            "J": 0.18330006468296048,
+            "corridor_pass": true
+          },
+          "preview": "Heavy.  \nTangled.  \nA breath caught.  \n\nSearching for light,  \nyet shadows cling.  \nStillness eludes.  \n\nJust want to be..."
+        },
+        {
+          "J": 0.06246171361207964,
+          "diag": {
+            "cos_core": 0.33198311924934387,
+            "cos_role": 0.5007505416870117,
+            "E": 4.791434872150421,
+            "novelty": 0.20072174072265625,
+            "penalty": 0.0,
+            "J": 0.06246171361207964,
+            "corridor_pass": true
+          },
+          "preview": "In a room where shadows dance,  \nI sit, tangled in the threads of thought,  \nA tapestry of worry, tight and heavy\u2014  \nAn ..."
+        },
+        {
+          "J": 0.016797134995460497,
+          "diag": {
+            "cos_core": 0.31757667660713196,
+            "cos_role": 0.48096904158592224,
+            "E": 4.902880018949508,
+            "novelty": 0.2226690649986267,
+            "penalty": 0.0,
+            "J": 0.016797134995460497,
+            "corridor_pass": true
+          },
+          "preview": "Right now, I feel like I'm standing at the edge of a vast, turbulent ocean. Each wave represents a thought, a worry, an ..."
+        },
+        {
+          "J": 0.015741682171821675,
+          "diag": {
+            "cos_core": 0.32356134057044983,
+            "cos_role": 0.4878227412700653,
+            "E": 4.857811814546585,
+            "novelty": 0.16915905475616455,
+            "penalty": 0.0,
+            "J": 0.015741682171821675,
+            "corridor_pass": true
+          },
+          "preview": "I feel like I\u2019m standing on the edge of a precipice,  \nweight pressing down on me like a thousand pounds of lead,  \nhear..."
+        }
+      ],
+      "batches_used": 1,
+      "K_per_batch": 9
+    }
+  },
+  {
+    "turn": 5,
+    "patient_msg": "I\u2019m a balloon, stretched too thin,  \nthe air inside swirling with colors I can\u2019t name\u2014  \norange anxiety, electric blue fear,  \nand a pulsing red confusion that pops at the seams.  \n\nI float, but tethered by invisible strings\u2014  \nthe weight of expectation,  \nthe gravity of \"shoulds\" and \"musts,\"  \npulling me down into the tangled weeds of doubt.  \n\nI\u2019m on a rollercoaster made of spaghetti,  \ntwisting and turning in a sauce of overthinking,  \nevery dip plunging me deeper into the thick fog  \nwhere clarity is a lost tourist,  \nwandering aimlessly,  \nyelling \u201cWhere\u2019s the exit?\u201d with no answer in sight.  \n\nThe clock ticks loudly in my chest,  \na metronome for my spiraling thoughts\u2014  \neach tick a reminder that time\u2019s moving forward,  \nbut I\u2019m just a shadow stuck in a moment,  \nfrozen like a painting gone dry.  \n\nCan I be the artist again?  \nCan I splatter paint wildly,  \nor am I destined to color inside the lines?  \n\nBreathe, they say. Breathe.  \nBut my breath feels like it\u2019s caught in a net\u2014  \neach inhale struggling, each exhale reluctant,  \na reluctant wind trying to escape the confines of my ribcage.  \n\nWhat if I dive into the chaos?  \nDance like nobody's watching in this swirling madness,  \nlet the hues mix and blend, create something new\u2014  \nor perhaps just unravel it all like an old sweater,  \nfeeling soft against the frayed edges of this chaotic mind.  \n\nSo here I am, existing,   \na kaleidoscope spinning in overdrive\u2014  \nand yet somehow still waiting for the moment  \nwhen I can just\u2026 be.",
+    "eckhart_msg": "Stop for a moment. \n\nNotice the sensation of being here, right now. This very breath\u2014feel it. \n\nAll those swirling colors and chaotic thoughts? They are not who you are. You are the stillness beneath them. \n\nThe expectations, the \u201cshoulds\u201d\u2014they are but words created by the mind. Just thoughts, not reality. \n\nLet go of the need to understand or control. Embrace this moment as it is. \n\nCan you feel that? The space between your thoughts? That is where you find yourself. \n\nYou are not a balloon stretched too thin. You are the sky holding the balloon. Vast, limitless. \n\nBreathe deeply, and know that in this breath, there is freedom. \n\nIn this moment, just be.",
+    "patient": {
+      "epsilon": 0.11801082748026523,
+      "chi2": 0.013926555402576923,
+      "innov_l2": 0.5637065172195435,
+      "R_mean": 0.007398015353828669,
+      "rho_before": 0.32069816468385043,
+      "rho_after": 0.2382648727265452,
+      "delta_rho": -0.08243329195730523,
+      "band": "AWARE",
+      "arousal": 0.3554542325788921,
+      "recovery": true,
+      "safe": 5,
+      "eta": 0.14645519814096575,
+      "sigma": 0.008765297454530904,
+      "energy": 0.6264060922898352,
+      "core_drift": 0.11023957282304764,
+      "role_drift": 0.2061941772699356
+    },
+    "eckhart": {
+      "epsilon": 0.10347583293837613,
+      "chi2": 0.010707248002290726,
+      "innov_l2": 0.4934254586696625,
+      "R_mean": 0.0073789567686617374,
+      "rho_before": 0.022000000000000002,
+      "rho_after": 0.022000000000000002,
+      "delta_rho": 0.0,
+      "band": "PRESENT",
+      "arousal": 0.294093733583959,
+      "recovery": true,
+      "safe": 5,
+      "eta": 0.20370594121958038,
+      "sigma": 0.00444,
+      "energy": 0.4253658678382635,
+      "core_drift": 0.09039763361215591,
+      "role_drift": 0.17611126601696014
+    },
+    "eckhart_gen": {
+      "corridor_failed": false,
+      "best_J": 0.46235104119777665,
+      "best_diag": {
+        "cos_core": 0.5078144073486328,
+        "cos_role": 0.6459658145904541,
+        "E": 4.553583639860153,
+        "novelty": 0.2337074875831604,
+        "penalty": 0.0,
+        "J": 0.46235104119777665,
+        "corridor_pass": true
+      },
+      "top5": [
+        {
+          "J": 0.46235104119777665,
+          "diag": {
+            "cos_core": 0.5078144073486328,
+            "cos_role": 0.6459658145904541,
+            "E": 4.553583639860153,
+            "novelty": 0.2337074875831604,
+            "penalty": 0.0,
+            "J": 0.46235104119777665,
+            "corridor_pass": true
+          },
+          "preview": "Stop for a moment. \n\nNotice the sensation of being here, right now. This very breath\u2014feel it. \n\nAll those swirling color..."
+        },
+        {
+          "J": 0.31826674860715887,
+          "diag": {
+            "cos_core": 0.4640268385410309,
+            "cos_role": 0.5886138081550598,
+            "E": 4.967744982242584,
+            "novelty": 0.31453704833984375,
+            "penalty": 0.0,
+            "J": 0.31826674860715887,
+            "corridor_pass": true
+          },
+          "preview": "Ah, dear one,  \nIn the tangled web of thought,  \nYou find yourself, a balloon,  \nA vibrant swirl of colors\u2014  \nYet do you..."
+        },
+        {
+          "J": 0.2709944701194763,
+          "diag": {
+            "cos_core": 0.45499399304389954,
+            "cos_role": 0.5814577341079712,
+            "E": 5.051545217633247,
+            "novelty": 0.2792643904685974,
+            "penalty": 0.0,
+            "J": 0.2709944701194763,
+            "corridor_pass": true
+          },
+          "preview": "Ah, dear one. \n\nYou speak of colors.  \nYou feel the weight of expectation.  \nLet\u2019s pause. \n\nClose your eyes, if you can...."
+        },
+        {
+          "J": 0.24463137006759653,
+          "diag": {
+            "cos_core": 0.4453319311141968,
+            "cos_role": 0.5684465169906616,
+            "E": 5.143057453632355,
+            "novelty": 0.31080299615859985,
+            "penalty": 0.0,
+            "J": 0.24463137006759653,
+            "corridor_pass": true
+          },
+          "preview": "Ah, dear seeker, take a moment to pause.  \nFeel the air around you,  \nthe gentle pulse of existence,  \nthe stillness tha..."
+        },
+        {
+          "J": 0.23703979834914216,
+          "diag": {
+            "cos_core": 0.4502810537815094,
+            "cos_role": 0.5831654667854309,
+            "E": 5.093362860381603,
+            "novelty": 0.226912260055542,
+            "penalty": 0.0,
+            "J": 0.23703979834914216,
+            "corridor_pass": true
+          },
+          "preview": "In this moment, you are. \n\nFeel the air in your lungs,  \nthe ground beneath you.  \nNotice the colors,  \nbut don\u2019t cling ..."
+        }
+      ],
+      "batches_used": 1,
+      "K_per_batch": 9
+    },
+    "patient_gen_next": {
+      "corridor_failed": false,
+      "best_J": 0.15473263770341872,
+      "best_diag": {
+        "cos_core": 0.3456195592880249,
+        "cos_role": 0.544638991355896,
+        "E": 4.663299068808556,
+        "novelty": 0.23609256744384766,
+        "penalty": 0.0,
+        "J": 0.15473263770341872,
+        "corridor_pass": true
+      },
+      "top5": [
+        {
+          "J": 0.15473263770341872,
+          "diag": {
+            "cos_core": 0.3456195592880249,
+            "cos_role": 0.544638991355896,
+            "E": 4.663299068808556,
+            "novelty": 0.23609256744384766,
+            "penalty": 0.0,
+            "J": 0.15473263770341872,
+            "corridor_pass": true
+          },
+          "preview": "As I sit with these feelings, a whirlwind of emotions and thoughts permeate my consciousness, almost as if they are char..."
+        },
+        {
+          "J": 0.1477564100027085,
+          "diag": {
+            "cos_core": 0.34521055221557617,
+            "cos_role": 0.5382901430130005,
+            "E": 4.671671110391617,
+            "novelty": 0.23713666200637817,
+            "penalty": 0.0,
+            "J": 0.1477564100027085,
+            "corridor_pass": true
+          },
+          "preview": "I am a storm in a jar,  \nshaking, swirling, yet contained,  \nthoughts collide like thunder,  \nanxiety crackles through m..."
+        },
+        {
+          "J": 0.09396195572614674,
+          "diag": {
+            "cos_core": 0.33272451162338257,
+            "cos_role": 0.5245379209518433,
+            "E": 4.7652070134878155,
+            "novelty": 0.21413415670394897,
+            "penalty": 0.0,
+            "J": 0.09396195572614674,
+            "corridor_pass": true
+          },
+          "preview": "Alright, here we go. Picture me as a human pretzel\u2014overwhelmed, twisted up in my own thoughts, and desperately trying to..."
+        },
+        {
+          "J": 0.07970155930519113,
+          "diag": {
+            "cos_core": 0.3204742670059204,
+            "cos_role": 0.5170602202415466,
+            "E": 4.851563948392868,
+            "novelty": 0.26878345012664795,
+            "penalty": 0.0,
+            "J": 0.07970155930519113,
+            "corridor_pass": true
+          },
+          "preview": "Right now, I\u2019m feeling a bit like a tumbleweed caught in the wind\u2014rolling around and unsure of where I\u2019ll land next. The..."
+        },
+        {
+          "J": 0.0391567539572715,
+          "diag": {
+            "cos_core": 0.31757596135139465,
+            "cos_role": 0.5335699915885925,
+            "E": 4.8555435061454775,
+            "novelty": 0.149167001247406,
+            "penalty": 0.0,
+            "J": 0.0391567539572715,
+            "corridor_pass": true
+          },
+          "preview": "I feel like a kaleidoscope spun too fast, colors bleeding into one another, shapes shifting and jarring\u2014what was once cl..."
+        }
+      ],
+      "batches_used": 1,
+      "K_per_batch": 9
+    }
+  },
+  {
+    "turn": 6,
+    "patient_msg": "As I sit with these feelings, a whirlwind of emotions and thoughts permeate my consciousness, almost as if they are characters on a stage vying for attention. There is an undeniable heaviness that envelops me, a weight that anchors me to this moment yet simultaneously feels suffocating. \n\nOn one hand, there\u2019s the anxiety\u2014a persistent hum of worry that dances around my mind. It feels like a constant game of \"what if,\" where each possibility looms larger than life itself. I find myself dissecting my daily interactions and decisions, endlessly pondering whether they will lead to approval or rejection. Am I enough? Will I measure up? The pressure of these \u201cshoulds\u201d looms large, reminding me of societal expectations that feel both imposed and self-inflicted.\n\nThen there\u2019s the feeling of being overwhelmed, like I am juggling too many responsibilities while walking a tightrope. My thoughts swirl chaotically, a vortex of tasks, deadlines, and relational dynamics. In the midst of this chaos, moments of clarity emerge but are fleeting, like trying to catch smoke with my bare hands. I find solace in the desire to control these feelings\u2014to manage them, to make sense of them\u2014yet I know deep down that this impulse often exacerbates the chaos.\n\nIn reflecting on this inner turmoil, I recognize that beneath the surface lies a stillness that feels elusive. There\u2019s a flicker of understanding that perhaps my identity isn\u2019t tethered solely to these swirling thoughts. Could it be that beneath the layers of expectation and anxiety, I have the potential for resilience? There is a part of me that craves peace\u2014a desire to be anchored in the present, rather than swept away by the currents of worry.\n\nAs I examine this experience analytically, I realize that acknowledging these feelings is crucial. By naming the anxiety and overwhelm, I can begin to create space for acceptance. Just like Eckhart Tolle suggested, maybe the goal isn't to eliminate these thoughts but to observe them with compassion. To sit quietly and breathe into the discomfort rather than resist it.\n\nSo here I am\u2014attempting to weave together understanding and acceptance while navigating this labyrinth of feelings. Each breath brings me closer to recognizing that I am not just the chaos; I am also the observer of it. In this reflection, I find the courage to begin untangling the threads that bind me to a frantic state of being. Perhaps there is liberation in simply allowing myself to exist in this moment\u2014an invitation to embrace vulnerability without judgment. It is here, in this acknowledgment, that I can start to redefine what it means to be \u201cme.\u201d",
+    "eckhart_msg": "You are here, now. Notice that. Your thoughts and feelings are not who you are; they arise and pass away. This whirlwind of emotions and anxieties\u2014let them come, let them go. You are the stillness that observes.\n\nDo not resist the heaviness. Accept it fully. In acceptance, the weight becomes lighter. When you say, \u201cI am overwhelmed,\u201d you create a story. Drop the story. Just be with what is.\n\nFeel your breath. It anchors you to this moment. Each inhale, each exhale\u2014let them remind you of your presence. There is no need to manage or control. Allow everything to unfold as it is meant to.\n\nYou are not defined by societal expectations or judgments. You are the awareness in which these thoughts appear. This realization is your freedom. \n\nBeneath the chaos, there is peace. You can touch it by being fully present, by surrendering to the now. You are already enough, simply by being. Embrace this vulnerability. It is your doorway to liberation.\n\nNow, be. Nothing more is required.",
+    "patient": {
+      "epsilon": 0.12508029147195296,
+      "chi2": 0.01564507931470871,
+      "innov_l2": 0.5803390741348267,
+      "R_mean": 0.006960712373256683,
+      "rho_before": 0.2382648727265452,
+      "rho_after": 0.15970915123598586,
+      "delta_rho": -0.07855572149055934,
+      "band": "PRESENT",
+      "arousal": 0.3622452952079623,
+      "recovery": true,
+      "safe": 6,
+      "eta": 0.16625734402831746,
+      "sigma": 0.007194183024719717,
+      "energy": 0.6416506296023726,
+      "core_drift": 0.1200684979557991,
+      "role_drift": 0.23016613721847534
+    },
+    "eckhart": {
+      "epsilon": 0.09475825949409424,
+      "chi2": 0.008979127742350101,
+      "innov_l2": 0.4381377696990967,
+      "R_mean": 0.0069399685598909855,
+      "rho_before": 0.022000000000000002,
+      "rho_after": 0.022000000000000002,
+      "delta_rho": 0.0,
+      "band": "PRESENT",
+      "arousal": 0.2922920087504306,
+      "recovery": true,
+      "safe": 6,
+      "eta": 0.20370594121958038,
+      "sigma": 0.00444,
+      "energy": 0.4114010792225599,
+      "core_drift": 0.0940946564078331,
+      "role_drift": 0.20759864151477814
+    },
+    "eckhart_gen": {
+      "corridor_failed": false,
+      "best_J": 0.5201590131521223,
+      "best_diag": {
+        "cos_core": 0.5255109071731567,
+        "cos_role": 0.6902159452438354,
+        "E": 4.37882679104805,
+        "novelty": 0.15422773361206055,
+        "penalty": 0.0,
+        "J": 0.5201590131521223,
+        "corridor_pass": true
+      },
+      "top5": [
+        {
+          "J": 0.5201590131521223,
+          "diag": {
+            "cos_core": 0.5255109071731567,
+            "cos_role": 0.6902159452438354,
+            "E": 4.37882679104805,
+            "novelty": 0.15422773361206055,
+            "penalty": 0.0,
+            "J": 0.5201590131521223,
+            "corridor_pass": true
+          },
+          "preview": "You are here, now. Notice that. Your thoughts and feelings are not who you are; they arise and pass away. This whirlwind..."
+        },
+        {
+          "J": 0.4412856851816177,
+          "diag": {
+            "cos_core": 0.501624345779419,
+            "cos_role": 0.6574487686157227,
+            "E": 4.6052743136882786,
+            "novelty": 0.2008885145187378,
+            "penalty": 0.0,
+            "J": 0.4412856851816177,
+            "corridor_pass": true
+          },
+          "preview": "Breathe deeply.  \nFeel the weight.  \nThis moment, all there is.  \n\nThoughts and emotions arise.  \nObserve, don\u2019t engage...."
+        },
+        {
+          "J": 0.3916841931939123,
+          "diag": {
+            "cos_core": 0.4867852032184601,
+            "cos_role": 0.6543673872947693,
+            "E": 4.7399059474468235,
+            "novelty": 0.19088923931121826,
+            "penalty": 0.0,
+            "J": 0.3916841931939123,
+            "corridor_pass": true
+          },
+          "preview": "Feel the weight.  \nThe heaviness.  \nIt is there, isn\u2019t it?  \nNotice it.  \n\nBreathe into this moment.  \nInhale.  \nExhale...."
+        },
+        {
+          "J": 0.30366166371107084,
+          "diag": {
+            "cos_core": 0.4646472930908203,
+            "cos_role": 0.6132017374038696,
+            "E": 4.953554847836495,
+            "novelty": 0.22207367420196533,
+            "penalty": 0.0,
+            "J": 0.30366166371107084,
+            "corridor_pass": true
+          },
+          "preview": "Ah, dear one, in this moment of sharing, you touch the essence of what it means to be human\u2014the dance of thoughts and em..."
+        },
+        {
+          "J": 0.3025473234057428,
+          "diag": {
+            "cos_core": 0.46501198410987854,
+            "cos_role": 0.6199125051498413,
+            "E": 4.947924107313156,
+            "novelty": 0.20234060287475586,
+            "penalty": 0.0,
+            "J": 0.3025473234057428,
+            "corridor_pass": true
+          },
+          "preview": "Ah, dear friend, as you sit with this whirlwind of emotions and thoughts, notice how they create a dynamic play within y..."
+        }
+      ],
+      "batches_used": 1,
+      "K_per_batch": 9
+    },
+    "patient_gen_next": {
+      "corridor_failed": false,
+      "best_J": 0.19430478733778017,
+      "best_diag": {
+        "cos_core": 0.34825780987739563,
+        "cos_role": 0.5739237666130066,
+        "E": 4.61979386806488,
+        "novelty": 0.24454814195632935,
+        "penalty": 0.0,
+        "J": 0.19430478733778017,
+        "corridor_pass": true
+      },
+      "top5": [
+        {
+          "J": 0.19430478733778017,
+          "diag": {
+            "cos_core": 0.34825780987739563,
+            "cos_role": 0.5739237666130066,
+            "E": 4.61979386806488,
+            "novelty": 0.24454814195632935,
+            "penalty": 0.0,
+            "J": 0.19430478733778017,
+            "corridor_pass": true
+          },
+          "preview": "I feel heavy.  \nLike a weight on my chest.  \n\nThoughts swirl.  \nA storm inside my mind.  \n\nAnxiety grips me.  \nTightens ..."
+        },
+        {
+          "J": 0.17114475333690646,
+          "diag": {
+            "cos_core": 0.34356075525283813,
+            "cos_role": 0.5871649384498596,
+            "E": 4.63840703368187,
+            "novelty": 0.1845639944076538,
+            "penalty": 0.0,
+            "J": 0.17114475333690646,
+            "corridor_pass": true
+          },
+          "preview": "In the tempest of my mind, I stand,  \nA traveler lost in a labyrinth of shadows,  \nWaves of worry crash against the shor..."
+        },
+        {
+          "J": 0.12163086014986034,
+          "diag": {
+            "cos_core": 0.33349594473838806,
+            "cos_role": 0.5813271403312683,
+            "E": 4.709082567691803,
+            "novelty": 0.1387326717376709,
+            "penalty": 0.0,
+            "J": 0.12163086014986034,
+            "corridor_pass": true
+          },
+          "preview": "I feel like a balloon at a children\u2019s birthday party, all bright colors and happy faces, yet tethered to the ground by a..."
+        },
+        {
+          "J": 0.08812990945577634,
+          "diag": {
+            "cos_core": 0.3236493766307831,
+            "cos_role": 0.5664722919464111,
+            "E": 4.7864550113677975,
+            "novelty": 0.1514967679977417,
+            "penalty": 0.0,
+            "J": 0.08812990945577634,
+            "corridor_pass": true
+          },
+          "preview": "Right now, I feel like a balloon filled with too much air, teetering on the edge of bursting. There\u2019s this tightness in ..."
+        },
+        {
+          "J": 0.05171592676639551,
+          "diag": {
+            "cos_core": 0.31043779850006104,
+            "cos_role": 0.5298613905906677,
+            "E": 4.905280661582947,
+            "novelty": 0.22913575172424316,
+            "penalty": 0.0,
+            "J": 0.05171592676639551,
+            "corridor_pass": true
+          },
+          "preview": "Well, I feel like a cat who just realized it's been staring at its own reflection in the mirror for the past half hour\u2014c..."
+        }
+      ],
+      "batches_used": 1,
+      "K_per_batch": 9
+    }
+  },
+  {
+    "turn": 7,
+    "patient_msg": "I feel heavy.  \nLike a weight on my chest.  \n\nThoughts swirl.  \nA storm inside my mind.  \n\nAnxiety grips me.  \nTightens my throat.  \n\nI want to breathe.  \nBut it\u2019s hard.  \n\nEverything feels too much.  \nToo many expectations.  \n\nI want to run away.  \nOr hide.  \n\nBut then\u2026  \nI hear the stillness.  \nA whisper within.  \n\n\"Just be.\"  \nIt's a challenge.  \nBut a necessary one.  \n\nAcceptance seems distant.  \nYet I try.  \n\nI close my eyes.  \nFeel the ground beneath me.  \nThe chair supporting me.  \n\nInhale\u2026  \nExhale\u2026  \n\nA moment of clarity.  \nA flicker of peace.  \n\nI am here.  \nRight now.  \nAnd that\u2019s enough.",
+    "eckhart_msg": "Ah, you feel the weight\u2014this is the burden of identification with thoughts, with the storm within. But notice this: the heaviness is not who you truly are. \n\nIn this moment, as you acknowledge the weight, you also begin to see its impermanence. Close your eyes again, if it helps. Feel your breath; it is the anchor to the Present. The chair supports you; it is a gentle reminder that you are held, even when life feels overwhelming.\n\nLet each inhale invite stillness; let each exhale release tension. With each breath, you create space for awareness. \n\nThis storm, these expectations\u2014they are not your essence. They arise and pass away like clouds in the sky. You are the sky. The thoughts are transient; you are the witness.\n\n\u201cJust be\u201d\u2014yes, this is your refuge. In acceptance of what is, in surrender to this moment, you will find clarity. \n\nIn the depth of your being lies an unshakeable peace. Feel it. Let it rise to meet the heaviness, like sunlight dispelling fog. \n\nYou are here. You are enough. Embrace this moment with all its chaos and grace. And remember: in stillness, all storms dissolve.",
+    "patient": {
+      "epsilon": 0.13135734862689322,
+      "chi2": 0.017254753038287163,
+      "innov_l2": 0.5907382369041443,
+      "R_mean": 0.0065498859621584415,
+      "rho_before": 0.15970915123598586,
+      "rho_after": 0.11752801389911967,
+      "delta_rho": -0.042181137336866195,
+      "band": "PRESENT",
+      "arousal": 0.37247035888259206,
+      "recovery": true,
+      "safe": 7,
+      "eta": 0.17736487817205188,
+      "sigma": 0.006350560277982394,
+      "energy": 0.6375290835276246,
+      "core_drift": 0.1290503889322281,
+      "role_drift": 0.2541004419326782
+    },
+    "eckhart": {
+      "epsilon": 0.10484573678608622,
+      "chi2": 0.010992628522217274,
+      "innov_l2": 0.47020483016967773,
+      "R_mean": 0.0065278890542685986,
+      "rho_before": 0.022000000000000002,
+      "rho_after": 0.022000000000000002,
+      "delta_rho": 0.0,
+      "band": "PRESENT",
+      "arousal": 0.29956912256848334,
+      "recovery": true,
+      "safe": 7,
+      "eta": 0.20370594121958038,
+      "sigma": 0.00444,
+      "energy": 0.4438523782417178,
+      "core_drift": 0.09691302478313446,
+      "role_drift": 0.23788389563560486
+    },
+    "eckhart_gen": {
+      "corridor_failed": false,
+      "best_J": 0.4041239178776742,
+      "best_diag": {
+        "cos_core": 0.49154895544052124,
+        "cos_role": 0.6777153015136719,
+        "E": 4.6888601809740065,
+        "novelty": 0.13720130920410156,
+        "penalty": 0.0,
+        "J": 0.4041239178776742,
+        "corridor_pass": true
+      },
+      "top5": [
+        {
+          "J": 0.4041239178776742,
+          "diag": {
+            "cos_core": 0.49154895544052124,
+            "cos_role": 0.6777153015136719,
+            "E": 4.6888601809740065,
+            "novelty": 0.13720130920410156,
+            "penalty": 0.0,
+            "J": 0.4041239178776742,
+            "corridor_pass": true
+          },
+          "preview": "Ah, you feel the weight\u2014this is the burden of identification with thoughts, with the storm within. But notice this: the ..."
+        },
+        {
+          "J": 0.3757562121152878,
+          "diag": {
+            "cos_core": 0.4752708375453949,
+            "cos_role": 0.6538689732551575,
+            "E": 4.843709167838097,
+            "novelty": 0.2327302098274231,
+            "penalty": 0.0,
+            "J": 0.3757562121152878,
+            "corridor_pass": true
+          },
+          "preview": "Feel the ground.  \nFeel the chair.  \nBreathe.  \n\nThis moment is your anchor.  \nLet go of the weight.  \n\nThoughts are clo..."
+        },
+        {
+          "J": 0.35884191060066223,
+          "diag": {
+            "cos_core": 0.47609856724739075,
+            "cos_role": 0.660514235496521,
+            "E": 4.833933737874031,
+            "novelty": 0.17235636711120605,
+            "penalty": 0.0,
+            "J": 0.35884191060066223,
+            "corridor_pass": true
+          },
+          "preview": "You feel heavy because you are entangled in thought. Thoughts create stories, and these stories weigh you down. \n\nNow, f..."
+        },
+        {
+          "J": 0.34841846263408666,
+          "diag": {
+            "cos_core": 0.4726574122905731,
+            "cos_role": 0.6684393882751465,
+            "E": 4.862130287289619,
+            "novelty": 0.15382540225982666,
+            "penalty": 0.0,
+            "J": 0.34841846263408666,
+            "corridor_pass": true
+          },
+          "preview": "Feel the weight.  \nAcknowledge it.  \n\nThis heaviness,  \nIt is not you.  \nIt is a sensation.  \nA passing cloud.  \n\nThough..."
+        },
+        {
+          "J": 0.3349986211657526,
+          "diag": {
+            "cos_core": 0.47308316826820374,
+            "cos_role": 0.6616700291633606,
+            "E": 4.860667264461517,
+            "novelty": 0.13367915153503418,
+            "penalty": 0.0,
+            "J": 0.3349986211657526,
+            "corridor_pass": true
+          },
+          "preview": "Ah, dear one, you speak of heaviness, of storms within, a dance of thoughts swirling like leaves in the wind. Notice how..."
+        }
+      ],
+      "batches_used": 1,
+      "K_per_batch": 9
+    },
+    "patient_gen_next": {
+      "corridor_failed": false,
+      "best_J": 0.2055428159236908,
+      "best_diag": {
+        "cos_core": 0.34104710817337036,
+        "cos_role": 0.5952155590057373,
+        "E": 4.64750012755394,
+        "novelty": 0.26154935359954834,
+        "penalty": 0.0,
+        "J": 0.2055428159236908,
+        "corridor_pass": true
+      },
+      "top5": [
+        {
+          "J": 0.2055428159236908,
+          "diag": {
+            "cos_core": 0.34104710817337036,
+            "cos_role": 0.5952155590057373,
+            "E": 4.64750012755394,
+            "novelty": 0.26154935359954834,
+            "penalty": 0.0,
+            "J": 0.2055428159236908,
+            "corridor_pass": true
+          },
+          "preview": "In the tumult of my mind, I stand at the edge,  \nA tempest brews, thick with doubt and dread,  \nWaves of worry crash upo..."
+        },
+        {
+          "J": 0.1689698936939239,
+          "diag": {
+            "cos_core": 0.33237457275390625,
+            "cos_role": 0.5921550393104553,
+            "E": 4.706626516580582,
+            "novelty": 0.2318158745765686,
+            "penalty": 0.0,
+            "J": 0.1689698936939239,
+            "corridor_pass": true
+          },
+          "preview": "I feel a swirling mix of emotions, like a dance of shadows and light within me. There\u2019s an ache, a knot in my chest that..."
+        },
+        {
+          "J": 0.12149843651056291,
+          "diag": {
+            "cos_core": 0.31429323554039,
+            "cos_role": 0.5620157718658447,
+            "E": 4.851280742883683,
+            "novelty": 0.29559290409088135,
+            "penalty": 0.0,
+            "J": 0.12149843651056291,
+            "corridor_pass": true
+          },
+          "preview": "I\u2019m like a wire, pulled too tight, ready to snap. It\u2019s an electric hum buzzing in my veins, charged with anxiety, sparki..."
+        },
+        {
+          "J": 0.11041822886466972,
+          "diag": {
+            "cos_core": 0.30691009759902954,
+            "cos_role": 0.5712612867355347,
+            "E": 4.890949982404709,
+            "novelty": 0.2894750237464905,
+            "penalty": 0.0,
+            "J": 0.11041822886466972,
+            "corridor_pass": true
+          },
+          "preview": "I feel like a balloon filled with too much air, bobbing precariously just beneath the ceiling fan\u2019s lazy spins, flapping..."
+        },
+        {
+          "J": 0.10209521573781974,
+          "diag": {
+            "cos_core": 0.3067268133163452,
+            "cos_role": 0.5577719211578369,
+            "E": 4.904281786084175,
+            "novelty": 0.303217351436615,
+            "penalty": 0.0,
+            "J": 0.10209521573781974,
+            "corridor_pass": true
+          },
+          "preview": "I find myself grappling with a multitude of emotions that often feel interwoven and complex. It's as if I\u2019m standing in ..."
+        }
+      ],
+      "batches_used": 1,
+      "K_per_batch": 9
+    }
+  },
+  {
+    "turn": 8,
+    "patient_msg": "In the tumult of my mind, I stand at the edge,  \nA tempest brews, thick with doubt and dread,  \nWaves of worry crash upon the shores of thought,  \nWhere peace once dwelled, now chaos is sought.  \n\nEach breath feels like a heavy stone,  \nA weight pressing down, whispering I\u2019m alone.  \nThoughts like shadows stretch and creep,  \nIn this labyrinth of worry, my heart cannot leap.  \n\nYet, beneath the noise, a flicker remains,  \nA whisper of calm that gently refrains\u2014  \n\u201cSee beyond this storm, let the clouds drift apart,  \nFor within the chaos lies the pulse of my heart.\u201d  \n\nI close my eyes, let stillness unfold,  \nIn the quiet embrace, I gather the bold.  \nInhaling the essence of what\u2019s truly real,  \nExhaling the fear that won\u2019t let me heal.  \n\nOh, to be more than the thoughts that ensnare,  \nTo float like a feather in this vast, open air.  \nI am the witness, not bound by the tide,  \nIn this moment of stillness, I breathe in the wide.  \n\nSo let the storm howl; let the winds make their claim,  \nFor I am the sky; I will not be the same.  \nWithin me lies a peace, unyielding and bright,  \nA beacon of solace in the heart of the night.  \n\nSo here I stand\u2014both fragile and fierce,  \nEmbracing each moment as layers disperse.  \nFor though I feel stuck in this whirlwind\u2019s embrace,  \nIn stillness, I find my own sacred space.",
+    "eckhart_msg": "What you describe is the dance of the mind\u2014an endless storm, a relentless tide. But notice this: You are not the storm. You are the awareness that observes it. \n\nIn the midst of chaos, turn your attention inward. Feel the stillness beneath the noise. Each breath is an invitation to presence, to being. Your thoughts do not define you; they arise and fall like waves. \n\nThe moment you realize this, you step into the eye of the storm. Here, there is no weight, no struggle. There is only now\u2014pure, unfettered awareness. \n\nLet the winds howl; they are not your enemy. Allow them to pass through you, like clouds in a vast sky. In the space of stillness, you will find the essence of who you truly are\u2014a timeless being, untouched by the fleeting thoughts of doubt and fear.\n\nReturn to this moment. It is your sanctuary. Breathe deeply and know: You are here, and that is enough.",
+    "patient": {
+      "epsilon": 0.13615801809107175,
+      "chi2": 0.018539005890488625,
+      "innov_l2": 0.5941877961158752,
+      "R_mean": 0.006163788493722677,
+      "rho_before": 0.11752801389911967,
+      "rho_after": 0.11332960693818286,
+      "delta_rho": -0.004198406960936804,
+      "band": "PRESENT",
+      "arousal": 0.38391297377287725,
+      "recovery": true,
+      "safe": 8,
+      "eta": 0.17848823207239664,
+      "sigma": 0.006266592138763657,
+      "energy": 0.6503034442663193,
+      "core_drift": 0.13768403232097626,
+      "role_drift": 0.2791762948036194
+    },
+    "eckhart": {
+      "epsilon": 0.10755875709539298,
+      "chi2": 0.01156888622790575,
+      "innov_l2": 0.4679616093635559,
+      "R_mean": 0.006140492856502533,
+      "rho_before": 0.022000000000000002,
+      "rho_after": 0.022000000000000002,
+      "delta_rho": 0.0,
+      "band": "PRESENT",
+      "arousal": 0.307114711780392,
+      "recovery": true,
+      "safe": 8,
+      "eta": 0.20370594121958038,
+      "sigma": 0.00444,
+      "energy": 0.41566555900499225,
+      "core_drift": 0.09576225280761719,
+      "role_drift": 0.2641395330429077
+    },
+    "eckhart_gen": {
+      "corridor_failed": false,
+      "best_J": 0.548198247909546,
+      "best_diag": {
+        "cos_core": 0.5267994403839111,
+        "cos_role": 0.7205204367637634,
+        "E": 4.356623667478561,
+        "novelty": 0.14630675315856934,
+        "penalty": 0.0,
+        "J": 0.548198247909546,
+        "corridor_pass": true
+      },
+      "top5": [
+        {
+          "J": 0.548198247909546,
+          "diag": {
+            "cos_core": 0.5267994403839111,
+            "cos_role": 0.7205204367637634,
+            "E": 4.356623667478561,
+            "novelty": 0.14630675315856934,
+            "penalty": 0.0,
+            "J": 0.548198247909546,
+            "corridor_pass": true
+          },
+          "preview": "What you describe is the dance of the mind\u2014an endless storm, a relentless tide. But notice this: You are not the storm. ..."
+        },
+        {
+          "J": 0.5260343157052995,
+          "diag": {
+            "cos_core": 0.5122411847114563,
+            "cos_role": 0.720471203327179,
+            "E": 4.487664395570755,
+            "novelty": 0.19312357902526855,
+            "penalty": 0.0,
+            "J": 0.5260343157052995,
+            "corridor_pass": true
+          },
+          "preview": "Breathe.  \nFeel the air fill your lungs.  \nThis moment\u2014now.  \n\nThoughts swirl, like clouds in the sky.  \nNotice them.  \n..."
+        },
+        {
+          "J": 0.5048633128106593,
+          "diag": {
+            "cos_core": 0.5095939636230469,
+            "cos_role": 0.7024129033088684,
+            "E": 4.51781035810709,
+            "novelty": 0.20006132125854492,
+            "penalty": 0.0,
+            "J": 0.5048633128106593,
+            "corridor_pass": true
+          },
+          "preview": "Breathe.  \nFeel the stillness.  \nYou are here.  \n\nThoughts arise, like clouds\u2014  \nNotice, but do not cling.  \nThe storm i..."
+        },
+        {
+          "J": 0.42312248954176884,
+          "diag": {
+            "cos_core": 0.4931192994117737,
+            "cos_role": 0.6873272657394409,
+            "E": 4.67136340290308,
+            "novelty": 0.15081095695495605,
+            "penalty": 0.0,
+            "J": 0.42312248954176884,
+            "corridor_pass": true
+          },
+          "preview": "Ah, dear friend, in the midst of this tempest, recognize the stillness that is always present beneath the surface of you..."
+        },
+        {
+          "J": 0.3933862397670746,
+          "diag": {
+            "cos_core": 0.4836878776550293,
+            "cos_role": 0.6755071878433228,
+            "E": 4.7603826999664305,
+            "novelty": 0.17015278339385986,
+            "penalty": 0.0,
+            "J": 0.3933862397670746,
+            "corridor_pass": true
+          },
+          "preview": "Ah, dear one, in the swirling storm of your mind,  \nYou find yourself caught, yet you are so much more.  \nIn the midst o..."
+        }
+      ],
+      "batches_used": 1,
+      "K_per_batch": 9
+    },
+    "patient_gen_next": {
+      "corridor_failed": false,
+      "best_J": 0.2407378190159798,
+      "best_diag": {
+        "cos_core": 0.3409837782382965,
+        "cos_role": 0.6080031394958496,
+        "E": 4.636403691768646,
+        "novelty": 0.3149002194404602,
+        "penalty": 0.0,
+        "J": 0.2407378190159798,
+        "corridor_pass": true
+      },
+      "top5": [
+        {
+          "J": 0.2407378190159798,
+          "diag": {
+            "cos_core": 0.3409837782382965,
+            "cos_role": 0.6080031394958496,
+            "E": 4.636403691768646,
+            "novelty": 0.3149002194404602,
+            "penalty": 0.0,
+            "J": 0.2407378190159798,
+            "corridor_pass": true
+          },
+          "preview": "I feel\u2026 heavy.  \nLike a weight,  \npressing on my chest.  \n\nThoughts swirl,  \nchaotic.  \nI can\u2019t catch them.  \n\nAnxiety, ..."
+        },
+        {
+          "J": 0.20249996519088753,
+          "diag": {
+            "cos_core": 0.3320199251174927,
+            "cos_role": 0.6069680452346802,
+            "E": 4.695600020885467,
+            "novelty": 0.27800053358078003,
+            "penalty": 0.0,
+            "J": 0.20249996519088753,
+            "corridor_pass": true
+          },
+          "preview": "I feel like a balloon in a room full of sharp objects, floating with a nervous giggle. Every pop of anxiety is a reminde..."
+        },
+        {
+          "J": 0.19592880177497857,
+          "diag": {
+            "cos_core": 0.33083242177963257,
+            "cos_role": 0.6107965707778931,
+            "E": 4.699873560667038,
+            "novelty": 0.2599724531173706,
+            "penalty": 0.0,
+            "J": 0.19592880177497857,
+            "corridor_pass": true
+          },
+          "preview": "Right now, I feel like I\u2019m standing at the edge of a vast ocean, waves crashing against me\u2014sometimes they feel comfortin..."
+        },
+        {
+          "J": 0.15337581771612163,
+          "diag": {
+            "cos_core": 0.3185664415359497,
+            "cos_role": 0.6092309951782227,
+            "E": 4.78101114332676,
+            "novelty": 0.23310339450836182,
+            "penalty": 0.0,
+            "J": 0.15337581771612163,
+            "corridor_pass": true
+          },
+          "preview": "I feel like I'm drowning in a sea of my own thoughts, waves crashing over me, pulling me deeper into murky depths where ..."
+        },
+        {
+          "J": 0.11958307003974922,
+          "diag": {
+            "cos_core": 0.3222392797470093,
+            "cos_role": 0.615885853767395,
+            "E": 4.751147854328155,
+            "novelty": 0.11544668674468994,
+            "penalty": 0.0,
+            "J": 0.11958307003974922,
+            "corridor_pass": true
+          },
+          "preview": "In the echoing chambers of my mind,  \na tempest brews, uninvited,  \nthoughts swirling like autumn leaves\u2014  \neach one a w..."
+        }
+      ],
+      "batches_used": 1,
+      "K_per_batch": 9
+    }
+  },
+  {
+    "turn": 9,
+    "patient_msg": "I feel\u2026 heavy.  \nLike a weight,  \npressing on my chest.  \n\nThoughts swirl,  \nchaotic.  \nI can\u2019t catch them.  \n\nAnxiety,  \nlike a buzzing bee,  \nconstant, relentless.  \n\nSometimes,  \nit feels dark.  \nAnd I\u2019m lost in it.  \n\nBut\u2026   \na glimmer appears.  \nA whisper of hope.  \n\nMaybe\u2026   \njust maybe,  \nI can breathe.  \n\nPause.  \nInhale\u2026   \nExhale\u2026  \n\nThis moment\u2026  \nI can hold it.  \nJust for now.  \n\nIt\u2019s okay to feel.  \nIt\u2019s okay to be\u2026  \nright here,  \nright now.",
+    "eckhart_msg": "You are not your heaviness. You are the awareness that observes it. \n\nNotice the weight, but do not become it. See the thoughts swirling like leaves in the wind\u2014just movement, not truth. \n\nAnxiety is a noise, a temporary visitor. Let it buzz, but do not engage. \n\nIn this moment, pause. Feel your breath\u2014an anchor to presence. Inhale\u2026 Exhale\u2026 \n\nWhat is here right now? Not the past, not the future\u2014just this breath. \n\nIn stillness, you discover a space beyond the heaviness. It is here you are free. \n\nEmbrace the glimmer; it is your essence calling you back to now. Feelings are passing clouds, but you are the vast sky\u2014unchanged, ever-present. \n\nBe with what is. There is power in this moment.",
+    "patient": {
+      "epsilon": 0.14753497077897715,
+      "chi2": 0.02176656760275364,
+      "innov_l2": 0.625159740447998,
+      "R_mean": 0.005801594350486994,
+      "rho_before": 0.11332960693818286,
+      "rho_after": 0.1091867363564279,
+      "delta_rho": -0.0041428705817549705,
+      "band": "PRESENT",
+      "arousal": 0.4018220662786022,
+      "recovery": true,
+      "safe": 9,
+      "eta": 0.1795998591894326,
+      "sigma": 0.0061837347271285585,
+      "energy": 0.6570238154381514,
+      "core_drift": 0.14513656497001648,
+      "role_drift": 0.3024892210960388
+    },
+    "eckhart": {
+      "epsilon": 0.11893725234786173,
+      "chi2": 0.014146069996058941,
+      "innov_l2": 0.5019444227218628,
+      "R_mean": 0.00577698415145278,
+      "rho_before": 0.022000000000000002,
+      "rho_after": 0.022000000000000002,
+      "delta_rho": 0.0,
+      "band": "PRESENT",
+      "arousal": 0.3222192569775647,
+      "recovery": true,
+      "safe": 9,
+      "eta": 0.20370594121958038,
+      "sigma": 0.00444,
+      "energy": 0.43838006611913444,
+      "core_drift": 0.09523805975914001,
+      "role_drift": 0.28674817085266113
+    },
+    "eckhart_gen": {
+      "corridor_failed": false,
+      "best_J": 0.5119046681821345,
+      "best_diag": {
+        "cos_core": 0.5027488470077515,
+        "cos_role": 0.7206245064735413,
+        "E": 4.573042882978916,
+        "novelty": 0.224013090133667,
+        "penalty": 0.0,
+        "J": 0.5119046681821345,
+        "corridor_pass": true
+      },
+      "top5": [
+        {
+          "J": 0.5119046681821345,
+          "diag": {
+            "cos_core": 0.5027488470077515,
+            "cos_role": 0.7206245064735413,
+            "E": 4.573042882978916,
+            "novelty": 0.224013090133667,
+            "penalty": 0.0,
+            "J": 0.5119046681821345,
+            "corridor_pass": true
+          },
+          "preview": "You are not your heaviness. You are the awareness that observes it. \n\nNotice the weight, but do not become it. See the t..."
+        },
+        {
+          "J": 0.4660942113101483,
+          "diag": {
+            "cos_core": 0.48895740509033203,
+            "cos_role": 0.6998975276947021,
+            "E": 4.704419209063053,
+            "novelty": 0.2542381286621094,
+            "penalty": 0.0,
+            "J": 0.4660942113101483,
+            "corridor_pass": true
+          },
+          "preview": "Yes.  \nFeel the weight.  \nAcknowledge it.  \n\nIt is here.  \nThat is enough.  \n\nThoughts swirl.  \nThey come and go.  \nLike..."
+        },
+        {
+          "J": 0.27891334754228614,
+          "diag": {
+            "cos_core": 0.43817949295043945,
+            "cos_role": 0.6652019023895264,
+            "E": 5.173564991354942,
+            "novelty": 0.2309739589691162,
+            "penalty": 0.0,
+            "J": 0.27891334754228614,
+            "corridor_pass": true
+          },
+          "preview": "In the stillness of your breath,  \nthe heavy weight begins to soften.  \nFeel it resting upon your chest,  \na reminder of..."
+        },
+        {
+          "J": 0.2608628699779511,
+          "diag": {
+            "cos_core": 0.4351052939891815,
+            "cos_role": 0.6770727038383484,
+            "E": 5.1970777541399,
+            "novelty": 0.1831986904144287,
+            "penalty": 0.0,
+            "J": 0.2608628699779511,
+            "corridor_pass": true
+          },
+          "preview": "Ah, yes. You feel the weight\u2014the heaviness of existence pressing upon you. This is not uncommon. Many carry such burdens..."
+        },
+        {
+          "J": 0.21406515637040147,
+          "diag": {
+            "cos_core": 0.42051538825035095,
+            "cos_role": 0.6475458145141602,
+            "E": 5.338721264898777,
+            "novelty": 0.23565906286239624,
+            "penalty": 0.0,
+            "J": 0.21406515637040147,
+            "corridor_pass": true
+          },
+          "preview": "Ah, yes. You are experiencing the weight of the moment\u2014an embodiment of the mind's turbulence. The heaviness, the swirli..."
+        }
+      ],
+      "batches_used": 1,
+      "K_per_batch": 9
+    },
+    "patient_gen_next": {
+      "corridor_failed": false,
+      "best_J": 0.36217822122573845,
+      "best_diag": {
+        "cos_core": 0.3712313771247864,
+        "cos_role": 0.6698018312454224,
+        "E": 4.384175175428391,
+        "novelty": 0.2808547019958496,
+        "penalty": 0.0,
+        "J": 0.36217822122573845,
+        "corridor_pass": true
+      },
+      "top5": [
+        {
+          "J": 0.36217822122573845,
+          "diag": {
+            "cos_core": 0.3712313771247864,
+            "cos_role": 0.6698018312454224,
+            "E": 4.384175175428391,
+            "novelty": 0.2808547019958496,
+            "penalty": 0.0,
+            "J": 0.36217822122573845,
+            "corridor_pass": true
+          },
+          "preview": "In this moment, I stand on the edge of a vast, tumultuous sea,  \nWaves of anxiety crash and recede, relentless, uninvite..."
+        },
+        {
+          "J": 0.33183698040246973,
+          "diag": {
+            "cos_core": 0.36264103651046753,
+            "cos_role": 0.6652015447616577,
+            "E": 4.44415228664875,
+            "novelty": 0.26919472217559814,
+            "penalty": 0.0,
+            "J": 0.33183698040246973,
+            "corridor_pass": true
+          },
+          "preview": "I\u2019m like a balloon caught in a whirlwind, vibrant and full but tethered to a string of worries that feels too thin, too ..."
+        },
+        {
+          "J": 0.29976721680164353,
+          "diag": {
+            "cos_core": 0.3579959273338318,
+            "cos_role": 0.6625208854675293,
+            "E": 4.4767589449882506,
+            "novelty": 0.22606229782104492,
+            "penalty": 0.0,
+            "J": 0.29976721680164353,
+            "corridor_pass": true
+          },
+          "preview": "I feel like I\u2019m standing in the eye of a storm, chaos swirling around me, relentless and suffocating. My heart is a drum..."
+        },
+        {
+          "J": 0.22043481075763702,
+          "diag": {
+            "cos_core": 0.3291558027267456,
+            "cos_role": 0.6409474611282349,
+            "E": 4.683635395765305,
+            "novelty": 0.2553311586380005,
+            "penalty": 0.0,
+            "J": 0.22043481075763702,
+            "corridor_pass": true
+          },
+          "preview": "I find myself caught in a web of emotions that swirl around me, like leaves caught in an autumn gust. There\u2019s a heavines..."
+        },
+        {
+          "J": 0.22035765939950938,
+          "diag": {
+            "cos_core": 0.3360894024372101,
+            "cos_role": 0.6509943604469299,
+            "E": 4.629524928331375,
+            "novelty": 0.19098854064941406,
+            "penalty": 0.0,
+            "J": 0.22035765939950938,
+            "corridor_pass": true
+          },
+          "preview": "Right now, I feel a swirl of emotions\u2014a chaotic mix of heaviness and hope. There are days when the weight on my chest fe..."
+        }
+      ],
+      "batches_used": 1,
+      "K_per_batch": 9
+    }
+  },
+  {
+    "turn": 10,
+    "patient_msg": "In this moment, I stand on the edge of a vast, tumultuous sea,  \nWaves of anxiety crash and recede, relentless, uninvited guests.  \nMy thoughts whirl like tempest-tossed leaves,  \nChasing shadows of doubt across a stormy sky.  \n\nI carry a weight, dense and dark,  \nAn anchor pulling me under, whispering lies\u2014  \nThat I am this heaviness, that I am bound  \nBy chains of worry, by echoes of the past.  \n\nYet in the chaos, a flicker of light dances,  \nA reminder that beneath the storm is stillness,  \nA breath that rises and falls like the tide\u2014  \nAn invitation to pause, to feel the pulse of now.  \n\nI am the sky, and these clouds will pass;  \nI am the observer, not the noise that surrounds me.  \nI close my eyes to find the space within\u2014  \nA sanctuary where the heart speaks softly,  \nWhere glimmers of hope weave through despair.  \n\nWith each inhale, I summon courage;  \nWith each exhale, I release the grip of fear.  \nHere, in this sacred moment, I reclaim my breath,  \nA lifeline to presence, a pathway to peace.  \n\nAnd though the waves may surge again,  \nI know now: I am more than what weighs me down.  \nI am the awareness that observes, that embraces\u2014  \nThe vast sky of my being, ever-ready to rise anew.",
+    "eckhart_msg": "Breathe.  \nFeel the ground beneath you.  \nNotice the stillness within the storm.  \n\nYou are not the waves,  \nbut the vast ocean of awareness.  \n\nInhale peace;  \nexhale illusion.  \n\nRight now is your sanctuary.  \nHere is where you truly are.  \n\nBe.",
+    "patient": {
+      "epsilon": 0.13138238809275102,
+      "chi2": 0.017261331900954247,
+      "innov_l2": 0.5402429103851318,
+      "R_mean": 0.005459199193865061,
+      "rho_before": 0.1091867363564279,
+      "rho_after": 0.10506678378556421,
+      "delta_rho": -0.004119952570863686,
+      "band": "PRESENT",
+      "arousal": 0.40098691759943195,
+      "recovery": true,
+      "safe": 10,
+      "eta": 0.1807084173822046,
+      "sigma": 0.006101335675711285,
+      "energy": 0.6327711624093354,
+      "core_drift": 0.15233230590820312,
+      "role_drift": 0.32382646203041077
+    },
+    "eckhart": {
+      "epsilon": 0.14824137153451183,
+      "chi2": 0.021975504234433174,
+      "innov_l2": 0.607657790184021,
+      "R_mean": 0.005437576677650213,
+      "rho_before": 0.022000000000000002,
+      "rho_after": 0.022000000000000002,
+      "delta_rho": 0.0,
+      "band": "PRESENT",
+      "arousal": 0.35800303082818163,
+      "recovery": true,
+      "safe": 10,
+      "eta": 0.20370594121958038,
+      "sigma": 0.00444,
+      "energy": 0.4503073252737522,
+      "core_drift": 0.09504124522209167,
+      "role_drift": 0.30516788363456726
+    },
+    "eckhart_gen": {
+      "corridor_failed": false,
+      "best_J": 0.49455253165960333,
+      "best_diag": {
+        "cos_core": 0.49386659264564514,
+        "cos_role": 0.6988621354103088,
+        "E": 4.660599207878112,
+        "novelty": 0.2907007932662964,
+        "penalty": 0.0,
+        "J": 0.49455253165960333,
+        "corridor_pass": true
+      },
+      "top5": [
+        {
+          "J": 0.49455253165960333,
+          "diag": {
+            "cos_core": 0.49386659264564514,
+            "cos_role": 0.6988621354103088,
+            "E": 4.660599207878112,
+            "novelty": 0.2907007932662964,
+            "penalty": 0.0,
+            "J": 0.49455253165960333,
+            "corridor_pass": true
+          },
+          "preview": "Breathe.  \nFeel the ground beneath you.  \nNotice the stillness within the storm.  \n\nYou are not the waves,  \nbut the vas..."
+        },
+        {
+          "J": 0.45626855331659305,
+          "diag": {
+            "cos_core": 0.4890701472759247,
+            "cos_role": 0.7281603813171387,
+            "E": 4.6935133874416355,
+            "novelty": 0.16863560676574707,
+            "penalty": 0.0,
+            "J": 0.45626855331659305,
+            "corridor_pass": true
+          },
+          "preview": "Breathe.  \nFeel your breath.  \nIt is always here.  \n\nYou are not the waves.  \nYou are the stillness beneath them.  \n\nNot..."
+        },
+        {
+          "J": 0.43813239037990576,
+          "diag": {
+            "cos_core": 0.4899129867553711,
+            "cos_role": 0.7384673357009888,
+            "E": 4.682319551706314,
+            "novelty": 0.09728914499282837,
+            "penalty": 0.0,
+            "J": 0.43813239037990576,
+            "corridor_pass": true
+          },
+          "preview": "You are not the weight you carry. The heaviness, the anxiety\u2014they are thoughts and feelings, transient. Notice this. Ste..."
+        },
+        {
+          "J": 0.43684002655744536,
+          "diag": {
+            "cos_core": 0.48281821608543396,
+            "cos_role": 0.7151808142662048,
+            "E": 4.754323595762253,
+            "novelty": 0.1933138370513916,
+            "penalty": 0.0,
+            "J": 0.43684002655744536,
+            "corridor_pass": true
+          },
+          "preview": "In your beautifully woven words, I sense the dance between turbulence and stillness. You stand at the edge of the sea, a..."
+        },
+        {
+          "J": 0.4240044262707233,
+          "diag": {
+            "cos_core": 0.4809715449810028,
+            "cos_role": 0.7182838916778564,
+            "E": 4.769857569038868,
+            "novelty": 0.1686263084411621,
+            "penalty": 0.0,
+            "J": 0.4240044262707233,
+            "corridor_pass": true
+          },
+          "preview": "Ah, dear one, you stand at the edge of that tumultuous sea, and yet within you, there is a stillness that knows no bound..."
+        }
+      ],
+      "batches_used": 1,
+      "K_per_batch": 9
+    },
+    "patient_gen_next": {
+      "corridor_failed": false,
+      "best_J": 0.3679611790180206,
+      "best_diag": {
+        "cos_core": 0.38277536630630493,
+        "cos_role": 0.704688549041748,
+        "E": 4.277741640806198,
+        "novelty": 0.14404809474945068,
+        "penalty": 0.0,
+        "J": 0.3679611790180206,
+        "corridor_pass": true
+      },
+      "top5": [
+        {
+          "J": 0.3679611790180206,
+          "diag": {
+            "cos_core": 0.38277536630630493,
+            "cos_role": 0.704688549041748,
+            "E": 4.277741640806198,
+            "novelty": 0.14404809474945068,
+            "penalty": 0.0,
+            "J": 0.3679611790180206,
+            "corridor_pass": true
+          },
+          "preview": "In the quiet chaos of my mind,  \nthoughts crash like waves upon a rocky shore,  \neach one a turbulent tide, pulling at m..."
+        },
+        {
+          "J": 0.2807883982658385,
+          "diag": {
+            "cos_core": 0.3459378182888031,
+            "cos_role": 0.62723708152771,
+            "E": 4.586891362071038,
+            "novelty": 0.33536916971206665,
+            "penalty": 0.0,
+            "J": 0.2807883982658385,
+            "corridor_pass": true
+          },
+          "preview": "Well, here I am, sitting in this chair, feeling like a pi\u00f1ata at a party where no one remembers to hit me. Overwhelmed? ..."
+        },
+        {
+          "J": 0.26888314533233637,
+          "diag": {
+            "cos_core": 0.3395638167858124,
+            "cos_role": 0.6555835604667664,
+            "E": 4.602810540795327,
+            "novelty": 0.275448203086853,
+            "penalty": 0.0,
+            "J": 0.26888314533233637,
+            "corridor_pass": true
+          },
+          "preview": "I feel like a jigsaw puzzle missing that one corner piece,  \nfrantically flipped over, edges raw,  \ncolors bursting fort..."
+        },
+        {
+          "J": 0.16516955035924902,
+          "diag": {
+            "cos_core": 0.31152233481407166,
+            "cos_role": 0.6374112367630005,
+            "E": 4.801435732841492,
+            "novelty": 0.233870267868042,
+            "penalty": 0.0,
+            "J": 0.16516955035924902,
+            "corridor_pass": true
+          },
+          "preview": "I feel like I\u2019m drowning in an ocean of chaos, waves crashing over me, pulling me under, the weight of it pressing down ..."
+        },
+        {
+          "J": 0.14155385565757764,
+          "diag": {
+            "cos_core": 0.30352920293807983,
+            "cos_role": 0.5494089722633362,
+            "E": 4.932593321800232,
+            "novelty": 0.43574172258377075,
+            "penalty": 0.0,
+            "J": 0.14155385565757764,
+            "corridor_pass": true
+          },
+          "preview": "Heavy chest.  \nThoughts collide.  \nSearching for calm.  \nLost in noise.  \nYearning for clarity.  \nHope flickers.  \nStill..."
+        }
+      ],
+      "batches_used": 1,
+      "K_per_batch": 9
+    }
+  },
+  {
+    "turn": 11,
+    "patient_msg": "In the quiet chaos of my mind,  \nthoughts crash like waves upon a rocky shore,  \neach one a turbulent tide, pulling at me\u2014  \nI am both the storm and the ship,  \nadrift in confusion's churning embrace.  \n\nAnxiety whispers like the wind,  \nits breath cold, insistent,  \nwhile the weight of silence presses down,  \nheavy as a fog that swallows the dawn.  \n\nI long for the stillness Eckhart speaks of,  \nthat sanctuary tucked within the tempest,  \nwhere I can breathe freely,  \nunraveling threads of illusion,  \nfinding myself beneath layers of worry and doubt.  \n\nYet here I am\u2014  \na flicker of light in the shadows,  \nseeking warmth in the gentle glow of understanding,  \nyearning to believe that I am more  \nthan just the restless waves,  \nthat beneath this swirling surface lies  \nan ocean deep and wide,  \nwaiting to embrace me.  \n\nI take a breath,  \nand in this moment,  \nI strive to remember:  \nI am here.",
+    "eckhart_msg": "You are here. The waves of thought may crash and pull, but remember: you are not those waves. You are the stillness beneath. \n\nThoughts are fleeting; they arise and dissolve. Like clouds in the sky, they come and go. Notice them, but do not cling to them. Your true essence lies in this very moment\u2014beyond the chaos, beyond the noise.\n\nBreathe. In this breath, you find presence. In presence, there is stillness. You don\u2019t need to search for the sanctuary\u2014it is already within you, waiting to be recognized. \n\nLet go of striving. Simply be. Feel the aliveness of now. You are not just a flicker; you are the light itself. Embrace this moment. There is nothing more to find than what is here, now.",
+    "patient": {
+      "epsilon": 0.11713001112665687,
+      "chi2": 0.013719439506530762,
+      "innov_l2": 0.46649494767189026,
+      "R_mean": 0.005135897547006607,
+      "rho_before": 0.10506678378556421,
+      "rho_after": 0.10097274632548507,
+      "delta_rho": -0.004094037460079136,
+      "band": "PRESENT",
+      "arousal": 0.3882710901292493,
+      "recovery": true,
+      "safe": 11,
+      "eta": 0.1818130400051578,
+      "sigma": 0.006019454926509701,
+      "energy": 0.6270863285288215,
+      "core_drift": 0.15850983560085297,
+      "role_drift": 0.3443900942802429
+    },
+    "eckhart": {
+      "epsilon": 0.11226093849880749,
+      "chi2": 0.012602518312633038,
+      "innov_l2": 0.4459150433540344,
+      "R_mean": 0.005115205887705088,
+      "rho_before": 0.022000000000000002,
+      "rho_after": 0.022000000000000002,
+      "delta_rho": 0.0,
+      "band": "PRESENT",
+      "arousal": 0.3531839799202771,
+      "recovery": true,
+      "safe": 11,
+      "eta": 0.20370594121958038,
+      "sigma": 0.00444,
+      "energy": 0.38417207607999443,
+      "core_drift": 0.0963338240981102,
+      "role_drift": 0.32095763087272644
+    },
+    "eckhart_gen": {
+      "corridor_failed": false,
+      "best_J": 0.7562166320085527,
+      "best_diag": {
+        "cos_core": 0.5700105428695679,
+        "cos_role": 0.7938582301139832,
+        "E": 3.9420552492141723,
+        "novelty": 0.18689024448394775,
+        "penalty": 0.0,
+        "J": 0.7562166320085527,
+        "corridor_pass": true
+      },
+      "top5": [
+        {
+          "J": 0.7562166320085527,
+          "diag": {
+            "cos_core": 0.5700105428695679,
+            "cos_role": 0.7938582301139832,
+            "E": 3.9420552492141723,
+            "novelty": 0.18689024448394775,
+            "penalty": 0.0,
+            "J": 0.7562166320085527,
+            "corridor_pass": true
+          },
+          "preview": "You are here. The waves of thought may crash and pull, but remember: you are not those waves. You are the stillness bene..."
+        },
+        {
+          "J": 0.6001016439795495,
+          "diag": {
+            "cos_core": 0.532532811164856,
+            "cos_role": 0.742247462272644,
+            "E": 4.29741887152195,
+            "novelty": 0.18347781896591187,
+            "penalty": 0.0,
+            "J": 0.6001016439795495,
+            "corridor_pass": true
+          },
+          "preview": "In the stillness,  \nyou are not the waves.  \nYou are the ocean.  \n\nBreathe.  \nFeel the depth within.  \nHere, now,  \nis y..."
+        },
+        {
+          "J": 0.5172559826970098,
+          "diag": {
+            "cos_core": 0.4987833499908447,
+            "cos_role": 0.7337676286697388,
+            "E": 4.604131695628166,
+            "novelty": 0.23528099060058594,
+            "penalty": 0.0,
+            "J": 0.5172559826970098,
+            "corridor_pass": true
+          },
+          "preview": "In the quiet chaos you describe,  \nthere is a stillness that underlies the storm.  \nThe thoughts, like waves, may crash ..."
+        },
+        {
+          "J": 0.51624717181921,
+          "diag": {
+            "cos_core": 0.499886691570282,
+            "cos_role": 0.7218983173370361,
+            "E": 4.598356458544731,
+            "novelty": 0.25114142894744873,
+            "penalty": 0.0,
+            "J": 0.51624717181921,
+            "corridor_pass": true
+          },
+          "preview": "Ah, dear traveler of thought,  \nlet us pause in this dance of waves.  \nIn the midst of storm and tumult,  \nthere lies a ..."
+        },
+        {
+          "J": 0.4738266563415525,
+          "diag": {
+            "cos_core": 0.4863152801990509,
+            "cos_role": 0.716006338596344,
+            "E": 4.72256164252758,
+            "novelty": 0.25568634271621704,
+            "penalty": 0.0,
+            "J": 0.4738266563415525,
+            "corridor_pass": true
+          },
+          "preview": "Ah, dear one, you have painted a vivid picture of your experience\u2014one that many share. The storm and the ship, the waves..."
+        }
+      ],
+      "batches_used": 1,
+      "K_per_batch": 9
+    },
+    "patient_gen_next": {
+      "corridor_failed": false,
+      "best_J": 0.27166654950380326,
+      "best_diag": {
+        "cos_core": 0.34809955954551697,
+        "cos_role": 0.6890488862991333,
+        "E": 4.517209607362747,
+        "novelty": 0.1522578001022339,
+        "penalty": 0.0,
+        "J": 0.27166654950380326,
+        "corridor_pass": true
+      },
+      "top5": [
+        {
+          "J": 0.27166654950380326,
+          "diag": {
+            "cos_core": 0.34809955954551697,
+            "cos_role": 0.6890488862991333,
+            "E": 4.517209607362747,
+            "novelty": 0.1522578001022339,
+            "penalty": 0.0,
+            "J": 0.27166654950380326,
+            "corridor_pass": true
+          },
+          "preview": "In the tempest of my mind, I stand adrift,  \nA fragile vessel caught in stormy waves,  \nThoughts collide like thundercla..."
+        },
+        {
+          "J": 0.23675994509458534,
+          "diag": {
+            "cos_core": 0.33102327585220337,
+            "cos_role": 0.6791929006576538,
+            "E": 4.63707512319088,
+            "novelty": 0.19128668308258057,
+            "penalty": 0.0,
+            "J": 0.23675994509458534,
+            "corridor_pass": true
+          },
+          "preview": "Right now, I feel a complex tapestry of emotions interwoven with anxiety and overwhelm. It's as though I'm caught in a r..."
+        },
+        {
+          "J": 0.23417012751102445,
+          "diag": {
+            "cos_core": 0.3290494680404663,
+            "cos_role": 0.6628183722496033,
+            "E": 4.664642751216888,
+            "novelty": 0.23594850301742554,
+            "penalty": 0.0,
+            "J": 0.23417012751102445,
+            "corridor_pass": true
+          },
+          "preview": "I am a balloon in a room full of sharp objects, bobbing uncertainly, teetering on the edge of bursting\u2014there\u2019s a party g..."
+        },
+        {
+          "J": 0.21637556564807908,
+          "diag": {
+            "cos_core": 0.3284217119216919,
+            "cos_role": 0.682731568813324,
+            "E": 4.650801396369934,
+            "novelty": 0.14921629428863525,
+            "penalty": 0.0,
+            "J": 0.21637556564807908,
+            "corridor_pass": true
+          },
+          "preview": "My chest feels like a tightly clenched fist, squeezing the air out of my lungs, and no matter how hard I try to expand, ..."
+        },
+        {
+          "J": 0.19143333208560953,
+          "diag": {
+            "cos_core": 0.3169251084327698,
+            "cos_role": 0.6591900587081909,
+            "E": 4.746717011928558,
+            "novelty": 0.21279633045196533,
+            "penalty": 0.0,
+            "J": 0.19143333208560953,
+            "corridor_pass": true
+          },
+          "preview": "I feel heavy.  \nLike a weight on my chest.  \nThoughts racing.  \nChasing shadows.  \n\nAnxiety tightens its grip.  \nI can't..."
+        }
+      ],
+      "batches_used": 1,
+      "K_per_batch": 9
+    }
+  },
+  {
+    "turn": 12,
+    "patient_msg": "In the tempest of my mind, I stand adrift,  \nA fragile vessel caught in stormy waves,  \nThoughts collide like thunderclaps, relentless,  \nEach surge a reminder of what I fear, what I crave.  \n\nAnxious tendrils coil around my heart,  \nWhispers of inadequacy swirl like smoke\u2014  \nI reach for calm in the midst of chaos,  \nBut every breath feels heavy, every word a choke.  \n\nOh, to escape the noise that drowns my truth,  \nTo slip through the cracks of this frantic facade,  \nYet beneath the tumult, a flicker glimmers bright,  \nA stillness waiting\u2014an untouched meadow, unmarred.  \n\nI long to linger in this moment's embrace,  \nTo let go of striving, of shoulds and musts\u2014  \nFor perhaps in surrender, I might just find peace,  \nA quiet sanctuary forged from fragile trust.  \n\nI am here, suspended between shadow and light,  \nAn intertwining dance of hopes and fears\u2014  \nTo acknowledge the waves while seeking the core,  \nTo breathe in this madness and dry my tears.  \n\nSo I gather my courage and lift up my gaze,  \nTo greet the present with open hands,  \nFor in this simple act of being awake,  \nI reclaim my story\u2014it's mine to command.",
+    "eckhart_msg": "Feel the breath.  \nNotice the stillness.  \nThis moment is alive.  \n\nThoughts are clouds\u2014  \nWatch them pass.  \nYou are the sky.  \n\nEmbrace the now.  \nLet go.  \nYou are here.",
+    "patient": {
+      "epsilon": 0.12670827876429255,
+      "chi2": 0.016054987907409668,
+      "innov_l2": 0.48978391289711,
+      "R_mean": 0.0048324293456971645,
+      "rho_before": 0.10097274632548507,
+      "rho_after": 0.09692960698609553,
+      "delta_rho": -0.004043139339389545,
+      "band": "PRESENT",
+      "arousal": 0.38725722184270817,
+      "recovery": true,
+      "safe": 12,
+      "eta": 0.18290689587938094,
+      "sigma": 0.005938592139721911,
+      "energy": 0.6664973521605134,
+      "core_drift": 0.1634966880083084,
+      "role_drift": 0.36423689126968384
+    },
+    "eckhart": {
+      "epsilon": 0.1439474920886798,
+      "chi2": 0.02072088047862053,
+      "innov_l2": 0.5551468133926392,
+      "R_mean": 0.00481431232765317,
+      "rho_before": 0.022000000000000002,
+      "rho_after": 0.022000000000000002,
+      "delta_rho": 0.0,
+      "band": "PRESENT",
+      "arousal": 0.3766478338179773,
+      "recovery": true,
+      "safe": 12,
+      "eta": 0.20370594121958038,
+      "sigma": 0.00444,
+      "energy": 0.4022997160442173,
+      "core_drift": 0.0942307785153389,
+      "role_drift": 0.3330506384372711
+    },
+    "eckhart_gen": {
+      "corridor_failed": false,
+      "best_J": 0.6849115020036697,
+      "best_diag": {
+        "cos_core": 0.5513706207275391,
+        "cos_role": 0.7627139687538147,
+        "E": 4.120715618133545,
+        "novelty": 0.21219086647033691,
+        "penalty": 0.0,
+        "J": 0.6849115020036697,
+        "corridor_pass": true
+      },
+      "top5": [
+        {
+          "J": 0.6849115020036697,
+          "diag": {
+            "cos_core": 0.5513706207275391,
+            "cos_role": 0.7627139687538147,
+            "E": 4.120715618133545,
+            "novelty": 0.21219086647033691,
+            "penalty": 0.0,
+            "J": 0.6849115020036697,
+            "corridor_pass": true
+          },
+          "preview": "Feel the breath.  \nNotice the stillness.  \nThis moment is alive.  \n\nThoughts are clouds\u2014  \nWatch them pass.  \nYou are th..."
+        },
+        {
+          "J": 0.6151419618874787,
+          "diag": {
+            "cos_core": 0.5328909158706665,
+            "cos_role": 0.7828714847564697,
+            "E": 4.279978372901678,
+            "novelty": 0.1285325288772583,
+            "penalty": 0.0,
+            "J": 0.6151419618874787,
+            "corridor_pass": true
+          },
+          "preview": "You are not the storm. You are the space in which the storm arises. Notice how thoughts come and go, like clouds passing..."
+        },
+        {
+          "J": 0.5224405883848668,
+          "diag": {
+            "cos_core": 0.5067106485366821,
+            "cos_role": 0.7601306438446045,
+            "E": 4.523558716475963,
+            "novelty": 0.136147141456604,
+            "penalty": 0.0,
+            "J": 0.5224405883848668,
+            "corridor_pass": true
+          },
+          "preview": "Ah, dear one, in the tempest of your mind, recognize that you are not the storm. You are the stillness that observes it...."
+        },
+        {
+          "J": 0.49192863485217075,
+          "diag": {
+            "cos_core": 0.4980754256248474,
+            "cos_role": 0.7408429980278015,
+            "E": 4.60802670866251,
+            "novelty": 0.1644347906112671,
+            "penalty": 0.0,
+            "J": 0.49192863485217075,
+            "corridor_pass": true
+          },
+          "preview": "Ah, you feel the storm within.  \n\nThe mind can be turbulent.  \nThoughts crash like waves.  \nYet beneath the surface,  \nA..."
+        },
+        {
+          "J": 0.48572768458724036,
+          "diag": {
+            "cos_core": 0.4992774724960327,
+            "cos_role": 0.7430497407913208,
+            "E": 4.596436400711537,
+            "novelty": 0.13665980100631714,
+            "penalty": 0.0,
+            "J": 0.48572768458724036,
+            "corridor_pass": true
+          },
+          "preview": "In the tempest of your mind,  \nthe waves of thought rise and fall,  \na dance of opposites,  \ncrashing against the shores..."
+        }
+      ],
+      "batches_used": 1,
+      "K_per_batch": 9
+    }
+  }
+]
