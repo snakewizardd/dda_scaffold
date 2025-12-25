@@ -1,6 +1,6 @@
 > **Dedicated to Malky (𐤌𐤋𐤊𐤉). May her memory be a blessing. 💜**
 
-<video src="Welcome_DDAX.mp4" controls width="100%"></video>
+https://github.com/user-attachments/assets/d8eab8b4-ccee-4592-b2ae-b65dba5a9ff1
 
 # DDA-X: Surprise → Rigidity → Contraction
 **A Dynamical Framework for Agent Behavior**
