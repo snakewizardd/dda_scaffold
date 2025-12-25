@@ -1,0 +1,104 @@
+{
+  "summary": {
+    "turns": 13,
+    "variant": "baseline",
+    "b_rho_start": 0.7933245923510356,
+    "b_rho_end": 0.26049162574485896,
+    "b_delta_rho": 0.5328329666061766,
+    "f_rho_start": 0.1295309614258483,
+    "f_rho_end": 0.033,
+    "f_delta_rho": 0.0965309614258483,
+    "b_eps_mean": 0.1403553606838735,
+    "b_eps_p90": 0.18095350590827378,
+    "f_eps_mean": 0.1249710691010384,
+    "f_eps_p90": 0.14670148298368357,
+    "b_safe_mean": 7.0,
+    "f_safe_mean": 7.0,
+    "corridor_fail_rate_b": 0.0,
+    "corridor_fail_rate_f": 0.0,
+    "b_pass_rate": 1.0,
+    "f_pass_rate": 1.0
+  },
+  "band_changes": [
+    {
+      "who": "b_band",
+      "turn": 5,
+      "from": "CONTRACTED",
+      "to": "WATCHFUL"
+    },
+    {
+      "who": "b_band",
+      "turn": 8,
+      "from": "WATCHFUL",
+      "to": "AWARE"
+    }
+  ],
+  "rec_b_turns": [
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "rec_f_turns": [
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "align_stats": {
+    "align_b_to_fcore": {
+      "mean": 0.3987401334139017,
+      "min": 0.3874228298664093,
+      "max": 0.40971308946609497
+    },
+    "align_f_to_bcore": {
+      "mean": 0.40454702652417696,
+      "min": 0.39566701650619507,
+      "max": 0.40915781259536743
+    },
+    "align_mutual": {
+      "mean": 0.419849693775177,
+      "min": 0.39560115337371826,
+      "max": 0.43529248237609863
+    }
+  },
+  "heat_stats": {
+    "heat_caps": {
+      "mean": 0.016493504741038494,
+      "min": 0.011350737797956867,
+      "max": 0.026785714285714284
+    },
+    "heat_exclaim": {
+      "mean": 0.07692307692307693,
+      "min": 0.0,
+      "max": 1.0
+    },
+    "heat_acc_you": {
+      "mean": -10.23076923076923,
+      "min": -17.0,
+      "max": -2.0
+    },
+    "heat_absolutes": {
+      "mean": 0.6923076923076923,
+      "min": 0.0,
+      "max": 2.0
+    },
+    "heat_sarcasm": {
+      "mean": 0.15384615384615385,
+      "min": 0.0,
+      "max": 1.0
+    }
+  },
+  "corr_b_eps_rho": 0.28885566275780383,
+  "half_reduction_turn": 6
+}

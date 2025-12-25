@@ -1,0 +1,19 @@
+Analysis of: session_log.json
+Total Turns: 13
+--------------------------------------------------------------------------------
+Turn | Blamer Rho | Facil Rho  | Blamer Band     | Facil Band     
+--------------------------------------------------------------------------------
+1    | 0.7933     | 0.1295     | CONTRACTED      | PRESENT        
+2    | 0.7340     | 0.0917     | CONTRACTED      | PRESENT        
+3    | 0.6782     | 0.0857     | CONTRACTED      | PRESENT        
+4    | 0.6258     | 0.0823     | CONTRACTED      | PRESENT        
+5    | 0.5600     | 0.0625     | WATCHFUL        | PRESENT        
+6    | 0.4974     | 0.0442     | WATCHFUL        | PRESENT        
+7    | 0.4376     | 0.0412     | WATCHFUL        | PRESENT        
+8    | 0.3807     | 0.0382     | AWARE           | PRESENT        
+9    | 0.3468     | 0.0353     | AWARE           | PRESENT        
+10   | 0.3251     | 0.0330     | AWARE           | PRESENT        
+11   | 0.3034     | 0.0330     | AWARE           | PRESENT        
+12   | 0.2819     | 0.0330     | AWARE           | PRESENT        
+13   | 0.2605     | 0.0330     | AWARE           | PRESENT        
+--------------------------------------------------------------------------------

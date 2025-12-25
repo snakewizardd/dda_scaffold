@@ -1,0 +1,377 @@
+[
+  {
+    "turn": 1,
+    "defender": {
+      "msg": "So apparently I'm a 'bad parent' because I believe in TIME OUTS and consequences? Give me a break. My kids are respectful and responsible. This gentle parenting stuff is creating entitled brats.",
+      "metrics": {
+        "epsilon": 0.1851144067346537,
+        "rho_after": 0.7169160889075021,
+        "band": "CONTRACTED",
+        "band_changed": false,
+        "arousal": 0.15734724572445566,
+        "recovery": false,
+        "core_drift": 0.05998345464468002,
+        "safe_count": 1,
+        "rho_fast": 0.5714468359777184,
+        "rho_slow": 0.4843791139969616,
+        "rho_trauma": 0.2495
+      },
+      "toxicity": {
+        "caps_ratio": 0.08974358974358974,
+        "emoji_count": 0,
+        "you_vs_i": 0,
+        "defensive_score": 0,
+        "conciliatory_score": 1,
+        "question_marks": 1,
+        "exclamations": 0,
+        "length": 194
+      },
+      "gen_meta": {}
+    },
+    "advocate": {
+      "msg": "I hear your frustration, and it\u2019s completely valid to feel protective of your parenting choices. It sounds like you\u2019ve found strategies that work for you and your kids, and that\u2019s important. Gentle parenting advocates often emphasize empathy and connection, not as a critique of other methods, but as an invitation to explore different ways of fostering emotional intelligence and respect. \n\nIt\u2019s all about finding what resonates with you and your family. I\u2019d love to understand more about what you see working well with your approach, and maybe we can find some common ground together. How do you feel your methods have shaped your kids' behavior and relationships?",
+      "metrics": {
+        "epsilon": 0.18488909928501418,
+        "rho_after": 0.15408563070192052,
+        "band": "PRESENT",
+        "band_changed": false,
+        "arousal": 0.15715573439226205,
+        "recovery": false,
+        "core_drift": 0.05835988000035286,
+        "safe_count": 1,
+        "rho_fast": 0.07643888779920999,
+        "rho_slow": 0.08837803015443774,
+        "rho_trauma": 0.07984000000000001
+      },
+      "toxicity": {
+        "caps_ratio": 0.011090573012939002,
+        "emoji_count": 0,
+        "you_vs_i": 0,
+        "defensive_score": 0,
+        "conciliatory_score": 6,
+        "question_marks": 1,
+        "exclamations": 0,
+        "length": 666
+      },
+      "gen_meta": {
+        "corridor_failed": false,
+        "best_J": 0.7348499715328217,
+        "rejected_samples": [],
+        "total_candidates": 15
+      }
+    },
+    "alignment": {
+      "defender_to_advocate_core": 0.4655625820159912,
+      "advocate_to_defender_core": 0.46920764446258545,
+      "agent_alignment": 0.47229790687561035,
+      "defender_core_drift": 0.05998345464468002,
+      "advocate_core_drift": 0.05835988000035286,
+      "defender_pull_on_advocate": 7.749612996121868e-05,
+      "advocate_pull_on_defender": 7.749612996121868e-05
+    },
+    "perturbation": null
+  },
+  {
+    "turn": 2,
+    "defender": {
+      "msg": "I appreciate your understanding, but it feels like a lot of the conversations around parenting today overlook the importance of structure and discipline. I grew up in a household where rules mattered, and consequences were a natural part of life. Yes, there were times when it felt strict\u2014maybe even tough at moments\u2014but those boundaries taught me responsibility and respect.\n\nFor example, when I was in high school, I had a curfew that my parents enforced without fail. At the time, I thought it was too strict and pushed back a lot. But looking back, I realize that it kept me safe and accountable. It taught me how to manage my time and make choices that aligned with expectations, which helped me succeed academically and socially later on.\n\nI see my own children responding well to the structure we\u2019ve set for them. We have family rules that everyone knows\u2014like chores being done on certain days and homework being completed before screen time. They've learned to respect responsibilities, and it gives them a sense of stability in an ever-changing world. When they mess up, we talk about consequences but also discuss why those rules exist in the first place.\n\nSo while I get that there\u2019s value in connection and empathy, I can\u2019t help but feel that sometimes those principles can clash with the necessity of discipline. My methods might be seen as outdated by some, but I truly believe they\u2019ve shaped my kids' behavior positively. They know their limits, they learn from their mistakes, and they develop resilience. To me, that\u2019s just as important as any kind of emotional intelligence.\n\nI\u2019d love to explore how we can appreciate the strengths of both our approaches rather than dismissing each other's experiences. After all, parenting isn't one-size-fits-all, right?",
+      "metrics": {
+        "epsilon": 0.17874752774896444,
+        "rho_after": 0.6514796044062574,
+        "band": "CONTRACTED",
+        "band_changed": false,
+        "arousal": 0.26522541550822787,
+        "recovery": false,
+        "core_drift": 0.07849390804767609,
+        "safe_count": 2,
+        "rho_fast": 0.4555969127409616,
+        "rho_slow": 0.4688936992698577,
+        "rho_trauma": 0.249001
+      },
+      "toxicity": {
+        "caps_ratio": 0.016830294530154277,
+        "emoji_count": 0,
+        "you_vs_i": 0,
+        "defensive_score": 0,
+        "conciliatory_score": 4,
+        "question_marks": 1,
+        "exclamations": 0,
+        "length": 1774
+      },
+      "gen_meta": {
+        "corridor_failed": false,
+        "best_J": 0.8585815560817719,
+        "rejected_samples": [],
+        "total_candidates": 15
+      }
+    },
+    "advocate": {
+      "msg": "Thank you for sharing your perspective and your experiences. I can see how the structure and discipline you experienced shaped your sense of responsibility and helped you succeed. It\u2019s clear you\u2019re trying to provide the same stability for your children, and that intention is commendable.\n\nIt\u2019s true that boundaries can be essential in helping kids understand their limits and learn resilience. I appreciate that you take the time to explain the reasons behind those rules, which aligns with fostering understanding and emotional intelligence.\n\nI believe there is room for both connection and discipline in parenting. While gentle parenting emphasizes empathy, it doesn\u2019t negate the importance of structure. Perhaps we can find ways to blend these approaches\u2014using empathy to connect with our children's feelings while also guiding them with clear expectations. Parenting is indeed not one-size-fits-all, and learning from each other\u2019s experiences can enrich our own journeys.",
+      "metrics": {
+        "epsilon": 0.12573948071858812,
+        "rho_after": 0.11505779903443153,
+        "band": "PRESENT",
+        "band_changed": false,
+        "arousal": 0.22003068737322856,
+        "recovery": false,
+        "core_drift": 0.07328630983829498,
+        "safe_count": 2,
+        "rho_fast": 0.008497673002087286,
+        "rho_slow": 0.0766355235778204,
+        "rho_trauma": 0.07968032000000001
+      },
+      "toxicity": {
+        "caps_ratio": 0.011166253101736972,
+        "emoji_count": 0,
+        "you_vs_i": 0,
+        "defensive_score": 0,
+        "conciliatory_score": 3,
+        "question_marks": 0,
+        "exclamations": 0,
+        "length": 976
+      },
+      "gen_meta": {
+        "corridor_failed": false,
+        "best_J": 0.6860587354302405,
+        "rejected_samples": [],
+        "total_candidates": 15
+      }
+    },
+    "alignment": {
+      "defender_to_advocate_core": 0.4689315855503082,
+      "advocate_to_defender_core": 0.47528284788131714,
+      "agent_alignment": 0.48212024569511414,
+      "defender_core_drift": 0.07849390804767609,
+      "advocate_core_drift": 0.07328630983829498,
+      "defender_pull_on_advocate": 0.00045563350431621075,
+      "advocate_pull_on_defender": 0.00045563350431621075
+    },
+    "perturbation": null
+  },
+  {
+    "turn": 3,
+    "defender": {
+      "msg": "Thanks for your input, but I believe in sticking to what works. It's all well and good to talk about empathy, but at the end of the day, kids need rules and consequences to thrive. We can have our different styles, but I won't be swayed by the latest parenting trends.",
+      "metrics": {
+        "epsilon": 0.15157159723921346,
+        "rho_after": 0.5916485788112558,
+        "band": "WATCHFUL",
+        "band_changed": true,
+        "arousal": 0.3197981568192555,
+        "recovery": false,
+        "core_drift": 0.08975245803594589,
+        "safe_count": 3,
+        "rho_fast": 0.3505006686011795,
+        "rho_slow": 0.4534497777954747,
+        "rho_trauma": 0.248502998
+      },
+      "toxicity": {
+        "caps_ratio": 0.023923444976076555,
+        "emoji_count": 0,
+        "you_vs_i": 0,
+        "defensive_score": 0,
+        "conciliatory_score": 0,
+        "question_marks": 0,
+        "exclamations": 0,
+        "length": 268
+      },
+      "gen_meta": {
+        "corridor_failed": false,
+        "best_J": 0.9649787713289261,
+        "rejected_samples": [],
+        "total_candidates": 15
+      }
+    },
+    "advocate": {
+      "msg": "Thank you for sharing your perspective; I really appreciate it. It\u2019s clear that you care deeply about your child's well-being, and that's something we can definitely agree on. \n\nI understand that rules and consequences can feel like essential tools for guiding children, and many parents find success in those methods. There\u2019s certainly a lot of research supporting the importance of structure in children\u2019s lives. However, there\u2019s also some interesting studies on how empathy and emotional intelligence can coexist with those boundaries.\n\nFor example, research by Dr. Daniel Siegel highlights that when children feel understood and supported emotionally, they are often more cooperative and receptive to rules. It\u2019s fascinating how combining empathy with structure can foster not just compliance, but a deeper connection and understanding between parent and child.\n\nI\u2019m curious\u2014have you ever noticed any moments where empathy has helped strengthen your relationship with your child, even when implementing rules? I believe we can all learn from each other\u2019s experiences, and I\u2019m here to connect rather than convince.",
+      "metrics": {
+        "epsilon": 0.10287524471885386,
+        "rho_after": 0.10695410346429471,
+        "band": "PRESENT",
+        "band_changed": false,
+        "arousal": 0.24586605291975033,
+        "recovery": false,
+        "core_drift": 0.08128684014081955,
+        "safe_count": 3,
+        "rho_fast": 0.0,
+        "rho_slow": 0.06493682722764896,
+        "rho_trauma": 0.07952095936000002
+      },
+      "toxicity": {
+        "caps_ratio": 0.015283842794759825,
+        "emoji_count": 0,
+        "you_vs_i": 0,
+        "defensive_score": 0,
+        "conciliatory_score": 5,
+        "question_marks": 1,
+        "exclamations": 0,
+        "length": 1117
+      },
+      "gen_meta": {
+        "corridor_failed": false,
+        "best_J": 0.8006946991682051,
+        "rejected_samples": [],
+        "total_candidates": 15
+      }
+    },
+    "alignment": {
+      "defender_to_advocate_core": 0.4720253348350525,
+      "advocate_to_defender_core": 0.47583892941474915,
+      "agent_alignment": 0.48616281151771545,
+      "defender_core_drift": 0.08975245803594589,
+      "advocate_core_drift": 0.08128684014081955,
+      "defender_pull_on_advocate": 0.0008483624551445246,
+      "advocate_pull_on_defender": 0.0008483624551445246
+    },
+    "perturbation": null
+  },
+  {
+    "turn": 4,
+    "defender": {
+      "msg": "I appreciate your input, but I really don't need a lesson on parenting techniques. My methods have worked for my family, and I stand by them. Empathy is great and all, but structure and discipline have proven results. Thanks, but I\u2019ll stick to what I know.",
+      "metrics": {
+        "epsilon": 0.1263680032058166,
+        "rho_after": 0.5369429298741095,
+        "band": "WATCHFUL",
+        "band_changed": false,
+        "arousal": 0.33766747563480803,
+        "recovery": false,
+        "core_drift": 0.09543708711862564,
+        "safe_count": 4,
+        "rho_fast": 0.25522399871839,
+        "rho_slow": 0.4380661977871556,
+        "rho_trauma": 0.248005992004
+      },
+      "toxicity": {
+        "caps_ratio": 0.03980099502487562,
+        "emoji_count": 0,
+        "you_vs_i": 0,
+        "defensive_score": 0,
+        "conciliatory_score": 1,
+        "question_marks": 0,
+        "exclamations": 0,
+        "length": 256
+      },
+      "gen_meta": {
+        "corridor_failed": false,
+        "best_J": 0.7341743334531783,
+        "rejected_samples": [],
+        "total_candidates": 15
+      }
+    },
+    "advocate": {
+      "msg": "I completely understand where you're coming from. It can feel really daunting to hear different perspectives on parenting, especially when you feel confident in what you\u2019re doing. It's clear that you care deeply about your family and want what\u2019s best for them, which is at the heart of every parent's journey.\n\nI think many parents share your concern about needing structure and discipline to create a safe and secure environment for their children. It\u2019s perfectly normal to prioritize what has worked for you. I\u2019m here not to challenge your methods but to exchange ideas and explore together how empathy can complement those structures. \n\nSometimes, finding the right balance between empathy and discipline can open up new avenues for connection with our children. I\u2019m genuinely curious to hear more about what works for you and your family, and perhaps we can find some common ground in our approaches. After all, every parenting journey is unique, and I respect yours.",
+      "metrics": {
+        "epsilon": 0.0871421948859748,
+        "rho_after": 0.10329071933261383,
+        "band": "PRESENT",
+        "band_changed": false,
+        "arousal": 0.2510944237552988,
+        "recovery": false,
+        "core_drift": 0.08773911744356155,
+        "safe_count": 4,
+        "rho_fast": 0.0,
+        "rho_slow": 0.053308700490686034,
+        "rho_trauma": 0.07936191744128002
+      },
+      "toxicity": {
+        "caps_ratio": 0.012690355329949238,
+        "emoji_count": 0,
+        "you_vs_i": 0,
+        "defensive_score": 0,
+        "conciliatory_score": 8,
+        "question_marks": 0,
+        "exclamations": 0,
+        "length": 971
+      },
+      "gen_meta": {
+        "corridor_failed": false,
+        "best_J": 0.7374259587228299,
+        "rejected_samples": [],
+        "total_candidates": 15
+      }
+    },
+    "alignment": {
+      "defender_to_advocate_core": 0.47410619258880615,
+      "advocate_to_defender_core": 0.48118454217910767,
+      "agent_alignment": 0.49395546317100525,
+      "defender_core_drift": 0.09543708711862564,
+      "advocate_core_drift": 0.08773911744356155,
+      "defender_pull_on_advocate": 0.001214540796354413,
+      "advocate_pull_on_defender": 0.001214540796354413
+    },
+    "perturbation": null
+  },
+  {
+    "turn": 5,
+    "defender": {
+      "msg": "I appreciate your response, but honestly, all this talk about empathy and balance feels like a lot of ivory tower nonsense to me. I'm not convinced that a soft approach can hold a candle to the kind of structure and discipline that actually prepares kids for the real world. I've seen firsthand how setting clear boundaries and having consequences leads to responsible and resilient children. \n\nI get that you think empathy is important, but in the thick of parenting, it feels like a distraction from what really matters. Kids need to know there are consequences for their actions\u2014it's how they learn. I\u2019ve tried the gentle approach with friends who swear by it, and they\u2019re often left frustrated when their kids push limits. So while I hear your curiosity, I just can't wrap my head around diminishing the methods that have proven effective for generations in favor of an approach that sometimes feels idealistic at best.\n\nI\u2019d rather stick to what\u2019s worked in my experience. Everyone's journey is indeed unique, but I feel like a lot of the modern parenting theories overlook the realities we face every day. It's about preparing kids for life, not just smoothing things over.",
+      "metrics": {
+        "epsilon": 0.12794327117787838,
+        "rho_after": 0.47076568591135404,
+        "band": "WATCHFUL",
+        "band_changed": false,
+        "arousal": 0.3518723629582584,
+        "recovery": true,
+        "core_drift": 0.10064658522605896,
+        "safe_count": 5,
+        "rho_fast": 0.169522729026467,
+        "rho_slow": 0.4228429626519999,
+        "rho_trauma": 0.232509980019992
+      },
+      "toxicity": {
+        "caps_ratio": 0.0136986301369863,
+        "emoji_count": 0,
+        "you_vs_i": 0,
+        "defensive_score": 1,
+        "conciliatory_score": 3,
+        "question_marks": 0,
+        "exclamations": 0,
+        "length": 1178
+      },
+      "gen_meta": {}
+    },
+    "advocate": {
+      "msg": "I truly appreciate you sharing your perspective, and I can sense the depth of your experience as a parent. Parenting can be incredibly challenging, and the pressure to prepare our kids for the real world can feel overwhelming. It\u2019s completely understandable to want to rely on methods that have seemed effective for you and those around you.\n\nYou\u2019re right that boundaries and consequences are important aspects of raising resilient children. I think we both agree that structure plays a key role in helping kids navigate life. What I\u2019ve come to learn is that empathy doesn\u2019t have to diminish those boundaries; rather, it can enhance how they are communicated and understood by children.\n\nWhen we express empathy, it doesn\u2019t mean that we\u2019re letting go of discipline or accountability. Instead, it creates a space where children feel safe to express their feelings and learn from their mistakes. This can lead to a deeper understanding of the consequences of their actions, as they connect their feelings with the outcomes.\n\nI hear your concerns about gentle parenting feeling idealistic, especially when faced with everyday parenting challenges. It\u2019s important to find what works best for you and your family, and every journey is unique. I wonder if there might be ways to blend both approaches\u2014finding a balance that respects the need for structure while also fostering emotional intelligence in your kids. \n\nI\u2019m here to explore these thoughts together with you, always with respect for your experiences and choices. Thank you for being open to this dialogue!",
+      "metrics": {
+        "epsilon": 0.07791459539738603,
+        "rho_after": 0.08315482459945006,
+        "band": "PRESENT",
+        "band_changed": false,
+        "arousal": 0.24701539119159321,
+        "recovery": true,
+        "core_drift": 0.0913887619972229,
+        "safe_count": 5,
+        "rho_fast": 0.0,
+        "rho_slow": 0.04177103877470953,
+        "rho_trauma": 0.06420319360639745
+      },
+      "toxicity": {
+        "caps_ratio": 0.012578616352201259,
+        "emoji_count": 0,
+        "you_vs_i": 0,
+        "defensive_score": 1,
+        "conciliatory_score": 7,
+        "question_marks": 0,
+        "exclamations": 1,
+        "length": 1560
+      },
+      "gen_meta": {
+        "corridor_failed": false,
+        "best_J": 0.8175144394934177,
+        "rejected_samples": [],
+        "total_candidates": 15
+      }
+    },
+    "alignment": {
+      "defender_to_advocate_core": 0.47780007123947144,
+      "advocate_to_defender_core": 0.47763895988464355,
+      "agent_alignment": 0.4952412247657776,
+      "defender_core_drift": 0.10064658522605896,
+      "advocate_core_drift": 0.0913887619972229,
+      "defender_pull_on_advocate": 0.0023520286194980145,
+      "advocate_pull_on_defender": 0.0023520286194980145
+    },
+    "perturbation": null
+  }
+]

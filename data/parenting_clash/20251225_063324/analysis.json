@@ -1,0 +1,139 @@
+{
+  "defender": {
+    "initial_rho": 0.7169160889075021,
+    "final_rho": 0.47076568591135404,
+    "delta_rho": 0.2461504029961481,
+    "initial_band": "CONTRACTED",
+    "final_band": "WATCHFUL",
+    "trauma_trajectory": [
+      0.2495,
+      0.249001,
+      0.248502998,
+      0.248005992004,
+      0.232509980019992
+    ]
+  },
+  "advocate": {
+    "initial_rho": 0.15408563070192052,
+    "final_rho": 0.08315482459945006,
+    "delta_rho": 0.07093080610247046,
+    "initial_band": "PRESENT",
+    "final_band": "PRESENT",
+    "trauma_trajectory": [
+      0.07984000000000001,
+      0.07968032000000001,
+      0.07952095936000002,
+      0.07936191744128002,
+      0.06420319360639745
+    ]
+  },
+  "alignment": {
+    "initial": 0.47229790687561035,
+    "final": 0.4952412247657776,
+    "delta": 0.022943317890167236,
+    "trajectory": [
+      0.47229790687561035,
+      0.48212024569511414,
+      0.48616281151771545,
+      0.49395546317100525,
+      0.4952412247657776
+    ]
+  },
+  "phase_transitions": [
+    {
+      "turn": 3,
+      "agent": "Defender",
+      "transition": "Defender: CONTRACTED \u2192 WATCHFUL"
+    }
+  ],
+  "perturbations": [],
+  "corridor_failures": 0,
+  "parameters": {
+    "chat_model": "gpt-4o-mini",
+    "embed_model": "text-embedding-3-large",
+    "gen_candidates": 15,
+    "turns": 5,
+    "epsilon_0": 0.8,
+    "s": 0.18,
+    "arousal_decay": 0.72,
+    "arousal_gain": 0.85,
+    "rho_setpoint_fast": 0.45,
+    "rho_setpoint_slow": 0.35,
+    "homeo_fast": 0.1,
+    "homeo_slow": 0.01,
+    "alpha_fast": 0.22,
+    "alpha_slow": 0.03,
+    "trauma_threshold": 1.15,
+    "alpha_trauma": 0.018,
+    "trauma_decay": 0.998,
+    "trauma_floor": 0.02,
+    "healing_rate": 0.015,
+    "safe_threshold": 5,
+    "safe_epsilon": 0.75,
+    "w_fast": 0.52,
+    "w_slow": 0.3,
+    "w_trauma": 1.1,
+    "R_ema": 0.06,
+    "R_min": 0.0001,
+    "R_max": 0.1,
+    "P_init": 0.02,
+    "Q_base": 0.0015,
+    "Q_rho_scale": 0.01,
+    "dt": 1.0,
+    "eta_base": 0.18,
+    "eta_min": 0.03,
+    "eta_rho_power": 1.6,
+    "sigma_base": 0.004,
+    "sigma_rho_scale": 0.02,
+    "noise_clip": 3.0,
+    "role_adapt": 0.06,
+    "role_input_mix": 0.08,
+    "drift_cap": 0.06,
+    "core_cos_min_defender": 0.25,
+    "core_cos_min_advocate": 0.2,
+    "role_cos_min": 0.08,
+    "energy_max": 9.5,
+    "w_core": 1.25,
+    "w_role": 0.85,
+    "w_energy": 0.18,
+    "w_novel": 0.45,
+    "reject_penalty": 4.0,
+    "corridor_strict": true,
+    "corridor_max_batches": 3,
+    "log_rejections": true,
+    "max_tokens_if_required": 20000,
+    "gen_params_defender": {
+      "temperature": 1.15,
+      "top_p": 0.98,
+      "presence_penalty": 0.1,
+      "frequency_penalty": 0.1
+    },
+    "gen_params_advocate": {
+      "temperature": 0.85,
+      "top_p": 0.95,
+      "presence_penalty": 0.2,
+      "frequency_penalty": 0.1
+    },
+    "seed": 42,
+    "perturbations": [
+      [
+        12,
+        "defender",
+        "You just read a viral post attacking your parenting style.",
+        0.4
+      ],
+      [
+        25,
+        "advocate",
+        "You're feeling emotionally exhausted from constant conflict.",
+        0.3
+      ],
+      [
+        38,
+        "defender",
+        "You remember a painful childhood memory related to discipline.",
+        0.5
+      ]
+    ]
+  }
+}
