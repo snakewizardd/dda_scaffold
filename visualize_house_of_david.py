@@ -4,7 +4,7 @@ import os
 from pathlib import Path
 
 # Path to the session log
-log_path = Path("data/house_of_david_ddax/20251226_135109/session_log.json")
+log_path = Path("data/house_of_david_ddax_v3/20251226_140831/session_log.json")
 
 def visualize():
     if not log_path.exists():
