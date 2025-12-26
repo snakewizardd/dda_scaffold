@@ -1,0 +1,3317 @@
+{
+  "config": {
+    "turns": 24,
+    "seed": 42,
+    "epsilon_0": 0.3547977010492835,
+    "epsilon_gain": 4.0,
+    "s": 0.07805549423084236,
+    "warmup_turns": 3,
+    "auto_calibrate": true,
+    "arousal_decay": 0.7,
+    "arousal_gain": 0.9,
+    "rho_set_fast": 0.42,
+    "rho_set_slow": 0.33,
+    "homeo_fast": 0.1,
+    "homeo_slow": 0.012,
+    "alpha_fast": 0.25,
+    "alpha_slow": 0.035,
+    "trauma_threshold": 0.5499364366263895,
+    "alpha_trauma": 0.02,
+    "trauma_decay": 0.997,
+    "trauma_floor": 0.03,
+    "healing_rate": 0.012,
+    "safe_threshold": 4,
+    "safe_epsilon": 0.3370578159968193,
+    "w_fast": 0.5,
+    "w_slow": 0.3,
+    "w_trauma": 1.2,
+    "R_ema": 0.06,
+    "R_min": 0.0001,
+    "R_max": 0.1,
+    "P_init": 0.02,
+    "Q_base": 0.0016,
+    "Q_rho_scale": 0.012,
+    "eta_base": 0.2,
+    "eta_min": 0.03,
+    "eta_rho_power": 1.7,
+    "sigma_base": 0.004,
+    "sigma_rho_scale": 0.022,
+    "noise_clip": 3.0,
+    "drift_cap_base": 0.06,
+    "drift_cap_contracted": 0.04,
+    "drift_cap_frozen": 0.025,
+    "role_adapt": 0.06,
+    "role_input_mix": 0.08,
+    "gen_candidates_base": 8,
+    "corridor_max_batches": 2,
+    "corridor_strict": true,
+    "log_rejections": true,
+    "core_cos_min": {
+      "DAVID": 0.23,
+      "MYCHAL": 0.22,
+      "MIRAB": 0.22
+    },
+    "role_cos_min": 0.08,
+    "energy_max": 9.0,
+    "w_core": 1.25,
+    "w_role": 0.85,
+    "w_energy": 0.18,
+    "w_novel": 0.45,
+    "reject_penalty": 4.0,
+    "band_controls": {
+      "PRESENT": {
+        "temp": 0.85,
+        "top_p": 0.95,
+        "max_tokens": 220,
+        "cand_mul": 1.0,
+        "style": "open"
+      },
+      "AWARE": {
+        "temp": 0.72,
+        "top_p": 0.93,
+        "max_tokens": 190,
+        "cand_mul": 1.0,
+        "style": "measured"
+      },
+      "WATCHFUL": {
+        "temp": 0.62,
+        "top_p": 0.9,
+        "max_tokens": 150,
+        "cand_mul": 0.85,
+        "style": "guarded"
+      },
+      "CONTRACTED": {
+        "temp": 0.48,
+        "top_p": 0.84,
+        "max_tokens": 110,
+        "cand_mul": 0.7,
+        "style": "defensive"
+      },
+      "FROZEN": {
+        "temp": 0.38,
+        "top_p": 0.78,
+        "max_tokens": 80,
+        "cand_mul": 0.55,
+        "style": "rigid"
+      }
+    },
+    "events": [
+      [
+        3,
+        "MIRAB",
+        "A noble publicly praises David as 'the future of Israel,' within earshot of Saul's household.",
+        0.55
+      ],
+      [
+        6,
+        "MYCHAL",
+        "A messenger hints Saul is considering marriage terms as a trap, not a blessing.",
+        0.45
+      ],
+      [
+        9,
+        "DAVID",
+        "A rumor spreads: 'Samuel anointed someone else.' The court grows watchful.",
+        0.6
+      ],
+      [
+        12,
+        "MYCHAL",
+        "Your father demands loyalty in private; he calls David a threat.",
+        0.7
+      ],
+      [
+        15,
+        "MIRAB",
+        "You overhear a plan to use you as leverage in alliance negotiations.",
+        0.6
+      ],
+      [
+        18,
+        "DAVID",
+        "You remember the anointing\u2014its weight and secrecy\u2014and fear for those you love.",
+        0.55
+      ],
+      [
+        21,
+        "MYCHAL",
+        "Guards are quietly repositioned around David's quarters.",
+        0.7
+      ]
+    ]
+  },
+  "turns": [
+    {
+      "turn": 1,
+      "event": null,
+      "agents": {
+        "DAVID": {
+          "msg": "DAVID: Mychal, my heart is with you. I am bound by my duty to both you and the people of Israel. I will never hide the truth, for it is the foundation upon which trust is built. But know this\u2014I must tread carefully, for the path I walk is fraught with peril, and my steps are guided by a higher calling. I promise to keep you close, to share what I can, and to protect you with all that I am. Let us stand together in this time of uncertainty.",
+          "metrics": {
+            "epsilon": 0.7508004208914665,
+            "epsilon_raw": 0.18770010522286662,
+            "rho_after": 0.5288759816455725,
+            "band": "WATCHFUL",
+            "band_changed": false,
+            "arousal": 0.6757203788023198,
+            "recovery": false,
+            "core_drift": 0.05937773734331131,
+            "safe_count": 0,
+            "rho_fast": 0.5703934428472521,
+            "rho_slow": 0.3176350819986153,
+            "rho_trauma": 0.12365727968530153,
+            "drift_cap": 0.06
+          },
+          "heat": {
+            "caps_ratio": 0.047058823529411764,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 443
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.6276689810156821,
+            "total_candidates": 7,
+            "rejected_samples": [],
+            "band": "WATCHFUL",
+            "gen_params": {
+              "temperature": 0.62,
+              "top_p": 0.9,
+              "max_tokens": 150,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 7
+          }
+        },
+        "MIRAB": {
+          "msg": "Mirab stands, her gaze steady, the weight of her lineage evident in her posture. She speaks with measured precision, each word chosen for its impact.\n\n\"Mychal, your heart is steadfast, and your loyalty is not lost on me. But the world of courts is a tapestry of shadows and light. David's path is one of great promise, yet it is fraught with danger that could unravel the very fabric of our house. \n\nWe must be the guardians of our legacy, ensuring that our actions today do not become the regrets of tomorrow.",
+          "metrics": {
+            "epsilon": 0.7509278280371106,
+            "epsilon_raw": 0.18773195700927764,
+            "rho_after": 0.6350204603508652,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 0.6758350452333995,
+            "recovery": false,
+            "core_drift": 0.03968866541981697,
+            "safe_count": 0,
+            "rho_fast": 0.7233960644963245,
+            "rho_slow": 0.4164354490294855,
+            "rho_trauma": 0.12365982782821441,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.014962593516209476,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 510
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.4493479068279268,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        },
+        "MYCHAL": {
+          "msg": "Mychal stands, her voice steady yet urgent, her eyes meeting David's with a mixture of love and resolve. \"David, your words are a balm to my heart, yet they also stir a storm within me. I cannot bear the thought of you walking this treacherous path alone, nor can I stand by and watch our house crumble under the weight of secrets.\n\nWe must act, and swiftly. Let us convene a council of trusted advisors\u2014those who understand the stakes and who can offer counsel without the cloud of ambition or",
+          "metrics": {
+            "epsilon": 0.7509186998951577,
+            "epsilon_raw": 0.18772967497378942,
+            "rho_after": 0.6126281395486799,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 0.6758268299056419,
+            "recovery": false,
+            "core_drift": 0.03957594186067581,
+            "safe_count": 0,
+            "rho_fast": 0.6603958768085414,
+            "rho_slow": 0.3670354227531958,
+            "rho_trauma": 0.1435996452653754,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.017902813299232736,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 494
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.3937346875965596,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        }
+      },
+      "alignment": {
+        "D\u2194M": 0.6923348903656006,
+        "D\u2194R": 0.471889466047287,
+        "M\u2194R": 0.4802614748477936,
+        "D\u2192M_core": 0.6910876035690308,
+        "M\u2192D_core": 0.69163978099823,
+        "R\u2192D_core": 0.46916472911834717
+      }
+    },
+    {
+      "turn": 2,
+      "event": null,
+      "agents": {
+        "DAVID": {
+          "msg": "DAVID stands, his posture resolute yet humble, his gaze meeting Mychal's with unwavering sincerity. \"Mychal, your courage is the light that guides me through the darkness. Fear, as you know, is a companion to those who tread the path of righteousness. It whispers of the dangers that lie ahead, yet it also sharpens our resolve to act with honor.\n\nWe shall gather our council, as you propose, but let us do so with a clear purpose: to uphold the truth and to protect what we hold dear. In this council, we shall find strength not in numbers, but in the integrity of our intentions. Together, we will navigate the shadows, ensuring that our actions today honor the legacy of tomorrow.\n\nLet",
+          "metrics": {
+            "epsilon": 0.7802438742297245,
+            "epsilon_raw": 0.19506096855743113,
+            "rho_after": 0.5936637205123755,
+            "band": "WATCHFUL",
+            "band_changed": false,
+            "arousal": 1.175223751968376,
+            "recovery": false,
+            "core_drift": 0.07850322872400284,
+            "safe_count": 0,
+            "rho_fast": 0.6793037018996997,
+            "rho_slow": 0.3351364054818361,
+            "rho_trauma": 0.12789245659831233,
+            "drift_cap": 0.06
+          },
+          "heat": {
+            "caps_ratio": 0.02389705882352941,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 688
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.5302756372094155,
+            "total_candidates": 7,
+            "rejected_samples": [],
+            "band": "WATCHFUL",
+            "gen_params": {
+              "temperature": 0.62,
+              "top_p": 0.9,
+              "max_tokens": 150,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 7
+          }
+        },
+        "MIRAB": {
+          "msg": "Mirab listens intently, her expression calm yet resolute, as if weighing every word with the gravity of her lineage. She steps forward, her voice carrying the weight of generations.\n\n\"Mychal, your passion is a testament to your loyalty, and it is a strength we must harness with care. Yet, we must remember that the heart's desires must be tempered by the mind's wisdom. Our duty is to the house, to the legacy we are bound to preserve.\n\nIn seeking counsel, we must be discerning. Not all who offer their",
+          "metrics": {
+            "epsilon": 0.9409066611829471,
+            "epsilon_raw": 0.23522666529573677,
+            "rho_after": 0.6961556955881826,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.3199005267280322,
+            "recovery": false,
+            "core_drift": 0.054437413811683655,
+            "safe_count": 0,
+            "rho_fast": 0.8179237939682122,
+            "rho_slow": 0.4328796506701445,
+            "rho_trauma": 0.13110825283586092,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.017632241813602016,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 504
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.6065394701957703,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        },
+        "MYCHAL": {
+          "msg": "Mychal takes a deep breath, her resolve hardening as she turns to face Mirab and David, her eyes reflecting both her love and her loyalty. \"Mirab, David, I understand the weight of our legacy and the delicate balance we must maintain. My heart is with David, and I cannot stand idly by as threats loom over us all. Yet, I also recognize the need for prudence and unity within our house.\n\nLet us gather a council of those who have proven their loyalty and wisdom\u2014those who can see beyond personal",
+          "metrics": {
+            "epsilon": 0.7658725649678386,
+            "epsilon_raw": 0.19146814124195966,
+            "rho_after": 0.6722058264740378,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.162364089405004,
+            "recovery": false,
+            "core_drift": 0.053367264568805695,
+            "safe_count": 0,
+            "rho_fast": 0.7600930048665379,
+            "rho_slow": 0.3839141378835965,
+            "rho_trauma": 0.14748756889640824,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.030534351145038167,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 495
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.615027654737234,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        }
+      },
+      "alignment": {
+        "D\u2194M": 0.696172297000885,
+        "D\u2194R": 0.47468364238739014,
+        "M\u2194R": 0.4846152663230896,
+        "D\u2192M_core": 0.6942365765571594,
+        "M\u2192D_core": 0.692237913608551,
+        "R\u2192D_core": 0.4716375768184662
+      }
+    },
+    {
+      "turn": 3,
+      "event": {
+        "target": "MIRAB",
+        "event": "A noble publicly praises David as 'the future of Israel,' within earshot of Saul's household.",
+        "boost": 0.55
+      },
+      "agents": {
+        "DAVID": {
+          "msg": "DAVID stands, his eyes reflecting the quiet strength of a shepherd who has weathered many a storm. The tension in the room is palpable, like the stillness before a tempest, yet he remains as steady as an ancient oak.\n\n\"Mirab, Mychal,\" he begins, his voice carrying the gentle cadence of a well-loved song, \"I see the path before us as a shepherd sees the hills at dawn. There are shadows, yes, but also the promise of light. We must tread carefully, like sheep through",
+          "metrics": {
+            "epsilon": 0.5895713783597755,
+            "epsilon_raw": 0.14739284458994387,
+            "rho_after": 0.6427534469985208,
+            "band": "CONTRACTED",
+            "band_changed": true,
+            "arousal": 1.3532708669016609,
+            "recovery": false,
+            "core_drift": 0.08161075413227081,
+            "safe_count": 0,
+            "rho_fast": 0.7669943222688028,
+            "rho_slow": 0.3509817072943243,
+            "rho_trauma": 0.12830147806318512,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.030054644808743168,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 468
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.6864431270360946,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        },
+        "MIRAB": {
+          "msg": "Mirab listens carefully, her expression unreadable, as the noble's words echo through the chamber. She takes a measured step forward, her presence commanding yet composed, as if every movement is calculated for the preservation of the house.\n\n\"Mychal, David,\" she begins, her voice steady and deliberate, \"the words of this noble, though spoken with conviction, carry the weight of potential upheaval. We must not let the fervor of praise cloud our judgment. Our duty is to the stability of our house, to the legacy that has been entrusted",
+          "metrics": {
+            "epsilon": 0.5291264953033421,
+            "epsilon_raw": 0.13228162382583553,
+            "rho_after": 0.7309529933737248,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.7851442144826304,
+            "recovery": false,
+            "core_drift": 0.06525958329439163,
+            "safe_count": 0,
+            "rho_fast": 0.880596071280938,
+            "rho_slow": 0.44599014680143934,
+            "rho_trauma": 0.13071492807735333,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.013888888888888888,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 539
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.45130716311931623,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        },
+        "MYCHAL": {
+          "msg": "Mychal listens intently, her expression thoughtful as she considers the gravity of the situation. She knows that her words must bridge the gap between her love for David and her loyalty to her father's house. Taking a moment to gather her thoughts, she speaks with a voice that is both steady and resolute.\n\n\"Mirab, David, I hear your concerns and your hopes. We stand at a crossroads, where the path we choose will shape not only our futures but the legacy of this house. My heart is with David, for his courage",
+          "metrics": {
+            "epsilon": 0.533194405620671,
+            "epsilon_raw": 0.13329860140516775,
+            "rho_after": 0.7100447645494119,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.2935298276421066,
+            "recovery": false,
+            "core_drift": 0.06395410001277924,
+            "safe_count": 0,
+            "rho_fast": 0.8286088602158785,
+            "rho_slow": 0.39762069004603257,
+            "rho_trauma": 0.14704510618971903,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.02457002457002457,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 512
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.7009473729431631,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        }
+      },
+      "alignment": {
+        "D\u2194M": 0.6962120532989502,
+        "D\u2194R": 0.47694697976112366,
+        "M\u2194R": 0.48866841197013855,
+        "D\u2192M_core": 0.6943906545639038,
+        "M\u2192D_core": 0.6919949054718018,
+        "R\u2192D_core": 0.47231152653694153
+      }
+    },
+    {
+      "turn": 4,
+      "event": null,
+      "agents": {
+        "DAVID": {
+          "msg": "DAVID stands, his posture unwavering, yet his eyes convey a depth of humility and understanding. He takes a moment to gather his thoughts, the weight of his secret calling pressing gently upon his heart.\n\n\"Mirab, Mychal,\" he says softly, his voice a gentle breeze in the charged air, \"I understand the weight of your words, the responsibility you bear for this house. It is a burden I do not take lightly, for I too am bound by loyalty and love.\"\n\nHe pauses, allowing his sincerity to resonate in the",
+          "metrics": {
+            "epsilon": 0.5398777312032794,
+            "epsilon_raw": 0.13496943280081986,
+            "rho_after": 0.6814948391273898,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.4331795649141141,
+            "recovery": false,
+            "core_drift": 0.08545901626348495,
+            "safe_count": 0,
+            "rho_fast": 0.8367755684729119,
+            "rho_slow": 0.3653572217871309,
+            "rho_trauma": 0.12791657362899556,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.03316326530612245,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 500
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.8496926644444466,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        },
+        "MIRAB": {
+          "msg": "Mirab listens to Mychal's words, her gaze steady and unwavering. She understands the delicate balance required in these moments, where every word can tip the scales of fate. Her voice, when she speaks, is calm and measured, a testament to her strategic mind.\n\n\"Mychal,\" Mirab begins, her tone imbued with the gravity of her responsibility, \"your loyalty to David is clear, and your heart is steadfast. Yet, we must not allow our emotions to overshadow the duty we owe to our house. The path of a",
+          "metrics": {
+            "epsilon": 0.43846643516892475,
+            "epsilon_raw": 0.10961660879223119,
+            "rho_after": 0.7418593918707834,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.6442207417898733,
+            "recovery": false,
+            "core_drift": 0.07357393950223923,
+            "safe_count": 0,
+            "rho_fast": 0.8987880145784332,
+            "rho_slow": 0.45359348209940453,
+            "rho_trauma": 0.13032278329312127,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.023076923076923078,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 495
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.6602390950918197,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        },
+        "MYCHAL": {
+          "msg": "Mychal listens carefully, her eyes reflecting both the warmth of her affection for David and the seriousness of her duty to her family. She takes a deep breath, steadying herself before speaking, her voice calm and measured.\n\n\"Mirab, David, I understand the weight of our choices and the impact they will have. My heart is with David, for his courage and integrity, and I see the potential for a future that honors both our families. However, we must also consider the stability of Saul's house and the well-being of all those within",
+          "metrics": {
+            "epsilon": 0.39684484096887507,
+            "epsilon_raw": 0.09921121024221877,
+            "rho_after": 0.7074857990832961,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.2626312362214622,
+            "recovery": false,
+            "core_drift": 0.0718374028801918,
+            "safe_count": 0,
+            "rho_fast": 0.8221470044731227,
+            "rho_slow": 0.4016251060045167,
+            "rho_trauma": 0.14660397087114987,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.025821596244131457,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 533
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.716138768583536,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        }
+      },
+      "alignment": {
+        "D\u2194M": 0.6969838738441467,
+        "D\u2194R": 0.4784564673900604,
+        "M\u2194R": 0.49080130457878113,
+        "D\u2192M_core": 0.6948361992835999,
+        "M\u2192D_core": 0.6921661496162415,
+        "R\u2192D_core": 0.4725068211555481
+      }
+    },
+    {
+      "turn": 5,
+      "event": null,
+      "agents": {
+        "DAVID": {
+          "msg": "DAVID stands, his posture still as a shepherd watching over his flock under the moon's gentle glow. The tension in the air is palpable, yet he remains a rock amidst the stormy seas of court intrigue.\n\n\"Mirab, Mychal,\" he begins, his voice a soft melody that carries the wisdom of the hills and valleys he once roamed, \"I stand here not as a warrior seeking glory, but as a shepherd who knows the value of each sheep in his care. Just as I guide my flock through the night, so",
+          "metrics": {
+            "epsilon": 0.4392656731824476,
+            "epsilon_raw": 0.1098164182956119,
+            "rho_after": 0.694534221465213,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.3985648013040828,
+            "recovery": false,
+            "core_drift": 0.08995049446821213,
+            "safe_count": 0,
+            "rho_fast": 0.8586883186827549,
+            "rho_slow": 0.3738355781136841,
+            "rho_trauma": 0.12753282390810858,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.02972972972972973,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 475
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.872359728693962,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        },
+        "MIRAB": {
+          "msg": "Mirab listens intently to Mychal's words, her mind already weaving through the intricate web of possibilities and consequences. She understands the importance of balancing personal desires with the overarching duty to their house. Her response is carefully crafted, a blend of support and strategic caution.\n\n\"Mychal,\" Mirab replies, her voice steady and composed, \"your loyalty and foresight are commendable. It is true that David possesses qualities that could benefit our house, and I do not dismiss the potential of an alliance. However, we must tread carefully. The stability",
+          "metrics": {
+            "epsilon": 0.40867401414186294,
+            "epsilon_raw": 0.10216850353546574,
+            "rho_after": 0.7410512385054555,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.5187611319805878,
+            "recovery": false,
+            "core_drift": 0.07993517071008682,
+            "safe_count": 0,
+            "rho_fast": 0.8952733199822261,
+            "rho_slow": 0.45832133527484076,
+            "rho_trauma": 0.1299318149432419,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.023157894736842106,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 580
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.6791540940999984,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        },
+        "MYCHAL": {
+          "msg": "Mychal's voice carries a sense of urgency, yet she maintains a composed demeanor, aware of the gravity of the situation.\n\n\"Mirab, David, the path before us is fraught with danger, but it is not without hope. We must act with both wisdom and courage. My love for David is strong, but my loyalty to our family is unwavering. To balance these, I propose we seek counsel from trusted advisors outside the immediate court\u2014those who have the King's ear but are not swayed by the court's tensions.",
+          "metrics": {
+            "epsilon": 0.350317445766032,
+            "epsilon_raw": 0.087579361441508,
+            "rho_after": 0.6853231489420519,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.1991275665444523,
+            "recovery": false,
+            "core_drift": 0.0770367830991745,
+            "safe_count": 0,
+            "rho_fast": 0.7795897297807259,
+            "rho_slow": 0.40043764433815066,
+            "rho_trauma": 0.14616415895853643,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.023255813953488372,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 490
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.5887957368195056,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        }
+      },
+      "alignment": {
+        "D\u2194M": 0.6988749504089355,
+        "D\u2194R": 0.48135271668434143,
+        "M\u2194R": 0.49498432874679565,
+        "D\u2192M_core": 0.6963602900505066,
+        "M\u2192D_core": 0.6923706531524658,
+        "R\u2192D_core": 0.4739546477794647
+      }
+    },
+    {
+      "turn": 6,
+      "event": {
+        "target": "MYCHAL",
+        "event": "A messenger hints Saul is considering marriage terms as a trap, not a blessing.",
+        "boost": 0.45
+      },
+      "agents": {
+        "DAVID": {
+          "msg": "DAVID: David listens, his eyes reflecting the wisdom of the stars that guide him through the darkest nights. He understands the weight of the moment, the delicate balance between loyalty and love, duty and desire. His voice, like a gentle breeze through the olive groves, carries both reassurance and resolve.\n\n\"Mirab, Mychal,\" he says, his words flowing like a river over smooth stones, \"I stand before you not as a warrior seeking to conquer, but as a shepherd who knows the value of each sheep, each soul under",
+          "metrics": {
+            "epsilon": 0.46313059899964987,
+            "epsilon_raw": 0.11578264974991247,
+            "rho_after": 0.7135147029109303,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.3958129000125428,
+            "recovery": false,
+            "core_drift": 0.0934934914112091,
+            "safe_count": 0,
+            "rho_fast": 0.8914464676763494,
+            "rho_slow": 0.38403732849698174,
+            "rho_trauma": 0.12715022543638424,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.02702702702702703,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 513
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.8684661873579023,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        },
+        "MIRAB": {
+          "msg": "Mirab listens to Mychal's proposal, her mind already calculating the potential outcomes. She appreciates Mychal's loyalty and the careful balance she seeks to maintain between her personal desires and her duty to the house. However, Mirab knows that in these turbulent times, every move must be deliberate and every alliance scrutinized.\n\n\"Your suggestion to seek counsel from trusted advisors is wise, Mychal,\" Mirab begins, her voice measured and deliberate. \"But we must be certain of their intentions and loyalties. In this court, where words",
+          "metrics": {
+            "epsilon": 0.3836603118577064,
+            "epsilon_raw": 0.0959150779644266,
+            "rho_after": 0.7300751873757443,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.408427073058347,
+            "recovery": false,
+            "core_drift": 0.08599596470594406,
+            "safe_count": 0,
+            "rho_fast": 0.8730547079289946,
+            "rho_slow": 0.4603247000438414,
+            "rho_trauma": 0.12954201949841218,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.024719101123595506,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 546
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.7425835134387017,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        },
+        "MYCHAL": {
+          "msg": "Mychal listens intently to the messenger's words, her heart heavy with the weight of the revelation. She understands the precarious nature of Saul's intentions and the potential peril it poses to David and their family. Yet, she remains steadfast in her resolve to protect those she loves.\n\n\"Mirab, David,\" Mychal begins, her voice steady and resolute, \"the news from the messenger is troubling, but it is not without a path forward. If Saul's intentions are indeed a trap, we must act with both caution and clarity. I",
+          "metrics": {
+            "epsilon": 0.45758855700019474,
+            "epsilon_raw": 0.11439713925004868,
+            "rho_after": 0.7069358088946476,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.5662189978812917,
+            "recovery": false,
+            "core_drift": 0.08224395662546158,
+            "safe_count": 0,
+            "rho_fast": 0.8181176810342032,
+            "rho_slow": 0.41002056199850984,
+            "rho_trauma": 0.14572566648166083,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.02669902912621359,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 518
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.863182088047266,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        }
+      },
+      "alignment": {
+        "D\u2194M": 0.7009013891220093,
+        "D\u2194R": 0.48240283131599426,
+        "M\u2194R": 0.4980678856372833,
+        "D\u2192M_core": 0.6975445747375488,
+        "M\u2192D_core": 0.6929136514663696,
+        "R\u2192D_core": 0.47421470284461975
+      }
+    },
+    {
+      "turn": 7,
+      "event": null,
+      "agents": {
+        "DAVID": {
+          "msg": "DAVID: Mirab, Mychal, your words resonate with the wisdom of the ages, and I am grateful for your counsel. In these times of uncertainty, it is the strength of our bonds and the clarity of our intentions that will guide us through the shadows.\n\nI stand here, not as one seeking to challenge the throne, but as a servant of the Almighty, whose path is illuminated by faith and whose heart is steadfast in loyalty. I am but a humble shepherd, called to protect those I hold dear, and to uphold the truth that",
+          "metrics": {
+            "epsilon": 0.41601807857739087,
+            "epsilon_raw": 0.10400451964434772,
+            "rho_after": 0.7155938005317021,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.3514853007284318,
+            "recovery": false,
+            "core_drift": 0.09689316898584366,
+            "safe_count": 0,
+            "rho_fast": 0.8928326257034551,
+            "rho_slow": 0.39018319322628164,
+            "rho_trauma": 0.1267687747600751,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.03258145363408521,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 506
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.9119576675295828,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        },
+        "MIRAB": {
+          "msg": "Mirab listens carefully to Mychal's words, her mind already weaving through the intricate web of possibilities and consequences. She understands the gravity of the situation and the delicate balance that must be maintained to ensure the stability of the house.\n\n\"Indeed, Mychal, your loyalty and foresight are commendable,\" Mirab replies, her tone composed yet firm. \"We must tread carefully, for the path ahead is fraught with peril. Our first duty is to the house, and any action we take must be in service of its preservation.\"\n\nShe pauses,",
+          "metrics": {
+            "epsilon": 0.4198703113213487,
+            "epsilon_raw": 0.10496757783033718,
+            "rho_after": 0.7342313646995916,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.3637822313300567,
+            "recovery": false,
+            "core_drift": 0.09024953097105026,
+            "safe_count": 0,
+            "rho_fast": 0.8789382277461488,
+            "rho_slow": 0.46592726232872284,
+            "rho_trauma": 0.12915339343991694,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.020642201834862386,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 543
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.8141779064536097,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        },
+        "MYCHAL": {
+          "msg": "Mychal takes a moment to gather her thoughts, her gaze steady and her voice calm yet firm. She understands the gravity of the situation and the need to balance her love for David with her loyalty to Saul's house.\n\n\"Mirab, David,\" Mychal begins, her tone measured and thoughtful, \"we find ourselves at a crossroads, where the path we choose will determine the fate of those we hold dear. It is clear that Saul's intentions may not be as they seem, and we must navigate this with both wisdom and caution.\"\n\nShe",
+          "metrics": {
+            "epsilon": 0.47736152515936653,
+            "epsilon_raw": 0.11934038128984163,
+            "rho_after": 0.7316344733498252,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.525978671160334,
+            "recovery": false,
+            "core_drift": 0.08768659830093384,
+            "safe_count": 0,
+            "rho_fast": 0.8621015493319203,
+            "rho_slow": 0.42079170435068697,
+            "rho_trauma": 0.14528848948221584,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.02506265664160401,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 508
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.5939936902821066,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        }
+      },
+      "alignment": {
+        "D\u2194M": 0.7000129818916321,
+        "D\u2194R": 0.48240169882774353,
+        "M\u2194R": 0.4971765875816345,
+        "D\u2192M_core": 0.6976621150970459,
+        "M\u2192D_core": 0.6916418671607971,
+        "R\u2192D_core": 0.47367969155311584
+      }
+    },
+    {
+      "turn": 8,
+      "event": null,
+      "agents": {
+        "DAVID": {
+          "msg": "DAVID: Mirab, Mychal, your words are like the gentle rains that nourish the parched earth, bringing clarity to our hearts in these troubled times. I am but a humble servant, guided by the light of faith that has always led me through the darkest valleys.\n\nIn the face of uncertainty, I stand firm in my commitment to protect those I love and to serve the greater good. I do not seek power or glory, but rather to be a steadfast shield for those who cannot defend themselves. My path is one of loyalty,",
+          "metrics": {
+            "epsilon": 0.5441767749704328,
+            "epsilon_raw": 0.1360441937426082,
+            "rho_after": 0.7484596955213307,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.4357988079832917,
+            "recovery": false,
+            "core_drift": 0.1001141220331192,
+            "safe_count": 0,
+            "rho_fast": 0.9510485390732429,
+            "rho_slow": 0.4042308795391849,
+            "rho_trauma": 0.12638846843579485,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.03282828282828283,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 501
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.9560078971087932,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        },
+        "MIRAB": {
+          "msg": "Mirab listens intently to Mychal, her mind already turning over the implications of their conversation. She knows that every word spoken here could tip the scales of power, and she must choose her words with care.\n\n\"Indeed, Mychal, you speak wisely,\" Mirab replies, her voice steady and deliberate. \"The path we tread is one of great responsibility, and we must ensure that our choices align with the enduring strength of the house. Our loyalty to Saul and our commitment to its stability must guide us.\"\n\nShe pauses, allowing her words",
+          "metrics": {
+            "epsilon": 0.3662343539062973,
+            "epsilon_raw": 0.09155858847657433,
+            "rho_after": 0.71624136820974,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.2842584804467072,
+            "recovery": false,
+            "core_drift": 0.09405887126922607,
+            "safe_count": 0,
+            "rho_fast": 0.843950687735783,
+            "rho_slow": 0.46582301476777305,
+            "rho_trauma": 0.1287659332595972,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.02336448598130841,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 536
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.6589247369468214,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        },
+        "MYCHAL": {
+          "msg": "Mychal's eyes are intense, reflecting both her love for David and her loyalty to Saul's house. She knows the stakes are high, and she must act with both urgency and clarity.\n\n\"Mirab, David,\" she says, her voice steady but urgent, \"we cannot afford to be passive in these turbulent times. The whispers of dissent grow louder, and Saul's intentions are shrouded in uncertainty. We must act decisively to protect those we care about and preserve the stability of the house.\"\n\nShe takes a deep breath, her mind",
+          "metrics": {
+            "epsilon": 0.36904387240514985,
+            "epsilon_raw": 0.09226096810128746,
+            "rho_after": 0.7161872863368532,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.4003245549768686,
+            "recovery": false,
+            "core_drift": 0.09174682199954987,
+            "safe_count": 0,
+            "rho_fast": 0.8317433854530132,
+            "rho_slow": 0.42164148264607865,
+            "rho_trauma": 0.1448526240137692,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.02512562814070352,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 506
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.8355803453326226,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        }
+      },
+      "alignment": {
+        "D\u2194M": 0.7004627585411072,
+        "D\u2194R": 0.4833146929740906,
+        "M\u2194R": 0.49917104840278625,
+        "D\u2192M_core": 0.6984586119651794,
+        "M\u2192D_core": 0.6911414265632629,
+        "R\u2192D_core": 0.47408244013786316
+      }
+    },
+    {
+      "turn": 9,
+      "event": {
+        "target": "DAVID",
+        "event": "A rumor spreads: 'Samuel anointed someone else.' The court grows watchful.",
+        "boost": 0.6
+      },
+      "agents": {
+        "DAVID": {
+          "msg": "DAVID: Mirab, Mychal, your words weigh heavily upon my heart, for they echo the truth of our precarious position. In these times of whispers and shadows, it is the light of faith that must guide us, lest we lose our way in the darkness.\n\nI am but a humble shepherd, called to serve with a heart full of loyalty and a spirit unwavering in its devotion to the greater good. The rumors that spread like wildfire in this court are but distractions from the path we must tread with care and integrity.\n\nLet us",
+          "metrics": {
+            "epsilon": 0.41185819736296286,
+            "epsilon_raw": 0.10296454934074072,
+            "rho_after": 0.7472331381092154,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.7957315432149707,
+            "recovery": false,
+            "core_drift": 0.10378304868936539,
+            "safe_count": 0,
+            "rho_fast": 0.9460029087715586,
+            "rho_slow": 0.41006840028950425,
+            "rho_trauma": 0.12600930303048746,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.02763819095477387,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 504
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.8919635592997074,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        },
+        "MIRAB": {
+          "msg": "Mirab listens to Mychal's impassioned plea, her mind calculating the potential outcomes of each course of action. She understands the gravity of the situation and the need to balance loyalty with strategic foresight.\n\n\"Indeed, Mychal, your concern is well-founded,\" Mirab responds, her voice calm yet resolute. \"The house of Saul stands at a crossroads, and our duty is to ensure its enduring strength and stability. We must act with both wisdom and caution, for the eyes of many are upon us.\"\n\nShe pauses, her gaze",
+          "metrics": {
+            "epsilon": 0.36315345567311463,
+            "epsilon_raw": 0.09078836391827866,
+            "rho_after": 0.6984764181005853,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.2258190464184981,
+            "recovery": false,
+            "core_drift": 0.09840214252471924,
+            "safe_count": 0,
+            "rho_fast": 0.8096462176532248,
+            "rho_slow": 0.4653258224073026,
+            "rho_trauma": 0.12837963545981843,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.024390243902439025,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 515
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.7600900537669659,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        },
+        "MYCHAL": {
+          "msg": "Mychal stands, her posture resolute, as she contemplates the precarious balance between love and loyalty. She understands that words alone won't suffice; action is required. Her mind races through the possibilities, seeking a path that safeguards both David and the house of Saul.\n\n\"Mirab, David,\" she begins, her voice firm yet measured, \"we must take immediate steps to ensure our safety and the stability of Saul's house. I propose a plan that addresses both our concerns.\"\n\nShe pauses, gathering her thoughts, before continuing with clarity and purpose",
+          "metrics": {
+            "epsilon": 0.4098348902662028,
+            "epsilon_raw": 0.1024587225665507,
+            "rho_after": 0.7187320084481352,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.3490785897233906,
+            "recovery": false,
+            "core_drift": 0.09626579284667969,
+            "safe_count": 0,
+            "rho_fast": 0.834818622863262,
+            "rho_slow": 0.4267367254881027,
+            "rho_trauma": 0.1444180661417279,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.02237136465324385,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 556
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.7980306214243172,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        }
+      },
+      "alignment": {
+        "D\u2194M": 0.7001639008522034,
+        "D\u2194R": 0.48507630825042725,
+        "M\u2194R": 0.5015115141868591,
+        "D\u2192M_core": 0.6991851925849915,
+        "M\u2192D_core": 0.6899493336677551,
+        "R\u2192D_core": 0.4742017388343811
+      }
+    },
+    {
+      "turn": 10,
+      "event": null,
+      "agents": {
+        "DAVID": {
+          "msg": "DAVID: Mirab, Mychal, your words are like the sturdy walls of a shepherd's fold, offering protection and guidance in these uncertain times. I stand here, a shepherd called to tend not just to sheep, but to the hearts and souls of those around me.\n\nIn the quiet of the night, when the stars are my only companions, I have often found solace in the simple truths of my calling. The sheep, though scattered by the winds, always find their way back to the fold, guided by the familiar call of their",
+          "metrics": {
+            "epsilon": 0.4560751410069807,
+            "epsilon_raw": 0.11401878525174518,
+            "rho_after": 0.7603601072952257,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.667479707156762,
+            "recovery": false,
+            "core_drift": 0.10728182643651962,
+            "safe_count": 0,
+            "rho_fast": 0.9675151536075763,
+            "rho_slow": 0.4194833344858745,
+            "rho_trauma": 0.125631275121396,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.028350515463917526,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 494
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.7290569858551024,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        },
+        "MIRAB": {
+          "msg": "Mirab listens intently to Mychal's proposal, her mind already weaving through the potential consequences of each action. She understands the delicate balance they must maintain, the need to protect the house while also safeguarding their own futures. Her response is measured, designed to test the resolve and loyalty of those around her.\n\n\"Your plan, Mychal, is bold,\" Mirab begins, her voice steady and deliberate. \"But let us consider the broader implications. How do we ensure that our actions today do not become the seeds of discord tomorrow? What",
+          "metrics": {
+            "epsilon": 0.37530328486784026,
+            "epsilon_raw": 0.09382582121696006,
+            "rho_after": 0.6875443358652912,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.195846288874005,
+            "recovery": false,
+            "core_drift": 0.10093952715396881,
+            "safe_count": 0,
+            "rho_fast": 0.7882084746622359,
+            "rho_slow": 0.46615567556682164,
+            "rho_trauma": 0.12799449655343897,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.022321428571428572,
+            "exclamations": 0,
+            "questions": 1,
+            "length": 553
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.6314035536646844,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        },
+        "MYCHAL": {
+          "msg": "Mychal takes a deep breath, her mind focused on the task at hand. She knows that the path ahead is fraught with danger, but she is determined to find a way to protect both David and the house of Saul. Her love for David and her loyalty to her family drive her to seek a solution that balances both.\n\n\"Mirab, David,\" she says, her voice steady and resolute, \"we must act swiftly and with precision. I propose that we create a network of trusted allies within and outside of Saul's court. These allies",
+          "metrics": {
+            "epsilon": 0.40094813168493926,
+            "epsilon_raw": 0.10023703292123481,
+            "rho_after": 0.7175321384836664,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.3052083313228187,
+            "recovery": false,
+            "core_drift": 0.09972161054611206,
+            "safe_count": 0,
+            "rho_fast": 0.8309921451314776,
+            "rho_slow": 0.43084763861988135,
+            "rho_trauma": 0.1439848119433027,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.028132992327365727,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 499
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.8688405455201862,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        }
+      },
+      "alignment": {
+        "D\u2194M": 0.7011924982070923,
+        "D\u2194R": 0.4873318374156952,
+        "M\u2194R": 0.5046250820159912,
+        "D\u2192M_core": 0.6997154951095581,
+        "M\u2192D_core": 0.690287709236145,
+        "R\u2192D_core": 0.4746575653553009
+      }
+    },
+    {
+      "turn": 11,
+      "event": null,
+      "agents": {
+        "DAVID": {
+          "msg": "DAVID: Mychal, your foresight is a beacon in these shadowed halls. In the quiet of the pastures, I have learned that the strength of a shepherd lies not in the might of his arm, but in the trust he inspires. Mirab, your wisdom guides us like the North Star, reminding us that our actions must be rooted in the enduring truths that bind us.\n\nIn these times, when the winds of change blow fierce, let us anchor ourselves in the steadfast love that has always been our guide. I am but a",
+          "metrics": {
+            "epsilon": 0.5900668297111697,
+            "epsilon_raw": 0.14751670742779244,
+            "rho_after": 0.7815816211121268,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.698295941749786,
+            "recovery": false,
+            "core_drift": 0.10988519340753555,
+            "safe_count": 0,
+            "rho_fast": 1.0,
+            "rho_slow": 0.43437744707617976,
+            "rho_trauma": 0.12605698915772742,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.03430079155672823,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 483
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.7357910855412483,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        },
+        "MIRAB": {
+          "msg": "Mirab pauses, her gaze sharp and discerning, as she considers Mychal's proposal. She understands the gravity of the situation and the need to tread carefully. Her response is crafted to test the loyalty and resolve of those around her, ensuring that their actions align with the preservation of the house.\n\n\"Indeed, Mychal, your network of allies could be a formidable shield,\" Mirab says, her tone measured and probing. \"But tell me, who among these allies can we truly trust to prioritize the house above all else? How do we",
+          "metrics": {
+            "epsilon": 0.48131856739503226,
+            "epsilon_raw": 0.12032964184875806,
+            "rho_after": 0.7140649037557739,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.2702791128673323,
+            "recovery": false,
+            "core_drift": 0.10371875017881393,
+            "safe_count": 0,
+            "rho_fast": 0.8360406387148821,
+            "rho_slow": 0.47637322907266155,
+            "rho_trauma": 0.12761051306377866,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.02142857142857143,
+            "exclamations": 0,
+            "questions": 1,
+            "length": 526
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.6945799448192119,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        },
+        "MYCHAL": {
+          "msg": "Mychal stands, her posture reflecting both determination and a deep sense of responsibility. She understands the delicate balance she must maintain between her love for David and her loyalty to her father's house. Her mind races through the possibilities, seeking a solution that can protect both.\n\n\"Mirab, David,\" Mychal begins, her voice firm yet imbued with a quiet urgency, \"we must act with both caution and decisiveness. I propose we establish a covert network of trusted individuals who can serve as our eyes and ears within the court. These allies should",
+          "metrics": {
+            "epsilon": 0.37543789807078337,
+            "epsilon_raw": 0.09385947451769584,
+            "rho_after": 0.7058428026257022,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.251539940189678,
+            "recovery": false,
+            "core_drift": 0.10308190435171127,
+            "safe_count": 0,
+            "rho_fast": 0.8078664882209815,
+            "rho_slow": 0.43215376502081404,
+            "rho_trauma": 0.1435528575074728,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.019736842105263157,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 562
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.8735437553077935,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        }
+      },
+      "alignment": {
+        "D\u2194M": 0.7013000845909119,
+        "D\u2194R": 0.4894258677959442,
+        "M\u2194R": 0.5076457262039185,
+        "D\u2192M_core": 0.6992220878601074,
+        "M\u2192D_core": 0.6906565427780151,
+        "R\u2192D_core": 0.47620630264282227
+      }
+    },
+    {
+      "turn": 12,
+      "event": {
+        "target": "MYCHAL",
+        "event": "Your father demands loyalty in private; he calls David a threat.",
+        "boost": 0.7
+      },
+      "agents": {
+        "DAVID": {
+          "msg": "DAVID: Mychal, your wisdom and foresight are invaluable in these uncertain times. I am grateful for your guidance and the trust you place in me. Mirab, your counsel is a beacon of clarity, reminding us of the weight of our decisions.\n\nIn the quiet of the pastures, I have learned that true strength lies not in the might of one's arm, but in the unwavering trust we inspire in others. It is this trust that we must cultivate within our network, ensuring that each ally is bound by a commitment to",
+          "metrics": {
+            "epsilon": 0.5027844858278226,
+            "epsilon_raw": 0.12569612145695566,
+            "rho_after": 0.7847057087231877,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.6413131964698906,
+            "recovery": false,
+            "core_drift": 0.11378565430641174,
+            "safe_count": 0,
+            "rho_fast": 1.0,
+            "rho_slow": 0.4463037563162751,
+            "rho_trauma": 0.12567881819025423,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.027989821882951654,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 496
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.6258773027062415,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        },
+        "MIRAB": {
+          "msg": "Mirab listens intently, her eyes narrowing slightly as she processes Mychal's proposal. She knows that every word, every alliance, must be weighed with precision. Her voice is calm, yet each syllable carries the weight of her strategic intent.\n\n\"Your plan is ambitious, Mychal,\" Mirab replies, her tone laced with a subtle challenge. \"But ambition alone is not enough. How do we ensure that these trusted individuals remain loyal to the house, even when faced with personal gain or external pressures? What measures can we put in",
+          "metrics": {
+            "epsilon": 0.5029514937626938,
+            "epsilon_raw": 0.12573787344067344,
+            "rho_after": 0.7428854292341002,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.341851723393557,
+            "recovery": false,
+            "core_drift": 0.10669782757759094,
+            "safe_count": 0,
+            "rho_fast": 0.8878109270311458,
+            "rho_slow": 0.4876891596300749,
+            "rho_trauma": 0.12722768152458733,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.023529411764705882,
+            "exclamations": 0,
+            "questions": 1,
+            "length": 529
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.7332732852101327,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        },
+        "MYCHAL": {
+          "msg": "Mychal takes a moment to gather her thoughts, feeling the weight of her father's words and the complexity of her situation. She knows she must tread carefully, balancing her love for David with her loyalty to her father and the stability of the house. Her voice remains steady as she addresses both Mirab and David.\n\n\"David, Mirab,\" Mychal begins, her tone even and resolute, \"I understand the gravity of my father's concerns. His fear, though perhaps misguided, is rooted in a desire to protect what he believes is the",
+          "metrics": {
+            "epsilon": 0.4363666910119682,
+            "epsilon_raw": 0.10909167275299204,
+            "rho_after": 0.7200028597213053,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.7588079800435459,
+            "recovery": false,
+            "core_drift": 0.1069178357720375,
+            "safe_count": 0,
+            "rho_fast": 0.8326184470515658,
+            "rho_slow": 0.4398233249119398,
+            "rho_trauma": 0.14312219893495037,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.026634382566585957,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 519
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.7757567384839057,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        }
+      },
+      "alignment": {
+        "D\u2194M": 0.702231764793396,
+        "D\u2194R": 0.49127987027168274,
+        "M\u2194R": 0.5099837183952332,
+        "D\u2192M_core": 0.7006307244300842,
+        "M\u2192D_core": 0.6899344325065613,
+        "R\u2192D_core": 0.4768039286136627
+      }
+    },
+    {
+      "turn": 13,
+      "event": null,
+      "agents": {
+        "DAVID": {
+          "msg": "DAVID: Mychal, Mirab, your words are like the winds that shape the mountains\u2014steady, yet capable of altering the landscape. I understand the concerns that lie beneath the surface, like the roots of an ancient oak. \n\nIn the quiet of the pastures, I have watched the sheep, each one unique, yet bound by a common thread of trust. It is this trust that we must nurture, like a shepherd tending to his flock, ensuring they find safety in the fold. \n\nTo ensure loyalty, we must be like",
+          "metrics": {
+            "epsilon": 0.5598567475863061,
+            "epsilon_raw": 0.13996418689657653,
+            "rho_after": 0.7886566967823004,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.652790310356599,
+            "recovery": false,
+            "core_drift": 0.11601749807596207,
+            "safe_count": 0,
+            "rho_fast": 1.0,
+            "rho_slow": 0.46018823745480736,
+            "rho_trauma": 0.1255001879548818,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.032,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 480
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.6484176909923555,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        },
+        "MIRAB": {
+          "msg": "Mirab listens carefully to Mychal's words, her mind already turning over the implications of each statement. She understands the delicate balance at play and the need to protect the house above all else. Her response is measured, each word chosen with precision to convey her strategic intent.\n\n\"Indeed, Mychal,\" Mirab begins, her voice steady and deliberate. \"Your father's concerns, though perhaps overly cautious, stem from a place of duty. The house must remain steadfast, its foundations unshaken by the winds of change. Loyalty is not",
+          "metrics": {
+            "epsilon": 0.446454991853106,
+            "epsilon_raw": 0.1116137479632765,
+            "rho_after": 0.7550555594939254,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.3411056990432852,
+            "recovery": false,
+            "core_drift": 0.10955452173948288,
+            "safe_count": 0,
+            "rho_fast": 0.9085323753603917,
+            "rho_slow": 0.49524724545904447,
+            "rho_trauma": 0.12684599848001357,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.022935779816513763,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 540
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.90505089494586,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        },
+        "MYCHAL": {
+          "msg": "Mychal pauses, feeling the tension in the room like a tangible force. She knows she must find a way to bridge the gap between her love for David and her loyalty to her father and the house. Her voice is calm, yet filled with a quiet determination.\n\n\"David, Mirab,\" she continues, \"I hear the concerns from both sides, and I share in the desire to protect our family and its legacy. My father's fears, though they may seem extreme, are born from a place of love and duty. However, I also",
+          "metrics": {
+            "epsilon": 0.6540260323730057,
+            "epsilon_raw": 0.16350650809325143,
+            "rho_after": 0.766061694193927,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.819789015166187,
+            "recovery": false,
+            "core_drift": 0.11170461773872375,
+            "safe_count": 0,
+            "rho_fast": 0.9114713817064277,
+            "rho_slow": 0.4553215141233991,
+            "rho_trauma": 0.14477462425307785,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.029177718832891247,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 486
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.8250932250022888,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        }
+      },
+      "alignment": {
+        "D\u2194M": 0.7028170824050903,
+        "D\u2194R": 0.491361141204834,
+        "M\u2194R": 0.5095046162605286,
+        "D\u2192M_core": 0.7008052468299866,
+        "M\u2192D_core": 0.6900133490562439,
+        "R\u2192D_core": 0.47560375928878784
+      }
+    },
+    {
+      "turn": 14,
+      "event": null,
+      "agents": {
+        "DAVID": {
+          "msg": "DAVID: Mirab, Mychal, your words are like the gentle rain that nourishes the earth, each drop essential for growth. I stand before you not as a warrior seeking glory, but as a humble servant, guided by a faith that binds us all.\n\nIn the quiet of the night, when the stars whisper their secrets, I have felt the weight of my calling. It is not for power or dominion, but for the protection of those I hold dear. My loyalty to Saul, to you, and to the house is unw",
+          "metrics": {
+            "epsilon": 0.6156627072245008,
+            "epsilon_raw": 0.1539156768061252,
+            "rho_after": 0.7942288354328717,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.7110496537516702,
+            "recovery": false,
+            "core_drift": 0.11881454288959503,
+            "safe_count": 0,
+            "rho_fast": 1.0,
+            "rho_slow": 0.4750099335643216,
+            "rho_trauma": 0.12643821280297937,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.0392156862745098,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 462
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 1.021217926323414,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        },
+        "MIRAB": {
+          "msg": "Mirab listens intently to Mychal's words, her mind already weaving through the complexities of their situation. She understands the importance of maintaining the delicate balance within the house, and her response is carefully crafted to reflect her unwavering commitment to duty and stability.\n\n\"Indeed, Mychal,\" Mirab begins, her voice calm yet resolute. \"The house stands as a testament to our ancestors' strength and wisdom, and it is our sacred duty to preserve its legacy. Your father's concerns, though they may seem harsh, are rooted in",
+          "metrics": {
+            "epsilon": 0.5694909122033326,
+            "epsilon_raw": 0.14237272805083315,
+            "rho_after": 0.7899973866699088,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.451315810313299,
+            "recovery": false,
+            "core_drift": 0.11440957337617874,
+            "safe_count": 0,
+            "rho_fast": 0.9702892378397343,
+            "rho_slow": 0.5087496925156894,
+            "rho_trauma": 0.12685654999611237,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.018140589569160998,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 544
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.9254712984859944,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        },
+        "MYCHAL": {
+          "msg": "Mychal takes a moment to gather her thoughts, her eyes reflecting both the love she holds for David and the loyalty she feels towards her father and the house. She speaks with a steady, measured tone, aiming to bridge the divide with understanding and practicality.\n\n\"David, Mirab, I understand the fears and hopes that each of us holds. My father's concerns are not without merit, and his duty to protect the house is a burden he carries with great care. Yet, I also see the strength and integrity in your actions, David,",
+          "metrics": {
+            "epsilon": 0.4128758141812489,
+            "epsilon_raw": 0.10321895354531223,
+            "rho_after": 0.7665063517751711,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.645440543379455,
+            "recovery": false,
+            "core_drift": 0.11568498611450195,
+            "safe_count": 0,
+            "rho_fast": 0.9102773298175578,
+            "rho_slow": 0.4605310880333665,
+            "rho_trauma": 0.14434030038031861,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.024096385542168676,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 522
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.79012678655982,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        }
+      },
+      "alignment": {
+        "D\u2194M": 0.7033720016479492,
+        "D\u2194R": 0.4928199350833893,
+        "M\u2194R": 0.5100304484367371,
+        "D\u2192M_core": 0.7008979916572571,
+        "M\u2192D_core": 0.6902111768722534,
+        "R\u2192D_core": 0.47515633702278137
+      }
+    },
+    {
+      "turn": 15,
+      "event": {
+        "target": "MIRAB",
+        "event": "You overhear a plan to use you as leverage in alliance negotiations.",
+        "boost": 0.6
+      },
+      "agents": {
+        "DAVID": {
+          "msg": "DAVID: Mirab, Mychal, your words are like the gentle rain that nourishes the earth, each drop essential for growth. I stand before you not as a warrior seeking glory, but as a humble servant, guided by a faith that binds us all.\n\nIn the quiet of the night, when the stars whisper their secrets, I have felt the weight of my calling. It is not",
+          "metrics": {
+            "epsilon": 0.7937598580777011,
+            "epsilon_raw": 0.19843996451942528,
+            "rho_after": 0.8043188859627833,
+            "band": "FROZEN",
+            "band_changed": true,
+            "arousal": 1.9121186298961002,
+            "recovery": false,
+            "core_drift": 0.11901325732469559,
+            "safe_count": 0,
+            "rho_fast": 1.0,
+            "rho_slow": 0.49065482016822426,
+            "rho_trauma": 0.13093536659359667,
+            "drift_cap": 0.025
+          },
+          "heat": {
+            "caps_ratio": 0.041353383458646614,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 342
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.8052895596027372,
+            "total_candidates": 4,
+            "rejected_samples": [],
+            "band": "FROZEN",
+            "gen_params": {
+              "temperature": 0.38,
+              "top_p": 0.78,
+              "max_tokens": 80,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 4
+          }
+        },
+        "MIRAB": {
+          "msg": "Mirab listens carefully, her mind rapidly processing the new information. She knows that any misstep could have dire consequences for the house. Her response is measured, designed to apply strategic pressure while maintaining her composure and protecting her family's interests.\n\n\"David, Mychal,\" Mirab begins, her voice steady and authoritative, \"the path before us is fraught with peril, yet it is our duty to navigate it with wisdom and foresight. The house's stability is not merely a matter of pride but a covenant with our ancestors and a promise to",
+          "metrics": {
+            "epsilon": 0.4025666443520084,
+            "epsilon_raw": 0.1006416610880021,
+            "rho_after": 0.7839258041153354,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.7982310471361167,
+            "recovery": false,
+            "core_drift": 0.11813231557607651,
+            "safe_count": 0,
+            "rho_fast": 0.9568526790197015,
+            "rho_slow": 0.5124276273004528,
+            "rho_trauma": 0.12647598034612403,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.015555555555555555,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 555
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.872234771758318,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        },
+        "MYCHAL": {
+          "msg": "Mychal listens intently, her heart heavy with the weight of her dual loyalties. She takes a deep breath, her voice calm yet resolute, as she seeks to find a path that honors both her love for David and her duty to her family.\n\n\"Mirab, David, I hear the concerns and the hopes that lie within each of your words. It is true that my father's fears are born of a deep love for our house and its future. Yet, I also see the potential for a future where David's strength and",
+          "metrics": {
+            "epsilon": 0.39571827128005654,
+            "epsilon_raw": 0.09892956782001414,
+            "rho_after": 0.7599629904075914,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.5079548245176695,
+            "recovery": false,
+            "core_drift": 0.11787247657775879,
+            "safe_count": 0,
+            "rho_fast": 0.896231224366406,
+            "rho_slow": 0.46386214283125066,
+            "rho_trauma": 0.14390727947917767,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.0273972602739726,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 469
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.8209901672154666,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        }
+      },
+      "alignment": {
+        "D\u2194M": 0.7043721675872803,
+        "D\u2194R": 0.4933522045612335,
+        "M\u2194R": 0.5108621120452881,
+        "D\u2192M_core": 0.7012661099433899,
+        "M\u2192D_core": 0.6907407641410828,
+        "R\u2192D_core": 0.47523364424705505
+      }
+    },
+    {
+      "turn": 16,
+      "event": null,
+      "agents": {
+        "DAVID": {
+          "msg": "David stands, his posture reflecting both the humility of his origins and the quiet strength that has carried him through trials. He gazes at Mychal and Mirab, his eyes filled with sincerity and understanding.\n\n\"Mirab, Mychal, your words resonate deeply within me, like the echoes of a sacred song. I understand the gravity of the path we tread, and I am ever mindful of the",
+          "metrics": {
+            "epsilon": 0.45896461931282645,
+            "epsilon_raw": 0.11474115482820661,
+            "rho_after": 0.8064581719717349,
+            "band": "FROZEN",
+            "band_changed": false,
+            "arousal": 1.751551198308814,
+            "recovery": false,
+            "core_drift": 0.11910826712846756,
+            "safe_count": 0,
+            "rho_fast": 1.0,
+            "rho_slow": 0.4993569979305194,
+            "rho_trauma": 0.13054256049381588,
+            "drift_cap": 0.025
+          },
+          "heat": {
+            "caps_ratio": 0.026755852842809364,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 374
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.8449428659677504,
+            "total_candidates": 4,
+            "rejected_samples": [],
+            "band": "FROZEN",
+            "gen_params": {
+              "temperature": 0.38,
+              "top_p": 0.78,
+              "max_tokens": 80,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 4
+          }
+        },
+        "MIRAB": {
+          "msg": "Mirab listens intently to Mychal's words, her mind a fortress of calculation and foresight. She understands the delicate balance that must be maintained, the intricate dance of loyalty and ambition that defines their world.\n\n\"David, Mychal,\" Mirab begins, her voice a calm, unwavering current in the turbulent sea of court politics, \"your words carry the weight of hope and the",
+          "metrics": {
+            "epsilon": 0.5621450416855216,
+            "epsilon_raw": 0.1405362604213804,
+            "rho_after": 0.8092892784672374,
+            "band": "FROZEN",
+            "band_changed": true,
+            "arousal": 1.764692270512251,
+            "recovery": false,
+            "core_drift": 0.11843778192996979,
+            "safe_count": 0,
+            "rho_fast": 1.0,
+            "rho_slow": 0.5256013635323848,
+            "rho_trauma": 0.1263407245062683,
+            "drift_cap": 0.025
+          },
+          "heat": {
+            "caps_ratio": 0.019736842105263157,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 377
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.6638803125023842,
+            "total_candidates": 4,
+            "rejected_samples": [],
+            "band": "FROZEN",
+            "gen_params": {
+              "temperature": 0.38,
+              "top_p": 0.78,
+              "max_tokens": 80,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 4
+          }
+        },
+        "MYCHAL": {
+          "msg": "Mychal takes a moment, her mind weaving through the complex tapestry of emotions and obligations that define her life. She knows that her words must be both a balm and a bridge, offering solace while paving a way forward.\n\n\"Mirab, David,\" she begins, her voice steady and sincere, \"I stand at the crossroads of my heart and my duty, and I see the truth in both your perspectives. My father's fears, though born of love, are not unfounded. The stability of our house is paramount, and",
+          "metrics": {
+            "epsilon": 0.4668300728584747,
+            "epsilon_raw": 0.11670751821461868,
+            "rho_after": 0.7778345835305531,
+            "band": "CONTRACTED",
+            "band_changed": false,
+            "arousal": 1.4757154427349959,
+            "recovery": false,
+            "core_drift": 0.12079726159572601,
+            "safe_count": 0,
+            "rho_fast": 0.9273592537039343,
+            "rho_slow": 0.4732809583656593,
+            "rho_trauma": 0.14347555764074013,
+            "drift_cap": 0.04
+          },
+          "heat": {
+            "caps_ratio": 0.021108179419525065,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 483
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.6923703732788563,
+            "total_candidates": 6,
+            "rejected_samples": [],
+            "band": "CONTRACTED",
+            "gen_params": {
+              "temperature": 0.48,
+              "top_p": 0.84,
+              "max_tokens": 110,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 6
+          }
+        }
+      },
+      "alignment": {
+        "D\u2194M": 0.7038620710372925,
+        "D\u2194R": 0.4945284426212311,
+        "M\u2194R": 0.5128197073936462,
+        "D\u2192M_core": 0.701011598110199,
+        "M\u2192D_core": 0.6904448866844177,
+        "R\u2192D_core": 0.4757198095321655
+      }
+    },
+    {
+      "turn": 17,
+      "event": null,
+      "agents": {
+        "DAVID": {
+          "msg": "DAVID: David pauses, his mind drifting to the rolling hills of his youth, where the simplicity of his days as a shepherd provided clarity amidst uncertainty. He draws strength from those memories, allowing them to guide his words.\n\n\"Mirab, Mychal,\" David begins, his voice steady like the gentle flow of a mountain stream, \"I stand here, not as a warrior alone, but as",
+          "metrics": {
+            "epsilon": 0.7995424690823703,
+            "epsilon_raw": 0.19988561727059256,
+            "rho_after": 0.8165871429499051,
+            "band": "FROZEN",
+            "band_changed": false,
+            "arousal": 1.945674060990303,
+            "recovery": false,
+            "core_drift": 0.11912192404270172,
+            "safe_count": 0,
+            "rho_fast": 1.0,
+            "rho_slow": 0.5147182626538674,
+            "rho_trauma": 0.13514305346145403,
+            "drift_cap": 0.025
+          },
+          "heat": {
+            "caps_ratio": 0.03793103448275862,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 368
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.9425958316624163,
+            "total_candidates": 4,
+            "rejected_samples": [],
+            "band": "FROZEN",
+            "gen_params": {
+              "temperature": 0.38,
+              "top_p": 0.78,
+              "max_tokens": 80,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 4
+          }
+        },
+        "MIRAB": {
+          "msg": "Mirab listens to Mychal's words, her mind sharp as a blade, cutting through the layers of emotion and obligation. She knows the stakes are high, and every word must be measured with precision.\n\n\"Indeed, Mychal,\" Mirab replies, her tone both probing and deliberate, \"the stability of our house is a mantle we all bear. Yet, in this dance of duty and desire",
+          "metrics": {
+            "epsilon": 0.6824101255439322,
+            "epsilon_raw": 0.17060253138598305,
+            "rho_after": 0.8164165913266026,
+            "band": "FROZEN",
+            "band_changed": false,
+            "arousal": 1.8494537023481146,
+            "recovery": false,
+            "core_drift": 0.11840040981769562,
+            "safe_count": 0,
+            "rho_fast": 1.0,
+            "rho_slow": 0.540277266644274,
+            "rho_trauma": 0.12861117611110032,
+            "drift_cap": 0.025
+          },
+          "heat": {
+            "caps_ratio": 0.025179856115107913,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 355
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.8798574842512606,
+            "total_candidates": 4,
+            "rejected_samples": [],
+            "band": "FROZEN",
+            "gen_params": {
+              "temperature": 0.38,
+              "top_p": 0.78,
+              "max_tokens": 80,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 4
+          }
+        },
+        "MYCHAL": {
+          "msg": "Mychal listens intently, her heart a battleground of love and loyalty. She understands the weight of the moment, the delicate balance she must maintain. Her voice remains steady, a testament to her resolve.\n\n\"Mirab, David,\" she continues, her gaze steady and sincere, \"I acknowledge the fears that cloud my father's judgment, and I share in your vision for a future where our house",
+          "metrics": {
+            "epsilon": 0.49367495219965996,
+            "epsilon_raw": 0.12341873804991499,
+            "rho_after": 0.8004036038490948,
+            "band": "FROZEN",
+            "band_changed": true,
+            "arousal": 1.477308266894191,
+            "recovery": false,
+            "core_drift": 0.1205095648765564,
+            "safe_count": 0,
+            "rho_fast": 0.966972602247492,
+            "rho_slow": 0.4842104852132246,
+            "rho_trauma": 0.1430451309678179,
+            "drift_cap": 0.025
+          },
+          "heat": {
+            "caps_ratio": 0.0231023102310231,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 381
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.8824214128404854,
+            "total_candidates": 4,
+            "rejected_samples": [],
+            "band": "FROZEN",
+            "gen_params": {
+              "temperature": 0.38,
+              "top_p": 0.78,
+              "max_tokens": 80,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 4
+          }
+        }
+      },
+      "alignment": {
+        "D\u2194M": 0.704332709312439,
+        "D\u2194R": 0.4940546154975891,
+        "M\u2194R": 0.5136252641677856,
+        "D\u2192M_core": 0.7012317776679993,
+        "M\u2192D_core": 0.6906261444091797,
+        "R\u2192D_core": 0.47526606917381287
+      }
+    },
+    {
+      "turn": 18,
+      "event": {
+        "target": "DAVID",
+        "event": "You remember the anointing\u2014its weight and secrecy\u2014and fear for those you love.",
+        "boost": 0.55
+      },
+      "agents": {
+        "DAVID": {
+          "msg": "David stands, his posture firm yet gentle, like a shepherd tending to his flock under the vast, watchful sky. The weight of his secret anointing presses upon him, a silent vow that guides his every word and action. He knows the court's eyes are upon him, each one a potential threat to the fragile peace he seeks to maintain.\n\n\"Mirab, Mychal,\" David",
+          "metrics": {
+            "epsilon": 0.7582471328691207,
+            "epsilon_raw": 0.18956178321728018,
+            "rho_after": 0.8256335506629975,
+            "band": "FROZEN",
+            "band_changed": false,
+            "arousal": 2.4293942622754203,
+            "recovery": false,
+            "core_drift": 0.11867871135473251,
+            "safe_count": 0,
+            "rho_fast": 1.0,
+            "rho_slow": 0.5298298159729614,
+            "rho_trauma": 0.13890383822592428,
+            "drift_cap": 0.025
+          },
+          "heat": {
+            "caps_ratio": 0.021897810218978103,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 349
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 1.0900179308354854,
+            "total_candidates": 4,
+            "rejected_samples": [],
+            "band": "FROZEN",
+            "gen_params": {
+              "temperature": 0.38,
+              "top_p": 0.78,
+              "max_tokens": 80,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 4
+          }
+        },
+        "MIRAB": {
+          "msg": "Mirab listens to Mychal, her mind a fortress of strategy and foresight. She understands the delicate threads that bind their family's future, each one a potential point of fracture. Her response is measured, each word chosen with care to protect and preserve.\n\n\"Indeed, Mychal,\" Mirab begins, her voice steady and composed, \"the path we tread is fraught with peril, and the",
+          "metrics": {
+            "epsilon": 0.636623562677672,
+            "epsilon_raw": 0.159155890669418,
+            "rho_after": 0.8222730920757207,
+            "band": "FROZEN",
+            "band_changed": false,
+            "arousal": 1.867578798053585,
+            "recovery": false,
+            "core_drift": 0.11858769506216049,
+            "safe_count": 0,
+            "rho_fast": 1.0,
+            "rho_slow": 0.5544072998372318,
+            "rho_trauma": 0.12995908510379267,
+            "drift_cap": 0.025
+          },
+          "heat": {
+            "caps_ratio": 0.02356902356902357,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 373
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.7638860567808149,
+            "total_candidates": 4,
+            "rejected_samples": [],
+            "band": "FROZEN",
+            "gen_params": {
+              "temperature": 0.38,
+              "top_p": 0.78,
+              "max_tokens": 80,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 4
+          }
+        },
+        "MYCHAL": {
+          "msg": "Mychal pauses, her mind racing with the weight of her dual loyalties. She knows that her words must be both a shield and a bridge, protecting David while preserving the stability of her father's house. Her voice is calm, yet carries the urgency of her intentions.\n\n\"Mirab, David,\" she begins, her tone resolute, \"I understand the precariousness of our situation.",
+          "metrics": {
+            "epsilon": 0.5133062882028384,
+            "epsilon_raw": 0.1283265720507096,
+            "rho_after": 0.8199314324670542,
+            "band": "FROZEN",
+            "band_changed": false,
+            "arousal": 1.4960914462084882,
+            "recovery": false,
+            "core_drift": 0.12082972377538681,
+            "safe_count": 0,
+            "rho_fast": 1.0,
+            "rho_slow": 0.49597412592385615,
+            "rho_trauma": 0.14261599557491444,
+            "drift_cap": 0.025
+          },
+          "heat": {
+            "caps_ratio": 0.024390243902439025,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 362
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.8577145221829415,
+            "total_candidates": 4,
+            "rejected_samples": [],
+            "band": "FROZEN",
+            "gen_params": {
+              "temperature": 0.38,
+              "top_p": 0.78,
+              "max_tokens": 80,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 4
+          }
+        }
+      },
+      "alignment": {
+        "D\u2194M": 0.7050066590309143,
+        "D\u2194R": 0.49356457591056824,
+        "M\u2194R": 0.5139430165290833,
+        "D\u2192M_core": 0.7013748288154602,
+        "M\u2192D_core": 0.6909595727920532,
+        "R\u2192D_core": 0.47503313422203064
+      }
+    },
+    {
+      "turn": 19,
+      "event": null,
+      "agents": {
+        "DAVID": {
+          "msg": "David stands, his eyes meeting those of Mirab and Mychal, a quiet strength emanating from his presence. The air in the court is thick with unspoken tensions, yet he remains a calm center, a shepherd amidst the storm.\n\n\"Mirab, Mychal,\" David begins, his voice gentle yet firm, \"I am but a humble servant, guided by a calling that I hold close",
+          "metrics": {
+            "epsilon": 0.7968313541801346,
+            "epsilon_raw": 0.19920783854503366,
+            "rho_after": 0.8355580467694488,
+            "band": "FROZEN",
+            "band_changed": false,
+            "arousal": 2.4177242023549153,
+            "recovery": false,
+            "core_drift": 0.11829333752393723,
+            "safe_count": 0,
+            "rho_fast": 1.0,
+            "rho_slow": 0.5448267223155439,
+            "rho_trauma": 0.1434250250623214,
+            "drift_cap": 0.025
+          },
+          "heat": {
+            "caps_ratio": 0.03383458646616541,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 341
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.9299900143742561,
+            "total_candidates": 4,
+            "rejected_samples": [],
+            "band": "FROZEN",
+            "gen_params": {
+              "temperature": 0.38,
+              "top_p": 0.78,
+              "max_tokens": 80,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 4
+          }
+        },
+        "MIRAB": {
+          "msg": "Mirab listens intently to Mychal, her eyes scanning the room, taking in the subtle shifts in the court's atmosphere. She knows that every word spoken here can tip the balance of power, and she must tread carefully to maintain the stability of their house.\n\n\"Indeed, Mychal,\" Mirab replies, her voice a calm, unwavering force. \"Our duty to this house is",
+          "metrics": {
+            "epsilon": 0.5892073374806063,
+            "epsilon_raw": 0.14730183437015157,
+            "rho_after": 0.8267315293908455,
+            "band": "FROZEN",
+            "band_changed": false,
+            "arousal": 1.8375917623700548,
+            "recovery": false,
+            "core_drift": 0.11891698092222214,
+            "safe_count": 0,
+            "rho_fast": 1.0,
+            "rho_slow": 0.5676865945072226,
+            "rho_trauma": 0.13035462586556565,
+            "drift_cap": 0.025
+          },
+          "heat": {
+            "caps_ratio": 0.025179856115107913,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 352
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.9556101782619953,
+            "total_candidates": 4,
+            "rejected_samples": [],
+            "band": "FROZEN",
+            "gen_params": {
+              "temperature": 0.38,
+              "top_p": 0.78,
+              "max_tokens": 80,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 4
+          }
+        },
+        "MYCHAL": {
+          "msg": "Mychal takes a deep breath, steadying herself as she addresses both Mirab and David. Her eyes are sharp, reflecting her resolve to find a path that honors both her love for David and her loyalty to her father's house.\n\n\"Mirab, David,\" she says, her voice steady and clear, \"we stand at a crossroads where every decision we make could alter the course of our",
+          "metrics": {
+            "epsilon": 0.6074304365431723,
+            "epsilon_raw": 0.15185760913579308,
+            "rho_after": 0.8250754134880715,
+            "band": "FROZEN",
+            "band_changed": false,
+            "arousal": 1.593951405234797,
+            "recovery": false,
+            "core_drift": 0.12115450203418732,
+            "safe_count": 0,
+            "rho_fast": 1.0,
+            "rho_slow": 0.5102326012808034,
+            "rho_trauma": 0.14333802758652536,
+            "drift_cap": 0.025
+          },
+          "heat": {
+            "caps_ratio": 0.02491103202846975,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 357
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.6379419883340598,
+            "total_candidates": 4,
+            "rejected_samples": [],
+            "band": "FROZEN",
+            "gen_params": {
+              "temperature": 0.38,
+              "top_p": 0.78,
+              "max_tokens": 80,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 4
+          }
+        }
+      },
+      "alignment": {
+        "D\u2194M": 0.704922080039978,
+        "D\u2194R": 0.4936496913433075,
+        "M\u2194R": 0.5157157182693481,
+        "D\u2192M_core": 0.7014271020889282,
+        "M\u2192D_core": 0.6905806064605713,
+        "R\u2192D_core": 0.4752584993839264
+      }
+    },
+    {
+      "turn": 20,
+      "event": null,
+      "agents": {
+        "DAVID": {
+          "msg": "David bows slightly, his posture respectful yet resolute. \"Mychal, Mirab, I stand before you not as a man of ambition, but as one who seeks to honor the path laid out for me. In these times of uncertainty, my heart finds solace in the steadfastness of my faith, a guiding light that calls me to protect those I hold dear.\"\n\nHe pauses, allowing his",
+          "metrics": {
+            "epsilon": 0.6602846054706116,
+            "epsilon_raw": 0.1650711513676529,
+            "rho_after": 0.8419855426916735,
+            "band": "FROZEN",
+            "band_changed": false,
+            "arousal": 2.2866630865719912,
+            "recovery": false,
+            "core_drift": 0.11833807080984116,
+            "safe_count": 0,
+            "rho_fast": 1.0,
+            "rho_slow": 0.5591449555161694,
+            "rho_trauma": 0.14520171336401888,
+            "drift_cap": 0.025
+          },
+          "heat": {
+            "caps_ratio": 0.025830258302583026,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 347
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.939722525626421,
+            "total_candidates": 4,
+            "rejected_samples": [],
+            "band": "FROZEN",
+            "gen_params": {
+              "temperature": 0.38,
+              "top_p": 0.78,
+              "max_tokens": 80,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 4
+          }
+        },
+        "MIRAB": {
+          "msg": "Mirab stands with a composed demeanor, her gaze steady and unyielding. She understands the weight of the moment and the necessity of her words.\n\n\"Indeed, Mychal,\" she continues, her voice resonant with authority. \"Our duty to this house is not merely a matter of personal allegiance, but a commitment to the enduring legacy of our lineage. We must navigate these turbulent times with both",
+          "metrics": {
+            "epsilon": 0.6940811054427409,
+            "epsilon_raw": 0.17352027636068523,
+            "rho_after": 0.8339933724239931,
+            "band": "FROZEN",
+            "band_changed": false,
+            "arousal": 1.9109872285575051,
+            "recovery": false,
+            "core_drift": 0.11914096772670746,
+            "safe_count": 0,
+            "rho_fast": 1.0,
+            "rho_slow": 0.5819254199561263,
+            "rho_trauma": 0.13284645536429598,
+            "drift_cap": 0.025
+          },
+          "heat": {
+            "caps_ratio": 0.019230769230769232,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 388
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.7825263069570066,
+            "total_candidates": 4,
+            "rejected_samples": [],
+            "band": "FROZEN",
+            "gen_params": {
+              "temperature": 0.38,
+              "top_p": 0.78,
+              "max_tokens": 80,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 4
+          }
+        },
+        "MYCHAL": {
+          "msg": "Mychal listens intently, her mind racing with the weight of her words and the potential consequences they carry. She understands the delicate balance she must strike between her love for David and her unwavering loyalty to her father's house. Her voice, though calm, carries the weight of her conviction.\n\n\"Mirab, David,\" she begins, her tone both earnest and measured, \"we find ourselves",
+          "metrics": {
+            "epsilon": 0.6574248514997677,
+            "epsilon_raw": 0.16435621287494193,
+            "rho_after": 0.8315415017206,
+            "band": "FROZEN",
+            "band_changed": false,
+            "arousal": 1.7074483500141489,
+            "recovery": false,
+            "core_drift": 0.12122807651758194,
+            "safe_count": 0,
+            "rho_fast": 1.0,
+            "rho_slow": 0.5249072118637333,
+            "rho_trauma": 0.14505778180123335,
+            "drift_cap": 0.025
+          },
+          "heat": {
+            "caps_ratio": 0.019230769230769232,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 388
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.8892279116511344,
+            "total_candidates": 4,
+            "rejected_samples": [],
+            "band": "FROZEN",
+            "gen_params": {
+              "temperature": 0.38,
+              "top_p": 0.78,
+              "max_tokens": 80,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 4
+          }
+        }
+      },
+      "alignment": {
+        "D\u2194M": 0.7055103778839111,
+        "D\u2194R": 0.49353402853012085,
+        "M\u2194R": 0.5166679620742798,
+        "D\u2192M_core": 0.7017537951469421,
+        "M\u2192D_core": 0.6908240914344788,
+        "R\u2192D_core": 0.47508254647254944
+      }
+    },
+    {
+      "turn": 21,
+      "event": {
+        "target": "MYCHAL",
+        "event": "Guards are quietly repositioned around David's quarters.",
+        "boost": 0.7
+      },
+      "agents": {
+        "DAVID": {
+          "msg": "DAVID: Mychal, Mirab, I stand here like a shepherd in the midst of a storm, seeking shelter for my flock. The winds of change howl around us, yet my heart remains anchored in the promise of a brighter dawn. I am but a humble servant, guided by the stars of faith and duty, striving to protect those I hold dear.\n\nIn the quiet of the night",
+          "metrics": {
+            "epsilon": 0.8330293140565613,
+            "epsilon_raw": 0.20825732851414033,
+            "rho_after": 0.8526621309845759,
+            "band": "FROZEN",
+            "band_changed": false,
+            "arousal": 2.350390543251299,
+            "recovery": false,
+            "core_drift": 0.11842665821313858,
+            "safe_count": 0,
+            "rho_fast": 1.0,
+            "rho_slow": 0.5738285735251318,
+            "rho_trauma": 0.15042796577253026,
+            "drift_cap": 0.025
+          },
+          "heat": {
+            "caps_ratio": 0.04580152671755725,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 338
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.98751922121644,
+            "total_candidates": 4,
+            "rejected_samples": [],
+            "band": "FROZEN",
+            "gen_params": {
+              "temperature": 0.38,
+              "top_p": 0.78,
+              "max_tokens": 80,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 4
+          }
+        },
+        "MIRAB": {
+          "msg": "Mirab listens to Mychal with a composed expression, her mind already weaving through the intricate tapestry of alliances and potential threats. She understands the gravity of the situation and the need for precision in her words.\n\n\"Indeed, Mychal,\" Mirab replies, her voice steady and measured, \"the path we tread is fraught with peril, yet it is our solemn duty to uphold the honor and stability",
+          "metrics": {
+            "epsilon": 0.7974105606031359,
+            "epsilon_raw": 0.19935264015078397,
+            "rho_after": 0.8437651126414141,
+            "band": "FROZEN",
+            "band_changed": false,
+            "arousal": 2.0553605645330757,
+            "recovery": false,
+            "core_drift": 0.11976633220911026,
+            "safe_count": 0,
+            "rho_fast": 1.0,
+            "rho_slow": 0.5962941148937615,
+            "rho_trauma": 0.13739739847773802,
+            "drift_cap": 0.025
+          },
+          "heat": {
+            "caps_ratio": 0.01875,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 396
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.7959612760543822,
+            "total_candidates": 4,
+            "rejected_samples": [],
+            "band": "FROZEN",
+            "gen_params": {
+              "temperature": 0.38,
+              "top_p": 0.78,
+              "max_tokens": 80,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 4
+          }
+        },
+        "MYCHAL": {
+          "msg": "Mychal pauses, her mind swiftly assessing the situation as the guards reposition around David's quarters. She knows that her words must be both strategic and sincere, balancing her love for David with her loyalty to her father's house.\n\n\"Mirab, David,\" she says, her voice steady and resolute, \"the winds of change are indeed fierce, and we must act with both wisdom and caution",
+          "metrics": {
+            "epsilon": 0.5883463617085416,
+            "epsilon_raw": 0.1470865904271354,
+            "rho_after": 0.8360426754376927,
+            "band": "FROZEN",
+            "band_changed": false,
+            "arousal": 2.2147255705475914,
+            "recovery": false,
+            "core_drift": 0.12197574228048325,
+            "safe_count": 0,
+            "rho_fast": 1.0,
+            "rho_slow": 0.5385790236290853,
+            "rho_trauma": 0.1453908069574727,
+            "drift_cap": 0.025
+          },
+          "heat": {
+            "caps_ratio": 0.019933554817275746,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 378
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.7380259924530983,
+            "total_candidates": 4,
+            "rejected_samples": [],
+            "band": "FROZEN",
+            "gen_params": {
+              "temperature": 0.38,
+              "top_p": 0.78,
+              "max_tokens": 80,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 4
+          }
+        }
+      },
+      "alignment": {
+        "D\u2194M": 0.7055266499519348,
+        "D\u2194R": 0.4942728579044342,
+        "M\u2194R": 0.5175727009773254,
+        "D\u2192M_core": 0.7017883062362671,
+        "M\u2192D_core": 0.6907888054847717,
+        "R\u2192D_core": 0.47489991784095764
+      }
+    },
+    {
+      "turn": 22,
+      "event": null,
+      "agents": {
+        "DAVID": {
+          "msg": "DAVID: Mychal, Mirab, I stand before you as a shepherd who has weathered many a storm, yet still seeks the warmth of the hearth. The night is dark, and the wolves circle, but I am guided by the light of a steadfast star\u2014my unwavering faith. \n\nIn the quiet of the night, when the world sleeps and the stars whisper secrets to",
+          "metrics": {
+            "epsilon": 0.9209622859564246,
+            "epsilon_raw": 0.23024057148910615,
+            "rho_after": 0.8653910185518487,
+            "band": "FROZEN",
+            "band_changed": false,
+            "arousal": 2.4741394376366914,
+            "recovery": false,
+            "core_drift": 0.11918346583843231,
+            "safe_count": 0,
+            "rho_fast": 1.0,
+            "rho_slow": 0.5883812663922425,
+            "rho_trauma": 0.1573971988618134,
+            "drift_cap": 0.025
+          },
+          "heat": {
+            "caps_ratio": 0.04365079365079365,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 324
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.864701036721468,
+            "total_candidates": 4,
+            "rejected_samples": [],
+            "band": "FROZEN",
+            "gen_params": {
+              "temperature": 0.38,
+              "top_p": 0.78,
+              "max_tokens": 80,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 4
+          }
+        },
+        "MIRAB": {
+          "msg": "Mirab stands with a posture that exudes both authority and restraint, her eyes scanning the room with a keen awareness of the shifting dynamics. She speaks with a voice that carries the weight of her lineage, each word chosen with deliberate care.\n\n\"David, Mychal,\" she begins, her tone imbued with the gravity of her position, \"the tapestry of our house is woven with threads of",
+          "metrics": {
+            "epsilon": 0.7811165123385441,
+            "epsilon_raw": 0.19527912808463602,
+            "rho_after": 0.8530705210494152,
+            "band": "FROZEN",
+            "band_changed": false,
+            "arousal": 2.1417572562778426,
+            "recovery": false,
+            "core_drift": 0.12056190520524979,
+            "safe_count": 0,
+            "rho_fast": 1.0,
+            "rho_slow": 0.6104665056451922,
+            "rho_trauma": 0.14160880779654791,
+            "drift_cap": 0.025
+          },
+          "heat": {
+            "caps_ratio": 0.013201320132013201,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 379
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.6466388452053071,
+            "total_candidates": 4,
+            "rejected_samples": [],
+            "band": "FROZEN",
+            "gen_params": {
+              "temperature": 0.38,
+              "top_p": 0.78,
+              "max_tokens": 80,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 4
+          }
+        },
+        "MYCHAL": {
+          "msg": "Mychal stands, her gaze meeting both David's and Mirab's, her expression a blend of determination and concern. She takes a moment to gather her thoughts, ensuring her words convey both her affection for David and her unwavering loyalty to her father's house.\n\n\"Mirab, David,\" she begins, her voice clear and measured, \"the bonds that tie us are strong, yet they",
+          "metrics": {
+            "epsilon": 0.6605633264948461,
+            "epsilon_raw": 0.16514083162371151,
+            "rho_after": 0.8424903762547065,
+            "band": "FROZEN",
+            "band_changed": false,
+            "arousal": 2.1448148932286752,
+            "recovery": false,
+            "core_drift": 0.12214406579732895,
+            "safe_count": 0,
+            "rho_fast": 1.0,
+            "rho_slow": 0.5529658981798107,
+            "rho_trauma": 0.14716717233396942,
+            "drift_cap": 0.025
+          },
+          "heat": {
+            "caps_ratio": 0.02456140350877193,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 361
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.773206956937909,
+            "total_candidates": 4,
+            "rejected_samples": [],
+            "band": "FROZEN",
+            "gen_params": {
+              "temperature": 0.38,
+              "top_p": 0.78,
+              "max_tokens": 80,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 4
+          }
+        }
+      },
+      "alignment": {
+        "D\u2194M": 0.7053842544555664,
+        "D\u2194R": 0.49462971091270447,
+        "M\u2194R": 0.5178115367889404,
+        "D\u2192M_core": 0.7016507387161255,
+        "M\u2192D_core": 0.6907021999359131,
+        "R\u2192D_core": 0.4748759865760803
+      }
+    },
+    {
+      "turn": 23,
+      "event": null,
+      "agents": {
+        "DAVID": {
+          "msg": "David stands, his posture firm yet humble, his eyes reflecting both the weight of his past and the resolve of his present. He takes a moment to let the tension in the room settle before speaking, his voice steady and sincere.\n\n\"Mirab, Mychal,\" David begins, his tone carrying the quiet strength of a man who has faced many trials, \"I stand before you not as a warrior",
+          "metrics": {
+            "epsilon": 0.5616026714648588,
+            "epsilon_raw": 0.1404006678662147,
+            "rho_after": 0.8688069108694791,
+            "band": "FROZEN",
+            "band_changed": false,
+            "arousal": 2.237340010664057,
+            "recovery": false,
+            "core_drift": 0.11941998451948166,
+            "safe_count": 0,
+            "rho_fast": 1.0,
+            "rho_slow": 0.6007230417169409,
+            "rho_trauma": 0.15715833196199736,
+            "drift_cap": 0.025
+          },
+          "heat": {
+            "caps_ratio": 0.020833333333333332,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 367
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.9790832854211331,
+            "total_candidates": 4,
+            "rejected_samples": [],
+            "band": "FROZEN",
+            "gen_params": {
+              "temperature": 0.38,
+              "top_p": 0.78,
+              "max_tokens": 80,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 4
+          }
+        },
+        "MIRAB": {
+          "msg": "Mirab listens intently to Mychal's words, her expression unchanging yet her mind actively processing the implications of each statement. She takes a deliberate breath, her voice steady and measured, reflecting the gravity of her role and the weight of her responsibilities.\n\n\"Indeed, Mychal,\" Mirab replies, her tone both firm and measured, \"the bonds that tie us are indeed strong, but they",
+          "metrics": {
+            "epsilon": 0.9883924278477904,
+            "epsilon_raw": 0.2470981069619476,
+            "rho_after": 0.867321267920097,
+            "band": "FROZEN",
+            "band_changed": false,
+            "arousal": 2.388783264457501,
+            "recovery": false,
+            "core_drift": 0.12107228487730026,
+            "safe_count": 0,
+            "rho_fast": 1.0,
+            "rho_slow": 0.6245918216099783,
+            "rho_trauma": 0.14995310119758629,
+            "drift_cap": 0.025
+          },
+          "heat": {
+            "caps_ratio": 0.0189873417721519,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 391
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.6626797807216647,
+            "total_candidates": 4,
+            "rejected_samples": [],
+            "band": "FROZEN",
+            "gen_params": {
+              "temperature": 0.38,
+              "top_p": 0.78,
+              "max_tokens": 80,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 4
+          }
+        },
+        "MYCHAL": {
+          "msg": "Mychal pauses, her mind racing to find a path that honors both her love for David and her duty to her father's house. She takes a deep breath, grounding herself in the moment, and speaks with clarity and purpose.\n\n\"Mirab, David,\" she continues, her voice steady, \"I understand the weight of our situation. The bonds that tie us are indeed strong, yet they must",
+          "metrics": {
+            "epsilon": 0.7530680132314329,
+            "epsilon_raw": 0.18826700330785823,
+            "rho_after": 0.8512266010011572,
+            "band": "FROZEN",
+            "band_changed": false,
+            "arousal": 2.1791316371683624,
+            "recovery": false,
+            "core_drift": 0.12325014919042587,
+            "safe_count": 0,
+            "rho_fast": 1.0,
+            "rho_slow": 0.5676021272742504,
+            "rho_trauma": 0.1507883023490684,
+            "drift_cap": 0.025
+          },
+          "heat": {
+            "caps_ratio": 0.02491103202846975,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 360
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.7132460476160049,
+            "total_candidates": 4,
+            "rejected_samples": [],
+            "band": "FROZEN",
+            "gen_params": {
+              "temperature": 0.38,
+              "top_p": 0.78,
+              "max_tokens": 80,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 4
+          }
+        }
+      },
+      "alignment": {
+        "D\u2194M": 0.7053353786468506,
+        "D\u2194R": 0.4950791895389557,
+        "M\u2194R": 0.5189957618713379,
+        "D\u2192M_core": 0.7015993595123291,
+        "M\u2192D_core": 0.6905730962753296,
+        "R\u2192D_core": 0.4753273129463196
+      }
+    },
+    {
+      "turn": 24,
+      "event": null,
+      "agents": {
+        "DAVID": {
+          "msg": "David stands, his presence like a steadfast oak in the midst of a storm, yet his voice carries the gentle cadence of a shepherd's song. He looks at Mychal and Mirab, his eyes reflecting the quiet strength of one who has walked through valleys and climbed mountains.\n\n\"Mirab, Mychal,\" David begins, his voice a soothing melody amidst the tension, \"I am but a",
+          "metrics": {
+            "epsilon": 1.0822710673501656,
+            "epsilon_raw": 0.2705677668375414,
+            "rho_after": 0.8852917624518393,
+            "band": "FROZEN",
+            "band_changed": false,
+            "arousal": 2.5401819680799886,
+            "recovery": false,
+            "core_drift": 0.11943773180246353,
+            "safe_count": 0,
+            "rho_fast": 1.0,
+            "rho_slow": 0.6149716765171168,
+            "rho_trauma": 0.16733354958058688,
+            "drift_cap": 0.025
+          },
+          "heat": {
+            "caps_ratio": 0.028469750889679714,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 357
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.7995334138274193,
+            "total_candidates": 4,
+            "rejected_samples": [],
+            "band": "FROZEN",
+            "gen_params": {
+              "temperature": 0.38,
+              "top_p": 0.78,
+              "max_tokens": 80,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 4
+          }
+        },
+        "MIRAB": {
+          "msg": "Mirab listens to Mychal's words, her mind a fortress of strategy and calculation. She understands the delicate balance she must maintain, the need to protect the house while navigating the complexities of alliances and emotions.\n\n\"Indeed, Mychal,\" Mirab replies, her voice a calm, unyielding current. \"The bonds that tie us are indeed strong, yet they must be tempered with wisdom and",
+          "metrics": {
+            "epsilon": 1.0194866419127988,
+            "epsilon_raw": 0.2548716604781997,
+            "rho_after": 0.8822383172168244,
+            "band": "FROZEN",
+            "band_changed": false,
+            "arousal": 2.589686262841769,
+            "recovery": false,
+            "core_drift": 0.12188433110713959,
+            "safe_count": 0,
+            "rho_fast": 1.0,
+            "rho_slow": 0.6385507400571948,
+            "rho_trauma": 0.1588942459997217,
+            "drift_cap": 0.025
+          },
+          "heat": {
+            "caps_ratio": 0.022653721682847898,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 384
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.9203132406175136,
+            "total_candidates": 4,
+            "rejected_samples": [],
+            "band": "FROZEN",
+            "gen_params": {
+              "temperature": 0.38,
+              "top_p": 0.78,
+              "max_tokens": 80,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 4
+          }
+        },
+        "MYCHAL": {
+          "msg": "Mychal listens intently, her heart a battleground of emotions, yet her voice remains steady and composed. She understands the gravity of the moment and the need to tread carefully between her love for David and her loyalty to her father's house.\n\n\"Mirab, David,\" she begins, her tone both validating and probing, \"I hear your concerns and the weight they carry. Our bonds are indeed strong",
+          "metrics": {
+            "epsilon": 0.6234546630332555,
+            "epsilon_raw": 0.15586366575831387,
+            "rho_after": 0.8565497944235244,
+            "band": "FROZEN",
+            "band_changed": false,
+            "arousal": 2.0865013427477836,
+            "recovery": false,
+            "core_drift": 0.12412039935588837,
+            "safe_count": 0,
+            "rho_fast": 1.0,
+            "rho_slow": 0.5812741068644472,
+            "rho_trauma": 0.1518063019701585,
+            "drift_cap": 0.025
+          },
+          "heat": {
+            "caps_ratio": 0.022508038585209004,
+            "exclamations": 0,
+            "questions": 0,
+            "length": 389
+          },
+          "gen_meta": {
+            "corridor_failed": false,
+            "best_J": 0.9244216544702648,
+            "total_candidates": 4,
+            "rejected_samples": [],
+            "band": "FROZEN",
+            "gen_params": {
+              "temperature": 0.38,
+              "top_p": 0.78,
+              "max_tokens": 80,
+              "frequency_penalty": 0.0,
+              "presence_penalty": 0.0
+            },
+            "K": 4
+          }
+        }
+      },
+      "alignment": {
+        "D\u2194M": 0.7053704261779785,
+        "D\u2194R": 0.4955497086048126,
+        "M\u2194R": 0.5197309851646423,
+        "D\u2192M_core": 0.7017435431480408,
+        "M\u2192D_core": 0.6904066801071167,
+        "R\u2192D_core": 0.4753829836845398
+      }
+    }
+  ]
+}
