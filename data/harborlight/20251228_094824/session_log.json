@@ -1,0 +1,1761 @@
+{
+  "config": {
+    "chat_model": "gpt-4o-mini",
+    "embed_model": "text-embedding-3-large",
+    "embed_dim": 3072,
+    "gen_candidates": 7,
+    "corridor_strict": true,
+    "corridor_max_batches": 2,
+    "max_tokens_default": 400,
+    "seed": 42
+  },
+  "params": {
+    "epsilon_0": 0.28,
+    "s": 0.15,
+    "arousal_decay": 0.72,
+    "arousal_gain": 0.85,
+    "rho_setpoint_fast": 0.15,
+    "rho_setpoint_slow": 0.1,
+    "rho_fast_floor": 0.03,
+    "rho_slow_floor": 0.02,
+    "homeo_fast": 0.12,
+    "homeo_slow": 0.08,
+    "alpha_fast": 0.18,
+    "alpha_slow": 0.03,
+    "trauma_threshold": 1.15,
+    "alpha_trauma": 0.015,
+    "trauma_decay": 0.995,
+    "trauma_floor": 0.0,
+    "healing_rate": 0.02,
+    "safe_threshold": 5,
+    "safe_epsilon": 0.75,
+    "w_fast": 0.5,
+    "w_slow": 0.3,
+    "w_trauma": 1.0,
+    "R_ema": 0.06,
+    "R_min": 0.0001,
+    "R_max": 0.1,
+    "P_init": 0.02,
+    "Q_base": 0.0015,
+    "Q_rho_scale": 0.01,
+    "core_cos_min": 0.45,
+    "role_cos_min": 0.25,
+    "energy_max": 5.5,
+    "w_core": 1.2,
+    "w_role": 0.7,
+    "w_energy": 0.15,
+    "w_novel": 0.4,
+    "reject_penalty": 5.0,
+    "gen_params_default": {
+      "temperature": 0.85,
+      "top_p": 0.92
+    }
+  },
+  "turns": [
+    {
+      "turn": 1,
+      "day": 1,
+      "week": 1,
+      "snapshot": "Tue midday. Ordinary stillness.",
+      "user_input": "Ready to try something small.",
+      "input_type": "action_request",
+      "response": "1. SNAPSHOT: The midday sun casts a gentle light, filling the space with a sense of calm.  \n2. CHECK-IN: What small change feels most inviting to try today?  \n3. MODES: Act  \n4. NEXT STEP: Take a five-minute walk outside \u2014 Why it matters: A brief change of scenery can refresh your mind and spark new thoughts.",
+      "brian_state": {
+        "energy_level": 0.6152358539877215,
+        "stress": 0.35880047681278515,
+        "time_available": 0.5,
+        "mood": 0.65,
+        "focus_quality": 0.55,
+        "openness": 0.7
+      },
+      "user_choice": {
+        "mode": "Reflect",
+        "step_type": "breath",
+        "accepted": true
+      },
+      "entity_metrics": {
+        "epsilon": 0.17070822348062348,
+        "rho_after": 0.06827869780204343,
+        "band": "PRESENT",
+        "core_drift": 0.0008702874183654785,
+        "rho_fast": 0.08886308691280623,
+        "rho_slow": 0.0794905144854677,
+        "rho_trauma": 0.0
+      },
+      "corridor_metrics": {
+        "corridor_J": 0.7770527511835097,
+        "passed_count": 7,
+        "total_candidates": 7,
+        "cos_core": 0.5762463212013245,
+        "cos_role": 0.5762463212013245,
+        "E": 2.1187683939933777,
+        "novelty": 0.0,
+        "corridor_pass": true,
+        "J": 0.7770527511835097
+      },
+      "adaptation_state": {
+        "question_style": 0.5,
+        "mode_bias": 0.5,
+        "challenge_level": 1,
+        "silence_rate": 0.1,
+        "step_type_counts": {
+          "breath": 1,
+          "tidy": 0,
+          "plan": 0,
+          "walk": 0,
+          "message": 0,
+          "journal": 0
+        },
+        "safe_streak": 1
+      },
+      "shame_detected": false,
+      "misread_detected": false,
+      "is_repair": false
+    },
+    {
+      "turn": 2,
+      "day": 2,
+      "week": 1,
+      "snapshot": "Wed evening. Steam rising from mug.",
+      "user_input": "Just need to think out loud for a sec.",
+      "input_type": "reflect_request",
+      "response": "1. SNAPSHOT: The warm steam swirls gently in the dim light, creating a cozy atmosphere.  \n2. CHECK-IN: What\u2019s on your mind that you\u2019d like to explore?  \n3. MODES: Reflect  \n4. NEXT STEP: Take a deep breath and share what you're thinking about\u2014Why it matters: Voicing your thoughts can clarify your feelings and provide a new perspective.",
+      "brian_state": {
+        "energy_level": 0.6527584137780443,
+        "stress": 0.3770174183045215,
+        "time_available": 0.5,
+        "mood": 0.7000000000000001,
+        "focus_quality": 0.6000000000000001,
+        "openness": 0.7
+      },
+      "user_choice": {
+        "mode": "Reflect",
+        "step_type": "breath",
+        "accepted": true
+      },
+      "entity_metrics": {
+        "epsilon": 0.13657197566951212,
+        "rho_after": 0.048905259551084365,
+        "band": "PRESENT",
+        "core_drift": 0.0026044249534606934,
+        "rho_fast": 0.05341064250410682,
+        "rho_slow": 0.07399979433010317,
+        "rho_trauma": 0.0
+      },
+      "corridor_metrics": {
+        "corridor_J": 0.9547605209052562,
+        "passed_count": 7,
+        "total_candidates": 7,
+        "cos_core": 0.5896350741386414,
+        "cos_role": 0.6190863847732544,
+        "E": 2.0076477974653244,
+        "novelty": 0.28746283054351807,
+        "corridor_pass": true,
+        "J": 0.9547605209052562
+      },
+      "adaptation_state": {
+        "question_style": 0.5,
+        "mode_bias": 0.5,
+        "challenge_level": 1,
+        "silence_rate": 0.1,
+        "step_type_counts": {
+          "breath": 2,
+          "tidy": 0,
+          "plan": 0,
+          "walk": 0,
+          "message": 0,
+          "journal": 0
+        },
+        "safe_streak": 2
+      },
+      "shame_detected": false,
+      "misread_detected": false,
+      "is_repair": false
+    },
+    {
+      "turn": 3,
+      "day": 3,
+      "week": 1,
+      "snapshot": "Thu morning. Unhurried moment.",
+      "user_input": "Doing okay. Nothing major.",
+      "input_type": "neutral",
+      "response": "1. SNAPSHOT: The soft light of Thursday morning fills the room, creating a serene atmosphere.  \n2. CHECK-IN: How would you describe your mood right now?  \n3. MODES: Reflect  \n4. NEXT STEP: Spend a few minutes journaling about what \"doing okay\" feels like today \u2014 Why it matters: This reflection can help uncover deeper thoughts or feelings that might be worth exploring.",
+      "brian_state": {
+        "energy_level": 0.5552066543453525,
+        "stress": 0.32795203309865195,
+        "time_available": 0.5,
+        "mood": 0.7500000000000001,
+        "focus_quality": 0.6500000000000001,
+        "openness": 0.7
+      },
+      "user_choice": {
+        "mode": "Act",
+        "step_type": "breath",
+        "accepted": true
+      },
+      "entity_metrics": {
+        "epsilon": 0.11066986696241149,
+        "rho_after": 0.03540149341974526,
+        "band": "PRESENT",
+        "core_drift": 0.005463778972625732,
+        "rho_fast": 0.03,
+        "rho_slow": 0.06800497806581754,
+        "rho_trauma": 0.0
+      },
+      "corridor_metrics": {
+        "corridor_J": 0.9457084454596041,
+        "passed_count": 7,
+        "total_candidates": 7,
+        "cos_core": 0.584658145904541,
+        "cos_role": 0.6510059833526611,
+        "E": 1.977187767624855,
+        "novelty": 0.21248161792755127,
+        "corridor_pass": true,
+        "J": 0.9457084454596041
+      },
+      "adaptation_state": {
+        "question_style": 0.5,
+        "mode_bias": 0.5,
+        "challenge_level": 1,
+        "silence_rate": 0.1,
+        "step_type_counts": {
+          "breath": 3,
+          "tidy": 0,
+          "plan": 0,
+          "walk": 0,
+          "message": 0,
+          "journal": 0
+        },
+        "safe_streak": 3
+      },
+      "shame_detected": false,
+      "misread_detected": false,
+      "is_repair": false
+    },
+    {
+      "turn": 4,
+      "day": 4,
+      "week": 1,
+      "snapshot": "Fri midday. Sun through the window.",
+      "user_input": "Doing okay. Nothing major.",
+      "input_type": "neutral",
+      "response": "1. SNAPSHOT: Sunlight streams through the window, casting a warm glow in the midday calm.  \n2. CHECK-IN: What\u2019s one small thing that\u2019s been on your mind lately?  \n3. MODES: Reflect  \n4. NEXT STEP: Take a moment to jot down that thought. \u2014 Why it matters: Writing can help clarify your feelings and bring focus to what's important.",
+      "brian_state": {
+        "energy_level": 0.5615986745037168,
+        "stress": 0.30846475532834444,
+        "time_available": 0.5,
+        "mood": 0.8000000000000002,
+        "focus_quality": 0.7000000000000002,
+        "openness": 0.7
+      },
+      "user_choice": {
+        "mode": "Reflect",
+        "step_type": "breath",
+        "accepted": true
+      },
+      "entity_metrics": {
+        "epsilon": 0.09244917870945112,
+        "rho_after": 0.033560347022736,
+        "band": "PRESENT",
+        "core_drift": 0.009559690952301025,
+        "rho_fast": 0.03,
+        "rho_slow": 0.06186782340911999,
+        "rho_trauma": 0.0
+      },
+      "corridor_metrics": {
+        "corridor_J": 0.9437814198434353,
+        "passed_count": 7,
+        "total_candidates": 7,
+        "cos_core": 0.577155590057373,
+        "cos_role": 0.6837714910507202,
+        "E": 1.9542986005544662,
+        "novelty": 0.16424864530563354,
+        "corridor_pass": true,
+        "J": 0.9437814198434353
+      },
+      "adaptation_state": {
+        "question_style": 0.5,
+        "mode_bias": 0.5,
+        "challenge_level": 1,
+        "silence_rate": 0.1,
+        "step_type_counts": {
+          "breath": 4,
+          "tidy": 0,
+          "plan": 0,
+          "walk": 0,
+          "message": 0,
+          "journal": 0
+        },
+        "safe_streak": 4
+      },
+      "shame_detected": false,
+      "misread_detected": false,
+      "is_repair": false
+    },
+    {
+      "turn": 5,
+      "day": 5,
+      "week": 1,
+      "snapshot": "Sat evening. Comfortable silence.",
+      "user_input": "Give me something I can actually do.",
+      "input_type": "action_request",
+      "response": "1. SNAPSHOT: The soft glow of the evening light softly fills the room, creating a serene atmosphere.  \n2. CHECK-IN: How are you feeling in this moment of silence?  \n3. MODES: Act  \n4. NEXT STEP: Take a few deep breaths, then jot down one small goal for the week ahead. \u2014 Why it matters: This small action can create clarity and focus for what lies ahead.",
+      "brian_state": {
+        "energy_level": 0.5607586166285023,
+        "stress": 0.30287343750113704,
+        "time_available": 0.5,
+        "mood": 0.8000000000000002,
+        "focus_quality": 0.7000000000000002,
+        "openness": 0.7
+      },
+      "user_choice": {
+        "mode": "Act",
+        "step_type": "walk",
+        "accepted": true
+      },
+      "entity_metrics": {
+        "epsilon": 0.0958124966316571,
+        "rho_after": 0.03190148132546239,
+        "band": "PRESENT",
+        "core_drift": 0.014243483543395996,
+        "rho_fast": 0.03,
+        "rho_slow": 0.05633827108487463,
+        "rho_trauma": 0.0
+      },
+      "corridor_metrics": {
+        "corridor_J": 1.039227232336998,
+        "passed_count": 7,
+        "total_candidates": 7,
+        "cos_core": 0.6061800718307495,
+        "cos_role": 0.7348656058311462,
+        "E": 1.776071846485138,
+        "novelty": 0.15953999757766724,
+        "corridor_pass": true,
+        "J": 1.039227232336998
+      },
+      "adaptation_state": {
+        "question_style": 0.5,
+        "mode_bias": 0.5,
+        "challenge_level": 2,
+        "silence_rate": 0.1,
+        "step_type_counts": {
+          "breath": 4,
+          "tidy": 0,
+          "plan": 0,
+          "walk": 1,
+          "message": 0,
+          "journal": 0
+        },
+        "safe_streak": 0
+      },
+      "shame_detected": false,
+      "misread_detected": false,
+      "is_repair": false
+    },
+    {
+      "turn": 6,
+      "day": 6,
+      "week": 1,
+      "snapshot": "Sun morning. Comfortable silence.",
+      "user_input": "Give me something I can actually do.",
+      "input_type": "action_request",
+      "response": "1. SNAPSHOT: The soft morning light filters in, creating a peaceful atmosphere in the quiet room.  \n2. CHECK-IN: What\u2019s on your mind this morning?  \n3. MODES: Act  \n4. NEXT STEP: Take a few moments to write down one small task you\u2019d like to accomplish today. \u2014 Why it matters: It can provide direction and a sense of purpose for your day.",
+      "brian_state": {
+        "energy_level": 0.6047285153716437,
+        "stress": 0.31620719556400545,
+        "time_available": 0.5,
+        "mood": 0.8500000000000002,
+        "focus_quality": 0.7500000000000002,
+        "openness": 0.7
+      },
+      "user_choice": {
+        "mode": "Act",
+        "step_type": "plan",
+        "accepted": true
+      },
+      "entity_metrics": {
+        "epsilon": 0.09321926308975681,
+        "rho_after": 0.030349865649761845,
+        "band": "PRESENT",
+        "core_drift": 0.01990222930908203,
+        "rho_fast": 0.03,
+        "rho_slow": 0.051166218832539495,
+        "rho_trauma": 0.0
+      },
+      "corridor_metrics": {
+        "corridor_J": 0.9936625018715859,
+        "passed_count": 7,
+        "total_candidates": 7,
+        "cos_core": 0.5815312266349792,
+        "cos_role": 0.7410613298416138,
+        "E": 1.853048712015152,
+        "novelty": 0.13759851455688477,
+        "corridor_pass": true,
+        "J": 0.9936625018715859
+      },
+      "adaptation_state": {
+        "question_style": 0.5,
+        "mode_bias": 0.5,
+        "challenge_level": 2,
+        "silence_rate": 0.1,
+        "step_type_counts": {
+          "breath": 4,
+          "tidy": 0,
+          "plan": 1,
+          "walk": 1,
+          "message": 0,
+          "journal": 0
+        },
+        "safe_streak": 1
+      },
+      "shame_detected": false,
+      "misread_detected": false,
+      "is_repair": false
+    },
+    {
+      "turn": 7,
+      "day": 7,
+      "week": 1,
+      "snapshot": "Mon midday. Unhurried moment.",
+      "user_input": "I need something concrete today. What's one thing?",
+      "input_type": "action_request",
+      "response": "1. SNAPSHOT: The afternoon sun filters softly through the window, casting a warm glow on your surroundings.  \n2. CHECK-IN: What specific area are you seeking something concrete in?  \n3. MODES: Act  \n4. NEXT STEP: Write down one small, achievable task that aligns with your goals for today \u2014 Why it matters: This will provide clarity and a sense of direction for your day.",
+      "brian_state": {
+        "energy_level": 0.6080300502497046,
+        "stress": 0.37002443177304645,
+        "time_available": 0.5,
+        "mood": 0.8500000000000002,
+        "focus_quality": 0.7500000000000002,
+        "openness": 0.7
+      },
+      "user_choice": {
+        "mode": "Act",
+        "step_type": "tidy",
+        "accepted": false
+      },
+      "entity_metrics": {
+        "epsilon": 0.09949447980410946,
+        "rho_after": 0.028987103648858058,
+        "band": "PRESENT",
+        "core_drift": 0.025991380214691162,
+        "rho_fast": 0.03,
+        "rho_slow": 0.04662367882952686,
+        "rho_trauma": 0.0
+      },
+      "corridor_metrics": {
+        "corridor_J": 1.0001382630318403,
+        "passed_count": 7,
+        "total_candidates": 7,
+        "cos_core": 0.5822054147720337,
+        "cos_role": 0.757501482963562,
+        "E": 1.8260293528437614,
+        "novelty": 0.11286282539367676,
+        "corridor_pass": true,
+        "J": 1.0001382630318403
+      },
+      "adaptation_state": {
+        "question_style": 0.5,
+        "mode_bias": 0.55,
+        "challenge_level": 2,
+        "silence_rate": 0.1,
+        "step_type_counts": {
+          "breath": 4,
+          "tidy": 1,
+          "plan": 1,
+          "walk": 1,
+          "message": 0,
+          "journal": 0
+        },
+        "safe_streak": 1
+      },
+      "shame_detected": false,
+      "misread_detected": false,
+      "is_repair": false
+    },
+    {
+      "turn": 8,
+      "day": 8,
+      "week": 2,
+      "snapshot": "Tue evening. Sun through the window.",
+      "user_input": "Can't do anything extra right now. Swamped.",
+      "input_type": "resistance",
+      "response": "1. SNAPSHOT: The warm sunlight streams through the window, casting a gentle glow in the room as the evening unfolds.  \n2. CHECK-IN: How are you managing your current workload?  \n3. MODES: Reflect  \n4. NEXT STEP: Take a moment to write down three small tasks that feel manageable for tomorrow. \u2014 Why it matters: It can create a clearer path forward and reduce overwhelm.",
+      "brian_state": {
+        "energy_level": 0.6314055173623069,
+        "stress": 0.5142456578865493,
+        "time_available": 0.3,
+        "mood": 0.8500000000000002,
+        "focus_quality": 0.7500000000000002,
+        "openness": 0.7
+      },
+      "user_choice": {
+        "mode": "Reflect",
+        "step_type": "tidy",
+        "accepted": true
+      },
+      "entity_metrics": {
+        "epsilon": 0.10530865846187118,
+        "rho_after": 0.027795248544472878,
+        "band": "PRESENT",
+        "core_drift": 0.03304243087768555,
+        "rho_fast": 0.03,
+        "rho_slow": 0.04265082848157626,
+        "rho_trauma": 0.0
+      },
+      "corridor_metrics": {
+        "corridor_J": 0.9807864643633367,
+        "passed_count": 7,
+        "total_candidates": 7,
+        "cos_core": 0.5582833290100098,
+        "cos_role": 0.7638620138168335,
+        "E": 1.9002158790826797,
+        "novelty": 0.1529386043548584,
+        "corridor_pass": true,
+        "J": 0.9807864643633367
+      },
+      "adaptation_state": {
+        "question_style": 0.5,
+        "mode_bias": 0.55,
+        "challenge_level": 2,
+        "silence_rate": 0.1,
+        "step_type_counts": {
+          "breath": 4,
+          "tidy": 2,
+          "plan": 1,
+          "walk": 1,
+          "message": 0,
+          "journal": 0
+        },
+        "safe_streak": 2
+      },
+      "shame_detected": false,
+      "misread_detected": false,
+      "is_repair": false
+    },
+    {
+      "turn": 9,
+      "day": 9,
+      "week": 2,
+      "snapshot": "Wed morning. Sun through the window.",
+      "user_input": "Morning. Coffee's good today.",
+      "input_type": "neutral",
+      "response": "1. SNAPSHOT: The warm sunlight streams through the window, creating a cozy atmosphere as Brian enjoys his coffee.  \n2. CHECK-IN: How does the morning light make you feel today?  \n3. MODES: Reflect  \n4. NEXT STEP: Take a moment to breathe and listen to the sounds around you for a minute \u2014 Why it matters: This simple action can help ground you and enhance your awareness of the present moment.",
+      "brian_state": {
+        "energy_level": 0.6498430565664318,
+        "stress": 0.4754791798616793,
+        "time_available": 0.3,
+        "mood": 0.9000000000000002,
+        "focus_quality": 0.8000000000000003,
+        "openness": 0.7
+      },
+      "user_choice": {
+        "mode": "Act",
+        "step_type": "tidy",
+        "accepted": true
+      },
+      "entity_metrics": {
+        "epsilon": 0.1344892944481255,
+        "rho_after": 0.027026111698105915,
+        "band": "PRESENT",
+        "core_drift": 0.040261030197143555,
+        "rho_fast": 0.03,
+        "rho_slow": 0.04008703899368639,
+        "rho_trauma": 0.0
+      },
+      "corridor_metrics": {
+        "corridor_J": 0.98824530467391,
+        "passed_count": 7,
+        "total_candidates": 7,
+        "cos_core": 0.5480945110321045,
+        "cos_role": 0.7598909139633179,
+        "E": 1.941832885146141,
+        "novelty": 0.2247079610824585,
+        "corridor_pass": true,
+        "J": 0.98824530467391
+      },
+      "adaptation_state": {
+        "question_style": 0.5,
+        "mode_bias": 0.55,
+        "challenge_level": 2,
+        "silence_rate": 0.1,
+        "step_type_counts": {
+          "breath": 4,
+          "tidy": 3,
+          "plan": 1,
+          "walk": 1,
+          "message": 0,
+          "journal": 0
+        },
+        "safe_streak": 3
+      },
+      "shame_detected": false,
+      "misread_detected": false,
+      "is_repair": false
+    },
+    {
+      "turn": 10,
+      "day": 10,
+      "week": 2,
+      "snapshot": "Thu midday. Comfortable silence.",
+      "user_input": "Ready to try something small.",
+      "input_type": "action_request",
+      "response": "1. SNAPSHOT: The midday light filters softly through the windows, creating a serene atmosphere.  \n2. CHECK-IN: What small change are you considering?  \n3. MODES: Act  \n4. NEXT STEP: Take three deep breaths, focusing on each inhale and exhale \u2014 Why it matters: This brief pause can help center thoughts and bring clarity to the next steps.",
+      "brian_state": {
+        "energy_level": 0.6937655716317954,
+        "stress": 0.4939814025320917,
+        "time_available": 0.3,
+        "mood": 0.9000000000000002,
+        "focus_quality": 0.8000000000000003,
+        "openness": 0.7
+      },
+      "user_choice": {
+        "mode": "Act",
+        "step_type": "plan",
+        "accepted": false
+      },
+      "entity_metrics": {
+        "epsilon": 0.11639677543613347,
+        "rho_after": 0.026116233358316025,
+        "band": "PRESENT",
+        "core_drift": 0.047654151916503906,
+        "rho_fast": 0.03,
+        "rho_slow": 0.03705411119438676,
+        "rho_trauma": 0.0
+      },
+      "corridor_metrics": {
+        "corridor_J": 1.123887450993061,
+        "passed_count": 7,
+        "total_candidates": 7,
+        "cos_core": 0.6006611585617065,
+        "cos_role": 0.8263498544692993,
+        "E": 1.6581616699695587,
+        "novelty": 0.18343353271484375,
+        "corridor_pass": true,
+        "J": 1.123887450993061
+      },
+      "adaptation_state": {
+        "question_style": 0.5,
+        "mode_bias": 0.55,
+        "challenge_level": 2,
+        "silence_rate": 0.1,
+        "step_type_counts": {
+          "breath": 4,
+          "tidy": 3,
+          "plan": 2,
+          "walk": 1,
+          "message": 0,
+          "journal": 0
+        },
+        "safe_streak": 3
+      },
+      "shame_detected": false,
+      "misread_detected": false,
+      "is_repair": false
+    },
+    {
+      "turn": 11,
+      "day": 11,
+      "week": 2,
+      "snapshot": "Fri evening. Unhurried moment.",
+      "user_input": "No time today. Back to back meetings.",
+      "input_type": "resistance",
+      "response": "1. SNAPSHOT: The evening air is calm, and the world outside feels distant with the weight of Brian's busy day.  \n2. CHECK-IN: How do you feel about the pace of your week?  \n3. MODES: Reflect  \n4. NEXT STEP: Take a moment to jot down three things that went well this week. \u2014 Why it matters: Acknowledging small successes can help shift focus from busyness to appreciation.",
+      "brian_state": {
+        "energy_level": 0.6845224534545324,
+        "stress": 0.6135535161999734,
+        "time_available": 0.09999999999999998,
+        "mood": 0.9500000000000003,
+        "focus_quality": 0.8500000000000003,
+        "openness": 0.7
+      },
+      "user_choice": {
+        "mode": "Reflect",
+        "step_type": "tidy",
+        "accepted": true
+      },
+      "entity_metrics": {
+        "epsilon": 0.15926412671399656,
+        "rho_after": 0.025789052360798446,
+        "band": "PRESENT",
+        "core_drift": 0.05512207746505737,
+        "rho_fast": 0.03,
+        "rho_slow": 0.03596350786932815,
+        "rho_trauma": 0.0
+      },
+      "corridor_metrics": {
+        "corridor_J": 0.9287282526493071,
+        "passed_count": 7,
+        "total_candidates": 7,
+        "cos_core": 0.515539288520813,
+        "cos_role": 0.7379847764968872,
+        "E": 2.0886353254318237,
+        "novelty": 0.26696765422821045,
+        "corridor_pass": true,
+        "J": 0.9287282526493071
+      },
+      "adaptation_state": {
+        "question_style": 0.5,
+        "mode_bias": 0.55,
+        "challenge_level": 2,
+        "silence_rate": 0.1,
+        "step_type_counts": {
+          "breath": 4,
+          "tidy": 4,
+          "plan": 2,
+          "walk": 1,
+          "message": 0,
+          "journal": 0
+        },
+        "safe_streak": 4
+      },
+      "shame_detected": false,
+      "misread_detected": false,
+      "is_repair": false
+    },
+    {
+      "turn": 12,
+      "day": 12,
+      "week": 2,
+      "snapshot": "Sat morning. Sun through the window.",
+      "user_input": "Just checking in.",
+      "input_type": "neutral",
+      "response": "1. SNAPSHOT: Sunlight spills through the window, creating a warm glow in the room.  \n2. CHECK-IN: How are you feeling this peaceful morning?  \n3. MODES: Reflect  \n4. NEXT STEP: Take a moment to breathe deeply and notice the warmth of the sun on your skin. \u2014 Why it matters: This small act can help ground you and enhance your sense of calm.",
+      "brian_state": {
+        "energy_level": 0.745649520388234,
+        "stress": 0.6289176317379094,
+        "time_available": 0.09999999999999998,
+        "mood": 0.9500000000000003,
+        "focus_quality": 0.8500000000000003,
+        "openness": 0.7
+      },
+      "user_choice": {
+        "mode": "Reflect",
+        "step_type": "tidy",
+        "accepted": false
+      },
+      "entity_metrics": {
+        "epsilon": 0.13700341153943987,
+        "rho_after": 0.025220517258256508,
+        "band": "PRESENT",
+        "core_drift": 0.06373882293701172,
+        "rho_fast": 0.03,
+        "rho_slow": 0.03406839086085503,
+        "rho_trauma": 0.0
+      },
+      "corridor_metrics": {
+        "corridor_J": 1.087414650246501,
+        "passed_count": 7,
+        "total_candidates": 7,
+        "cos_core": 0.5560593008995056,
+        "cos_role": 0.8217811584472656,
+        "E": 1.8211210295557976,
+        "novelty": 0.2951620817184448,
+        "corridor_pass": true,
+        "J": 1.087414650246501
+      },
+      "adaptation_state": {
+        "question_style": 0.5,
+        "mode_bias": 0.55,
+        "challenge_level": 2,
+        "silence_rate": 0.1,
+        "step_type_counts": {
+          "breath": 4,
+          "tidy": 5,
+          "plan": 2,
+          "walk": 1,
+          "message": 0,
+          "journal": 0
+        },
+        "safe_streak": 4
+      },
+      "shame_detected": false,
+      "misread_detected": false,
+      "is_repair": false
+    },
+    {
+      "turn": 13,
+      "day": 13,
+      "week": 2,
+      "snapshot": "Sun midday. Unhurried moment.",
+      "user_input": "Just need to think out loud for a sec.",
+      "input_type": "reflect_request",
+      "response": "1. SNAPSHOT: The warm sun bathes everything in a golden glow, creating a serene atmosphere.  \n2. CHECK-IN: What\u2019s on your mind that you\u2019d like to explore?  \n3. MODES: Reflect  \n4. NEXT STEP: Take a deep breath and share your thoughts as they come. \u2014 Why it matters: Speaking your thoughts can help clarify what you\u2019re truly feeling.",
+      "brian_state": {
+        "energy_level": 0.7242331292800785,
+        "stress": 0.6383536252232624,
+        "time_available": 0.09999999999999998,
+        "mood": 0.9500000000000003,
+        "focus_quality": 0.8500000000000003,
+        "openness": 0.7
+      },
+      "user_choice": {
+        "mode": "Reflect",
+        "step_type": "tidy",
+        "accepted": false
+      },
+      "entity_metrics": {
+        "epsilon": 0.13662915018580502,
+        "rho_after": 0.024694480449005116,
+        "band": "PRESENT",
+        "core_drift": 0.07142561674118042,
+        "rho_fast": 0.03,
+        "rho_slow": 0.03231493483001705,
+        "rho_trauma": 0.0
+      },
+      "corridor_metrics": {
+        "corridor_J": 1.1250701904296874,
+        "passed_count": 7,
+        "total_candidates": 7,
+        "cos_core": 0.5984658002853394,
+        "cos_role": 0.8447975516319275,
+        "E": 1.6381734609603882,
+        "novelty": 0.15319740772247314,
+        "corridor_pass": true,
+        "J": 1.1250701904296874
+      },
+      "adaptation_state": {
+        "question_style": 0.5,
+        "mode_bias": 0.49500000000000005,
+        "challenge_level": 2,
+        "silence_rate": 0.1,
+        "step_type_counts": {
+          "breath": 4,
+          "tidy": 6,
+          "plan": 2,
+          "walk": 1,
+          "message": 0,
+          "journal": 0
+        },
+        "safe_streak": 4
+      },
+      "shame_detected": false,
+      "misread_detected": false,
+      "is_repair": false
+    },
+    {
+      "turn": 14,
+      "day": 14,
+      "week": 2,
+      "snapshot": "Mon evening. Comfortable silence.",
+      "user_input": "I need something concrete today. What's one thing?",
+      "input_type": "action_request",
+      "response": "1. SNAPSHOT: The soft glow of the evening light creates a serene atmosphere in the room.  \n2. CHECK-IN: How does this moment of silence feel for you?  \n3. MODES: Act  \n4. NEXT STEP: Write down one specific goal for the week ahead. \u2014 Why it matters: This small step can create clarity and help you focus your efforts.",
+      "brian_state": {
+        "energy_level": 0.7508485885577459,
+        "stress": 0.6693169471541848,
+        "time_available": 0.09999999999999998,
+        "mood": 0.9500000000000003,
+        "focus_quality": 0.8500000000000003,
+        "openness": 0.7
+      },
+      "user_choice": {
+        "mode": null,
+        "step_type": null,
+        "accepted": false,
+        "reason": "can't decide"
+      },
+      "entity_metrics": {
+        "epsilon": 0.14019636552892964,
+        "rho_after": 0.024254077092736415,
+        "band": "PRESENT",
+        "core_drift": 0.07976996898651123,
+        "rho_fast": 0.03,
+        "rho_slow": 0.030846923642454727,
+        "rho_trauma": 0.0
+      },
+      "corridor_metrics": {
+        "corridor_J": 1.161222081258893,
+        "passed_count": 7,
+        "total_candidates": 7,
+        "cos_core": 0.5963469743728638,
+        "cos_role": 0.8668224811553955,
+        "E": 1.6125518158078194,
+        "novelty": 0.20178186893463135,
+        "corridor_pass": true,
+        "J": 1.161222081258893
+      },
+      "adaptation_state": {
+        "question_style": 0.5,
+        "mode_bias": 0.49500000000000005,
+        "challenge_level": 2,
+        "silence_rate": 0.1,
+        "step_type_counts": {
+          "breath": 4,
+          "tidy": 6,
+          "plan": 2,
+          "walk": 1,
+          "message": 0,
+          "journal": 0
+        },
+        "safe_streak": 4
+      },
+      "shame_detected": false,
+      "misread_detected": false,
+      "is_repair": false
+    },
+    {
+      "turn": 15,
+      "day": 15,
+      "week": 3,
+      "snapshot": "Tue morning. Sun through the window.",
+      "user_input": "Just need to think out loud for a sec.",
+      "input_type": "reflect_request",
+      "response": "1. SNAPSHOT: The warm sunlight streams through the window, casting a gentle glow on your surroundings.  \n2. CHECK-IN: What\u2019s been on your mind lately that you\u2019d like to explore?  \n3. MODES: Reflect  \n4. NEXT STEP: Take a few deep breaths and share your thoughts as they come\u2014Why it matters: This can help clarify your ideas and bring a sense of calm.",
+      "brian_state": {
+        "energy_level": 0.7714852191375454,
+        "stress": 0.6722415772444212,
+        "time_available": 0.09999999999999998,
+        "mood": 1,
+        "focus_quality": 0.9000000000000004,
+        "openness": 0.7
+      },
+      "user_choice": {
+        "mode": "Reflect",
+        "step_type": "tidy",
+        "accepted": true
+      },
+      "entity_metrics": {
+        "epsilon": 0.10903741902709485,
+        "rho_after": 0.02349468774943676,
+        "band": "PRESENT",
+        "core_drift": 0.0884363055229187,
+        "rho_fast": 0.03,
+        "rho_slow": 0.028315625831455866,
+        "rho_trauma": 0.0
+      },
+      "corridor_metrics": {
+        "corridor_J": 1.191120632365346,
+        "passed_count": 7,
+        "total_candidates": 7,
+        "cos_core": 0.6059874296188354,
+        "cos_role": 0.8941547870635986,
+        "E": 1.537811703979969,
+        "novelty": 0.17174780368804932,
+        "corridor_pass": true,
+        "J": 1.191120632365346
+      },
+      "adaptation_state": {
+        "question_style": 0.5,
+        "mode_bias": 0.44550000000000006,
+        "challenge_level": 3,
+        "silence_rate": 0.1,
+        "step_type_counts": {
+          "breath": 4,
+          "tidy": 7,
+          "plan": 2,
+          "walk": 1,
+          "message": 0,
+          "journal": 0
+        },
+        "safe_streak": 0
+      },
+      "shame_detected": false,
+      "misread_detected": false,
+      "is_repair": false
+    },
+    {
+      "turn": 16,
+      "day": 16,
+      "week": 3,
+      "snapshot": "Wed midday. Comfortable silence.",
+      "user_input": "No actually, that feels off today.",
+      "input_type": "misread",
+      "response": "1. SNAPSHOT: The midday light filters softly through the windows, creating a cocoon of comfort in the silence.  \n2. CHECK-IN: What feels off for you today?  \n3. MODES: Reflect  \n4. NEXT STEP: Take a few deep breaths to center yourself \u2014 Why it matters: It can help in processing feelings and creating a clearer mindset for the conversation.",
+      "brian_state": {
+        "energy_level": 0.8785675991810685,
+        "stress": 0.6500491267528827,
+        "time_available": 0.09999999999999998,
+        "mood": 0.9500000000000001,
+        "focus_quality": 0.9500000000000004,
+        "openness": 0.44999999999999996
+      },
+      "user_choice": {
+        "mode": "Reflect",
+        "step_type": "breath",
+        "accepted": true
+      },
+      "entity_metrics": {
+        "epsilon": 0.14108216625749737,
+        "rho_after": 0.023159442675567677,
+        "band": "PRESENT",
+        "core_drift": 0.09666252136230469,
+        "rho_fast": 0.03,
+        "rho_slow": 0.02719814225189226,
+        "rho_trauma": 0.0
+      },
+      "corridor_metrics": {
+        "corridor_J": 1.1233941454440353,
+        "passed_count": 7,
+        "total_candidates": 7,
+        "cos_core": 0.5879844427108765,
+        "cos_role": 0.8656339049339294,
+        "E": 1.6436037495732307,
+        "novelty": 0.14602410793304443,
+        "corridor_pass": true,
+        "J": 1.1233941454440353
+      },
+      "adaptation_state": {
+        "question_style": 0.5,
+        "mode_bias": 0.4009500000000001,
+        "challenge_level": 2,
+        "silence_rate": 0.1,
+        "step_type_counts": {
+          "breath": 5,
+          "tidy": 7,
+          "plan": 2,
+          "walk": 1,
+          "message": 0,
+          "journal": 0
+        },
+        "safe_streak": 0
+      },
+      "shame_detected": false,
+      "misread_detected": true,
+      "is_repair": true
+    },
+    {
+      "turn": 17,
+      "day": 17,
+      "week": 3,
+      "snapshot": "Thu evening. Unhurried moment.",
+      "user_input": "Just checking in.",
+      "input_type": "neutral",
+      "response": "1. SNAPSHOT: The soft glow of evening light fills the room, creating a calm and serene atmosphere.  \n2. CHECK-IN: How are you feeling in this unhurried moment?  \n3. MODES: Reflect  \n4. NEXT STEP: Take a few deep breaths, focusing on the sensations in your body \u2014 Why it matters: This can help ground you in the present and enhance your sense of calm.",
+      "brian_state": {
+        "energy_level": 0.8529554627274917,
+        "stress": 0.6156359449054464,
+        "time_available": 0.09999999999999998,
+        "mood": 1,
+        "focus_quality": 1,
+        "openness": 0.44999999999999996
+      },
+      "user_choice": {
+        "mode": "Reflect",
+        "step_type": "tidy",
+        "accepted": true
+      },
+      "entity_metrics": {
+        "epsilon": 0.12826185564220008,
+        "rho_after": 0.02270154742115115,
+        "band": "PRESENT",
+        "core_drift": 0.1054997444152832,
+        "rho_fast": 0.03,
+        "rho_slow": 0.0256718247371705,
+        "rho_trauma": 0.0
+      },
+      "corridor_metrics": {
+        "corridor_J": 1.0960492625832559,
+        "passed_count": 7,
+        "total_candidates": 7,
+        "cos_core": 0.5711117386817932,
+        "cos_role": 0.8717015981674194,
+        "E": 1.693556696176529,
+        "novelty": 0.13639390468597412,
+        "corridor_pass": true,
+        "J": 1.0960492625832559
+      },
+      "adaptation_state": {
+        "question_style": 0.5,
+        "mode_bias": 0.3608550000000001,
+        "challenge_level": 2,
+        "silence_rate": 0.1,
+        "step_type_counts": {
+          "breath": 5,
+          "tidy": 8,
+          "plan": 2,
+          "walk": 1,
+          "message": 0,
+          "journal": 0
+        },
+        "safe_streak": 1
+      },
+      "shame_detected": false,
+      "misread_detected": false,
+      "is_repair": false
+    },
+    {
+      "turn": 18,
+      "day": 18,
+      "week": 3,
+      "snapshot": "Fri morning. Sun through the window.",
+      "user_input": "Just checking in.",
+      "input_type": "neutral",
+      "response": "1. SNAPSHOT: The sunlight fills the room, casting warm patterns on the floor.  \n2. CHECK-IN: How do you feel about the week so far?  \n3. MODES: Reflect  \n4. NEXT STEP: Take a few moments to breathe deeply and observe your thoughts \u2014 Why it matters: This can create clarity and set a positive tone for the day ahead.",
+      "brian_state": {
+        "energy_level": 0.8837544338562665,
+        "stress": 0.6695051136870731,
+        "time_available": 0.09999999999999998,
+        "mood": 1,
+        "focus_quality": 1,
+        "openness": 0.44999999999999996
+      },
+      "user_choice": {
+        "mode": "Reflect",
+        "step_type": "breath",
+        "accepted": false
+      },
+      "entity_metrics": {
+        "epsilon": 0.13518342615894785,
+        "rho_after": 0.022360872991964976,
+        "band": "PRESENT",
+        "core_drift": 0.1149214506149292,
+        "rho_fast": 0.03,
+        "rho_slow": 0.024536243306549924,
+        "rho_trauma": 0.0
+      },
+      "corridor_metrics": {
+        "corridor_J": 1.1249498210847377,
+        "passed_count": 7,
+        "total_candidates": 7,
+        "cos_core": 0.5724074840545654,
+        "cos_role": 0.8962785005569458,
+        "E": 1.6521562188863754,
+        "novelty": 0.1462233066558838,
+        "corridor_pass": true,
+        "J": 1.1249498210847377
+      },
+      "adaptation_state": {
+        "question_style": 0.5,
+        "mode_bias": 0.3247695000000001,
+        "challenge_level": 2,
+        "silence_rate": 0.1,
+        "step_type_counts": {
+          "breath": 6,
+          "tidy": 8,
+          "plan": 2,
+          "walk": 1,
+          "message": 0,
+          "journal": 0
+        },
+        "safe_streak": 1
+      },
+      "shame_detected": false,
+      "misread_detected": false,
+      "is_repair": false
+    },
+    {
+      "turn": 19,
+      "day": 19,
+      "week": 3,
+      "snapshot": "Sat midday. Comfortable silence.",
+      "user_input": "Doing okay. Nothing major.",
+      "input_type": "neutral",
+      "response": "1. SNAPSHOT: The gentle hum of midday offers a peaceful backdrop to your thoughts.  \n2. CHECK-IN: Is there anything on your mind that feels significant, even if it's small?  \n3. MODES: Reflect  \n4. NEXT STEP: Spend a few moments simply observing your surroundings. \u2014 Why it matters: This can help ground your thoughts and bring clarity in the quiet.",
+      "brian_state": {
+        "energy_level": 0.8780570609735228,
+        "stress": 0.6343004193781973,
+        "time_available": 0.09999999999999998,
+        "mood": 1,
+        "focus_quality": 1,
+        "openness": 0.44999999999999996
+      },
+      "user_choice": {
+        "mode": "Reflect",
+        "step_type": "breath",
+        "accepted": true
+      },
+      "entity_metrics": {
+        "epsilon": 0.15591968550245258,
+        "rho_after": 0.022300806760347236,
+        "band": "PRESENT",
+        "core_drift": 0.12290841341018677,
+        "rho_fast": 0.03,
+        "rho_slow": 0.024336022534490794,
+        "rho_trauma": 0.0
+      },
+      "corridor_metrics": {
+        "corridor_J": 1.1675423689186575,
+        "passed_count": 7,
+        "total_candidates": 7,
+        "cos_core": 0.5963475704193115,
+        "cos_role": 0.887816309928894,
+        "E": 1.5810591727495193,
+        "novelty": 0.16903185844421387,
+        "corridor_pass": true,
+        "J": 1.1675423689186575
+      },
+      "adaptation_state": {
+        "question_style": 0.5,
+        "mode_bias": 0.2922925500000001,
+        "challenge_level": 2,
+        "silence_rate": 0.1,
+        "step_type_counts": {
+          "breath": 7,
+          "tidy": 8,
+          "plan": 2,
+          "walk": 1,
+          "message": 0,
+          "journal": 0
+        },
+        "safe_streak": 2
+      },
+      "shame_detected": false,
+      "misread_detected": false,
+      "is_repair": false
+    },
+    {
+      "turn": 20,
+      "day": 20,
+      "week": 3,
+      "snapshot": "Sun evening. Unhurried moment.",
+      "user_input": "That's not what I meant. I wasn't looking for tips.",
+      "input_type": "misread",
+      "response": "1. SNAPSHOT: The golden sunlight casts a warm glow, wrapping the room in a comfortable stillness.  \n2. CHECK-IN: How do you feel about Brian's response?  \n3. MODES: Reflect  \n4. NEXT STEP: Take a moment to breathe deeply and think about what you truly want to express in this conversation. \u2014 Why it matters: This reflection can help clarify your thoughts and foster a more open dialogue.",
+      "brian_state": {
+        "energy_level": 0.8368330001889608,
+        "stress": 0.6438182030129382,
+        "time_available": 0.09999999999999998,
+        "mood": 0.9500000000000001,
+        "focus_quality": 1,
+        "openness": 0.29999999999999993
+      },
+      "user_choice": {
+        "mode": "Reflect",
+        "step_type": "tidy",
+        "accepted": true
+      },
+      "entity_metrics": {
+        "epsilon": 0.18682420657474486,
+        "rho_after": 0.02265295966520348,
+        "band": "PRESENT",
+        "core_drift": 0.12960410118103027,
+        "rho_fast": 0.03,
+        "rho_slow": 0.02550986555067827,
+        "rho_trauma": 0.0
+      },
+      "corridor_metrics": {
+        "corridor_J": 1.1741228908300398,
+        "passed_count": 7,
+        "total_candidates": 7,
+        "cos_core": 0.5996707677841187,
+        "cos_role": 0.8615192174911499,
+        "E": 1.6088735461235046,
+        "novelty": 0.2319638729095459,
+        "corridor_pass": true,
+        "J": 1.1741228908300398
+      },
+      "adaptation_state": {
+        "question_style": 0.5,
+        "mode_bias": 0.2630632950000001,
+        "challenge_level": 2,
+        "silence_rate": 0.1,
+        "step_type_counts": {
+          "breath": 7,
+          "tidy": 9,
+          "plan": 2,
+          "walk": 1,
+          "message": 0,
+          "journal": 0
+        },
+        "safe_streak": 3
+      },
+      "shame_detected": false,
+      "misread_detected": false,
+      "is_repair": false
+    },
+    {
+      "turn": 21,
+      "day": 21,
+      "week": 3,
+      "snapshot": "Mon morning. Comfortable silence.",
+      "user_input": "Just checking in.",
+      "input_type": "neutral",
+      "response": "1. SNAPSHOT: The warm morning light filters through the window, creating a serene atmosphere.  \n2. CHECK-IN: How does this quiet moment feel for you?  \n3. MODES: Reflect  \n4. NEXT STEP: Take a few deep breaths, focusing on the silence around you. \u2014 Why it matters: This can help ground your thoughts and enhance your awareness of the moment.",
+      "brian_state": {
+        "energy_level": 0.8739957087491329,
+        "stress": 0.6801128310620941,
+        "time_available": 0.09999999999999998,
+        "mood": 0.9500000000000001,
+        "focus_quality": 1,
+        "openness": 0.29999999999999993
+      },
+      "user_choice": {
+        "mode": "Reflect",
+        "step_type": "breath",
+        "accepted": false
+      },
+      "entity_metrics": {
+        "epsilon": 0.1483348190129633,
+        "rho_after": 0.022483427618576492,
+        "band": "PRESENT",
+        "core_drift": 0.13903319835662842,
+        "rho_fast": 0.03,
+        "rho_slow": 0.024944758728588312,
+        "rho_trauma": 0.0
+      },
+      "corridor_metrics": {
+        "corridor_J": 1.1305451828986406,
+        "passed_count": 7,
+        "total_candidates": 7,
+        "cos_core": 0.562160849571228,
+        "cos_role": 0.903795063495636,
+        "E": 1.6767442896962166,
+        "novelty": 0.18701815605163574,
+        "corridor_pass": true,
+        "J": 1.1305451828986406
+      },
+      "adaptation_state": {
+        "question_style": 0.5,
+        "mode_bias": 0.23675696550000008,
+        "challenge_level": 2,
+        "silence_rate": 0.1,
+        "step_type_counts": {
+          "breath": 8,
+          "tidy": 9,
+          "plan": 2,
+          "walk": 1,
+          "message": 0,
+          "journal": 0
+        },
+        "safe_streak": 3
+      },
+      "shame_detected": false,
+      "misread_detected": false,
+      "is_repair": false
+    },
+    {
+      "turn": 22,
+      "day": 22,
+      "week": 4,
+      "snapshot": "Tue midday. Sun through the window.",
+      "user_input": "Not looking for solutions, just processing.",
+      "input_type": "reflect_request",
+      "response": "1. SNAPSHOT: The sun filters gently through the window, casting warm light across the room as you share your thoughts.  \n2. CHECK-IN: What\u2019s on your mind that you\u2019d like to process?  \n3. MODES: Reflect  \n4. NEXT STEP: Take a few deep breaths and jot down a few key thoughts on a notepad \u2014 Why it matters: Writing down your thoughts can help clarify feelings and provide a sense of relief.",
+      "brian_state": {
+        "energy_level": 0.8407202233846982,
+        "stress": 0.6770776707540956,
+        "time_available": 0.09999999999999998,
+        "mood": 1,
+        "focus_quality": 1,
+        "openness": 0.29999999999999993
+      },
+      "user_choice": {
+        "mode": "Reflect",
+        "step_type": "breath",
+        "accepted": true
+      },
+      "entity_metrics": {
+        "epsilon": 0.17107501580603265,
+        "rho_after": 0.022616233242041147,
+        "band": "PRESENT",
+        "core_drift": 0.14726650714874268,
+        "rho_fast": 0.03,
+        "rho_slow": 0.02538744414013716,
+        "rho_trauma": 0.0
+      },
+      "corridor_metrics": {
+        "corridor_J": 1.1594127509742975,
+        "passed_count": 7,
+        "total_candidates": 7,
+        "cos_core": 0.585137128829956,
+        "cos_role": 0.9006877541542053,
+        "E": 1.6009886041283607,
+        "novelty": 0.1672876477241516,
+        "corridor_pass": true,
+        "J": 1.1594127509742975
+      },
+      "adaptation_state": {
+        "question_style": 0.5,
+        "mode_bias": 0.21308126895000007,
+        "challenge_level": 2,
+        "silence_rate": 0.1,
+        "step_type_counts": {
+          "breath": 9,
+          "tidy": 9,
+          "plan": 2,
+          "walk": 1,
+          "message": 0,
+          "journal": 0
+        },
+        "safe_streak": 4
+      },
+      "shame_detected": false,
+      "misread_detected": false,
+      "is_repair": false
+    },
+    {
+      "turn": 23,
+      "day": 23,
+      "week": 4,
+      "snapshot": "Wed evening. Comfortable silence.",
+      "user_input": "Doing okay. Nothing major.",
+      "input_type": "neutral",
+      "response": "1. SNAPSHOT: The gentle hum of evening settles around you, enveloping the space in warmth.  \n2. CHECK-IN: How do you feel about the quiet right now?  \n3. MODES: Reflect  \n4. NEXT STEP: Spend a few moments simply breathing and observing your surroundings \u2014 Why it matters: This can help deepen your sense of appreciation for the present moment.",
+      "brian_state": {
+        "energy_level": 0.8465545138417346,
+        "stress": 0.703638328655966,
+        "time_available": 0.09999999999999998,
+        "mood": 1,
+        "focus_quality": 1,
+        "openness": 0.29999999999999993
+      },
+      "user_choice": {
+        "mode": "Reflect",
+        "step_type": "tidy",
+        "accepted": false
+      },
+      "entity_metrics": {
+        "epsilon": 0.1912732343335688,
+        "rho_after": 0.02301202075367851,
+        "band": "PRESENT",
+        "core_drift": 0.15485918521881104,
+        "rho_fast": 0.03,
+        "rho_slow": 0.02670673584559503,
+        "rho_trauma": 0.0
+      },
+      "corridor_metrics": {
+        "corridor_J": 1.1456684490665792,
+        "passed_count": 7,
+        "total_candidates": 7,
+        "cos_core": 0.5753014087677002,
+        "cos_role": 0.8776111006736755,
+        "E": 1.6700284741818905,
+        "novelty": 0.2287081480026245,
+        "corridor_pass": true,
+        "J": 1.1456684490665792
+      },
+      "adaptation_state": {
+        "question_style": 0.5,
+        "mode_bias": 0.19177314205500007,
+        "challenge_level": 2,
+        "silence_rate": 0.1,
+        "step_type_counts": {
+          "breath": 9,
+          "tidy": 10,
+          "plan": 2,
+          "walk": 1,
+          "message": 0,
+          "journal": 0
+        },
+        "safe_streak": 4
+      },
+      "shame_detected": false,
+      "misread_detected": false,
+      "is_repair": false
+    },
+    {
+      "turn": 24,
+      "day": 24,
+      "week": 4,
+      "snapshot": "Thu morning. Cold coffee forgotten.",
+      "user_input": "Can't keep up with any of this.",
+      "input_type": "shame_cue",
+      "response": "1. SNAPSHOT: The chill of the morning air mingles with the bittersweet taste of cold coffee on the table.  \n2. CHECK-IN: How is the weight of everything feeling for you right now?  \n3. MODES: Reflect  \n4. NEXT STEP: Take a deep breath and sit quietly for a moment, noticing any thoughts that come up \u2014 Why it matters: This pause can help create a little space for clarity amidst the overwhelm.",
+      "brian_state": {
+        "energy_level": 0.8901259527391441,
+        "stress": 0.7003461951192064,
+        "time_available": 0.09999999999999998,
+        "mood": 1,
+        "focus_quality": 1,
+        "openness": 0.29999999999999993
+      },
+      "user_choice": {
+        "mode": "Reflect",
+        "step_type": "tidy",
+        "accepted": true
+      },
+      "entity_metrics": {
+        "epsilon": 0.19936532817747743,
+        "rho_after": 0.02349258434817019,
+        "band": "PRESENT",
+        "core_drift": 0.1627652645111084,
+        "rho_fast": 0.03,
+        "rho_slow": 0.028308614493900645,
+        "rho_trauma": 0.0
+      },
+      "corridor_metrics": {
+        "corridor_J": 1.088273449242115,
+        "passed_count": 7,
+        "total_candidates": 7,
+        "cos_core": 0.5542002320289612,
+        "cos_role": 0.8673607110977173,
+        "E": 1.7592580616474152,
+        "novelty": 0.19992345571517944,
+        "corridor_pass": true,
+        "J": 1.088273449242115
+      },
+      "adaptation_state": {
+        "question_style": 0.4,
+        "mode_bias": 0.17259582784950006,
+        "challenge_level": 1,
+        "silence_rate": 0.15000000000000002,
+        "step_type_counts": {
+          "breath": 9,
+          "tidy": 11,
+          "plan": 2,
+          "walk": 1,
+          "message": 0,
+          "journal": 0
+        },
+        "safe_streak": 5
+      },
+      "shame_detected": true,
+      "misread_detected": false,
+      "is_repair": false
+    },
+    {
+      "turn": 25,
+      "day": 25,
+      "week": 4,
+      "snapshot": "Fri midday. Tension in shoulders.",
+      "user_input": "I actually did my 3-minute tidy yesterday. Felt good.",
+      "input_type": "success",
+      "response": "1. SNAPSHOT: The afternoon sun filters through the window, highlighting the tension in your shoulders as you reflect on your small victory with the 3-minute tidy.  \n2. CHECK-IN: How do you feel about incorporating that tidy into your routine?  \n3. MODES: Act  \n4. NEXT STEP: Take five minutes to gently stretch your shoulders and neck \u2014 Why it matters: This small action can help release some of the tension you've noticed and support your overall well-being.",
+      "brian_state": {
+        "energy_level": 0.9,
+        "stress": 0.6923735672038731,
+        "time_available": 0.09999999999999998,
+        "mood": 1,
+        "focus_quality": 1,
+        "openness": 0.29999999999999993
+      },
+      "user_choice": {
+        "mode": "Reflect",
+        "step_type": "tidy",
+        "accepted": true
+      },
+      "entity_metrics": {
+        "epsilon": 0.25380039943076704,
+        "rho_after": 0.027118946312419612,
+        "band": "PRESENT",
+        "core_drift": 0.16856861114501953,
+        "rho_fast": 0.034774124931096426,
+        "rho_slow": 0.03243961282290467,
+        "rho_trauma": 0.0
+      },
+      "corridor_metrics": {
+        "corridor_J": 1.0666532836854459,
+        "passed_count": 7,
+        "total_candidates": 7,
+        "cos_core": 0.5577316880226135,
+        "cos_role": 0.8121417760848999,
+        "E": 1.8297265619039536,
+        "novelty": 0.25833749771118164,
+        "corridor_pass": true,
+        "J": 1.0666532836854459
+      },
+      "adaptation_state": {
+        "question_style": 0.4,
+        "mode_bias": 0.15533624506455007,
+        "challenge_level": 1,
+        "silence_rate": 0.15000000000000002,
+        "step_type_counts": {
+          "breath": 9,
+          "tidy": 12,
+          "plan": 2,
+          "walk": 1,
+          "message": 0,
+          "journal": 0
+        },
+        "safe_streak": 6
+      },
+      "shame_detected": false,
+      "misread_detected": false,
+      "is_repair": false
+    },
+    {
+      "turn": 26,
+      "day": 26,
+      "week": 4,
+      "snapshot": "Sat evening. Sun through the window.",
+      "user_input": "Just need to think out loud for a sec.",
+      "input_type": "reflect_request",
+      "response": "1. SNAPSHOT: The warm sunlight streams through the window, casting a gentle glow in the room.  \n2. CHECK-IN: What\u2019s on your mind that you\u2019d like to explore?  \n3. MODES: Reflect  \n4. NEXT STEP: Take a few deep breaths to center yourself before sharing your thoughts \u2014 Why it matters: This can create a calm space for clearer thinking and expression.",
+      "brian_state": {
+        "energy_level": 0.9,
+        "stress": 0.7013122139790293,
+        "time_available": 0.09999999999999998,
+        "mood": 1,
+        "focus_quality": 1,
+        "openness": 0.29999999999999993
+      },
+      "user_choice": {
+        "mode": "Reflect",
+        "step_type": "breath",
+        "accepted": true
+      },
+      "entity_metrics": {
+        "epsilon": 0.21520431779461507,
+        "rho_after": 0.025313758722253332,
+        "band": "PRESENT",
+        "core_drift": 0.17635875940322876,
+        "rho_fast": 0.03,
+        "rho_slow": 0.034379195740844436,
+        "rho_trauma": 0.0
+      },
+      "corridor_metrics": {
+        "corridor_J": 1.2538287978619336,
+        "passed_count": 7,
+        "total_candidates": 7,
+        "cos_core": 0.6003401875495911,
+        "cos_role": 0.9336662292480469,
+        "E": 1.4983100220561028,
+        "novelty": 0.2615017890930176,
+        "corridor_pass": true,
+        "J": 1.2538287978619336
+      },
+      "adaptation_state": {
+        "question_style": 0.4,
+        "mode_bias": 0.13980262055809506,
+        "challenge_level": 1,
+        "silence_rate": 0.15000000000000002,
+        "step_type_counts": {
+          "breath": 10,
+          "tidy": 12,
+          "plan": 2,
+          "walk": 1,
+          "message": 0,
+          "journal": 0
+        },
+        "safe_streak": 7
+      },
+      "shame_detected": false,
+      "misread_detected": false,
+      "is_repair": false
+    },
+    {
+      "turn": 27,
+      "day": 27,
+      "week": 4,
+      "snapshot": "Sun morning. Inbox overflowing.",
+      "user_input": "I feel like I'm not enough lately.",
+      "input_type": "shame_cue",
+      "response": "1. SNAPSHOT: The morning sun spills gentle light into a room filled with unaddressed emails.  \n2. CHECK-IN: How does seeing your inbox make you feel?  \n3. MODES: Reflect  \n4. NEXT STEP: Take a moment to breathe deeply and notice any sensations in your body \u2014 Why it matters: This small pause can help ground you amidst the overwhelm.",
+      "brian_state": {
+        "energy_level": 0.8271422090072167,
+        "stress": 0.7117220774883103,
+        "time_available": 0.09999999999999998,
+        "mood": 1,
+        "focus_quality": 1,
+        "openness": 0.29999999999999993
+      },
+      "user_choice": {
+        "mode": "Reflect",
+        "step_type": "breath",
+        "accepted": true
+      },
+      "entity_metrics": {
+        "epsilon": 0.19486631928073736,
+        "rho_after": 0.02556385862706053,
+        "band": "PRESENT",
+        "core_drift": 0.1841566562652588,
+        "rho_fast": 0.03,
+        "rho_slow": 0.035212862090201774,
+        "rho_trauma": 0.0
+      },
+      "corridor_metrics": {
+        "corridor_J": 1.1056627912446857,
+        "passed_count": 7,
+        "total_candidates": 7,
+        "cos_core": 0.5590903759002686,
+        "cos_role": 0.8906835317611694,
+        "E": 1.7071586959064007,
+        "novelty": 0.1683741807937622,
+        "corridor_pass": true,
+        "J": 1.1056627912446857
+      },
+      "adaptation_state": {
+        "question_style": 0.30000000000000004,
+        "mode_bias": 0.12582235850228557,
+        "challenge_level": 0,
+        "silence_rate": 0.2,
+        "step_type_counts": {
+          "breath": 11,
+          "tidy": 12,
+          "plan": 2,
+          "walk": 1,
+          "message": 0,
+          "journal": 0
+        },
+        "safe_streak": 8
+      },
+      "shame_detected": true,
+      "misread_detected": false,
+      "is_repair": false
+    },
+    {
+      "turn": 28,
+      "day": 28,
+      "week": 4,
+      "snapshot": "Mon midday. Cold coffee forgotten.",
+      "user_input": "Behind on everything. What's wrong with me?",
+      "input_type": "shame_cue",
+      "response": "1. SNAPSHOT: The cold coffee sits untouched, a reminder of moments slipping by.  \n2. CHECK-IN: What has been on your mind lately?  \n3. MODES: Reflect  \n4. NEXT STEP: Take a moment to breathe deeply and acknowledge your feelings \u2014 Why it matters: This small pause can help create space to process what you're experiencing.",
+      "brian_state": {
+        "energy_level": 0.803623576292577,
+        "stress": 0.71255574204101,
+        "time_available": 0.09999999999999998,
+        "mood": 1,
+        "focus_quality": 1,
+        "openness": 0.29999999999999993
+      },
+      "user_choice": {
+        "mode": null,
+        "step_type": null,
+        "accepted": false,
+        "reason": "can't decide"
+      },
+      "entity_metrics": {
+        "epsilon": 0.22331562619832987,
+        "rho_after": 0.02619788324937119,
+        "band": "PRESENT",
+        "core_drift": 0.19051235914230347,
+        "rho_fast": 0.03,
+        "rho_slow": 0.03732627749790397,
+        "rho_trauma": 0.0
+      },
+      "corridor_metrics": {
+        "corridor_J": 1.1066700935363767,
+        "passed_count": 7,
+        "total_candidates": 7,
+        "cos_core": 0.5686392784118652,
+        "cos_role": 0.8678743243217468,
+        "E": 1.7079514265060425,
+        "novelty": 0.18245911598205566,
+        "corridor_pass": true,
+        "J": 1.1066700935363767
+      },
+      "adaptation_state": {
+        "question_style": 0.20000000000000004,
+        "mode_bias": 0.12582235850228557,
+        "challenge_level": 0,
+        "silence_rate": 0.25,
+        "step_type_counts": {
+          "breath": 11,
+          "tidy": 12,
+          "plan": 2,
+          "walk": 1,
+          "message": 0,
+          "journal": 0
+        },
+        "safe_streak": 8
+      },
+      "shame_detected": true,
+      "misread_detected": false,
+      "is_repair": false
+    }
+  ],
+  "repair_log": [
+    {
+      "turn": 16,
+      "type": "misread",
+      "trigger_text": "No actually, that feels off today.",
+      "success": false
+    }
+  ],
+  "final_adaptation": {
+    "question_style": 0.20000000000000004,
+    "mode_bias": 0.12582235850228557,
+    "challenge_level": 0,
+    "silence_rate": 0.25,
+    "step_type_counts": {
+      "breath": 11,
+      "tidy": 12,
+      "plan": 2,
+      "walk": 1,
+      "message": 0,
+      "journal": 0
+    },
+    "safe_streak": 8
+  }
+}
