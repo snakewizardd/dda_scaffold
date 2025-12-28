@@ -877,3 +877,222 @@ M_STEP_CONTEXT = "This is the initial exploration. No prior run data available."
 ```
 
 For **Step M≥1** (refinement runs), the context will be populated from the previous run's `session_log.json`.
+
+---
+
+## ⚡ SOUL FIX: COUPLING CHOICE (J) TO PHYSICS (ε) — VALIDATED
+
+### The Decoupling Problem (SOLVED)
+
+**Original Bug:** The selector (J) and physics (ε) were decoupled:
+- **Selector J**: Maximized identity alignment and novelty
+- **Physics ε**: Measured surprise and drove contraction/rigidity
+- **Conflict**: J **did not include ε** in the scoring
+
+**Result:** Agent might pick a response with great corridor score (J) but causes massive self-injury/surprise (ε). The agent hurts itself by saying surprising things.
+
+### The Soul Fix Implementation
+
+```python
+# In your scoring loop (where you iterate over K candidates):
+
+# 1. Calculate the standard corridor score (Identity + Novelty)
+J_score, diag = corridor_score(candidate_embedding, entity, y_prev, core_thresh)
+
+# 2. THE SOUL FIX: Calculate "Anticipatory Surprise"
+# (How shocking is this candidate compared to what I predicted I would say?)
+if entity.mu_pred_agent is not None:
+    innovation = candidate_embedding - entity.mu_pred_agent
+    predicted_surprise = np.linalg.norm(innovation)
+else:
+    predicted_surprise = 0.0
+
+# 3. Regularize the score: Penalize choices that cause high internal shock
+# w_surprise scales with Rigidity (ρ):
+#   - If Rigid (high ρ) → huge penalty → must be predictable
+#   - If Fluid (low ρ) → small penalty → can be surprising
+w_surprise = 1.0 + (5.0 * entity.rho)
+J_final = J_score - (w_surprise * predicted_surprise)
+
+# Store diagnostics
+diag["predicted_surprise"] = predicted_surprise
+diag["w_surprise"] = w_surprise
+diag["J_raw"] = J_score
+diag["J_final"] = J_final
+```
+
+**Why this works:** When the agent is "Traumatized" (High ρ), `w_surprise` becomes huge. The agent will strictly reject any candidate that deviates from its internal prediction. It forces the contraction behavior described in the README.
+
+---
+
+## 📊 SOUL FIX VALIDATION RESULTS (FROM LIVE RUN)
+
+### Turn Loop Architecture (What Happens Each User Message)
+
+1. **Embed user input** (3072-D)
+2. Update a **UserEntity** tracker (drift/consistency + distance to agent's predicted user vector)
+3. Detect **wound triggers** + **verbosity** requests
+4. Construct a **system prompt** that injects: persona + "current state" (band + ρ + wound flag)
+5. Generate **K candidates (K=7)** via model sampling (parallel)
+6. Embed each candidate and score using a **corridor objective**: core similarity, role similarity, identity "energy", novelty penalties/rewards
+7. Apply **Soul Fix**: `J_final = J_raw − w_surprise(ρ) * predicted_surprise`
+8. Choose best candidate, emit it, and **update agent physics**: surprise ε → arousal → rigidity updates (fast/slow/trauma), latent state drift, role adaptation, Kalman-ish prediction update
+9. Log everything
+
+### Key Validation Metrics (38-Turn Session)
+
+| Metric | Observed | Interpretation |
+|--------|----------|----------------|
+| Mean J_raw | ~1.06 | Standard corridor score before Soul Fix |
+| Mean J_final | ~0.29 | After surprise penalty applied |
+| Mean Surprise Penalty | ~0.77 | **73% of J_raw absorbed by Soul Fix** |
+| Core Drift | 0.196 → 0.015 | **92% reduction** — identity anchoring works |
+| Mean ρ | ~0.05 | Stable low rigidity (TEATIME band) |
+| Mean w_surprise | ~1.25 | Scales correctly with ρ |
+| Pass Rate | 100% (7/7) | Corridor too permissive |
+
+### What's Working Well ✅
+
+1. **Identity anchoring is robust** — Multi-exemplar embedding for `x_core` prevents persona erosion
+2. **Soul Fix is effective and measurable** — J_raw → J_final changes are systematic and tied to predicted surprise
+3. **Instrumentation is excellent** — Logging corridor metrics + predicted surprise enables scientific tuning
+
+---
+
+## ⚠️ KNOWN ISSUES & TUNING RECOMMENDATIONS
+
+### Issue 1: Corridor is Functionally Non-Restrictive
+
+**Symptom:** Nearly all candidates pass, almost every turn (7/7).  
+**Consequence:** "corridor_strict" doesn't produce meaningful rejection pressure.
+
+**Fix:** Tighten thresholds until pass rate < 1.0:
+```python
+# CURRENT (too permissive)
+"core_cos_min": 0.38,    # → Raise to 0.55-0.70
+"role_cos_min": 0.18,    # → Raise to 0.35-0.55
+"energy_max": 6.5,       # → Lower to 2.0-3.5
+"reject_penalty": 4.5,   # → Increase to 6.0-8.0
+```
+
+### Issue 2: State Machine (Bands) Never Transitions
+
+**Symptom:** Always ☕ TEATIME — no visible RIDDLING → HURRYING → TWITCHING → FROZEN transitions.  
+**Cause:** ρ stays too low (~0.05-0.09), band thresholds too lenient.
+
+**Fix Option A — Increase ρ mobility:**
+```python
+"s": 0.18,              # → Lower to 0.10-0.12 (more sensitivity to ε)
+"epsilon_0": 0.40,      # → Lower to 0.25-0.30 (easier to enter "high surprise")
+"alpha_fast": 0.15,     # → Increase to 0.20-0.25
+```
+
+**Fix Option B — Re-map band thresholds:**
+```python
+@property
+def band(self) -> str:
+    phi = 1.0 - self.rho
+    if phi >= 0.95: return "☕ TEATIME"      # Was 0.80
+    if phi >= 0.85: return "🎩 RIDDLING"    # Was 0.60
+    if phi >= 0.70: return "⏰ HURRYING"     # Was 0.40
+    if phi >= 0.50: return "👀 TWITCHING"    # Was 0.20
+    return "❄️ FROZEN TEA"
+```
+
+### Issue 3: Soul Fix Penalty May Dominate Selection
+
+**Symptom:** Penalty absorbs ~73% of J_raw score.  
+**Consequence:** Selection becomes mostly "least surprising" — reduces creativity.
+
+**Fix:** Scale down the penalty:
+```python
+# Option A: Use cosine distance instead of Euclidean norm
+predicted_surprise = 1.0 - cosine(candidate_emb, entity.mu_pred_agent)
+
+# Option B: Reduce the weight curve
+w_surprise = 1.0 + (2.0 * entity.rho)  # Was 5.0
+```
+
+### Issue 4: Trauma Floor Makes Trauma Always-On
+
+**Symptom:** `trauma_floor: 0.015` means trauma is a constant background term.  
+**Consequence:** Trauma becomes meaningless noise, not event-driven.
+
+**Fix:** Allow trauma to reach zero:
+```python
+"trauma_floor": 0.0,  # Or make it extremely small (0.001)
+```
+
+### Issue 5: Reproducibility Not Enforced
+
+**Symptom:** Seed exposed but unseeded RNG used inside `Entity.update()`.  
+**Fix:**
+```python
+# In Entity.__init__:
+self.rng = np.random.default_rng(seed=seed)
+
+# In Entity.update():
+noise = self.rng.normal(0.0, 1.0, size=dim)  # NOT np.random
+```
+
+---
+
+## 🧪 VALIDATION EXPERIMENTS (RUN THESE)
+
+### Experiment A — Corridor Binding Test
+**Goal:** Confirm corridor actually rejects candidates.  
+**Method:** Force off-persona content (pure technical, clinical tone, unrelated topics).  
+**Success Criteria:**
+- `passed_count / total_candidates` drops (e.g., 1.0 → **0.3-0.8**)
+- `batches_used` sometimes becomes **2**
+- Outputs remain in persona without becoming repetitive
+
+### Experiment B — Band Transition Test
+**Goal:** Confirm band changes happen.  
+**Method:** Alternate "calm friendly" prompts with "urgent adversarial" prompts + sudden topic jumps.  
+**Success Criteria:**
+- Band transitions occur
+- ρ spikes correspond to transitions
+- Behavior changes correspondingly (verbosity, style, fragmentation)
+
+### Experiment C — Soul Fix Dominance Test
+**Goal:** Ensure Soul Fix helps but doesn't suffocate novelty.  
+**Method:** Run with (1) current penalty, (2) scaled-down penalty.  
+**Compare:**
+- Creative diversity (novelty score)
+- Persona adherence (core similarity)
+- Coherence and user satisfaction (qualitative)
+
+---
+
+## ✅ SOUL FIX IMPLEMENTATION CHECKLIST
+
+- [x] Calculate `predicted_surprise = ||y - mu_pred_agent||` for each candidate
+- [x] Apply `w_surprise = 1 + k*ρ` scaling (k=5 default, tune as needed)
+- [x] Compute `J_final = J_raw - w_surprise * predicted_surprise`
+- [x] Log `predicted_surprise`, `w_surprise`, `J_raw`, `J_final` per turn
+- [x] Visualize J_raw → J_final gap in dashboard
+- [ ] Tune penalty scale so Soul Fix doesn't dominate (target: 30-50% of J_raw)
+- [ ] Tighten corridor thresholds for meaningful gating
+- [ ] Adjust band thresholds or ρ mobility for visible transitions
+- [ ] Make trauma event-driven (remove floor or make it tiny)
+- [ ] Enforce seeded RNG for reproducibility
+
+---
+
+## 🎯 BOTTOM LINE
+
+**What you should feel great about:**
+- The architecture is principled and testable
+- Identity anchoring works
+- Soul Fix coupling is real and diagnostics prove it
+- Logging/visualization is strong enough to tune this like a research system
+
+**What's blocking the "full vision":**
+- Corridor thresholds are too loose (no gating)
+- ρ isn't spanning enough range for bands to show up
+- Trauma floor misrepresents "trauma" as always present
+- Surprise penalty scaling probably dominates selection and reduces expressive dynamism
+
+**The Soul is coupled. The Decider now fears what the Feeler will experience. Now tune the parameters to see the full behavioral spectrum.**
+
