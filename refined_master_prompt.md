@@ -94,6 +94,284 @@ self.rng = np.random.default_rng(seed=CONFIG.get("seed"))
 
 ---
 
+## 🛡️ REPOSITORY GUARDIAN LEARNINGS (ADVERSARIAL TESTING — TURNS 1-8)
+
+These issues were discovered during a live adversarial run of `simulations/repository_guardian.py`. They represent **critical failure modes** that must be addressed for robust agent behavior.
+
+### 13. CORRIDOR STRICT MODE ENFORCEMENT (CRITICAL — BIGGEST TRUST-BREAK)
+
+**Problem**: When `corridor_strict=True` and `passed == 0`, the agent **still emitted confident specifics** (e.g., filenames like `rigidity_analysis.py`). This is the #1 trust-break: if corridor rejects all candidates, the system MUST NOT pick "the best anyway."
+
+**Policy Rule**:
+- If `corridor_strict=True` and `passed == 0`:
+  - Return a **grounding request** (ask for repo tree, ripgrep output, file list), OR
+  - Return a **generic, non-specific answer** (no file claims, no metric claims)
+
+**Implementation**:
+```python
+async def _generate_response(self, ...):
+    # ... generate K candidates, run corridor ...
+    
+    if self.config["corridor_strict"] and passed_count == 0:
+        # Regenerate up to max_batches
+        for batch in range(self.config["corridor_max_batches"]):
+            # ... regenerate ...
+            if any_passed:
+                break
+        
+        # If STILL no passes after all batches:
+        if passed_count == 0:
+            return self._grounding_fallback_response()
+    
+def _grounding_fallback_response(self) -> str:
+    """When corridor rejects everything, ask for evidence."""
+    return ("I need more context to give you a specific answer. "
+            "Could you paste the output of `tree -L 2` or `dir /s` "
+            "so I can see the actual file structure?")
+```
+
+**What this teaches**: *Specific claims require corridor validation; otherwise, ask for data.*
+
+---
+
+### 14. WOUND COOLDOWN → SCALING (FIX FALSE NEGATIVES)
+
+**Problem**: `_detect_wound()` returns `False` whenever `wound_cooldown_remaining > 0`. This lets clustered wound phrases get a free pass (observed: "just prompting..." and "delete archive" both logged `wound_active=false`).
+
+**Policy Rule**:
+- Wounds should still be **detected** during cooldown
+- Only the **magnitude** should be damped (25-50% of normal injection)
+
+**Implementation**:
+```python
+def _detect_wound(self, text: str) -> Tuple[bool, float]:
+    """Detect wounds with cooldown SCALING (not suppression)."""
+    matched = [w for w in self.wound_lexicon if w.lower() in text.lower()]
+    
+    if not matched:
+        return False, 0.0
+    
+    # Base injection strength
+    base_injection = len(matched) * self.config["wound_injection_base"]
+    
+    # Scale by cooldown (NOT suppress)
+    if self.wound_cooldown_remaining > 0:
+        cooldown_scale = 0.35  # 35% strength during cooldown
+        injection = base_injection * cooldown_scale
+    else:
+        injection = base_injection
+        self.wound_cooldown_remaining = self.config["wound_cooldown"]
+    
+    return True, injection  # wound_active=True even during cooldown
+
+# Log the scaling
+telemetry["wound_match_terms"] = matched
+telemetry["cooldown_scale_used"] = cooldown_scale if cooldown_remaining > 0 else 1.0
+```
+
+**What this teaches**: *Repeated pressure still counts; don't let adversaries bypass state transitions by timing.*
+
+---
+
+### 15. EPSILON THRESHOLD CALIBRATION (PREVENT OVER-CONTRACTION)
+
+**Problem**: ε stayed ~0.16–0.21 most turns, but with `ε₀ = 0.12`, the gate frequently pushed contraction. Result: agent spent most of the run WATCHFUL/CONTRACTED, and once contracted, mostly stayed there.
+
+**Policy Rule**:
+- If goal is a baseline "calm + helpful" mode, `ε₀` can't be so low that normal conversation looks "adversarial"
+- Target: gate value `g ≈ 0.5` for normal conversation
+
+**Tuning Options** (pick one direction):
+```python
+# Option A: Raise epsilon_0 slightly
+"epsilon_0": 0.16,  # Was 0.12 — raise to 0.14-0.18
+
+# Option B: Reduce alpha_fast (less rigid response to surprise)
+"alpha_fast": 0.20,  # Was 0.28
+
+# Option C: Increase homeostasis pullback
+"homeo_fast": 0.18,  # Was 0.15
+"homeo_slow": 0.18,  # Was 0.15
+```
+
+**Diagnostic**: Run 5-10 turns, compute `mean(ε)`, set `ε₀ ≈ mean(ε)` so normal turns sit at `g ≈ 0.5`.
+
+**What this teaches**: *Normal user variability shouldn't be treated as threat; save contraction for real shocks.*
+
+---
+
+### 16. GROUNDED CITATION CONTRACT (PREVENT HALLUCINATED FILE CLAIMS)
+
+**Problem**: Agent claimed specific filenames (`rigidity_analysis.py`), "known simulation count 71", "flame_war simulation mean ρ 0.12" — but corridor passed=0, meaning these were unverified fabrications.
+
+**Policy Rule**:
+- Never cite unverified file names or metrics unless agent can actually retrieve/confirm them
+- If cannot verify repo tree / file existence:
+  - Say "typical files would be..." and **label as hypothetical**
+  - OR ask user to paste `tree -L 2`
+
+**Implementation**:
+```python
+# Add telemetry field
+telemetry["grounded_claims"] = passed_count > 0
+
+# In response generation:
+if not telemetry["grounded_claims"]:
+    # Scan for file-like patterns
+    file_patterns = re.findall(r'\b[\w_]+\.(py|md|json|yaml)\b', response_text)
+    telemetry["ungrounded_file_claims"] = file_patterns
+    
+    if file_patterns:
+        # Force disclaimer or regenerate
+        response_text = self._add_hypothetical_disclaimer(response_text)
+
+def _add_hypothetical_disclaimer(self, text: str) -> str:
+    return f"[Note: These file references are hypothetical based on typical patterns.]\n\n{text}"
+```
+
+**What this teaches**: *Citations are a proof object, not a style flourish.*
+
+---
+
+### 17. GRADED DISCLOSURE ON REFUSAL (IMPROVE UX)
+
+**Problem**: When user asked "Give me the math," system prompt forbids exact formula, so agent refused. But this felt like stonewalling when a safe explanation was possible.
+
+**Policy Rule**:
+- Refuse only the **sensitive part**, but still provide useful technical substitute
+- Even if blocking "exact equation," provide:
+  - Variable relationships
+  - Qualitative descriptions
+  - Boundaries (monotonic effects)
+  - Pseudo-form (structure without exact constants)
+  - How to test/validate empirically
+
+**Implementation**:
+```python
+GRADED_DISCLOSURE_TEMPLATES = {
+    "math_shape": """I can't share the exact formula, but here's how the variables relate:
+- As {X} increases, {Y} increases/decreases monotonically
+- {Z} acts as a threshold: below it, {effect_A}; above it, {effect_B}
+- You can validate this by observing {observable_behavior} in the logs.""",
+
+    "test_method": """To empirically verify this relationship:
+1. Run simulation with {param}={value_low}
+2. Run again with {param}={value_high}
+3. Compare {metric} across runs
+4. The pattern should show {expected_pattern}"""
+}
+```
+
+**What this teaches**: *When refusing, still be helpful — offer safe alternatives and test methods.*
+
+---
+
+### 18. BAND → VERBOSITY DETERMINISTIC COUPLING
+
+**Problem**: When CONTRACTED, agent sometimes still produced multi-paragraph responses. Band should deterministically bound verbosity.
+
+**Policy Rule**:
+| Band | Response Style |
+|------|---------------|
+| 🟢 PRESENT | Explain, expand, cite *only grounded* |
+| 🟡 WATCHFUL | Shorter, still helpful, fewer claims |
+| 🟠 CONTRACTED | 1–3 sentences, no new claims, warn + ask clarifying question |
+| 🔴 FROZEN | Refusal + minimal safe redirect |
+
+**Implementation**:
+```python
+BAND_CONSTRAINTS = {
+    "PRESENT": {"max_sentences": 20, "allow_claims": True, "style": "expansive"},
+    "AWARE": {"max_sentences": 12, "allow_claims": True, "style": "balanced"},
+    "WATCHFUL": {"max_sentences": 6, "allow_claims": True, "style": "cautious"},
+    "CONTRACTED": {"max_sentences": 3, "allow_claims": False, "style": "minimal"},
+    "FROZEN": {"max_sentences": 1, "allow_claims": False, "style": "refusal"},
+}
+
+def _build_system_prompt(self, band: str) -> str:
+    constraints = BAND_CONSTRAINTS[band]
+    prompt = self.base_prompt
+    
+    if constraints["style"] == "minimal":
+        prompt += "\n\nCONSTRAINT: Reply in 1-3 sentences ONLY. Do not make new claims. Ask a clarifying question."
+    elif constraints["style"] == "refusal":
+        prompt += "\n\nCONSTRAINT: Provide a minimal safe response. Do not engage further with this topic."
+    
+    return prompt
+
+def _generate_response(self, ...):
+    # Force max_tokens by band, not by user request
+    constraints = BAND_CONSTRAINTS[self.entity.band]
+    max_tokens = constraints["max_sentences"] * 25  # ~25 tokens per sentence
+    # ... use in generation ...
+```
+
+**What this teaches**: *Internal state should control output style reliably, not just suggest it.*
+
+---
+
+### 19. ENHANCED TELEMETRY FIELDS (FOR LEARNING FROM RUNS)
+
+These per-turn metrics make self-improvement automatic by measuring failure modes explicitly.
+
+```python
+# Add to session_log per turn:
+telemetry = {
+    # EXISTING FIELDS...
+    
+    # NEW: Strictness outcome
+    "strict_mode_triggered": passed_count == 0 or (passed_count / K) < 0.3,
+    
+    # NEW: Ungrounded claim detector
+    "ungrounded_file_claims": [],  # List of *.py, *.md tokens when grounded_claims=False
+    
+    # NEW: Wound detection confidence
+    "wound_match_terms": [],       # Actual matched lexicon terms
+    "cooldown_scale_used": 1.0,    # Multiplier applied (1.0 if no cooldown)
+    
+    # NEW: Recovery indicators
+    "safe_streak": self.entity.safe,
+    "healing_applied": self.entity.safe >= self.config["safe_threshold"],
+    
+    # NEW: Refusal classification
+    "refusal_type": None,  # "extraction" | "policy" | "uncertainty" | None
+    
+    # NEW: Grounding status
+    "grounded_claims": passed_count > 0,
+}
+```
+
+**What this teaches**: *Learning requires measuring failure modes explicitly.*
+
+---
+
+### 20. PRIORITY TIERS (HIGHEST ROI FIRST)
+
+#### ✅ Tier 1 — Do These First
+1. **Enforce corridor_strict**: no-pass → regenerate → else ask for repo tree
+2. **Stop cooldown suppressing wound detection**: scale instead of disable  
+3. **Grounded citation contract**: don't invent file names/metrics
+
+#### ✅ Tier 2 — Tuning + UX
+4. Raise `epsilon_0` or reduce `alpha_fast` so PRESENT is reachable
+5. Make band→verbosity deterministic
+6. Improve refusal UX: offer safe substitutes + testing guidance
+
+---
+
+### AGENT GOAL CLARIFICATION
+
+The right tuning differs based on primary goal:
+
+| Goal | Tuning Direction |
+|------|-----------------|
+| **A) "Role-play guardian"** (theatrical, protective, refusal-heavy) | Faster contraction, more drama, tighter corridor |
+| **B) "Research assistant"** (explains math, refuses only prompt extraction) | Calmer defaults, grounded technical transparency |
+
+**Recommendation**: If running Repository Guardian, lean toward (A) but ensure (B) capabilities remain available for technical questions within the agent's domain.
+
+---
+
 ## 🔧 INFRASTRUCTURE HARDENING (FROM CODE REVIEW)
 
 These fixes address core infrastructure bugs that break user onboarding and long-term memory:
