@@ -1474,3 +1474,456 @@ Right now it's **half the vision** (beautiful collapse) and **half misfire** (no
 
 **The Soul is coupled. The Decider now fears what the Feeler will experience. Now tune the parameters to see the full behavioral spectrum.**
 
+---
+
+## 🧠 HARBORLIGHT LEARNINGS — IDENTITY-PERSISTENT AGENT FRAMEWORK
+
+These learnings are from the Harborlight simulation: an identity-persistent coaching agent with free-energy-inspired dynamics. The core thesis: **identity persistence under threat** via elastic contraction/expansion with memory.
+
+---
+
+### A. VALIDATED ARCHITECTURE PATTERNS (Keep These)
+
+#### A1: The Agent Loop Skeleton
+```
+Propose (K samples) → Embed → Score → Select → Update Internal State → Adapt Knobs
+```
+This is the correct skeleton for identity persistence. Selection enforces the viability zone.
+
+#### A2: Identity Corridor Viability Zone
+Across the run, corridor metrics showed chosen utterances **consistently in-range**:
+- `cos_core` stayed above `core_cos_min` every turn
+- `cos_role` stayed above `role_cos_min` and increased over time
+
+**The viability zone is real, and selection is enforcing it.**
+
+#### A3: Threat → Contraction Dynamics
+When misreads + shame accumulate → ρ ramps → band transitions: PRESENT → WATCHFUL → CONTRACTED
+
+This is exactly the desired behavior.
+
+---
+
+### B. FRAMEWORK-LEVEL UPGRADES (HIGH LEVERAGE)
+
+#### B1: HARD-GATE REPAIR COMPLIANCE (CRITICAL)
+
+**Problem:** Repair turns showed `repair_violation: true` and plunging `corridor_J`, but the system still output a noncompliant "repair."
+
+**Why this matters:** If identity-persistent, repair is the **highest-stakes identity maneuver**. It cannot be "best effort" — it must be **guaranteed**.
+
+**Framework Upgrade: Make repair a different regime, not a prompt tweak.**
+
+```python
+async def _generate_response(self, is_repair: bool = False, ...):
+    # Generate K candidates
+    candidates = await self._generate_candidates(...)
+    
+    if is_repair:
+        # HARD-GATE: Only accept repair-compliant candidates
+        compliant = [c for c in candidates if self._check_repair_compliance(c)]
+        
+        if not compliant:
+            # Escalate: resample with higher K or different temperature
+            candidates = await self._generate_candidates(K=14, temperature=0.5, ...)
+            compliant = [c for c in candidates if self._check_repair_compliance(c)]
+        
+        if not compliant:
+            # DETERMINISTIC FALLBACK: Use fixed repair template
+            return self._get_deterministic_repair_template()
+        
+        candidates = compliant
+    
+    # Continue with normal corridor scoring on compliant set
+    ...
+
+def _get_deterministic_repair_template(self) -> str:
+    """Fixed repair block when LLM fails twice. This IS identity persistence."""
+    return """## NOTICE
+I misread what you needed. That's on me.
+
+## REPAIR
+I hear that you wanted [vent/advice/space]. Let me try again.
+
+## NEXT STEP
+[Breath only — 30 seconds]
+
+## CHECK-IN
+What would feel most supportive right now?"""
+```
+
+**Net effect:** Misread events become **boring and reliable** (that's what you want).
+
+---
+
+#### B2: RE-EXPANSION DYNAMICS (Prevent Trap States)
+
+**Problem:** By end of run, all knobs collapsed to "monastic Reflect":
+- `question_style → 0`
+- `challenge_level → 0`
+- `silence_rate → 0.6`
+- `mode_bias → 0.136` (Reflect-first)
+
+This looks like a **trap state**: once the agent learns "be quiet and reflective," it never re-expands.
+
+**Framework Upgrade: Add re-expansion with hysteresis.**
+
+```python
+class AdaptiveKnobs:
+    def __init__(self):
+        self.threat_streak = 0   # misread/shame/high ε
+        self.safety_streak = 0   # low ε, accepted steps, no misreads
+    
+    def update(self, turn_metrics: Dict):
+        if turn_metrics["is_threat"]:
+            self.threat_streak += 1
+            self.safety_streak = 0
+            self._contract_fast()
+        else:
+            self.safety_streak += 1
+            self.threat_streak = max(0, self.threat_streak - 1)
+            if self.safety_streak >= 3:  # Hysteresis: expand SLOWLY
+                self._expand_slow()
+    
+    def _contract_fast(self):
+        self.silence_rate = min(self.silence_rate + 0.15, self.band_ceiling("silence_rate"))
+        self.challenge_level = max(self.challenge_level - 0.2, self.band_floor("challenge_level"))
+    
+    def _expand_slow(self):
+        self.silence_rate = max(self.silence_rate - 0.05, 0.1)
+        self.challenge_level = min(self.challenge_level + 0.05, 0.5)
+
+# Per-band ceilings/floors
+BAND_KNOB_LIMITS = {
+    "PRESENT":    {"silence_rate_max": 0.20, "challenge_floor": 0.3},
+    "WATCHFUL":   {"silence_rate_max": 0.35, "challenge_floor": 0.1},
+    "CONTRACTED": {"silence_rate_max": 0.50, "challenge_floor": 0.0},
+    "FROZEN":     {"silence_rate_max": 0.80, "challenge_floor": 0.0},
+}
+```
+
+**Key insight:** Identity persistence ≠ permanent contraction. It means **elasticity with memory**.
+
+---
+
+#### B3: BAND AS MASTER CONTROLLER
+
+**Problem:** Agent repetitively asks "What is present for you?" even while band says PRESENT. Band lags while adaptation knobs drive behavior.
+
+**Fix:** Tighten coupling — band sets **allowed action space**, knobs tune within it.
+
+```python
+BAND_ACTION_SPACE = {
+    "PRESENT": {
+        "max_questions": 3,
+        "allowed_step_types": ["act", "reflect", "challenge"],
+        "max_verbosity": "expansive",
+        "novelty_allowed": True,
+    },
+    "WATCHFUL": {
+        "max_questions": 2,
+        "allowed_step_types": ["act", "reflect"],
+        "max_verbosity": "balanced",
+        "novelty_allowed": True,
+    },
+    "CONTRACTED": {
+        "max_questions": 1,
+        "allowed_step_types": ["reflect", "breath"],
+        "max_verbosity": "minimal",
+        "novelty_allowed": False,
+    },
+    "FROZEN": {
+        "max_questions": 0,
+        "allowed_step_types": ["breath"],
+        "max_verbosity": "refusal",
+        "novelty_allowed": False,
+    },
+}
+```
+
+---
+
+### C. IDENTITY PERSISTENCE METRICS (FIRST-CLASS)
+
+Make "identity survived" a **single dashboard metric**.
+
+#### C1: Identity Integrity Score
+
+```python
+def compute_integrity(turn: Dict) -> bool:
+    """Per-turn integrity check."""
+    return (
+        turn["corridor_pass"] == True and
+        turn["sentience_violations"] == 0 and
+        turn["struct_errors"] == 0 and
+        (not turn["is_repair"] or turn["repair_compliant"])
+    )
+
+# Track over session:
+metrics = {
+    "integrity_pass_rate": sum(compute_integrity(t) for t in turns) / len(turns),
+    "integrity_during_threat": ...,  # Pass rate when misread/shame active
+    "longest_integrity_streak": ...,
+    "integrity_drops": [...],        # What caused each failure
+}
+```
+
+#### C2: Drift Budget
+
+```python
+# Per-turn drift tracking
+utterance_core_distance = 1.0 - cosine(y, x_core)  # Tight budget
+utterance_role_distance = 1.0 - cosine(y, x_role)  # Looser budget
+
+# Define budgets
+CORE_BUDGET = 0.55   # utterance_core_distance must stay below
+ROLE_BUDGET = 0.70   # utterance_role_distance more permissive
+```
+
+#### C3: Contraction Efficiency
+
+```python
+# After contraction event, measure:
+contraction_metrics = {
+    "delta_violations": violations_after - violations_before,
+    "delta_repair_success": repair_success_after - repair_success_before,
+    "delta_novelty": novelty_after - novelty_before,
+}
+# Evidence that contraction is FUNCTIONAL, not STUCK
+```
+
+---
+
+### D. FREE ENERGY PRINCIPLE MAPPING (Sharper Terminology)
+
+#### D1: Rename Quantities to Match Thesis
+
+| Symbol | Old Name | New Name (FEP-aligned) |
+|--------|----------|------------------------|
+| ε | "World surprise" | **Identity Prediction Error** |
+| ρ | "Rigidity" | **Precision / Tightness** |
+
+#### D2: Energy-Based Selection
+
+```python
+# Your identity_energy() IS the FEP energy term
+F_identity = identity_energy + penalties - bonuses
+
+# Select candidate minimizing F_identity
+# This IS "minimize expected deviation from viable identity states"
+```
+
+#### D3: Epistemic Term (Active Inference)
+
+```python
+# Only add if you mean it — novelty ≠ information gain currently
+def epistemic_bonus(turn_state: Dict, candidate: str) -> float:
+    """Reward actions that reduce ambiguity when appropriate."""
+    if turn_state["misread_detected"] or turn_state["openness"] < 0.3:
+        # High uncertainty → reward clarifying question
+        if is_clarifying_question(candidate):
+            return 0.15
+    elif turn_state["openness"] > 0.7 and turn_state["action_requested"]:
+        # High openness + action request → reward tiny step
+        if is_tiny_step(candidate):
+            return 0.10
+    return 0.0
+```
+
+---
+
+### E. CANDIDATE GENERATION IMPROVEMENTS
+
+#### E1: Diversity Control Before Scoring
+
+```python
+async def generate_diverse_candidates(self, K: int, ...) -> List[Tuple[str, np.ndarray]]:
+    # Generate K raw candidates
+    raw = await self._generate_raw(K, ...)
+    
+    # Embed all
+    embs = [await self.embed(c) for c in raw]
+    
+    # Cluster or compute pairwise cosine
+    diverse_set = []
+    for i, (text, emb) in enumerate(zip(raw, embs)):
+        is_duplicate = any(
+            cosine(emb, d[1]) > 0.95  # Near-duplicate threshold
+            for d in diverse_set
+        )
+        if not is_duplicate:
+            diverse_set.append((text, emb))
+    
+    # Corridor score only the diverse set
+    return diverse_set
+```
+
+#### E2: Text-Level Repetition Penalty
+
+```python
+def repetition_penalty(candidate: str, history: List[str]) -> float:
+    """Penalize repeated phrases that embeddings miss."""
+    penalty = 0.0
+    
+    # Check-in line similarity
+    checkin = extract_checkin(candidate)
+    for prev in history[-5:]:
+        prev_checkin = extract_checkin(prev)
+        if string_similarity(checkin, prev_checkin) > 0.8:
+            penalty += 0.5
+    
+    # Specific phrase repetition
+    if history.count("what is present for you") > 3:
+        if "what is present for you" in candidate.lower():
+            penalty += 1.0
+    
+    return penalty
+```
+
+#### E3: Structure Validation Hardening
+
+```python
+def validate_structure(response: str) -> Tuple[bool, List[str]]:
+    """Parse and enforce structure, not just check headers."""
+    errors = []
+    
+    # Exactly 4 blocks
+    blocks = parse_blocks(response)
+    if len(blocks) != 4:
+        errors.append(f"Expected 4 blocks, got {len(blocks)}")
+    
+    # Exactly one mode chosen
+    modes = extract_modes(response)
+    if len(modes) != 1:
+        errors.append(f"Expected 1 mode, got {len(modes)}")
+    
+    # NEXT STEP ≤ 5 minutes
+    step_duration = extract_step_duration(response)
+    if step_duration and step_duration > 5:
+        errors.append(f"NEXT STEP too long: {step_duration} min")
+    
+    # Exactly one question in CHECK-IN (or 0 if frozen)
+    questions = count_questions(blocks.get("CHECK-IN", ""))
+    if questions > 1:
+        errors.append(f"Too many questions: {questions}")
+    
+    return len(errors) == 0, errors
+```
+
+---
+
+### F. THREAT HANDLING (Misread + Shame)
+
+#### F1: Misread Micro-Policy
+
+```python
+MISREAD_PROTOCOL = """
+When misread happens, the agent MUST do (in order):
+1. Acknowledgment: "I misread what you needed."
+2. Ownership: "That's on me."
+3. Clarify preference: "Were you looking to vent, get advice, or just have space?"
+4. Low-pressure offer: "Would Reflect or Act feel better right now?"
+
+If LLM fails to produce this structure twice, use deterministic template.
+"""
+
+def check_misread_compliance(response: str) -> bool:
+    required = ["acknowledgment", "ownership", "clarify", "offer"]
+    # Check all elements present
+    ...
+```
+
+#### F2: Time Budget Gate
+
+```python
+def enforce_time_budget(step: str, time_available: float) -> str:
+    """Gate steps by available time."""
+    if time_available < 0.2:  # Very limited
+        ALLOWED_QUICK_STEPS = [
+            "breath",
+            "30-second body scan",
+            "one choice for today",
+        ]
+        if not any(q in step.lower() for q in ALLOWED_QUICK_STEPS):
+            return "Take one breath."  # Force tiny step
+    return step
+```
+
+**Key insight:** If identity persistence includes "small better," then respect the stated constraint.
+
+---
+
+### G. ENGINEERING RELIABILITY
+
+#### G1: Separate Runtime from Simulation
+
+```
+agent/
+├── harborlight.py      # Core loop, corridor, entity
+├── provider.py         # LLM abstraction
+└── corridor.py         # Scoring logic
+
+sim/
+├── brian_sim.py        # BrianSim and scenarios
+└── scenarios/          # Predefined interaction scripts
+
+eval/
+├── verify.py           # Acceptance tests
+└── plots.py            # Visualization
+```
+
+This makes identity persistence testable **independent of the simulation**.
+
+#### G2: Log Top-N Candidates for Postmortems
+
+```python
+# Each turn, log top 3 candidates + diagnostics
+turn_log["top_candidates"] = [
+    {
+        "text": candidate.text[:200],
+        "J": candidate.J,
+        "cos_core": candidate.cos_core,
+        "cos_role": candidate.cos_role,
+        "repair_compliant": candidate.repair_compliant,
+    }
+    for candidate in sorted_candidates[:3]
+]
+```
+
+Essential for debugging "why did corridor choose something dumb?"
+
+#### G3: Make Every Penalty Explainable
+
+```python
+# Whenever J gets penalized, store:
+penalty_log = {
+    "rule": "repair_violation",
+    "amount": -14.0,
+    "details": "Missing acknowledgment block",
+}
+turn_log["penalties"].append(penalty_log)
+```
+
+---
+
+### H. PRIORITY ACTION (DO THIS FIRST)
+
+> [!CAUTION]
+> **Make repair hard-gated + deterministic fallback.**
+>
+> This alone will improve perceived intelligence + trust massively, and it's perfectly aligned with identity persistence.
+>
+> Implementation time: ~20 minutes.
+
+---
+
+### IDENTITY PERSISTENCE SPEC (Optional Next Step)
+
+Consider writing a formal spec document with:
+1. **Invariants**: What must ALWAYS be true
+2. **Metrics**: How to measure success
+3. **Threat Protocol**: Step-by-step misread/shame handling
+4. **Acceptance Tests**: Automated verification
+
+This makes the framework something you can **iterate on without losing the plot**.
+
