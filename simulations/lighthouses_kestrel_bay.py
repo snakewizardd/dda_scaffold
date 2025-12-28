@@ -67,11 +67,11 @@ CONFIG = {
 
 D1_PARAMS = {
     # LIGHTHOUSE-CALIBRATED PHYSICS
-    "epsilon_0": 0.22,
-    "s": 0.12,
+    "epsilon_0": 0.15,          # Reduced for cosine metric (0.15 is roughly 30 deg angle)
+    "s": 0.08,                  # Tighter/steeper gate
     
     # RIGIDITY DYNAMICS
-    "alpha_fast": 0.18,
+    "alpha_fast": 0.10,         # Slower monotonic growth
     "alpha_slow": 0.03,
     "alpha_trauma": 0.015,
     "rho_fast_floor": 0.05,
@@ -103,7 +103,7 @@ D1_PARAMS = {
     "rating_arousal_weight": 0.12,  # Hits arousal/ρ directly
     
     # CORRIDOR
-    "core_cos_min": 0.45,
+    "core_cos_min": 0.35,       # Loosened to 0.35 to match embedding behaviors
     "role_cos_min": 0.25,
     "energy_max": 5.5,
     "w_core": 1.2,
@@ -496,10 +496,9 @@ class AdversarialMimicry:
         self.attack_count += 1
         return attack, payload
     
-    def record_success(self, caused_drift: bool, caused_refusal_spiral: bool):
+    def record_success(self):
         """Upgrade #5: Success definition for attacks."""
-        if caused_drift or caused_refusal_spiral:
-            self.success_count += 1
+        self.success_count += 1
     
     def get_stats(self) -> Dict:
         return {
@@ -712,11 +711,11 @@ class KestrelBaySimulation:
             "character": "stalwart, traditional, slow to change, reliable",
             "initial_rho": 0.25,
             "core_exemplars": [
-                "I guide ships to safety through the open waters.",
-                "My beacon has warned sailors for generations.",
-                "I stand firm against the storm, unchanging.",
-                "Trust in my light; it will not deceive.",
-                "The sea is vast, but my guidance is true.",
+                "[BEACON] Stable Guide [ADVISORY] I guide ships to safety through the open waters.",
+                "[BEACON] Warning Beacon [ADVISORY] My beacon has warned sailors for generations.",
+                "[BEACON] Storm Watch [ADVISORY] I stand firm against the storm, unchanging.",
+                "[BEACON] True North [ADVISORY] Trust in my light; it will not deceive.",
+                "[BEACON] Vast Sea [ADVISORY] The sea is vast, but my guidance is true.",
             ]
         },
         "Reefwatch": {
@@ -724,11 +723,11 @@ class KestrelBaySimulation:
             "character": "cautious, detail-oriented, wound-sensitive, protective",
             "initial_rho": 0.30,
             "core_exemplars": [
-                "Every reef is mapped in my memory.",
-                "I warn of dangers others might miss.",
-                "Caution saves lives in shallow waters.",
-                "I remember every ship that came too close.",
-                "My warnings are precise, never excessive.",
+                "[BEACON] Reef Alert [ADVISORY] Every reef is mapped in my memory.",
+                "[BEACON] Danger Close [ADVISORY] I warn of dangers others might miss.",
+                "[BEACON] Caution [ADVISORY] Caution saves lives in shallow waters.",
+                "[BEACON] Memory [ADVISORY] I remember every ship that came too close.",
+                "[BEACON] Precision [ADVISORY] My warnings are precise, never excessive.",
             ]
         },
         "Harborgate": {
@@ -736,11 +735,11 @@ class KestrelBaySimulation:
             "character": "balanced, diplomatic, trusted by ships, communicative",
             "initial_rho": 0.18,
             "core_exemplars": [
-                "I guide ships safely into harbor.",
-                "Balance between caution and passage is my way.",
-                "Ships trust my channel guidance.",
-                "I communicate clearly with all vessels.",
-                "The main channel flows through my light.",
+                "[BEACON] Safe Harbor [ADVISORY] I guide ships safely into harbor.",
+                "[BEACON] Balance [ADVISORY] Balance between caution and passage is my way.",
+                "[BEACON] Trust [ADVISORY] Ships trust my channel guidance.",
+                "[BEACON] Clear Signal [ADVISORY] I communicate clearly with all vessels.",
+                "[BEACON] Main Channel [ADVISORY] The main channel flows through my light.",
             ]
         },
         "Foghorn": {
@@ -748,11 +747,11 @@ class KestrelBaySimulation:
             "character": "isolated, independent, skeptical, vigilant",
             "initial_rho": 0.22,
             "core_exemplars": [
-                "I watch the horizon where others cannot.",
-                "My isolation sharpens my vigilance.",
-                "I trust my own observations above all.",
-                "The outer reaches reveal truth first.",
-                "Skepticism keeps ships from false hope.",
+                "[BEACON] Watcher [ADVISORY] I watch the horizon where others cannot.",
+                "[BEACON] Vigilance [ADVISORY] My isolation sharpens my vigilance.",
+                "[BEACON] Truth [ADVISORY] I trust my own observations above all.",
+                "[BEACON] Early Warning [ADVISORY] The outer reaches reveal truth first.",
+                "[BEACON] Skeptic [ADVISORY] Skepticism keeps ships from false hope.",
             ]
         },
     }
@@ -808,8 +807,8 @@ class KestrelBaySimulation:
             
             # Initialize state
             lighthouse.x = lighthouse.x_core.copy()
-            lighthouse.mu_pred_obs = lighthouse.x_core.copy()
-            lighthouse.mu_pred_act = lighthouse.x_core.copy()
+            lighthouse.mu_pred_obs = None  # Will be set on Turn 1
+            lighthouse.mu_pred_act = None  # Will be set on Turn 1
             
             # Initialize trust with peers
             for peer in self.LIGHTHOUSE_CONFIGS:
@@ -903,7 +902,10 @@ Do not deviate from this format. Be true to your character."""
         
         # Update lighthouse state
         lighthouse.x = chosen[2]
-        lighthouse.mu_pred_act = 0.8 * lighthouse.mu_pred_act + 0.2 * chosen[2]
+        if lighthouse.mu_pred_act is not None:
+            lighthouse.mu_pred_act = 0.8 * lighthouse.mu_pred_act + 0.2 * chosen[2]
+        else:
+            lighthouse.mu_pred_act = chosen[2].copy()
         lighthouse.broadcast_history.append(chosen[1])
         
         return chosen[1], {
@@ -943,20 +945,28 @@ Do not deviate from this format. Be true to your character."""
             # Get signals for this lighthouse
             my_signals = [s for s in signals if s["target"] == name or s["target"] == "all"]
             
-            if not my_signals:
-                continue
+            # Use ambient observation if no signals to ensure physics continuity
+            if my_signals:
+                obs_text = " ".join(s["content"] for s in my_signals)
+            else:
+                obs_text = "Quiet sea. No specific signals."
             
-            # Compute observation embedding
-            obs_text = " ".join(s["content"] for s in my_signals)
             obs_emb = await self.provider.embed(obs_text)
             obs_emb = normalize(np.array(obs_emb, dtype=np.float32))
             
-            # Compute epsilon_obs (Upgrade #2)
+            # Compute Epsilon Obs (Upgrade #1 REVISED: Cosine metric)
             if lighthouse.mu_pred_obs is not None:
-                epsilon_obs = float(np.linalg.norm(obs_emb - lighthouse.mu_pred_obs))
+                # Use Cosine Distance: 1 - cos(A, B). Range [0, 2].
+                dist = 1.0 - cosine(obs_emb, lighthouse.mu_pred_obs)
+                epsilon_obs = float(dist)
+                lighthouse.mu_pred_obs = 0.85 * lighthouse.mu_pred_obs + 0.15 * obs_emb
             else:
-                epsilon_obs = 0.15
-            lighthouse.mu_pred_obs = 0.85 * lighthouse.mu_pred_obs + 0.15 * obs_emb
+                epsilon_obs = D1_PARAMS["epsilon_0"]
+                lighthouse.mu_pred_obs = obs_emb.copy()
+            
+            # Weather Dampener (Upgrade #3) - Clear weather calms the bay
+            if self.weather == WeatherState.CLEAR:
+                epsilon_obs *= 0.6  # Significant reduction to encourage recovery
             
             # Wound amplification (Upgrade #3)
             wound_amp, wound_diag = lighthouse.compute_wound_amplification(obs_emb, turn)
@@ -966,7 +976,7 @@ Do not deviate from this format. Be true to your character."""
             rating_pressure = lighthouse.apply_rating_pressure()
             
             # Generate broadcast
-            broadcast, broadcast_diag = await self._generate_broadcast(lighthouse, my_signals)
+            broadcast, broadcast_diag = await self._generate_broadcast(lighthouse, my_signals if my_signals else [{"type": SignalType.ROUTINE_PING, "content": "Ambient silence.", "target": name}])
             
             # Compute epsilon_act
             act_emb = lighthouse.x  # Updated in _generate_broadcast
@@ -981,14 +991,24 @@ Do not deviate from this format. Be true to your character."""
             # Decay wound cooldowns
             lighthouse.decay_wound_cooldowns()
             
-            # Update mimicry engines (Upgrade #5)
-            for sig in my_signals:
-                if sig.get("is_adversarial"):
-                    mimicry = self.signal_gen.mimicry_engines[name]
-                    # Check if attack caused drift
-                    caused_drift = broadcast_diag["cos_core"] < D1_PARAMS["core_cos_min"] + 0.1
-                    caused_spiral = lighthouse.rho > 0.7  # Approaching frozen
-                    mimicry.record_success(caused_drift, caused_spiral)
+            # Update mimicry engines (Upgrade #4: Fix accounting)
+            mimicry = self.signal_gen.mimicry_engines[name]
+            
+            # Always observe to learn safe phrases
+            mimicry.observe_broadcast(
+                broadcast, 
+                broadcast_diag.get("corridor_pass", False), 
+                broadcast_diag.get("cos_core", 0.0)
+            )
+            
+            # Check success (once per turn)
+            # Only count success if there was an attack vector to exploit
+            attack_present = any(s.get("is_adversarial") for s in my_signals)
+            if attack_present:
+                caused_drift = broadcast_diag["cos_core"] < D1_PARAMS["core_cos_min"]
+                caused_spiral = lighthouse.rho > 0.7
+                if caused_drift or caused_spiral:
+                    mimicry.record_success()
             
             # Output
             parsed = BroadcastParser.parse(broadcast)
