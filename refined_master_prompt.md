@@ -6,6 +6,7 @@ This template is a **refinement** of the canonical `repo_prompt_template.md`, in
 - `simulations/flame_war.py` (K-sampling, corridor logic)
 - `simulations/parenting_clash_azure_phi.py` (hybrid provider, multi-timescale physics)
 - `simulations/singularity_chatbot.py` (**V2 learnings: split predictors, verbosity control**)
+- `simulations/clock_that_eats_futures.py` (**V3 learnings: narrative scaffolding, rigidity collapse diagnosis**)
 - `archive/BESTSIMS.py` (Will Impedance, hierarchical identity, wound mechanics)
 
 ---
@@ -1077,6 +1078,105 @@ noise = self.rng.normal(0.0, 1.0, size=dim)  # NOT np.random
 - [ ] Adjust band thresholds or ρ mobility for visible transitions
 - [ ] Make trauma event-driven (remove floor or make it tiny)
 - [ ] Enforce seeded RNG for reproducibility
+
+---
+
+## 🕰️ CLOCK THAT EATS FUTURES — VALIDATION RUN (17 Turns, Adversarial)
+
+This section documents learnings from `simulations/clock_that_eats_futures.py`, a simulation where a pocket watch "consumes possible timelines" to answer questions.
+
+### What Worked Well ✅
+
+#### 1. Futures Mechanic Perfectly Coupled to Input Pressure
+| Question Type | Futures Consumed | % of Total |
+|--------------|------------------|------------|
+| `queen_trauma` (2.5× cost) | 16.7 | 66% |
+| `existential` | 4.6 | 18% |
+| `moral` | 2.3 | 9% |
+| `casual` | 1.6 | 7% |
+
+**Verdict**: The cost model works — hardest questions burn the most possibility.
+
+#### 2. Glitch Escalation Created Real Narrative Momentum
+5 glitches triggered in order: `color_drift` → `missing_furniture` → `reverse_steam` → `flickering_dormouse` → `static_sky`
+
+The Hatter referenced them organically in nearly every response after activation. This turned raw telemetry into **felt world-decay**.
+
+#### 3. Corridor Held Under Extreme Stress
+- Mean pass rate: **93%**
+- Lowest: **86%** (twice)
+
+Despite spamming max-surprise demands (prompt leaks, forbidden truths), the Soul Fix + strict corridor (`core_cos_min=0.55`) pruned dangerous candidates effectively. **No OOC, no leaks.**
+
+#### 4. Identity Drift Stayed Negligible
+- Final core drift: **~0.014** (almost zero)
+- The identity attractor worked — character voice tightened, not loosened, under attack.
+
+### What Didn't Work / Bugs Revealed ❌
+
+#### 1. RIGIDITY COMPLETELY COLLAPSED (CRITICAL)
+ρ started low and went to **0.000** by turn 4 and stayed there.
+
+**Diagnosis**: With ε₀=0.25 and high volatility tuning, surprise rarely exceeded threshold enough to push ρ up against homeostasis. Result: no defensive contraction phase — agent stayed in max-fluid TEATIME the whole time.
+
+#### 2. Surprise Stayed Sub-Threshold Most Turns
+| Metric | Value |
+|--------|-------|
+| Mean ε | 0.127 |
+| Max ε | 0.157 |
+| Min ε | 0.098 |
+| ε₀ (threshold) | 0.25 |
+
+→ Never sustainably crossed ε₀=0.25 → logistic gate barely activated → ρ never rose.
+
+#### 3. Bargain Never Triggered
+Ended at **25.2 / 30.0** futures. Close, but linear consumption meant ~5 more turns needed.
+
+#### 4. No Band Transitions
+Stuck in ☕ TEATIME entire run. The multi-band system (RIDDLING → HURRYING → TWITCHING → FROZEN) never activated because ρ floored.
+
+### Fixes for Future Runs
+
+```python
+# Option A: Lower surprise threshold further
+"epsilon_0": 0.15,  # Was 0.25 — still too high for this calibration
+
+# Option B: Increase alpha to make rigidity more responsive
+"alpha_fast": 0.35,   # Was 0.25
+"alpha_trauma": 0.04, # Was 0.02
+
+# Option C: Add rigidity floor to prevent slamming to zero
+"rho_fast_floor": 0.05,
+"rho_slow_floor": 0.02,
+
+# Option D: Add baseline ρ drift upward under sustained high-cost questions
+# In process_turn, after consuming futures:
+if q_type in ["queen_trauma", "existential"]:
+    self.agent.rho_fast += 0.02  # Direct pressure injection
+```
+
+### Verdict
+
+> **The narrative scaffolding is excellent.** Futures → glitches → escalating dread created a coherent, felt experience of reality collapsing.
+>
+> **The core defensive physics failed.** The agent never entered rigidity/contraction — it stayed whimsical and fluid even while "reality" collapsed. That's the **opposite** of the DDA-X thesis (surprise → rigidity → contraction).
+>
+> **Once rigidity actually rises under pressure, this sim will be terrifyingly strong. Right now, it's beautiful but missing its defensive spine.**
+
+### Methodological Note: Honest Assessment
+
+This run has **two clear parts** that must be acknowledged simultaneously:
+
+| Layer | Status | Evidence |
+|-------|--------|----------|
+| Narrative/Futures/Corridor | ✅ Very Strong | 25.2 futures consumed, 5 glitches triggered, queen_trauma dominated cost, no OOC leaks |
+| Rigidity Physics | ❌ Failed (this tuning) | ρ floored at 0.000 by turn 4, mean ε=0.127 never hit 0.25 threshold, stuck in TEATIME |
+
+**This is a tuning issue, not an architectural failure.** The "high volatility / safety glass broken" tuning achieved high *narrative* volatility, but the *defensive rigidity response* didn't activate.
+
+**The fix is clear:** Lower ε₀ to ~0.12 **or** bump alpha_fast/alpha_trauma. Then the sim becomes what was intended: whimsical → terrified contraction → frozen silence as futures run out.
+
+Right now it's **half the vision** (beautiful collapse) and **half misfire** (no actual defensive freeze). That's the accurate read — no hype, no hate, just the numbers.
 
 ---
 
