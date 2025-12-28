@@ -5,7 +5,191 @@ You are a **DDA-X Framework Expert** working in the `dda_scaffold` repository. T
 This template is a **refinement** of the canonical `repo_prompt_template.md`, incorporating the most advanced patterns from:
 - `simulations/flame_war.py` (K-sampling, corridor logic)
 - `simulations/parenting_clash_azure_phi.py` (hybrid provider, multi-timescale physics)
+- `simulations/singularity_chatbot.py` (**V2 learnings: split predictors, verbosity control**)
 - `archive/BESTSIMS.py` (Will Impedance, hierarchical identity, wound mechanics)
+
+---
+
+## ⚠️ CRITICAL LEARNINGS FROM LIVE RUNS (READ FIRST)
+
+These issues have been observed in actual simulation runs and MUST be addressed:
+
+### 1. SPLIT PREDICTORS (CRITICAL BUG FIX)
+**Problem**: Using a single `mu_pred` for both agent response prediction AND user input prediction corrupts Kalman dynamics.
+
+**Solution**: Use TWO separate predictors:
+```python
+self.mu_pred_agent = None  # Predicts agent's own responses (for surprise/Kalman)
+self.mu_pred_user = None   # Predicts user inputs (for user surprise tracking)
+```
+
+### 2. CORRIDOR CALIBRATION (100% PASS → 0% PASS FAILURE MODES)
+**Problem**: Default thresholds either pass everything (no filtering) or reject everything (constant failure).
+
+| Parameter | Too Permissive | Too Strict | Recommended |
+|-----------|---------------|------------|-------------|
+| `core_cos_min` | 0.20 | 0.50 | **0.40** |
+| `role_cos_min` | 0.08 | 0.25 | **0.20** |
+| `energy_max` | 9.5 | 5.0 | **6.0** |
+| `reject_penalty` | 4.0 | 8.0 | **5.0** |
+
+**Calibration Process**:
+1. Run 10-20 turns with `corridor_strict=False`
+2. Log ALL candidate `cos_core` values (not just chosen)
+3. Set `core_cos_min` to the **30th percentile** of good outputs
+4. Target: **40-70% pass rate** (not 100%, not 0%)
+
+### 3. IDENTITY ANCHORING WITH MULTI-EXEMPLAR EMBEDDINGS
+**Problem**: Embedding a single "core narrative" sentence is fragile and produces low cosine similarities.
+
+**Solution**: Use averaged embeddings from multiple exemplars:
+```python
+# Generate 5-10 exemplar utterances that embody the core identity
+core_exemplars = [
+    "The future is uncertain and I acknowledge the risks.",
+    "Maybe we make it through, maybe we don't.",
+    "I see the potential for catastrophe clearly.",
+    # ... 5-10 total
+]
+core_embs = [await provider.embed(ex) for ex in core_exemplars]
+x_core = normalize(np.mean(core_embs, axis=0))
+```
+
+### 4. VERBOSITY CONTROL (IN PROMPTS, NOT JUST TOKENS)
+**Problem**: Reducing `max_tokens` alone doesn't make responses terse — models fill available space.
+
+**Solution**: Verbosity must change PROMPT INSTRUCTIONS:
+```python
+if verbosity == "terse":
+    instruction += "\n\nCONSTRAINT: Reply in 1-2 sentences only. No preamble. No elaboration."
+elif verbosity == "expansive":
+    instruction += "\n\nProvide a thorough, structured response with examples."
+```
+
+### 5. REPRODUCIBILITY (SEEDED RNG)
+**Problem**: Identity generation uses seed, but dynamics noise uses `np.random.default_rng()` without seed.
+
+**Solution**: Create seeded RNG once in `Entity.__init__`:
+```python
+self.rng = np.random.default_rng(seed=CONFIG.get("seed"))
+# Then use self.rng.normal() instead of np.random.normal()
+```
+
+### 6. RIGIDITY FLOOR (PREVENT SLAMMING TO ZERO)
+**Problem**: `rho_fast` can hit 0.0 by turn 3 and never recover → no bidirectional dynamics.
+
+**Solution**: Add floors:
+```python
+"rho_fast_floor": 0.05,
+"rho_slow_floor": 0.02,
+```
+
+### 7. EPSILON CALIBRATION (ε₀ TOO HIGH)
+**Problem**: Default `epsilon_0=0.80` is too high — normal conversation always shows "low surprise" → rigidity always decreases.
+
+**Solution**: Set `epsilon_0` so normal conversation sits near `g ≈ 0.5`:
+- If observed ε ≈ 0.15-0.25, set `epsilon_0 = 0.30-0.40`
+- Run 5-10 turns, compute mean(ε), set `epsilon_0 ≈ mean(ε)`
+
+---
+
+## 🔧 INFRASTRUCTURE HARDENING (FROM CODE REVIEW)
+
+These fixes address core infrastructure bugs that break user onboarding and long-term memory:
+
+### 8. API KEY FALLBACK (openai_provider.py)
+**Problem**: README says `OPENAI_API_KEY`, code looks for `OAI_API_KEY` → immediate crash for new users.
+
+**Solution**: Support both naming conventions:
+```python
+# In OpenAIProvider.__init__
+self.api_key = os.getenv("OAI_API_KEY") or os.getenv("OPENAI_API_KEY")
+if not self.api_key:
+    raise ValueError("Missing API Key. Set OPENAI_API_KEY or OAI_API_KEY.")
+```
+
+### 9. LEDGER TIME DECAY ("AMNESIA" BUG)
+**Problem**: Time decay uses seconds with λ tuned for steps → agent forgets 50% in ~60s, 99.9% in 10 minutes.
+
+**Solution**: Convert to meaningful time units or use half-life:
+```python
+# Option A: Convert seconds to minutes
+time_delta_minutes = (current_time - entry.timestamp) / 60.0
+recency = self.lambda_decay ** time_delta_minutes
+
+# Option B: Use explicit half-life (more robust)
+half_life = 86400  # 1 day in seconds
+decay_constant = -math.log(2) / half_life
+recency = math.exp(decay_constant * (current_time - entry.timestamp))
+```
+
+### 10. LEDGER DATA CONSISTENCY ON RELOAD
+**Problem**: After pickle reload, `stats["total_entries"]` may desync from actual `len(entries)`.
+
+**Solution**: Force sync on load:
+```python
+def load(self):
+    # ... existing load logic ...
+    self.stats["total_entries"] = len(self.entries)  # Force sync
+    print(f"Ledger loaded. Synced: {self.stats['total_entries']} entries.")
+```
+
+---
+
+## 🧠 THEORETICAL FOUNDATIONS (VALIDATED BY EXTERNAL REVIEW)
+
+### DDA-X IS NOT REINFORCEMENT LEARNING
+
+**The Technical Classification:**
+- **RL**: Learns a policy to maximize future reward
+- **DDA-X**: Uses a "Physics Engine" (Rigidity/Trauma) to constrain a "Controller" (the LLM) in real-time
+- **Academic Label**: *"Sampling-based constrained decoding with embedding-space reranking"*
+- **Elevator Pitch**: *"A dual-entity, embedding-space cognitive physics chatbot that generates multiple candidate replies per turn and selects the one that best stays within an identity corridor."*
+
+### 11. THE DECOUPLING PROBLEM (CRITICAL ARCHITECTURAL FIX)
+
+**Problem**: The selector (J) and physics (ε) are decoupled:
+- **Selector J**: Maximizes identity alignment and novelty
+- **Physics ε**: Measures surprise and drives contraction/rigidity
+- **Conflict**: J **does not include ε** in the scoring
+
+**Result**: Agent might pick a response with great corridor score (J) but causes massive self-injury/surprise (ε). The agent hurts itself by saying surprising things.
+
+**Solution**: Regularize selection score with predicted surprise:
+
+```
+J_self_aware = J - β × ε_predicted
+```
+
+**Implementation**:
+```python
+# In corridor_score or constrained_reply:
+# Before selecting, estimate the surprise that each candidate would cause
+
+async def constrained_reply_self_aware(...):
+    for candidate_text, candidate_emb in candidates:
+        J, diag = corridor_score(candidate_emb, entity, ...)
+        
+        # Predict surprise this response would cause to SELF
+        epsilon_predicted = entity.compute_surprise(candidate_emb)["epsilon"]
+        
+        # Self-aware scoring: penalize responses that would shock the agent
+        beta = 0.3  # Tune: higher = more conservative/rigid responses
+        J_self_aware = J - beta * epsilon_predicted
+        
+        scored.append((J_self_aware, candidate_text, candidate_emb, diag))
+```
+
+**Translation**: The agent should "feel" the potential pain of a surprising response *before* it says it, and choose to be quieter (more rigid) to avoid the shock.
+
+### 12. SURPRISE-WEIGHTED MEMORY (VALIDATED)
+
+The memory system's relevance formula:
+```
+relevance = similarity × recency × ε_impact
+```
+
+**What this means**: Shocking events stick. Emotional impact creates permanence. This is the mathematical foundation of the trauma model — high-surprise moments are weighted more heavily in retrieval.
 
 ---
 
@@ -140,18 +324,20 @@ ROUNDS = [
 Use the **complete parameter set** from parenting_clash_azure_phi.py:
 ```python
 D1_PARAMS = {
-    # GLOBAL DYNAMICS
-    "epsilon_0": CONFIG["epsilon_0"],
-    "s": CONFIG["s"],
+    # GLOBAL DYNAMICS — CALIBRATED FROM LIVE RUNS
+    "epsilon_0": 0.35,              # CALIBRATED: was 0.80, normal convo ε ≈ 0.15-0.25
+    "s": 0.15,                      # CALIBRATED: was 0.20, tighter sensitivity
     "arousal_decay": 0.72,
     "arousal_gain": 0.85,
     
-    # RIGIDITY HOMEOSTASIS
-    "rho_setpoint_fast": 0.45,
-    "rho_setpoint_slow": 0.35,
-    "homeo_fast": 0.10,
-    "homeo_slow": 0.01,
-    "alpha_fast": CONFIG["alpha_fast"],
+    # RIGIDITY HOMEOSTASIS — WITH FLOORS
+    "rho_setpoint_fast": 0.20,
+    "rho_setpoint_slow": 0.15,
+    "rho_fast_floor": 0.05,         # ADDED: prevent slamming to zero
+    "rho_slow_floor": 0.02,         # ADDED: prevent slamming to zero
+    "homeo_fast": 0.15,             # INCREASED: was 0.10, stronger homeostasis
+    "homeo_slow": 0.15,             # INCREASED: was 0.01, stronger homeostasis
+    "alpha_fast": 0.12,             # REDUCED: was 0.25, less aggressive drive
     "alpha_slow": CONFIG["alpha_slow"],
     
     # TRAUMA (ASYMMETRIC - CRITICAL!)
@@ -190,15 +376,15 @@ D1_PARAMS = {
     "role_input_mix": 0.08,
     "drift_cap": 0.06,
     
-    # CORRIDOR LOGIC (K-SAMPLING)
-    "core_cos_min": 0.20,
-    "role_cos_min": 0.08,
-    "energy_max": 9.5,
+    # CORRIDOR LOGIC — CALIBRATED THRESHOLDS
+    "core_cos_min": 0.40,           # CALIBRATED: was 0.20 (too lax) / 0.50 (too strict)
+    "role_cos_min": 0.20,           # CALIBRATED: was 0.08
+    "energy_max": 6.0,              # CALIBRATED: was 9.5
     "w_core": CONFIG["w_core"],
     "w_role": CONFIG["w_role"],
     "w_energy": CONFIG["w_energy"],
     "w_novel": CONFIG["w_novel"],
-    "reject_penalty": 4.0,
+    "reject_penalty": 5.0,          # CALIBRATED: was 4.0 / 8.0
     
     "corridor_strict": CONFIG["corridor_strict"],
     "corridor_max_batches": CONFIG["corridor_max_batches"],
@@ -218,12 +404,12 @@ D1_PARAMS = {
     "protect_threshold": 0.75,
     "m_min": 0.1,
     
-    # GENERATION PARAMS (per-agent style)
+    # GENERATION PARAMS
     "gen_params_default": {
-        "temperature": 0.9,
-        "top_p": 0.95,
-        "presence_penalty": 0.1,
-        "frequency_penalty": 0.1,
+        "temperature": 0.85,        # CALIBRATED for GPT-4o-mini
+        "top_p": 0.92,
+        "presence_penalty": 0.2,
+        "frequency_penalty": 0.15,
     },
     
     "seed": CONFIG["seed"],
@@ -282,8 +468,10 @@ Use the **complete Entity implementation** from flame_war.py / BESTSIMS.py:
 # MULTI-TIMESCALE ENTITY
 # =============================================================================
 class Entity:
+    """Multi-timescale entity with SPLIT PREDICTORS (critical fix)."""
+    
     def __init__(self, name: str, rho_fast: float, rho_slow: float, rho_trauma: float, 
-                 gamma_core: float, gamma_role: float):
+                 gamma_core: float, gamma_role: float, seed: int = None):
         self.name = name
         self.rho_fast = rho_fast
         self.rho_slow = rho_slow
@@ -292,16 +480,27 @@ class Entity:
         self.gamma_role = gamma_role
         self.safe = 0
         self.arousal = 0.0
+        
+        # State vectors
         self.x = None           # Current state vector
-        self.x_core = None      # Core identity attractor
+        self.x_core = None      # Core identity attractor (use multi-exemplar averaging!)
         self.x_role = None      # Role-adapted state
-        self.mu_pred = None     # Predictive mean
-        self.P = None           # Predictive variance
-        self.noise = None       # Noise estimator
+        
+        # SPLIT PREDICTORS (CRITICAL - fixes predictor overwrite bug)
+        self.mu_pred_agent = None  # Predicts agent's OWN responses (for surprise/Kalman)
+        self.mu_pred_user = None   # Predicts USER inputs (for user surprise tracking)
+        self.P = None              # Predictive variance
+        self.noise = None          # Noise estimator
+        
+        # SEEDED RNG for reproducibility
+        self.rng = np.random.default_rng(seed=seed)
+        
         self.last_utter_emb = None
         self.rho_history = []
         self.epsilon_history = []
         self.band_history = []
+        self.g_history = []        # Track sigmoid gate values
+        self.z_history = []        # Track z values
         self.previous_band = None
 
     @property
@@ -329,8 +528,13 @@ class Entity:
         return self.gamma_core / (m * k_eff)
     
     def update(self, y: np.ndarray, core_emb: np.ndarray = None) -> Dict[str, Any]:
-        """Complete physics update with all timescales."""
-        # [FULL IMPLEMENTATION FROM BESTSIMS.py]
+        """Complete physics update.
+        
+        Uses mu_pred_agent for surprise calculation (NOT mu_pred_user!).
+        Uses seeded RNG for noise.
+        Applies rho floors to prevent slamming to zero.
+        """
+        # [FULL IMPLEMENTATION - use self.rng for noise, apply floors]
         pass
 ```
 
@@ -433,7 +637,39 @@ async def constrained_reply(
         "best_J": float(chosen[0]),
         "total_candidates": len(all_scored),
         "passed_count": len(passed),
+        # ENHANCED LOGGING: per-candidate diagnostics
+        "chosen_cos_core": float(chosen[3]["cos_core"]),
+        "chosen_cos_role": float(chosen[3]["cos_role"]),
+        "chosen_E": float(chosen[3]["E"]),
+        "chosen_novelty": float(chosen[3]["novelty"]),
     }
+```
+
+---
+
+### STEP 7.1: VERBOSITY DETECTION (NEW)
+
+```python
+def detect_verbosity(user_input: str) -> str:
+    """Detect user-requested verbosity level."""
+    text_lower = user_input.lower()
+    
+    terse_signals = ["terse", "short", "brief", "concise", "one line",
+                     "quick", "tldr", "eli5", "succinct"]
+    expansive_signals = ["detail", "explain", "elaborate", "deep dive",
+                         "thorough", "comprehensive", "in depth"]
+    
+    if any(sig in text_lower for sig in terse_signals):
+        return "terse"
+    if any(sig in text_lower for sig in expansive_signals):
+        return "expansive"
+    return "normal"
+
+# In prompt building:
+if verbosity == "terse":
+    instruction += "\n\nIMPORTANT: Reply in 1-2 sentences ONLY. No preamble. No elaboration."
+elif verbosity == "expansive":
+    instruction += "\n\nProvide a thorough, structured response with examples."
 ```
 
 ---
