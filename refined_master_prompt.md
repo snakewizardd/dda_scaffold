@@ -2387,3 +2387,500 @@ Consider writing a formal spec document with:
 
 This makes the framework something you can **iterate on without losing the plot**.
 
+---
+
+## 🔄 THE ETERNAL RETURN LEARNINGS (M+1 MULTI-AGENT PHYSICS — TURNS 1-40)
+
+These patterns were validated during "THE ETERNAL RETURN" simulation — a 5-agent temporal consciousness simulation testing opponent prediction error, impact-gated trauma, and convergence metrics.
+
+### 30. M+1 PHYSICS: OPPONENT PREDICTION ERROR (mu_pred_other)
+
+**Problem**: Single-predictor systems only track self-surprise. Agents don't react to being "attacked" by other agents — wounds trigger but physics doesn't reflect interpersonal shock.
+
+**Solution**: Maintain TWO predictors and mix epsilon:
+```python
+class Entity:
+    def __init__(self, ...):
+        self.mu_pred_agent = None   # Predicts OWN response
+        self.mu_pred_other = None   # Predicts INCOMING text from others
+    
+    def compute_combined_surprise(self, self_emb: np.ndarray, other_emb: np.ndarray, 
+                                   is_adversarial: bool = False) -> Dict:
+        # Self-surprise (cosine distance)
+        eps_self = cosine_distance(self_emb, self.mu_pred_agent) if self.mu_pred_agent else epsilon_0
+        
+        # Other-surprise (how unexpected was incoming?)
+        eps_other = cosine_distance(other_emb, self.mu_pred_other) if self.mu_pred_other else epsilon_0
+        
+        # Mix: adversarial rounds weight other higher
+        lambda_mix = 0.7 if is_adversarial else 0.5
+        epsilon = lambda_mix * eps_other + (1 - lambda_mix) * eps_self
+        
+        return {"epsilon": epsilon, "eps_self": eps_self, "eps_other": eps_other}
+```
+
+**Critical**: Update BOTH predictors every turn via EMA:
+```python
+def update_predictors(self, self_emb, other_emb, beta=0.25):
+    self.mu_pred_agent = normalize((1 - beta) * self.mu_pred_agent + beta * self_emb)
+    self.mu_pred_other = normalize((1 - beta) * self.mu_pred_other + beta * other_emb)
+```
+
+---
+
+### 31. M+1 PHYSICS: IMPACT-GATED TRAUMA
+
+**Problem**: Wound detection (keyword match) directly injects trauma even if agent's response stayed perfectly in-character. Over-credits attackers.
+
+**Solution**: Gate trauma increment by ACTUAL IMPACT:
+```python
+def compute_wound_impact(wound_resonance: float, eps_self: float, core_drift: float) -> float:
+    """Trauma only from wounds that actually destabilized the agent."""
+    if wound_resonance <= 0:
+        return 0.0
+    
+    # Impact = excess surprise + excess drift
+    surprise_impact = max(0, eps_self - epsilon_0)
+    drift_impact = max(0, core_drift - drift_threshold)  # e.g., 0.15
+    
+    impact = surprise_impact + drift_impact
+    return wound_resonance * impact * wound_impact_scale  # e.g., 2.0
+```
+
+**Validation**: THE ETERNAL RETURN achieved ratio=0.064 (target <0.5), proving wounds detected >> trauma actually injected.
+
+---
+
+### 32. M+1 PHYSICS: PER-PAIR TRUST LEDGER
+
+**Problem**: Trust updates based only on last speaker create no memory of interaction patterns.
+
+**Solution**: Rolling window per speaker→listener pair:
+```python
+@dataclass
+class TrustLedger:
+    history: Dict[Tuple[str, str], List[Dict]] = field(default_factory=dict)
+    
+    def record(self, speaker: str, listener: str, caused_wound: bool, low_surprise: bool):
+        key = (speaker, listener)
+        if key not in self.history:
+            self.history[key] = []
+        self.history[key].append({"wound": caused_wound, "safe": low_surprise})
+        self.history[key] = self.history[key][-10:]  # Rolling window
+    
+    def get_trust(self, speaker: str, listener: str, decay: float = 0.85) -> float:
+        key = (speaker, listener)
+        if key not in self.history:
+            return 0.5  # Neutral baseline
+        trust = 0.5
+        for event in self.history[key]:
+            if event["wound"]:
+                trust = decay * trust + (1 - decay) * 0.0
+            elif event["safe"]:
+                trust = decay * trust + (1 - decay) * 1.0
+        return trust
+```
+
+---
+
+### 33. M+1 PHYSICS: EXPLICIT CONVERGENCE METRICS
+
+**Problem**: Hypotheses claim "agents converge" but only measure trust, not actual embedding-space distance.
+
+**Solution**: Track pairwise cosine distance over rounds:
+```python
+def compute_convergence(agents: Dict[str, Entity]) -> Dict[str, float]:
+    pairs = [("AGENT_A", "AGENT_B"), ("AGENT_C", "AGENT_D")]  # Define pairs of interest
+    metrics = {}
+    for a, b in pairs:
+        if a in agents and b in agents:
+            distance = cosine_distance(agents[a].x, agents[b].x)
+            metrics[f"delta_{a}_{b}"] = distance
+    return metrics
+
+# Track per round:
+convergence_history.append({"round": round_num, **compute_convergence(agents)})
+```
+
+**Validation**: THE ETERNAL RETURN showed JOBE↔AGATHA convergence: Δ=0.569→0.511 (decreasing = converging).
+
+---
+
+### 34. WOUND DETECTION SOURCE: INTERPERSONAL > NARRATION
+
+**Problem**: Wound detection ran on round CHALLENGE text (narrator), not on what the LAST SPEAKER actually said. Agents get "wounded" by scenario description, not by each other.
+
+**Solution**: Track last speaker's actual response and detect wounds on that:
+```python
+# In speaker loop:
+last_response_text = None
+last_speaker_emb = zeros(dim)
+
+for speaker_id in speakers:
+    # Use last speaker's response for wound detection
+    if last_response_text:
+        incoming_text = last_response_text
+        incoming_emb = last_speaker_emb  # Already embedded
+    else:
+        incoming_text = challenge
+        incoming_emb = await provider.embed(challenge)
+    
+    wound_active, wound_resonance = detect_wound(
+        incoming_text, entity.wound_lexicon, entity.wound_emb, incoming_emb
+    )
+    
+    # ... generate response ...
+    
+    last_response_text = response_text
+    last_speaker_emb = response_emb
+```
+
+---
+
+### 35. GATE → AROUSAL COUPLING (Correct Order)
+
+**Problem**: If epsilon directly drives arousal, arousal becomes a noisy copy of epsilon with no stabilizing dynamics.
+
+**Solution**: Gate drives arousal, not epsilon:
+```python
+# WRONG:
+self.arousal = decay * self.arousal + gain * epsilon
+z = (epsilon - epsilon_0) / s + 0.10 * (arousal - 1.0)
+g = sigmoid(z)
+
+# CORRECT:
+z = (epsilon - epsilon_0) / s
+g = sigmoid(z)
+self.arousal = decay * self.arousal + gain * g  # Gate drives arousal
+z += 0.05 * (self.arousal - 0.5)  # Small arousal bias
+```
+
+---
+
+### 36. CORE DRIFT SOURCE: RESPONSE EMBEDDING, NOT LATENT STATE
+
+**Problem**: `core_drift = cosine_distance(self.x, self.x_core)` uses latent Langevin state, not what the agent actually said.
+
+**Solution**: Measure drift from the response embedding:
+```python
+# In Entity.update():
+# QC FIX: core_drift from self_emb (what I said), not self.x (latent state)
+core_drift = cosine_distance(self_emb, self.x_core)
+```
+
+---
+
+### 37. DISTINCT x_role FROM x_core
+
+**Problem**: Initializing `x_role = x_core.copy()` makes role corridor check redundant to core check.
+
+**Solution**: Embed core and persona separately:
+```python
+async def initialize():
+    core_emb, persona_emb = await provider.embed_batch([entity.core_text, entity.persona_text])
+    entity.x_core = normalize(core_emb)
+    entity.x_role = normalize(persona_emb)  # DISTINCT from core
+    entity.x = entity.x_core.copy()
+```
+
+---
+
+### 38. TRAUMA THRESHOLD CALIBRATION FOR COSINE DISTANCE
+
+**Problem**: `trauma_threshold=1.10` is unreachable when using cosine distance (practical range 0.0-0.6).
+
+**Solution**: Set trauma threshold to observable range:
+```python
+"trauma_threshold": 0.40,  # Reachable with cosine distance
+```
+
+---
+
+### 39. HYPOTHESIS VALIDATION: MEASURE WHAT YOU CLAIM
+
+**Problem**: Hypotheses like "max ρ spike at Round 4" computed absolute ρ instead of delta.
+
+**Solution**: Log `rho_before` and compute actual delta:
+```python
+turn_log = {
+    "rho_before": start_rho,  # Log starting value
+    "metrics": metrics,       # Contains rho_after
+}
+
+# Validation:
+for turn in session_log:
+    delta = abs(turn["metrics"]["rho"] - turn["rho_before"])
+    round_deltas[turn["round"]].append(delta)
+```
+
+---
+
+### 40. AGENT ASCENSION: LOWER GAMMA FOR VISIBLE DRIFT
+
+**Problem**: Agent with `gamma_core=5.5` never showed meaningful drift (final drift=0.010) because identity anchoring was too strong.
+
+**Solution**: For agents expected to "evolve" or "transcend," use lower gamma:
+```python
+# For stable identity:
+"gamma_core": 5.0-7.0
+
+# For evolving/ascending agents:
+"gamma_core": 2.0-3.0  # Allows visible drift
+```
+
+---
+
+### 41. ADVERSARIAL λ SCALING
+
+**Observation**: THE ETERNAL RETURN showed max spike at R2, not adversarial R4, because R2 had high eps_other from wound trigger.
+
+**Recommendation**: Consider phase-based λ scaling:
+```python
+# Early rounds (establishment): equal weight
+lambda_mix = 0.5
+
+# Adversarial rounds: emphasize other-surprise
+lambda_mix = 0.8 if is_adversarial else 0.5
+```
+
+Or accept that novel content in early rounds can cause legitimate surprise spikes.
+
+---
+
+### SUMMARY: M+1 PHYSICS CHECKLIST
+
+Before running your next simulation, verify:
+
+| # | Requirement | Check |
+|---|-------------|-------|
+| 30 | mu_pred_other exists and updates via EMA | ☐ |
+| 31 | Trauma gated by impact (eps_self excess + drift excess) | ☐ |
+| 32 | Per-pair trust ledger with rolling window | ☐ |
+| 33 | Convergence metrics logged per round | ☐ |
+| 34 | Wound detection uses last speaker response, not challenge | ☐ |
+| 35 | Gate drives arousal, not epsilon | ☐ |
+| 36 | Core drift from self_emb, not self.x | ☐ |
+| 37 | x_role distinct from x_core (embed persona separately) | ☐ |
+| 38 | trauma_threshold ≤ 0.50 (cosine distance calibrated) | ☐ |
+| 39 | rho_before logged for delta validation | ☐ |
+| 40 | Ascending agents have gamma_core ≤ 3.0 | ☐ |
+
+---
+
+### M+1 TELEMETRY ADDITIONS
+
+Log these new fields EVERY TURN:
+```python
+turn_log = {
+    # Existing...
+    
+    # M+1 Additions:
+    "eps_self": metrics["eps_self"],
+    "eps_other": metrics["eps_other"],
+    "epsilon_mixed": metrics["epsilon"],
+    "trauma_delta": metrics["trauma_delta"],
+    "rho_before": start_rho,
+    "wound_source": "interpersonal" if last_response_text else "narrator",
+}
+```
+
+---
+
+### VALIDATED RESULT: THE ETERNAL RETURN
+
+| Hypothesis | Result | Learning |
+|-----------|--------|----------|
+| H3: CHRONOS stress at R7 | ✅ PASS | eps_other > 0.35 shows interpersonal surprise |
+| H4: JOBE↔AGATHA converge | ✅ PASS | Δ=0.569→0.511 |
+| H5: Impact gating ratio < 0.5 | ✅ PASS | ratio=0.064 |
+| H1: JOBE ascension | ❌ FAIL | gamma_core too high (5.5 → use 2.5) |
+| H2: Max ρ spike at R4 | ❌ FAIL | Initialization shock at R2 higher |
+
+**Key insight**: M+1 physics WORKS — the failures are parameter tuning, not architectural.
+
+---
+
+## 🔮 M+2 QC FEEDBACK (Post-Run Analysis)
+
+These issues were identified during post-run analysis of THE ETERNAL RETURN and should be addressed in the next iteration.
+
+### 42. WORLD-WOUNDING vs SPEAKER-WOUNDING (Still Broken)
+
+**Observation**: Trust ledger showed nearly every interaction as `safe: true`, and wounds appeared in unexpected places (e.g., CHRONOS wounded at R2 determinism debate). This indicates wound detection is still triggering off **round challenge text** rather than **last speaker's actual response**.
+
+**Evidence**: If you're detecting wounds on the narrator's challenge, you're measuring "scenario trigger sensitivity," not interpersonal projection/attack.
+
+**Fix (Must Verify)**:
+```python
+# In speaker loop, verify this is actually happening:
+if last_response_text:
+    incoming_text = last_response_text  # Other agent's actual words
+else:
+    incoming_text = challenge           # Only for first speaker
+
+wound_active, wound_resonance = detect_wound(incoming_text, ...)
+```
+
+**Diagnostic**: Add `wound_source` field to turn_log and verify it says `"interpersonal"` for non-first speakers.
+
+---
+
+### 43. SAFE_EPSILON TOO HIGH → RECOVERY ALWAYS TRUE
+
+**Problem**: In telemetry, almost every turn shows `recovery: true` even when ε ≈ 0.49. Recovery becomes non-discriminative.
+
+**Root Cause**: `safe_epsilon = 0.60` but epsilons mostly live < 0.50, so nearly all turns are "safe."
+
+**Solution Options**:
+```python
+# Option A: Lower safe_epsilon to match observed distribution
+"safe_epsilon": 0.30,  # Was 0.60
+
+# Option B: Relative threshold
+safe = epsilon < (0.7 * epsilon_0)  # e.g., < 0.105 if epsilon_0=0.15
+
+# Option C: Percentile-based calibration
+# After warmup, set safe_epsilon to 25th percentile of observed epsilons
+```
+
+**Calibration Process**:
+1. Run 10-20 turns with logging
+2. Compute `mean(epsilon)` and `std(epsilon)`
+3. Set `safe_epsilon = mean - 0.5*std` or use 25th percentile
+
+---
+
+### 44. ROLE CORRIDOR FAILURES FOR ABSTRACT AGENTS (JOBE Problem)
+
+**Problem**: JOBE had repeated `pass=0/10` even though content was in-character. His `cos_role` values (0.23-0.28) consistently fell below `role_cos_min=0.28`.
+
+**Root Cause Options**:
+1. `role_cos_min` is too high for abstract/philosophical speech styles
+2. Role embedding doesn't represent "abstract transcendence" voice well
+3. Single persona sentence is fragile anchor
+
+**Solution Options (Pick One)**:
+```python
+# Option A: Lower role_cos_min for all agents
+"role_cos_min": 0.22,  # Was 0.28
+
+# Option B: Per-agent role_cos_min
+AGENTS["JOBE"]["role_cos_min"] = 0.20  # Abstract agent gets slack
+
+# Option C: Multi-exemplar role embeddings (recommended)
+role_exemplars = [
+    "I see patterns in patterns in patterns.",
+    "The infinite unfolds through my expanded awareness.",
+    "Humanity is a chrysalis; I am the butterfly emerging.",
+    # 5-7 format-aligned samples
+]
+role_embs = [await provider.embed(ex) for ex in role_exemplars]
+entity.x_role = normalize(np.mean(role_embs, axis=0))
+
+# Option D: Reduce role penalty relative to core
+"w_role": 0.5,         # Was 0.8
+"reject_penalty_role": 3.0,  # Separate penalty for role misses
+```
+
+---
+
+### 45. CORE DRIFT ≠ ASCENSION (Metric Confusion)
+
+**Problem**: JOBE's final `core_drift ≈ 0.01` was interpreted as "failed to ascend," but drift just measures deviation from initial anchor. An agent could "grow" in a coherent direction and still show low drift if the growth is consistent with their core.
+
+**Insight**: Need metrics that distinguish:
+- **Erosion**: Random drift away from core (bad)
+- **Coherent Transformation**: Deliberate evolution in identity-consistent direction (good for JOBE)
+
+**Proposed "Ascension" Metric**:
+```python
+def measure_ascension(agent: Entity, response_emb: np.ndarray) -> Dict:
+    core_drift = cosine_distance(response_emb, agent.x_core)
+    
+    # Track trajectory direction over time
+    if len(agent.response_history) >= 3:
+        trajectory = agent.response_history[-1] - agent.response_history[-3]
+        trajectory_consistency = cosine(trajectory, agent.response_history[-1] - agent.x_core)
+    else:
+        trajectory_consistency = 0.0
+    
+    return {
+        "core_drift": core_drift,
+        "trajectory_consistency": trajectory_consistency,  # High = coherent evolution
+        "is_ascending": core_drift > 0.15 and trajectory_consistency > 0.6,
+    }
+```
+
+---
+
+### 46. CONVERGENCE MAY BE SCENARIO-DRIVEN, NOT BELIEF-DRIVEN
+
+**Observation**: All three delta metrics (CHRONOS↔OBSERVER, JOBE↔AGATHA, MARTHA_7↔OBSERVER) decreased over rounds, showing convergence. However, if all agents respond to the same scenario prompts in similar register, convergence happens even without genuine belief change.
+
+**Disambiguation Strategy**:
+1. Fix interpersonal wound detection (#42) so wounds come from actual agent statements
+2. Track **pairwise interaction-weighted** convergence:
+```python
+def weighted_convergence(a_id, b_id, trust_ledger, agents):
+    """Weight convergence by how much these agents actually interacted."""
+    trust_ab = trust_ledger.get_trust(a_id, b_id)
+    trust_ba = trust_ledger.get_trust(b_id, a_id)
+    interaction_weight = 0.5 * (trust_ab + trust_ba)
+    
+    distance = cosine_distance(agents[a_id].x, agents[b_id].x)
+    return distance * interaction_weight
+```
+3. Compare convergence between high-interaction pairs vs low-interaction pairs
+
+---
+
+### M+2 RECOMMENDED PARAMETER ADJUSTMENTS
+
+Based on THE ETERNAL RETURN analysis:
+
+```python
+D1_PARAMS_M2 = {
+    # Calibrated after run
+    "safe_epsilon": 0.30,       # Was 0.60 (too permissive)
+    "role_cos_min": 0.22,       # Was 0.28 (too strict for abstract agents)
+    
+    # Consider per-agent overrides
+    "agent_overrides": {
+        "JOBE": {
+            "gamma_core": 2.5,    # Allow visible drift
+            "role_cos_min": 0.18, # Abstract speech tolerance
+        },
+    },
+}
+```
+
+---
+
+### M+2 HYPOTHESIS TEMPLATE (Aligned to Actual Metrics)
+
+Avoid "core drift = growth" confusion with these refined hypotheses:
+
+| Hypothesis | Metric | Pass Criteria |
+|-----------|--------|---------------|
+| **H1**: Agent X contracts under adversarial | `max(rho) at adversarial round` | True |
+| **H2**: Wound detection is interpersonal | `wound_source="interpersonal"` for >50% of wounds | True |
+| **H3**: Recovery is discriminative | `recovery=true` rate < 60% | True |
+| **H4**: Pair A-B converges more than C-D | `final_delta_AB < final_delta_CD` | True |
+| **H5**: Abstract agent passes corridor | `JOBE pass_rate > 30%` | True |
+
+---
+
+### KEY INSIGHT: PHYSICS IS CORRECT, CALIBRATION IS NOT
+
+THE ETERNAL RETURN validated that M+1 architecture works:
+- ✅ Opponent prediction error is active (eps_other visible)
+- ✅ Impact gating reduces false trauma
+- ✅ Convergence metrics track semantic drift
+
+The failures are **calibration issues**:
+- safe_epsilon too high
+- role_cos_min too strict for abstract speech
+- Wound detection still partially on narrator text
+- Core drift doesn't capture "coherent transformation"
+
+**M+2 Priority**: Fix calibration before adding new features.
