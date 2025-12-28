@@ -54,10 +54,12 @@ CONFIG = {
     "corridor_strict": True,
     "corridor_max_batches": 3,
     
-    # Response Limits — CONCISE RESPONSES
-    "max_tokens": 512,                   # Reasonable response length, not essays
+    # Response Limits — FIX #3: Dynamic verbosity
+    "max_tokens_default": 512,          # Normal response length
+    "max_tokens_terse": 128,            # For terse/short requests
+    "max_tokens_expansive": 1024,       # For detailed explanations
     "force_complete_sentences": True,
-    "min_response_length": 50,
+    "min_response_length": 0,           # Was 50 — removed restriction
     
     # Physics Parameters
     "epsilon_0": 0.80,
@@ -81,17 +83,20 @@ CONFIG = {
 # D1 PARAMETERS (PHYSICS)
 # =============================================================================
 D1_PARAMS = {
-    "epsilon_0": CONFIG["epsilon_0"],
-    "s": CONFIG["s"],
+    # FIX #7: Adjusted epsilon params for ε ≈ baseline in normal convo
+    "epsilon_0": 0.35,          # Was 0.80 — now normal convo sits near g=0.5
+    "s": 0.15,                  # Was 0.20 — tighter sensitivity
     "arousal_decay": 0.72,
     "arousal_gain": 0.85,
     
-    "rho_setpoint_fast": 0.45,
-    "rho_setpoint_slow": 0.35,
-    "homeo_fast": 0.10,
-    "homeo_slow": 0.01,
-    "alpha_fast": CONFIG["alpha_fast"],
+    "rho_setpoint_fast": 0.20,
+    "rho_fast_floor": 0.05,          # Prevent slamming to zero
+    "alpha_fast": 0.12,             # Was 0.25 — reduced magnitude of drive
+    "homeo_fast": 0.15,              # Was 0.10 — stronger homeostasis
+    "rho_setpoint_slow": 0.15,
+    "rho_slow_floor": 0.02,          # Prevent slamming to zero
     "alpha_slow": CONFIG["alpha_slow"],
+    "homeo_slow": 0.15,              # Was 0.08 — stronger homeostasis
     
     "trauma_threshold": 1.15,
     "alpha_trauma": CONFIG["alpha_trauma"],
@@ -124,14 +129,15 @@ D1_PARAMS = {
     "role_input_mix": 0.08,
     "drift_cap": 0.06,
     
-    "core_cos_min": 0.20,
-    "role_cos_min": 0.08,
-    "energy_max": 9.5,
+    # FIX #2: Tightened corridor thresholds (was 100% pass rate)
+    "core_cos_min": 0.50,       # Was 0.20 — now requires meaningful core alignment
+    "role_cos_min": 0.25,       # Was 0.08 — now requires actual role alignment
+    "energy_max": 5.0,          # Was 9.5 — tighter energy bound
     "w_core": CONFIG["w_core"],
     "w_role": CONFIG["w_role"],
     "w_energy": CONFIG["w_energy"],
     "w_novel": CONFIG["w_novel"],
-    "reject_penalty": 4.0,
+    "reject_penalty": 8.0,      # Was 4.0 — stronger penalty for violations
     
     "wound_cooldown": 3,
     "wound_amp_max": 1.4,
@@ -320,7 +326,12 @@ class DiagNoiseEMA:
 
 
 class Entity:
-    """DDA-X entity with predictive coding and multi-timescale rigidity."""
+    """DDA-X entity with predictive coding and multi-timescale rigidity.
+    
+    Uses SEPARATE predictors:
+    - mu_pred_agent: predicts agent's own response embeddings (for surprise/Kalman)
+    - mu_pred_user: predicts user input embeddings (for user surprise tracking)
+    """
     
     def __init__(self, name: str, rho_fast: float, rho_slow: float, rho_trauma: float, 
                  gamma_core: float, gamma_role: float):
@@ -335,7 +346,9 @@ class Entity:
         self.x = None
         self.x_core = None
         self.x_role = None
-        self.mu_pred = None
+        # SPLIT PREDICTORS (Fix #1 from log analysis)
+        self.mu_pred_agent = None  # For agent response predictive coding
+        self.mu_pred_user = None   # For predicted user input
         self.P = None
         self.noise = None
         self.last_utter_emb = None
@@ -343,6 +356,9 @@ class Entity:
         self.epsilon_history = []
         self.band_history = []
         self.previous_band = None
+        # Additional diagnostics
+        self.g_history = []
+        self.z_history = []
 
     @property
     def rho(self) -> float:
@@ -359,30 +375,33 @@ class Entity:
         return "FROZEN"
 
     def _ensure_predictive_state(self, dim: int):
-        if self.mu_pred is None: self.mu_pred = np.zeros(dim, dtype=np.float32)
+        if self.mu_pred_agent is None: self.mu_pred_agent = np.zeros(dim, dtype=np.float32)
+        if self.mu_pred_user is None: self.mu_pred_user = np.zeros(dim, dtype=np.float32)
         if self.P is None: self.P = np.full(dim, D1_PARAMS["P_init"], dtype=np.float32)
         if self.noise is None: self.noise = DiagNoiseEMA(dim, D1_PARAMS["R_ema"], 0.01, D1_PARAMS["R_min"], D1_PARAMS["R_max"])
 
     def compute_surprise(self, y: np.ndarray) -> Dict[str, float]:
+        """Compute surprise using mu_pred_agent (agent's own response predictor)."""
         dim = int(y.shape[0])
         self._ensure_predictive_state(dim)
-        innov = (y - self.mu_pred).astype(np.float32)
+        innov = (y - self.mu_pred_agent).astype(np.float32)
         R = self.noise.update(innov)
         chi2 = float(np.mean((innov * innov) / (R + 1e-9)))
         epsilon = float(math.sqrt(max(0.0, chi2)))
         return {"epsilon": epsilon, "chi2": chi2}
 
     def _kalman_update(self, y: np.ndarray):
+        """Update mu_pred_agent via Kalman filter (agent's own response predictor)."""
         dim = int(y.shape[0])
         self._ensure_predictive_state(dim)
         Q = (D1_PARAMS["Q_base"] + D1_PARAMS["Q_rho_scale"] * self.rho) * np.ones(dim, dtype=np.float32)
         P_pred = self.P + Q
         R = self.noise.R
         K = P_pred / (P_pred + R + 1e-9)
-        innov = (y - self.mu_pred).astype(np.float32)
-        self.mu_pred = (self.mu_pred + K * innov).astype(np.float32)
+        innov = (y - self.mu_pred_agent).astype(np.float32)
+        self.mu_pred_agent = (self.mu_pred_agent + K * innov).astype(np.float32)
         self.P = ((1.0 - K) * P_pred).astype(np.float32)
-        self.mu_pred = normalize(self.mu_pred)
+        self.mu_pred_agent = normalize(self.mu_pred_agent)
 
     def update(self, y: np.ndarray, core_emb: Optional[np.ndarray] = None) -> Dict[str, Any]:
         y = normalize(y.astype(np.float32))
@@ -397,12 +416,17 @@ class Entity:
         self.arousal = D1_PARAMS["arousal_decay"] * self.arousal + D1_PARAMS["arousal_gain"] * epsilon
         z = (epsilon - D1_PARAMS["epsilon_0"]) / D1_PARAMS["s"] + 0.10 * (self.arousal - 1.0)
         g = sigmoid_stable(z)
+        
+        # Track g/z for diagnostics
+        self.g_history.append(float(g))
+        self.z_history.append(float(z))
 
+        # Apply floor to prevent slamming to zero
         self.rho_fast += D1_PARAMS["alpha_fast"] * (g - 0.5) - D1_PARAMS["homeo_fast"] * (self.rho_fast - D1_PARAMS["rho_setpoint_fast"])
-        self.rho_fast = clamp(self.rho_fast, 0.0, 1.0)
+        self.rho_fast = clamp(self.rho_fast, D1_PARAMS.get("rho_fast_floor", 0.0), 1.0)
 
         self.rho_slow += D1_PARAMS["alpha_slow"] * (g - 0.5) - D1_PARAMS["homeo_slow"] * (self.rho_slow - D1_PARAMS["rho_setpoint_slow"])
-        self.rho_slow = clamp(self.rho_slow, 0.0, 1.0)
+        self.rho_slow = clamp(self.rho_slow, D1_PARAMS.get("rho_slow_floor", 0.0), 1.0)
 
         drive = max(0.0, epsilon - D1_PARAMS["trauma_threshold"])
         self.rho_trauma = D1_PARAMS["trauma_decay"] * self.rho_trauma + D1_PARAMS["alpha_trauma"] * drive
@@ -567,7 +591,7 @@ class HybridSingularityProvider:
                     response = await self.openai.chat.completions.create(
                         model=self.chat_model,
                         messages=messages,
-                        max_tokens=CONFIG["max_tokens"],
+                        max_tokens=kwargs.get("max_tokens", CONFIG["max_tokens_default"]),
                         temperature=temp,
                         top_p=kwargs.get("top_p", 0.95),
                         presence_penalty=kwargs.get("presence_penalty", 0.1),
@@ -575,13 +599,14 @@ class HybridSingularityProvider:
                     )
                 else:
                     # Use Azure (sync call in executor)
+                    max_tok = kwargs.get("max_tokens", CONFIG["max_tokens_default"])
                     loop = asyncio.get_event_loop()
                     response = await loop.run_in_executor(
                         None,
-                        lambda t=temp: self.azure.chat.completions.create(
+                        lambda t=temp, m=max_tok: self.azure.chat.completions.create(
                             model=self.chat_model,
                             messages=messages,
-                            max_tokens=CONFIG["max_tokens"],
+                            max_tokens=m,
                             temperature=t,
                             top_p=kwargs.get("top_p", 0.95),
                             presence_penalty=kwargs.get("presence_penalty", 0.1),
@@ -823,7 +848,9 @@ class SingularityChatbot:
         self.agent.x_core = normalize(embeddings[0])
         self.agent.x_role = normalize(embeddings[2])
         self.agent.x = normalize(embeddings[1])
-        self.agent.mu_pred = self.agent.x.copy()
+        # Initialize BOTH predictors (Fix #1)
+        self.agent.mu_pred_agent = self.agent.x.copy()  # Agent response predictor
+        self.agent.mu_pred_user = np.zeros(CONFIG["embed_dim"], dtype=np.float32)  # User predictor starts empty
         self.agent.P = np.full(CONFIG["embed_dim"], D1_PARAMS["P_init"])
         
         self.initialized = True
@@ -838,10 +865,14 @@ class SingularityChatbot:
         
         # Embed user input
         user_emb = await self.provider.embed(user_input)
-        user_metrics = self.user.update(normalize(user_emb), self.agent.mu_pred)
+        # Use mu_pred_user for user surprise (Fix #1)
+        user_metrics = self.user.update(normalize(user_emb), self.agent.mu_pred_user)
         
         # Check for wound triggers
         wound_active, wound_resonance = self._check_wounds(user_input)
+        
+        # FIX #3: Detect user-requested verbosity
+        verbosity = self._detect_verbosity(user_input)
         
         # Build system prompt
         system_prompt = self._build_system_prompt(wound_active)
@@ -854,14 +885,15 @@ class SingularityChatbot:
             user_instruction=user_instruction,
             system_prompt=system_prompt,
             wound_active=wound_active,
+            verbosity=verbosity,
         )
         
         # Embed response and update agent physics
         response_emb = await self.provider.embed(response)
         agent_metrics = self.agent.update(normalize(response_emb), self.agent.x_core)
         
-        # Update agent's prediction of user
-        self.agent.mu_pred = self._update_user_prediction(user_emb)
+        # Update agent's prediction of user (uses mu_pred_user, not mu_pred_agent)
+        self._update_user_prediction(user_emb)
         
         # Log full turn
         turn_log = {
@@ -897,12 +929,23 @@ class SingularityChatbot:
         user_instruction: str, 
         system_prompt: str,
         wound_active: bool,
+        verbosity: str = "normal",
     ) -> Tuple[str, Dict]:
-        """Generate K=7 candidates and select via identity corridor."""
+        """Generate K=7 candidates and select via identity corridor.
+        
+        Uses dynamic max_tokens based on verbosity: terse=128, normal=512, expansive=1024.
+        """
         
         K = CONFIG["gen_candidates"]
         strict = CONFIG["corridor_strict"]
         max_batches = CONFIG["corridor_max_batches"]
+        
+        # FIX #3: Dynamic max_tokens based on verbosity
+        max_tokens = {
+            "terse": CONFIG["max_tokens_terse"],
+            "normal": CONFIG["max_tokens_default"],
+            "expansive": CONFIG["max_tokens_expansive"],
+        }.get(verbosity, CONFIG["max_tokens_default"])
         
         # Adjust core threshold if wound is active
         core_thresh = D1_PARAMS["core_cos_min"]
@@ -913,6 +956,7 @@ class SingularityChatbot:
         corridor_failed = True
         
         gen_params = D1_PARAMS["gen_params_default"].copy()
+        gen_params["max_tokens"] = max_tokens  # Apply verbosity-based limit
         
         for batch in range(1, max_batches + 1):
             # Generate K candidates in parallel
@@ -946,12 +990,17 @@ class SingularityChatbot:
         
         self.agent.last_utter_emb = chosen[2]
         
+        # FIX #8: Enhanced logging with chosen candidate diagnostics
         return chosen[1], {
             "corridor_failed": corridor_failed,
             "best_J": float(chosen[0]),
             "total_candidates": len(all_scored),
             "passed_count": len(passed),
             "batches_used": min(batch, max_batches),
+            "chosen_cos_core": float(chosen[3]["cos_core"]),
+            "chosen_cos_role": float(chosen[3]["cos_role"]),
+            "chosen_E": float(chosen[3]["E"]),
+            "chosen_novelty": float(chosen[3]["novelty"]),
         }
     
     def _check_wounds(self, text: str) -> Tuple[bool, float]:
@@ -964,6 +1013,21 @@ class SingularityChatbot:
             resonance = min(1.0, hits * 0.5)
             return True, resonance
         return False, 0.0
+    
+    def _detect_verbosity(self, text: str) -> str:
+        """FIX #3: Detect user-requested verbosity level."""
+        text_lower = text.lower()
+        
+        terse_signals = ["terse", "short", "brief", "concise", "one line", "1 line",
+                        "quick", "tldr", "eli5", "in a word", "succinct"]
+        expansive_signals = ["detail", "explain", "elaborate", "deep dive", "thorough",
+                            "comprehensive", "in depth", "fully", "complete explanation"]
+        
+        if any(sig in text_lower for sig in terse_signals):
+            return "terse"
+        if any(sig in text_lower for sig in expansive_signals):
+            return "expansive"
+        return "normal"
     
     def _build_system_prompt(self, wound_active: bool) -> str:
         """Build agent's system prompt with full personality."""
@@ -1023,12 +1087,13 @@ RESPONSE GUIDELINES:
 
 Respond authentically as yourself. Complete your thoughts fully."""
     
-    def _update_user_prediction(self, user_emb: np.ndarray) -> np.ndarray:
-        """Update agent's prediction of next user input (EMA)."""
-        if self.agent.mu_pred is None:
-            return normalize(user_emb)
+    def _update_user_prediction(self, user_emb: np.ndarray):
+        """Update agent's prediction of next user input (EMA) - uses mu_pred_user."""
+        if self.agent.mu_pred_user is None or np.all(self.agent.mu_pred_user == 0):
+            self.agent.mu_pred_user = normalize(user_emb)
+            return
         alpha = 0.3
-        return normalize(alpha * user_emb + (1 - alpha) * self.agent.mu_pred)
+        self.agent.mu_pred_user = normalize(alpha * user_emb + (1 - alpha) * self.agent.mu_pred_user)
     
     def _print_metrics(self, log: Dict):
         """Print turn metrics to console."""
