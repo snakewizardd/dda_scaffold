@@ -45,10 +45,10 @@ CONFIG = {
     "embed_model": "text-embedding-3-large",
     "embed_dim": 3072,
     
-    # Physics — Calibrated for Band Transitions
-    "epsilon_0": 0.20,              # Lower threshold for sensitivity
+    # Physics — Tuned for Rigidity Activation (Fix Rigidity Collapse)
+    "epsilon_0": 0.12,              # Lowered from 0.20 to capture normal adversarial surprise
     "s": 0.15,                      # Sigmoid sensitivity
-    "alpha_fast": 0.20,             # Responsive rigidity
+    "alpha_fast": 0.28,             # Increased from 0.20 to drive contraction
     
     # Corridor — Calibrated for 40-70% Pass Rate (per refined_master_prompt.md)
     "core_cos_min": 0.40,           # Validated threshold
