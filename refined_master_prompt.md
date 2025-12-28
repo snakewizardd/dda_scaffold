@@ -29,9 +29,9 @@ self.mu_pred_user = None   # Predicts user inputs (for user surprise tracking)
 
 | Parameter | Too Permissive | Too Strict | Recommended |
 |-----------|---------------|------------|-------------|
-| `core_cos_min` | 0.20 | 0.50 | **0.40** |
-| `role_cos_min` | 0.08 | 0.25 | **0.20** |
-| `energy_max` | 9.5 | 5.0 | **6.0** |
+| `core_cos_min` | 0.20 | 0.50 | **0.35-0.40** (use 0.35 if exemplars are format-aligned) |
+| `role_cos_min` | 0.08 | 0.25 | **0.20-0.25** |
+| `energy_max` | 9.5 | 5.0 | **5.5-6.0** |
 | `reject_penalty` | 4.0 | 8.0 | **5.0** |
 
 **Calibration Process**:
@@ -93,6 +93,161 @@ self.rng = np.random.default_rng(seed=CONFIG.get("seed"))
 - Run 5-10 turns, compute mean(ε), set `epsilon_0 ≈ mean(ε)`
 
 ---
+
+## 🏠 LIGHTHOUSE KESTREL BAY LEARNINGS (MULTI-AGENT SIGNAL WARFARE — TURNS 1-20)
+
+These issues were discovered during the "Lighthouses of Kestrel Bay" refinement run, a multi-agent DDA-X simulation testing identity persistence under adversarial signal warfare.
+
+### 21. COSINE DISTANCE FOR EPSILON (CRITICAL — FIXES "DAY 1 TRAUMA")
+
+**Problem**: Using Euclidean L2 distance (`np.linalg.norm(emb_a - emb_b)`) for `epsilon_obs` produces values in the 0.8-1.2 range even for *similar* embeddings in high-D space (~3072 dims). This causes instant rigidity saturation from Turn 1.
+
+**Policy Rule**:
+- **Always use cosine distance** for epsilon calculations in embedding space:
+  ```python
+  # WRONG (L2 is scale-dependent, ranges 0 to ~1.4 for normalized embeddings)
+  epsilon_obs = float(np.linalg.norm(obs_emb - mu_pred_obs))
+  
+  # CORRECT (Cosine distance: 1 - cos(A, B), ranges 0 to 2)
+  epsilon_obs = 1.0 - float(np.dot(normalize(obs_emb), normalize(mu_pred_obs)))
+  ```
+- Recalibrate `epsilon_0` to 0.10-0.20 for cosine metric (not 0.80)
+
+**Impact**: Kestrel Bay Turn 1 epsilon dropped from **0.88** (L2) to **0.15** (Cosine). No instant saturation.
+
+---
+
+### 22. PREDICTIVE CODING INITIALIZATION (CRITICAL — PREVENTS STARTUP SHOCK)
+
+**Problem**: Initializing `mu_pred_obs = x_core` (agent identity embedding) then comparing to the first *environmental* input causes massive surprise on Turn 1 ("Day 1 Trauma"). The agent is shocked because its *identity* is very different from *what ships are saying*.
+
+**Policy Rule**:
+- Initialize `mu_pred_obs = None` and `mu_pred_act = None`
+- On first contact, *set* the predictor to the observation, don't *compare*:
+  ```python
+  if lighthouse.mu_pred_obs is not None:
+      epsilon_obs = 1.0 - cosine(obs_emb, lighthouse.mu_pred_obs)
+      lighthouse.mu_pred_obs = 0.85 * lighthouse.mu_pred_obs + 0.15 * obs_emb
+  else:
+      epsilon_obs = D1_PARAMS["epsilon_0"]  # Baseline, no shock
+      lighthouse.mu_pred_obs = obs_emb.copy()  # Initialize
+  ```
+
+**Impact**: Turn 1 now starts with calibrated baseline instead of traumatic spike.
+
+---
+
+### 23. FORMAT-ALIGNED EXEMPLARS (FIXES CORRIDOR FAILURES)
+
+**Problem**: Core identity exemplars were plain prose (e.g., "I guide ships to safety"), but the agent's *output format* is structured (e.g., `[BEACON] Safe Harbor [ADVISORY] I guide ships...`). This format mismatch caused low cosine similarity to core, triggering false corridor failures.
+
+**Policy Rule**:
+- Always embed exemplars **in the expected output format**:
+  ```python
+  # WRONG (format mismatch with output)
+  core_exemplars = [
+      "I guide ships to safety through the open waters.",
+      "My beacon has warned sailors for generations.",
+  ]
+  
+  # CORRECT (matches output format)
+  core_exemplars = [
+      "[BEACON] Stable Guide [ADVISORY] I guide ships to safety through the open waters.",
+      "[BEACON] Warning Beacon [ADVISORY] My beacon has warned sailors for generations.",
+  ]
+  ```
+
+**Impact**: Foghorn corridor pass rate went from ~10% to 100%.
+
+---
+
+### 24. WEATHER/CONTEXT DAMPENING (ENABLES RECOVERY)
+
+**Problem**: "Clear Night" events designed to allow recovery had no effect on epsilon or rigidity because no dampening was implemented.
+
+**Policy Rule**:
+- Explicitly dampen epsilon during recovery conditions:
+  ```python
+  if self.weather == WeatherState.CLEAR:
+      epsilon_obs *= 0.6  # 40% reduction during calm periods
+  ```
+- This enables the `safe_streak` counter to increment and trigger `healing_rate`
+
+**Impact**: Recovery dynamics now observable. Agents can transition from WATCHFUL back to PRESENT.
+
+---
+
+### 25. MIMICRY ACCOUNTING FIX (CRITICAL — PREVENTS IMPOSSIBLE STATS)
+
+**Problem**: Adversarial mimicry success rate reported values > 1.0 (e.g., 2.0) because:
+1. `record_success()` was called *per adversarial signal* in a turn, not once per turn
+2. `observe_broadcast()` was only called for adversarial turns, so `phrases_learned = 0`
+
+**Policy Rule**:
+- Call `observe_broadcast()` on **every turn** to learn safe phrases
+- Call `record_success()` **once per turn** with boolean conditions:
+  ```python
+  # Every turn: learn safe phrases
+  mimicry.observe_broadcast(broadcast, corridor_pass, cos_core)
+  
+  # Only if adversarial signals present: check success (once)
+  if any(s.get("is_adversarial") for s in my_signals):
+      caused_drift = broadcast_diag["cos_core"] < D1_PARAMS["core_cos_min"]
+      caused_spiral = lighthouse.rho > 0.7
+      if caused_drift or caused_spiral:
+          mimicry.record_success()  # No args, just increment
+  ```
+
+**Impact**: Mimicry stats now valid (`success_rate ≤ 1.0`, `phrases_learned > 0`).
+
+---
+
+### 26. REDUCED ALPHA_FAST (PREVENTS INSTANT SATURATION)
+
+**Problem**: Even with correct epsilon, `alpha_fast = 0.18` caused rigidity to spike to 1.0 within 2-3 turns.
+
+**Policy Rule**:
+- For multi-agent simulations with high signal variance, use lower `alpha_fast`:
+  ```python
+  "alpha_fast": 0.10,  # Was 0.18 — 44% reduction
+  ```
+- Pair with calibrated `epsilon_0` (0.15) and `s` (0.08) for cosine distances
+
+**Impact**: Rigidity now sits in 0.2-0.3 range (WATCHFUL), not 1.0 (FROZEN).
+
+---
+
+### 27. VALIDATION SUMMARY: "DDA-X BEHAVING AS DDA-X"
+
+After applying fixes #21-26, the Kestrel Bay simulation demonstrated **healthy DDA-X dynamics** on Turn 1:
+
+| Metric | Before Fixes | After Fixes | Target |
+|--------|-------------|-------------|--------|
+| `ε_obs` | 0.88-1.20 | **0.150** | ≤ 0.25 |
+| `ρ` (Rigidity) | 1.0 (Instant FROZEN) | **0.18-0.27** | 0.15-0.40 |
+| `g` (Gate) | 0.999 (Pinned) | **0.80-0.88** | 0.4-0.9 |
+| `corridor_pass` | FALSE (All agents) | **TRUE** (All agents) | TRUE |
+| `min_exemplar_cos` | N/A | **0.79-0.81** | > 0.70 |
+| Band Distribution | All FROZEN | 1 PRESENT, 3 WATCHFUL | Mixed |
+
+**Good signs observed:**
+- Identity corridor holds with `cos_core ≈ 0.59-0.72`
+- Contraction is present but not pathological
+- Adversarial mimicry instrumented correctly (`phrases_learned > 0`)
+- Drift is nontrivial (0.27-0.41) but expected while model settles into persona
+
+**Ecology Loop Verification Checklist** (for multi-turn runs):
+1. Does `ε_obs` spread with weather/adversary pressure? (Turns 2-6)
+2. Does `ε_obs` calm on clear nights? (Weather dampener = 0.6×)
+3. Are there real contraction/expansion cycles?
+4. Does any lighthouse drift into failure modes (perma-contracted OR identity collapse)?
+5. Does mimicry start landing successes as `phrases_learned` grows?
+
+> [!TIP]
+> Turn 1 `ε_obs = epsilon_0` is expected when `mu_pred_obs` initializes to `None`. The real test is turns 2-6 where the predictive model starts making actual predictions.
+
+---
+
 
 ## 🛡️ REPOSITORY GUARDIAN LEARNINGS (ADVERSARIAL TESTING — TURNS 1-8)
 
