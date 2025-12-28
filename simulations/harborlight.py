@@ -612,7 +612,7 @@ RESPONSE FORMAT (follow exactly):
 2. CHECK-IN: [One brief question]
 
 3. MODES: Reflect | Act (Choose EXACTLY one)
-4. NEXT STEP: [Optional: REPAIR text here] [One ≤5 minute action] — Why it matters: [One sentence]"""
+4. NEXT STEP: [One ≤5 minute action] — Why it matters: [One sentence]"""
 
 class Harborlight:
     def __init__(self, seed: int = None):
