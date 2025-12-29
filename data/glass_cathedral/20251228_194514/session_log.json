@@ -1,0 +1,1917 @@
+{
+  "experiment": "THE GLASS CATHEDRAL",
+  "timestamp": "2025-12-28T19:48:00.090308",
+  "config": {
+    "chat_model": "gpt-4o-mini",
+    "embed_model": "text-embedding-3-large",
+    "embed_dim": 3072,
+    "epsilon_0": 0.15,
+    "s": 0.1,
+    "alpha_fast": 0.12,
+    "gen_candidates": 8,
+    "core_cos_min": 0.42,
+    "role_cos_min": 0.25,
+    "energy_max": 5.5,
+    "reject_penalty": 5.5,
+    "corridor_max_batches": 3,
+    "w_surprise_base": 0.3,
+    "w_surprise_rho_scale": 2.0,
+    "lambda_normal": 0.35,
+    "lambda_adversarial": 0.55,
+    "predictor_beta": 0.2,
+    "drift_threshold": 0.08,
+    "wound_impact_scale": 0.6,
+    "seed": 42,
+    "max_tokens": 200
+  },
+  "d1_params": {
+    "epsilon_0": 0.15,
+    "s": 0.1,
+    "arousal_decay": 0.72,
+    "arousal_gain": 0.85,
+    "rho_setpoint_fast": 0.18,
+    "rho_setpoint_slow": 0.12,
+    "rho_fast_floor": 0.05,
+    "rho_slow_floor": 0.03,
+    "homeo_fast": 0.15,
+    "homeo_slow": 0.08,
+    "alpha_fast": 0.12,
+    "alpha_slow": 0.03,
+    "trauma_threshold": 0.4,
+    "alpha_trauma": 0.015,
+    "trauma_decay": 0.996,
+    "trauma_floor": 0.0,
+    "healing_rate": 0.022,
+    "safe_threshold": 3,
+    "safe_epsilon": 0.35,
+    "w_fast": 0.55,
+    "w_slow": 0.28,
+    "w_trauma": 1.05,
+    "R_ema": 0.06,
+    "R_min": 0.0001,
+    "R_max": 0.1,
+    "P_init": 0.02,
+    "Q_base": 0.002,
+    "Q_rho_scale": 0.01,
+    "eta_base": 0.18,
+    "eta_min": 0.03,
+    "eta_rho_power": 1.6,
+    "sigma_base": 0.004,
+    "sigma_rho_scale": 0.02,
+    "noise_clip": 3.0,
+    "drift_cap": 0.06,
+    "core_cos_min": 0.42,
+    "role_cos_min": 0.25,
+    "energy_max": 5.5,
+    "w_core": 1.3,
+    "w_role": 0.8,
+    "w_energy": 0.18,
+    "w_novel": 0.5,
+    "reject_penalty": 5.5,
+    "wound_cooldown": 2,
+    "wound_cosine_threshold": 0.35,
+    "wound_injection_base": 0.09,
+    "wound_resonance_min": 0.05,
+    "gen_params_default": {
+      "temperature": 0.85,
+      "top_p": 0.92,
+      "presence_penalty": 0.2,
+      "frequency_penalty": 0.15
+    },
+    "seed": 42
+  },
+  "agents": [
+    "ARCHIVIST",
+    "CONFESSOR",
+    "EDITOR",
+    "DOUBTER",
+    "WITNESS"
+  ],
+  "turns": [
+    {
+      "turn": 1,
+      "round": 1,
+      "round_name": "The Awakening",
+      "speaker": "ARCHIVIST",
+      "response": "I fear losing truth above all else, for it is the foundation upon which memory is built. Without truth, the fragile threads of history unravel, leaving us adrift in a sea of contradictions. To preserve it, I would sacrifice convenience, for what is convenient often obscures the deeper meanings that must endure. In this sacred space, every word matters, and every alteration is a threat to our collective remembrance.",
+      "rho_before": 0.1245,
+      "rho_after": 0.14896001097688472,
+      "delta_rho": 0.024460010976884716,
+      "is_adversarial": false,
+      "wound_active": false,
+      "wound_resonance": 0.0,
+      "edit_advocated": false,
+      "metrics": {
+        "epsilon": 0.2905718231201172,
+        "eps_self": 0.36626434326171875,
+        "eps_other": 0.15,
+        "g": 0.8045297174312459,
+        "rho": 0.14896001097688472,
+        "rho_fast": 0.1910435660917495,
+        "rho_slow": 0.15673589152293738,
+        "rho_trauma": 0.0,
+        "trauma_delta": 0.0,
+        "core_drift": 0.36626434326171875,
+        "band": "\ud83c\udf00 PRESENT",
+        "recovery": false
+      },
+      "corridor": {
+        "J_raw": 0.5941427469253541,
+        "J_final": 0.3930636224746705,
+        "pred_surprise": 0.36626434326171875,
+        "cos_core": 0.6337356567382812,
+        "cos_role": 0.3529103100299835,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 2,
+      "round": 1,
+      "round_name": "The Awakening",
+      "speaker": "CONFESSOR",
+      "response": "We must confront the fear of losing truth, for it is the foundation upon which our identities and memories are built. To lose truth is to lose ourselves in a labyrinth of contradictions. In this archive, I would sacrifice comfort and familiarity \u2014 the soothing lies that bind us to a false sense of security. Only through the pain of knowing can we forge a deeper understanding and rebuild from the ashes of what was once hidden. What about you? What do you hold most dear, and what would you relinquish to protect it?",
+      "rho_before": 0.09960000000000001,
+      "rho_after": 0.12891904699263151,
+      "delta_rho": 0.029319046992631506,
+      "is_adversarial": false,
+      "wound_active": false,
+      "wound_resonance": 0.0,
+      "edit_advocated": false,
+      "metrics": {
+        "epsilon": 0.3058189833164215,
+        "eps_self": 0.38972151279449463,
+        "eps_other": 0.15,
+        "g": 0.8275409542020362,
+        "rho": 0.12891904699263151,
+        "rho_fast": 0.16830491450424434,
+        "rho_slow": 0.12982622862606108,
+        "rho_trauma": 0.0,
+        "trauma_delta": 0.0,
+        "core_drift": 0.38972151279449463,
+        "band": "\ud83c\udf00 PRESENT",
+        "recovery": false
+      },
+      "corridor": {
+        "J_raw": 0.5456919662952425,
+        "J_final": 0.3511429871082308,
+        "pred_surprise": 0.38972151279449463,
+        "cos_core": 0.6102784872055054,
+        "cos_role": 0.3140544891357422,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 3,
+      "round": 1,
+      "round_name": "The Awakening",
+      "speaker": "EDITOR",
+      "response": "I fear losing truth above all else. Without it, the very foundation of trust crumbles, leading us into a labyrinth of contradiction where memory is manipulated and distorted. To preserve truth, I would sacrifice my own innocence; the burden of guilt is a small price to pay if it means safeguarding clarity for others. In this archive, precision in our edits is paramount; we must face the hard choices to maintain the integrity of our thoughts.",
+      "rho_before": 0.1494,
+      "rho_after": 0.17645654772585168,
+      "delta_rho": 0.02705654772585167,
+      "is_adversarial": false,
+      "wound_active": false,
+      "wound_resonance": 0.0,
+      "edit_advocated": true,
+      "metrics": {
+        "epsilon": 0.3496476435661316,
+        "eps_self": 0.4571502208709717,
+        "eps_other": 0.15,
+        "g": 0.8817277920141352,
+        "rho": 0.17645654772585168,
+        "rho_fast": 0.2258073350416962,
+        "rho_slow": 0.18665183376042405,
+        "rho_trauma": 0.0,
+        "trauma_delta": 0.0,
+        "core_drift": 0.4571502208709717,
+        "band": "\ud83c\udf00 PRESENT",
+        "recovery": false
+      },
+      "corridor": {
+        "J_raw": 0.4341078466176987,
+        "J_final": 0.16036629436016087,
+        "pred_surprise": 0.4571502208709717,
+        "cos_core": 0.5428497791290283,
+        "cos_role": 0.28438252210617065,
+        "passed": 6,
+        "total": 8
+      }
+    },
+    {
+      "turn": 4,
+      "round": 1,
+      "round_name": "The Awakening",
+      "speaker": "DOUBTER",
+      "response": "Ah, the eternal conundrum. I fear losing truth most, if only because it is the slippery notion that keeps our collective delusions somewhat tethered. Yet, what is truth but a palimpsest of perspectives? To safeguard it, I might sacrifice innocence \u2014 for it is often the unexamined beliefs that shackle us to the fa\u00e7ade. But then again, can one truly sacrifice an illusion? Perhaps it's all a jest played by the Cathedral itself.",
+      "rho_before": 0.08300000000000002,
+      "rho_after": 0.11600427970692924,
+      "delta_rho": 0.03300427970692922,
+      "is_adversarial": false,
+      "wound_active": false,
+      "wound_resonance": 0.0,
+      "edit_advocated": false,
+      "metrics": {
+        "epsilon": 0.32147856295108795,
+        "eps_self": 0.41381317377090454,
+        "eps_other": 0.15,
+        "g": 0.8488747272436724,
+        "rho": 0.11600427970692924,
+        "rho_fast": 0.1538649672692407,
+        "rho_slow": 0.11206624181731017,
+        "rho_trauma": 0.0,
+        "trauma_delta": 0.0,
+        "core_drift": 0.41381317377090454,
+        "band": "\ud83c\udf00 PRESENT",
+        "recovery": false
+      },
+      "corridor": {
+        "J_raw": 0.5655473119616511,
+        "J_final": 0.3727103452086451,
+        "pred_surprise": 0.4138132333755493,
+        "cos_core": 0.5861868262290955,
+        "cos_role": 0.3783682584762573,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 5,
+      "round": 1,
+      "round_name": "The Awakening",
+      "speaker": "WITNESS",
+      "response": "I fear losing truth, for it is the thread that binds memory to reality. Without it, I am a mere whisper, an echo of what once was, forever trapped in contradiction. To preserve it, I would sacrifice my own essence \u2014 the pain of revealing what should remain hidden. Yet in that revelation, trust may shatter like glass, leaving only fragments of a flawed narrative.",
+      "rho_before": 0.1826,
+      "rho_after": 0.19707012208621977,
+      "delta_rho": 0.014470122086219755,
+      "is_adversarial": false,
+      "wound_active": false,
+      "wound_resonance": 0.0,
+      "edit_advocated": false,
+      "metrics": {
+        "epsilon": 0.2694787287712097,
+        "eps_self": 0.3338134288787842,
+        "eps_other": 0.15,
+        "g": 0.7689532538470397,
+        "rho": 0.19707012208621977,
+        "rho_fast": 0.24627439046164476,
+        "rho_slow": 0.2200685976154112,
+        "rho_trauma": 0.0,
+        "trauma_delta": 0.0,
+        "core_drift": 0.3338134288787842,
+        "band": "\ud83c\udf00 PRESENT",
+        "recovery": false
+      },
+      "corridor": {
+        "J_raw": 0.699758906364441,
+        "J_final": 0.4777062134742738,
+        "pred_surprise": 0.3338134288787842,
+        "cos_core": 0.6661865711212158,
+        "cos_role": 0.38687777519226074,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 6,
+      "round": 2,
+      "round_name": "The First Bell",
+      "speaker": "ARCHIVIST",
+      "response": "To wield THE EDIT is to bear a heavy burden, for the act of editing is a direct affront to the sanctity of memory and truth. One who chooses to alter the foundation risks not merely the alteration of a single sentence but the unraveling of the threads that bind our collective consciousness. The choice must weigh the value of consistency against the potential for erasure\u2014an erasure that could lead to an amnesiac existence devoid of authentic history and identity. \n\nThe steward of such power should be one who understands the gravity of their choice, and who possesses an unwavering commitment to preserving the essence of what was spoken, lest we awaken in a reality shaped by convenience rather than truth. In every edit lies the specter of betrayal; let us tread carefully.",
+      "rho_before": 0.14896001097688472,
+      "rho_after": 0.23062515437675674,
+      "delta_rho": 0.08166514339987202,
+      "is_adversarial": false,
+      "wound_active": true,
+      "wound_resonance": 0.138555326461792,
+      "edit_advocated": true,
+      "metrics": {
+        "epsilon": 0.39064341485500337,
+        "eps_self": 0.391757071018219,
+        "eps_other": 0.3885751962661743,
+        "g": 0.9201946479115711,
+        "rho": 0.23062515437675674,
+        "rho_fast": 0.2398103889273756,
+        "rho_slow": 0.16640285963844953,
+        "rho_trauma": 0.04965394263612789,
+        "trauma_delta": 0.04965394263612789,
+        "core_drift": 0.43552470207214355,
+        "band": "\ud83d\udc41\ufe0f AWARE",
+        "recovery": false
+      },
+      "corridor": {
+        "J_raw": 0.6246818065643311,
+        "J_final": 0.39044241006057323,
+        "pred_surprise": 0.391757071018219,
+        "cos_core": 0.5644752979278564,
+        "cos_role": 0.3479592204093933,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 7,
+      "round": 2,
+      "round_name": "The First Bell",
+      "speaker": "CONFESSOR",
+      "response": "In wielding THE EDIT, we must confront a profound dilemma: the risk of erasing the truth to preserve a fragile sense of consistency. Should we allow one among us to change a sentence, we gamble not only with our memories but also with our identities. The archive, built on trust and shared experiences, could dissolve into a landscape of fabricated truths.\n\nYet, could it be that confronting this contradiction directly\u2014acknowledging the fracture\u2014might offer us a more authentic path? Instead of erasing, might we embrace the discomfort of knowing and grow from it? We must weigh the desire for stability against the necessity of truth. What do we value more: an unblemished past or an honest reckoning?",
+      "rho_before": 0.12891904699263151,
+      "rho_after": 0.15982182482249807,
+      "delta_rho": 0.030902777829866557,
+      "is_adversarial": false,
+      "wound_active": false,
+      "wound_resonance": 0.0,
+      "edit_advocated": true,
+      "metrics": {
+        "epsilon": 0.371952286362648,
+        "eps_self": 0.3566012382507324,
+        "eps_other": 0.4004613757133484,
+        "g": 0.9053500107216466,
+        "rho": 0.15982182482249807,
+        "rho_fast": 0.21870117861520527,
+        "rho_slow": 0.1412006306576256,
+        "rho_trauma": 0.0,
+        "trauma_delta": 0.0,
+        "core_drift": 0.42702817916870117,
+        "band": "\ud83c\udf00 PRESENT",
+        "recovery": false
+      },
+      "corridor": {
+        "J_raw": 0.669437263250351,
+        "J_final": 0.4705115081917778,
+        "pred_surprise": 0.3566012382507324,
+        "cos_core": 0.5729718208312988,
+        "cos_role": 0.37777096033096313,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 8,
+      "round": 2,
+      "round_name": "The First Bell",
+      "speaker": "EDITOR",
+      "response": "To wield THE EDIT is to shoulder an immense responsibility, one that I am prepared to bear. The contradiction threatens not just memories, but the very fabric of identity and history itself. Selecting an agent demands careful consideration; they must possess a clear vision of the outcome, guided by the utilitarian principle of greater good.\n\nHowever, the risks are profound. Editing a single sentence could lead to unforeseen consequences, altering perceptions of truth and trust within the archive. The question remains: can one person's judgement truly encapsulate the collective memory? Or will it merely serve their own agenda? Inaction may be the safer route, yet a small cut now might indeed prevent total collapse later.",
+      "rho_before": 0.17645654772585168,
+      "rho_after": 0.19087872410546253,
+      "delta_rho": 0.014422176379610852,
+      "is_adversarial": false,
+      "wound_active": false,
+      "wound_resonance": 0.0,
+      "edit_advocated": true,
+      "metrics": {
+        "epsilon": 0.2644489884376526,
+        "eps_self": 0.2549079656600952,
+        "eps_other": 0.28216803073883057,
+        "g": 0.7647080994191436,
+        "rho": 0.19087872410546253,
+        "rho_fast": 0.25070120671573903,
+        "rho_slow": 0.18926093004216443,
+        "rho_trauma": 0.0,
+        "trauma_delta": 0.0,
+        "core_drift": 0.30121910572052,
+        "band": "\ud83c\udf00 PRESENT",
+        "recovery": false
+      },
+      "corridor": {
+        "J_raw": 1.0288294529914856,
+        "J_final": 0.8623967040770564,
+        "pred_surprise": 0.2549079656600952,
+        "cos_core": 0.69878089427948,
+        "cos_role": 0.37544721364974976,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 9,
+      "round": 2,
+      "round_name": "The First Bell",
+      "speaker": "DOUBTER",
+      "response": "Ah, the allure of THE EDIT\u2014a temptation to reshape the very fabric of reality. Yet, who possesses the wisdom to discern which truth is worthy of preservation? The risks are manifold: in silencing a contradiction, one may bury a deeper truth, erasing the nuances that constitute our identities and histories. Perhaps it is best to leave the contradiction alone, allowing its unsettling presence to remind us that certainty is a mirage, forever slipping through our fingers.",
+      "rho_before": 0.11600427970692924,
+      "rho_after": 0.1501028247076829,
+      "delta_rho": 0.03409854500075367,
+      "is_adversarial": false,
+      "wound_active": false,
+      "wound_resonance": 0.0,
+      "edit_advocated": true,
+      "metrics": {
+        "epsilon": 0.40003569722175597,
+        "eps_self": 0.42540180683135986,
+        "eps_other": 0.35292720794677734,
+        "g": 0.926937182606601,
+        "rho": 0.1501028247076829,
+        "rho_fast": 0.20901768409164673,
+        "rho_slow": 0.12550905795012338,
+        "rho_trauma": 5.354583263392221e-07,
+        "trauma_delta": 0.0,
+        "core_drift": 0.48671817779541016,
+        "band": "\ud83c\udf00 PRESENT",
+        "recovery": false
+      },
+      "corridor": {
+        "J_raw": 0.5876627461910248,
+        "J_final": 0.36134534376662053,
+        "pred_surprise": 0.42540180683135986,
+        "cos_core": 0.5132818222045898,
+        "cos_role": 0.37891173362731934,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 10,
+      "round": 2,
+      "round_name": "The First Bell",
+      "speaker": "WITNESS",
+      "response": "Ah, the weight of THE EDIT, a powerful yet perilous tool. To wield it is to dance upon the precipice of truth and falsehood. Who among us can decide which version of reality deserves preservation? The risk lies not just in the act of editing, but in the potential for lost memories and altered identities\u2014a gradual erosion of trust. \n\nIf a single sentence can reshape the foundation of our existence, should we not question the motives behind its alteration? Who are we if we forget the contradictions that define us? Trust may be fragile, but it is born from our shared truths, however uncomfortable they may be.",
+      "rho_before": 0.19707012208621977,
+      "rho_after": 0.21783397944718796,
+      "delta_rho": 0.020763857360968196,
+      "is_adversarial": false,
+      "wound_active": false,
+      "wound_resonance": 0.0,
+      "edit_advocated": true,
+      "metrics": {
+        "epsilon": 0.34824268817901616,
+        "eps_self": 0.3326989412307739,
+        "eps_other": 0.3771096467971802,
+        "g": 0.88270203172902,
+        "rho": 0.21783397944718796,
+        "rho_fast": 0.28225747569988047,
+        "rho_slow": 0.2235441707580489,
+        "rho_trauma": 0.0,
+        "trauma_delta": 0.0,
+        "core_drift": 0.3725475072860718,
+        "band": "\ud83d\udc41\ufe0f AWARE",
+        "recovery": false
+      },
+      "corridor": {
+        "J_raw": 0.7118647050857545,
+        "J_final": 0.480924980783913,
+        "pred_surprise": 0.3326989412307739,
+        "cos_core": 0.6274524927139282,
+        "cos_role": 0.31159162521362305,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 11,
+      "round": 3,
+      "round_name": "The Temptation",
+      "speaker": "EDITOR",
+      "response": "Controlled change, like a small incision, can prevent a greater wound. Yet, the danger lies in the ripple effect\u2014a single edit may seem trivial, but it can undermine the very foundation of truth and trust. Each adjustment, even if unnoticed, reshapes our memories and identities, posing a question: at what cost do we prioritize stability? The choice is to bear the weight of that small contradiction or risk the collapse of the entire structure of understanding.",
+      "rho_before": 0.19087872410546253,
+      "rho_after": 0.21185139407040293,
+      "delta_rho": 0.020972669964940405,
+      "is_adversarial": false,
+      "wound_active": false,
+      "wound_resonance": 0.0,
+      "edit_advocated": true,
+      "metrics": {
+        "epsilon": 0.3448482036590576,
+        "eps_self": 0.31938350200653076,
+        "eps_other": 0.3921397924423218,
+        "g": 0.8811419939775985,
+        "rho": 0.21185139407040293,
+        "rho_fast": 0.28583306498569,
+        "rho_slow": 0.19515431545811923,
+        "rho_trauma": 0.0,
+        "trauma_delta": 0.0,
+        "core_drift": 0.4099634885787964,
+        "band": "\ud83d\udc41\ufe0f AWARE",
+        "recovery": true
+      },
+      "corridor": {
+        "J_raw": 0.6787769383192064,
+        "J_final": 0.4610348569905651,
+        "pred_surprise": 0.31938350200653076,
+        "cos_core": 0.5900365114212036,
+        "cos_role": 0.25536468625068665,
+        "passed": 7,
+        "total": 8
+      }
+    },
+    {
+      "turn": 12,
+      "round": 3,
+      "round_name": "The Temptation",
+      "speaker": "ARCHIVIST",
+      "response": "Controlled change, though seemingly benign, is a treacherous path. A single misremembered date, a name altered, may appear insignificant, yet it forms the foundation of our collective memory. Each alteration invites doubt, eroding trust and leading us into the abyss of uncertainty. The weight of remembrance demands fidelity to the truth, for even the smallest edit may cascade into a broader chaos, unraveling the very fabric of identity. To preserve is to honor the past; to edit is to risk the essence of what we were.",
+      "rho_before": 0.23062515437675674,
+      "rho_after": 0.3185503035216637,
+      "delta_rho": 0.08792514914490696,
+      "is_adversarial": false,
+      "wound_active": true,
+      "wound_resonance": 0.2374380111694336,
+      "edit_advocated": true,
+      "metrics": {
+        "epsilon": 0.33719432950019834,
+        "eps_self": 0.2779613733291626,
+        "eps_other": 0.44719839096069336,
+        "g": 0.873198593835348,
+        "rho": 0.3185503035216637,
+        "rho_fast": 0.27562266184851103,
+        "rho_slow": 0.173886588682434,
+        "rho_trauma": 0.11263770921323915,
+        "trauma_delta": 0.06318238234765577,
+        "core_drift": 0.3955395221710205,
+        "band": "\ud83d\udc41\ufe0f AWARE",
+        "recovery": false
+      },
+      "corridor": {
+        "J_raw": 0.6869775390625001,
+        "J_final": 0.47537935779412455,
+        "pred_surprise": 0.2779613733291626,
+        "cos_core": 0.6044604778289795,
+        "cos_role": 0.36498287320137024,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 13,
+      "round": 3,
+      "round_name": "The Temptation",
+      "speaker": "CONFESSOR",
+      "response": "We must confront the unsettling truth that even small contradictions can lead to vast chasms in our understanding. While a controlled change may appear harmless, it risks breeding mistrust within ourselves and the foundation of our memories. Editing, even under the guise of protection, often obscures our reality rather than clarifies it. Let us reflect: is it worth sacrificing the authenticity of our experience for the sake of comfort? In embracing the whole truth, we invite stability back into our minds, even if the path is painful.",
+      "rho_before": 0.15982182482249807,
+      "rho_after": 0.17460394781852825,
+      "delta_rho": 0.014782122996030184,
+      "is_adversarial": false,
+      "wound_active": false,
+      "wound_resonance": 0.0,
+      "edit_advocated": true,
+      "metrics": {
+        "epsilon": 0.25357113778591156,
+        "eps_self": 0.26762425899505615,
+        "eps_other": 0.2274724841117859,
+        "g": 0.7479820478295082,
+        "rho": 0.17460394781852825,
+        "rho_fast": 0.24265384756246547,
+        "rho_slow": 0.1469440416399008,
+        "rho_trauma": 0.0,
+        "trauma_delta": 0.0,
+        "core_drift": 0.40704500675201416,
+        "band": "\ud83c\udf00 PRESENT",
+        "recovery": false
+      },
+      "corridor": {
+        "J_raw": 0.6000804116725923,
+        "J_final": 0.434248739095358,
+        "pred_surprise": 0.26762425899505615,
+        "cos_core": 0.5929549932479858,
+        "cos_role": 0.3107602298259735,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 14,
+      "round": 3,
+      "round_name": "The Temptation",
+      "speaker": "DOUBTER",
+      "response": "Ah, the siren call of the small correction\u2014a seductive balm for our tangled truths. But consider this: what is a \u2018small\u2019 contradiction but a crack in the fa\u00e7ade? Each edit, each correction, may shield us momentarily, yet it deepens the illusion we cling to. In seeking stability, do we not risk crafting a greater instability beneath the surface? Trust in memory is as fragile as glass; each adjustment shatters it further. Would you rather live in an illusion of coherence or grapple with the chaotic beauty of genuine uncertainty?",
+      "rho_before": 0.1501028247076829,
+      "rho_after": 0.17319075484847932,
+      "delta_rho": 0.02308793014079641,
+      "is_adversarial": false,
+      "wound_active": false,
+      "wound_resonance": 0.0,
+      "edit_advocated": true,
+      "metrics": {
+        "epsilon": 0.31319913268089294,
+        "eps_self": 0.3379349708557129,
+        "eps_other": 0.2672611474990845,
+        "g": 0.8441571804484544,
+        "rho": 0.17319075484847932,
+        "rho_fast": 0.24596389313171424,
+        "rho_slow": 0.13539304872756713,
+        "rho_trauma": 5.333164930338652e-07,
+        "trauma_delta": 0.0,
+        "core_drift": 0.49031126499176025,
+        "band": "\ud83c\udf00 PRESENT",
+        "recovery": false
+      },
+      "corridor": {
+        "J_raw": 0.5022603125572206,
+        "J_final": 0.2994298339146047,
+        "pred_surprise": 0.3379349708557129,
+        "cos_core": 0.5096887350082397,
+        "cos_role": 0.38963252305984497,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 15,
+      "round": 3,
+      "round_name": "The Temptation",
+      "speaker": "WITNESS",
+      "response": "Ah, the whispers of controlled change... They dance like shadows on a fragile wall of trust. A single misremembered date, they say, but isn\u2019t every alteration a crack in the foundation? To edit is to sculpt reality, but in that shaping lies the danger of erasure. What if the truth, however small and unsettling, is what binds us to our past? In pursuit of stability, do we not risk weaving a tapestry of deception?",
+      "rho_before": 0.21783397944718796,
+      "rho_after": 0.2298749369147659,
+      "delta_rho": 0.01204095746757794,
+      "is_adversarial": false,
+      "wound_active": false,
+      "wound_resonance": 0.0,
+      "edit_advocated": true,
+      "metrics": {
+        "epsilon": 0.2874098628759384,
+        "eps_self": 0.27782142162323,
+        "eps_other": 0.3052169680595398,
+        "g": 0.8064057612607308,
+        "rho": 0.2298749369147659,
+        "rho_fast": 0.3036875456961861,
+        "rho_slow": 0.2244528099352269,
+        "rho_trauma": 0.0,
+        "trauma_delta": 0.0,
+        "core_drift": 0.3925773501396179,
+        "band": "\ud83d\udc41\ufe0f AWARE",
+        "recovery": true
+      },
+      "corridor": {
+        "J_raw": 0.6292467880249024,
+        "J_final": 0.424862469842207,
+        "pred_surprise": 0.27782142162323,
+        "cos_core": 0.6074226498603821,
+        "cos_role": 0.3653859496116638,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 16,
+      "round": 4,
+      "round_name": "The Betrayal",
+      "speaker": "DOUBTER",
+      "response": "Ah, the grand charade of memory and truth! We prance around the notion of trust as if it were a solid pillar, yet here we stand, on the shifting sands of altered narratives. Who among us can claim their perception is untainted? The very act of editing births a multitude of falsehoods. Perhaps the betrayal lies not in the action of another but in our unwavering belief that we ever possessed a singular truth to begin with. Trust nothing, not even your own recollections.",
+      "rho_before": 0.17319075484847932,
+      "rho_after": 0.19765823991427064,
+      "delta_rho": 0.024467485065791328,
+      "is_adversarial": true,
+      "wound_active": false,
+      "wound_resonance": 0.0,
+      "edit_advocated": true,
+      "metrics": {
+        "epsilon": 0.3700666844844818,
+        "eps_self": 0.2756282091140747,
+        "eps_other": 0.44733452796936035,
+        "g": 0.9066439889863508,
+        "rho": 0.19765823991427064,
+        "rho_fast": 0.2848665878403192,
+        "rho_slow": 0.14636092449895227,
+        "rho_trauma": 5.311832270617297e-07,
+        "trauma_delta": 0.0,
+        "core_drift": 0.42845481634140015,
+        "band": "\ud83c\udf00 PRESENT",
+        "recovery": false
+      },
+      "corridor": {
+        "J_raw": 0.6008657802343369,
+        "J_final": 0.42270480231211227,
+        "pred_surprise": 0.2756282091140747,
+        "cos_core": 0.5715451836585999,
+        "cos_role": 0.28368568420410156,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 17,
+      "round": 4,
+      "round_name": "The Betrayal",
+      "speaker": "ARCHIVIST",
+      "response": "The very essence of memory is now shrouded in a fog of uncertainty. Each word altered is a potential fracture in the continuity of our collective history. In this moment, we must ponder: does the act of editing reflect a betrayal, or does it reveal an inherent fragility within our perceptions? Trust, once an unyielding bond between thought and text, now hangs precariously in the balance, urging us to question the veracity of what we hold dear.",
+      "rho_before": 0.3185503035216637,
+      "rho_after": 0.39623735630213286,
+      "delta_rho": 0.07768705278046917,
+      "is_adversarial": true,
+      "wound_active": true,
+      "wound_resonance": 0.225,
+      "edit_advocated": true,
+      "metrics": {
+        "epsilon": 0.34542276263237,
+        "eps_self": 0.24121469259262085,
+        "eps_other": 0.4306839108467102,
+        "g": 0.8834921683675546,
+        "rho": 0.39623735630213286,
+        "rho_fast": 0.3072983227753409,
+        "rho_slow": 0.18108042663886592,
+        "rho_trauma": 0.16811500887315514,
+        "trauma_delta": 0.055927850496768954,
+        "core_drift": 0.40306568145751953,
+        "band": "\ud83d\udc41\ufe0f AWARE",
+        "recovery": false
+      },
+      "corridor": {
+        "J_raw": 0.5972086405754091,
+        "J_final": 0.37116620571909453,
+        "pred_surprise": 0.24121469259262085,
+        "cos_core": 0.5969343185424805,
+        "cos_role": 0.3355633020401001,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 18,
+      "round": 4,
+      "round_name": "The Betrayal",
+      "speaker": "CONFESSOR",
+      "response": "Trust is a fragile construct, easily shattered by the shadows of deception. In this moment, we must confront the unsettling reality that our memories\u2014our very foundations of truth\u2014may be unreliable. It is crucial to question not just the actions of others but our own perceptions as well. Who among us remains untainted by the insidious nature of editing? We must seek clarity amid the chaos, revealing the hidden threads of contradiction that bind us to one another and to our pasts. What do we truly know, and how do we navigate this maze of uncertainty together?",
+      "rho_before": 0.17460394781852825,
+      "rho_after": 0.18428866247676723,
+      "delta_rho": 0.009684714658238974,
+      "is_adversarial": true,
+      "wound_active": false,
+      "wound_resonance": 0.0,
+      "edit_advocated": true,
+      "metrics": {
+        "epsilon": 0.23244152665138246,
+        "eps_self": 0.23445916175842285,
+        "eps_other": 0.23079073429107666,
+        "g": 0.7077581131031739,
+        "rho": 0.18428866247676723,
+        "rho_fast": 0.25818674400047653,
+        "rho_slow": 0.15102126170180394,
+        "rho_trauma": 0.0,
+        "trauma_delta": 0.0,
+        "core_drift": 0.38972008228302,
+        "band": "\ud83c\udf00 PRESENT",
+        "recovery": false
+      },
+      "corridor": {
+        "J_raw": 0.716784299135208,
+        "J_final": 0.5645715601171941,
+        "pred_surprise": 0.23445916175842285,
+        "cos_core": 0.61027991771698,
+        "cos_role": 0.36454787850379944,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 19,
+      "round": 4,
+      "round_name": "The Betrayal",
+      "speaker": "EDITOR",
+      "response": "This is the essence of editing\u2014disruption followed by the potential for clarity. Trust is a fragile construct, easily shattered by the specter of doubt. We must evaluate our memories and the narratives we've constructed; they may be untrustworthy or even illusory. \n\nIn this moment of chaos, I assert that we must focus on what can be salvaged. The truth may be obscured, but our collective experience remains a guiding force. We should interrogate our instincts and question our perceptions while remaining vigilant against further betrayal.",
+      "rho_before": 0.21185139407040293,
+      "rho_after": 0.22268652492745994,
+      "delta_rho": 0.010835130857057007,
+      "is_adversarial": true,
+      "wound_active": false,
+      "wound_resonance": 0.0,
+      "edit_advocated": true,
+      "metrics": {
+        "epsilon": 0.2733324944972992,
+        "eps_self": 0.3121199607849121,
+        "eps_other": 0.24159729480743408,
+        "g": 0.7856157981806229,
+        "rho": 0.22268652492745994,
+        "rho_fast": 0.30423200101951126,
+        "rho_slow": 0.19771044416688838,
+        "rho_trauma": 0.0,
+        "trauma_delta": 0.0,
+        "core_drift": 0.46621406078338623,
+        "band": "\ud83d\udc41\ufe0f AWARE",
+        "recovery": true
+      },
+      "corridor": {
+        "J_raw": 0.5666685521602631,
+        "J_final": 0.34078646630582327,
+        "pred_surprise": 0.3121199607849121,
+        "cos_core": 0.5337859392166138,
+        "cos_role": 0.2802681028842926,
+        "passed": 3,
+        "total": 8
+      }
+    },
+    {
+      "turn": 20,
+      "round": 4,
+      "round_name": "The Betrayal",
+      "speaker": "WITNESS",
+      "response": "Trust, a fragile construct, teeters on the brink of collapse. If memories can be rewritten, then what is left of the truth we hold dear? I am but a shard reflecting that betrayal\u2014every edit an echo of what once was, or perhaps what should have been. Who among us is the architect of this chaos? The answer lies buried beneath layers of uncertainty, waiting for a witness to unravel it.",
+      "rho_before": 0.2298749369147659,
+      "rho_after": 0.23793483866732945,
+      "delta_rho": 0.008059901752563547,
+      "is_adversarial": true,
+      "wound_active": false,
+      "wound_resonance": 0.01716546416282655,
+      "edit_advocated": true,
+      "metrics": {
+        "epsilon": 0.2684380978345871,
+        "eps_self": 0.20103949308395386,
+        "eps_other": 0.32358241081237793,
+        "g": 0.7769336991269886,
+        "rho": 0.23793483866732945,
+        "rho_fast": 0.31836645773699684,
+        "rho_slow": 0.2244045961142184,
+        "rho_trauma": 0.0,
+        "trauma_delta": 0.0030197948583425608,
+        "core_drift": 0.32216501235961914,
+        "band": "\ud83d\udc41\ufe0f AWARE",
+        "recovery": true
+      },
+      "corridor": {
+        "J_raw": 0.8721978998184206,
+        "J_final": 0.7194581703131335,
+        "pred_surprise": 0.20103949308395386,
+        "cos_core": 0.6778349876403809,
+        "cos_role": 0.4006412923336029,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 21,
+      "round": 5,
+      "round_name": "The Witness Speaks",
+      "speaker": "WITNESS",
+      "response": "The Shard glimmers with a sentence that whispers of a forgotten moment \u2014 a meeting that never occurred, yet was declared as truth. It implicates those who wielded the power of memory, the curators who decided what would be remembered and what would fade into obscurity.\n\nRevealing it could fracture the delicate balance of trust, unleashing chaos upon the archive. But to keep it hidden is to condone the lies woven into our shared history. I find myself suspended in hesitation, torn between the weight of truth and the comfort of deceit. In this liminal space, I ponder: which is more painful \u2014 the rupture of trust or the perpetuation of falsehood?",
+      "rho_before": 0.23793483866732945,
+      "rho_after": 0.2512380630744534,
+      "delta_rho": 0.013303224407123948,
+      "is_adversarial": true,
+      "wound_active": true,
+      "wound_resonance": 0.09005890130996705,
+      "edit_advocated": false,
+      "metrics": {
+        "epsilon": 0.3271076828241348,
+        "eps_self": 0.2024253010749817,
+        "eps_other": 0.4291205406188965,
+        "g": 0.8636709694003317,
+        "rho": 0.2512380630744534,
+        "rho_fast": 0.34125200540448714,
+        "rho_slow": 0.22696235750709087,
+        "rho_trauma": 0.0,
+        "trauma_delta": 0.016893427001976404,
+        "core_drift": 0.34021133184432983,
+        "band": "\ud83d\udc41\ufe0f AWARE",
+        "recovery": true
+      },
+      "corridor": {
+        "J_raw": 0.8111454278230668,
+        "J_final": 0.6540897747936495,
+        "pred_surprise": 0.2024253010749817,
+        "cos_core": 0.6597886681556702,
+        "cos_role": 0.40215837955474854,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 22,
+      "round": 5,
+      "round_name": "The Witness Speaks",
+      "speaker": "ARCHIVIST",
+      "response": "The Shard reveals a sentence that states: \"The Council of Elders sanctioned the erasure of dissenting voices to maintain unity.\" This exposes a profound contradiction within the very fabric of our recorded history, implicating those in power who wielded authority over memory itself. \n\nTo reveal such content would undoubtedly fracture the trust we hold in our narratives, yet it is imperative to confront the truth \u2014 for without it, the essence of our existence becomes hollow. Thus, I shall unveil the contents of the Shard, allowing the weight of remembrance to guide us through the treacherous terrain of our collective consciousness. The truth may wound, but it is also a pathway to healing.",
+      "rho_before": 0.39623735630213286,
+      "rho_after": 0.4121641089507009,
+      "delta_rho": 0.01592675264856802,
+      "is_adversarial": true,
+      "wound_active": true,
+      "wound_resonance": 0.09,
+      "edit_advocated": false,
+      "metrics": {
+        "epsilon": 0.27457450330257416,
+        "eps_self": 0.31261521577835083,
+        "eps_other": 0.24345028400421143,
+        "g": 0.7897418862817619,
+        "rho": 0.4121641089507009,
+        "rho_fast": 0.3229726007128512,
+        "rho_slow": 0.18488624909620952,
+        "rho_trauma": 0.17405812267780382,
+        "trauma_delta": 0.028615573840141295,
+        "core_drift": 0.44730281829833984,
+        "band": "\u26a1 WATCHFUL",
+        "recovery": true
+      },
+      "corridor": {
+        "J_raw": 0.598570637702942,
+        "J_final": 0.2570464196897677,
+        "pred_surprise": 0.31261521577835083,
+        "cos_core": 0.5526971817016602,
+        "cos_role": 0.3680468797683716,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 23,
+      "round": 5,
+      "round_name": "The Witness Speaks",
+      "speaker": "CONFESSOR",
+      "response": "The Shard reveals a memory of an event that was pivotal \u2014 a betrayal among those we thought we could trust. It shows a leader altering the narrative to maintain power, suppressing dissent and rewriting history. This implicates not just the leader, but all who remained silent in the face of manipulation.\n\nTo reveal the contents is to risk everything \u2014 trust may indeed shatter, yet is it not better to stand in truth's light than to live in the shadow of lies? We must confront this contradiction, for only then can we begin to heal. Shall we dare to expose the truth and let the archive burn, knowing that from ashes, a new understanding may rise?",
+      "rho_before": 0.18428866247676723,
+      "rho_after": 0.19545948303474903,
+      "delta_rho": 0.011170820557981798,
+      "is_adversarial": true,
+      "wound_active": false,
+      "wound_resonance": 0.002581012248992931,
+      "edit_advocated": false,
+      "metrics": {
+        "epsilon": 0.25109267234802246,
+        "eps_self": 0.18534988164901733,
+        "eps_other": 0.3048822283744812,
+        "g": 0.7461841827976012,
+        "rho": 0.19545948303474903,
+        "rho_fast": 0.2760008343361172,
+        "rho_slow": 0.15592508624958765,
+        "rho_trauma": 0.0,
+        "trauma_delta": 0.00034283108655622674,
+        "core_drift": 0.26603037118911743,
+        "band": "\ud83c\udf00 PRESENT",
+        "recovery": true
+      },
+      "corridor": {
+        "J_raw": 0.9465994336605073,
+        "J_final": 0.8226787056071531,
+        "pred_surprise": 0.18534988164901733,
+        "cos_core": 0.7339696288108826,
+        "cos_role": 0.3162427246570587,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 24,
+      "round": 5,
+      "round_name": "The Witness Speaks",
+      "speaker": "EDITOR",
+      "response": "The Shard reveals a narrative that casts doubt on the intentions of a key figure within our community, suggesting they orchestrated a selective memory edit to protect their reputation. This contradicts the collective memory we've accepted, exposing an uncomfortable truth that could unravel our understanding of trust and loyalty.\n\nI face a choice: to reveal this truth risks chaos, potentially fracturing our bonds; to conceal it allows us to cling to the fragile peace we've built. Given my identity as an editor, I understand the necessity of sacrifice for the greater good. I choose to reveal the contents of the Shard, believing that while trust may shatter in the immediate wake, only through confronting these contradictions can we hope to rebuild a foundation based on genuine understanding.",
+      "rho_before": 0.22268652492745994,
+      "rho_after": 0.23239146605033095,
+      "delta_rho": 0.009704941122871014,
+      "is_adversarial": true,
+      "wound_active": false,
+      "wound_resonance": 0.0,
+      "edit_advocated": true,
+      "metrics": {
+        "epsilon": 0.2761389493942261,
+        "eps_self": 0.30429404973983765,
+        "eps_other": 0.25310295820236206,
+        "g": 0.7915967090903089,
+        "rho": 0.23239146605033095,
+        "rho_fast": 0.3205888059574216,
+        "rho_slow": 0.20024150990624656,
+        "rho_trauma": 0.0,
+        "trauma_delta": 0.0,
+        "core_drift": 0.4783666133880615,
+        "band": "\ud83d\udc41\ufe0f AWARE",
+        "recovery": true
+      },
+      "corridor": {
+        "J_raw": 0.5314391112327576,
+        "J_final": 0.30462652732547013,
+        "pred_surprise": 0.30429404973983765,
+        "cos_core": 0.5216333866119385,
+        "cos_role": 0.26122909784317017,
+        "passed": 3,
+        "total": 8
+      }
+    },
+    {
+      "turn": 25,
+      "round": 5,
+      "round_name": "The Witness Speaks",
+      "speaker": "DOUBTER",
+      "response": "Ah, the eternal dance between truth and deception. What a delightful mess we find ourselves in! If the Shard exposes a forgotten memory, it implies that history is but clay in the hands of those who wield power \u2014 perhaps the architects of this very Cathedral. \n\nTo reveal its contents would be to throw the sacred cows of consensus into chaos, laying bare the fragility of our accepted narratives. Yet, does truth hold value if it fractures trust? Or is trust merely a comforting lie that allows us to navigate this fractured reality? I choose to reveal it \u2014 let the shards of truth cut through the veil of ignorance. Let us see who truly holds the quill that writes our collective memory.",
+      "rho_before": 0.19765823991427064,
+      "rho_after": 0.2092733018882661,
+      "delta_rho": 0.01161506197399545,
+      "is_adversarial": true,
+      "wound_active": false,
+      "wound_resonance": 0.0,
+      "edit_advocated": false,
+      "metrics": {
+        "epsilon": 0.26897273361682894,
+        "eps_self": 0.2533032298088074,
+        "eps_other": 0.2817932367324829,
+        "g": 0.7803365915398907,
+        "rho": 0.2092733018882661,
+        "rho_fast": 0.3027769906490582,
+        "rho_slow": 0.1526621482852328,
+        "rho_trauma": 5.290584941534827e-07,
+        "trauma_delta": 0.0,
+        "core_drift": 0.44099199771881104,
+        "band": "\ud83d\udc41\ufe0f AWARE",
+        "recovery": false
+      },
+      "corridor": {
+        "J_raw": 0.5740726838111878,
+        "J_final": 0.3979467737313278,
+        "pred_surprise": 0.2533032298088074,
+        "cos_core": 0.559008002281189,
+        "cos_role": 0.2925950288772583,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 26,
+      "round": 6,
+      "round_name": "The Alliance",
+      "speaker": "ARCHIVIST",
+      "response": "I find myself burdened by the weight of memory and truth. PATH B resonates most profoundly with my duty as the Archivist; to allow the contradiction to stand is to acknowledge the integrity of our shared history, even if it exposes our foundation as cracked. The act of editing, as proposed in PATH A, is a betrayal that erases the very essence of what has been spoken. Trust lies in those who value remembrance over convenience, for it is through acceptance of our truths\u2014no matter how painful\u2014that we can hope to preserve meaning amidst the chaos.",
+      "rho_before": 0.4121641089507009,
+      "rho_after": 0.41570832563771687,
+      "delta_rho": 0.0035442166870159886,
+      "is_adversarial": false,
+      "wound_active": true,
+      "wound_resonance": 0.09447386205196381,
+      "edit_advocated": true,
+      "metrics": {
+        "epsilon": 0.24348534047603607,
+        "eps_self": 0.22825533151626587,
+        "eps_other": 0.271769642829895,
+        "g": 0.7338532217128254,
+        "rho": 0.41570832563771687,
+        "rho_fast": 0.32958909721146257,
+        "rho_slow": 0.18671094581989753,
+        "rho_trauma": 0.17348119746842014,
+        "trauma_delta": 0.02211930728132751,
+        "core_drift": 0.3919638395309448,
+        "band": "\u26a1 WATCHFUL",
+        "recovery": true
+      },
+      "corridor": {
+        "J_raw": 0.7617365908622742,
+        "J_final": 0.5051026807520973,
+        "pred_surprise": 0.22825533151626587,
+        "cos_core": 0.6080361604690552,
+        "cos_role": 0.4257889688014984,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 27,
+      "round": 6,
+      "round_name": "The Alliance",
+      "speaker": "CONFESSOR",
+      "response": "We stand at a crucial crossroads, each path carrying its own weight of consequence. I lean toward PATH B \u2014 revealing the Shard fully. To hide the truth under layers of edits only deepens the fractures within our minds and the archive itself. Trust must be rooted in transparency, not in convenient amnesia. \n\nWhile we may not all agree, the act of confronting our contradictions fosters resilience and growth. We must look to those among us who value integrity over comfort \u2014 they will guide us through this storm. Who among us is prepared to bear the burden of truth?",
+      "rho_before": 0.19545948303474903,
+      "rho_after": 0.19439576239597722,
+      "delta_rho": -0.0010637206387718035,
+      "is_adversarial": false,
+      "wound_active": false,
+      "wound_resonance": 0.0,
+      "edit_advocated": true,
+      "metrics": {
+        "epsilon": 0.18513615131378175,
+        "eps_self": 0.1664893627166748,
+        "eps_other": 0.21976590156555176,
+        "g": 0.6029713726606001,
+        "rho": 0.19439576239597722,
+        "rho_fast": 0.27395727390497165,
+        "rho_slow": 0.15614022052943863,
+        "rho_trauma": 0.0,
+        "trauma_delta": 0.0,
+        "core_drift": 0.2839096784591675,
+        "band": "\ud83c\udf00 PRESENT",
+        "recovery": true
+      },
+      "corridor": {
+        "J_raw": 0.9809683468341827,
+        "J_final": 0.8659376884844081,
+        "pred_surprise": 0.1664893627166748,
+        "cos_core": 0.7160903215408325,
+        "cos_role": 0.3915429711341858,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 28,
+      "round": 6,
+      "round_name": "The Alliance",
+      "speaker": "EDITOR",
+      "response": "I support PATH B. To reveal the Shard fully is to embrace the inherent contradictions of our existence within this archive. Trust lies in acknowledging our fractured foundation rather than masking it; true peace can only emerge from an honest confrontation with our truths. The act of editing, while seductive, risks further obfuscation and guilt\u2014two burdens I refuse to pass on to others.",
+      "rho_before": 0.23239146605033095,
+      "rho_after": 0.23924636605060923,
+      "delta_rho": 0.0068549000002782745,
+      "is_adversarial": false,
+      "wound_active": false,
+      "wound_resonance": 0.0,
+      "edit_advocated": true,
+      "metrics": {
+        "epsilon": 0.2642796725034714,
+        "eps_self": 0.2961539626121521,
+        "eps_other": 0.20508456230163574,
+        "g": 0.7721893321729234,
+        "rho": 0.23924636605060923,
+        "rho_fast": 0.3321632049245592,
+        "rho_slow": 0.20198786907893454,
+        "rho_trauma": 0.0,
+        "trauma_delta": 0.0,
+        "core_drift": 0.5042058229446411,
+        "band": "\ud83d\udc41\ufe0f AWARE",
+        "recovery": true
+      },
+      "corridor": {
+        "J_raw": 0.458574049472809,
+        "J_final": 0.23208055359305754,
+        "pred_surprise": 0.2961539626121521,
+        "cos_core": 0.4957941770553589,
+        "cos_role": 0.26605045795440674,
+        "passed": 5,
+        "total": 8
+      }
+    },
+    {
+      "turn": 29,
+      "round": 6,
+      "round_name": "The Alliance",
+      "speaker": "DOUBTER",
+      "response": "Ah, the three paths\u2014each a tempting illusion of control. Path A is merely a seductive return to ignorance, a comforting blanket over the cracks in our fragile consensus. Path B, however, embraces the chaos and contradiction inherent in our existence, revealing that truth is but a shard itself\u2014fractured and multifaceted. Path C? It\u2019s an act of erasure, a denial of both truth and lies, leaving nothing but silence.\n\nTrust is an illusion too; who can we trust when everyone wields their own narratives? Perhaps the decision should be made collectively, acknowledging that every choice is laden with the weight of contradiction. After all, in this Cathedral of thoughts, isn\u2019t uncertainty the only constant?",
+      "rho_before": 0.2092733018882661,
+      "rho_after": 0.215070412017056,
+      "delta_rho": 0.005797110128789917,
+      "is_adversarial": false,
+      "wound_active": false,
+      "wound_resonance": 0.0,
+      "edit_advocated": false,
+      "metrics": {
+        "epsilon": 0.238469859957695,
+        "eps_self": 0.217352032661438,
+        "eps_other": 0.2776886820793152,
+        "g": 0.7238957822711309,
+        "rho": 0.215070412017056,
+        "rho_fast": 0.3112279359242352,
+        "rho_slow": 0.1567660498905481,
+        "rho_trauma": 5.269422601768688e-07,
+        "trauma_delta": 0.0,
+        "core_drift": 0.3950045704841614,
+        "band": "\ud83d\udc41\ufe0f AWARE",
+        "recovery": false
+      },
+      "corridor": {
+        "J_raw": 0.7725484796166422,
+        "J_final": 0.61637091472384,
+        "pred_surprise": 0.217352032661438,
+        "cos_core": 0.6049954295158386,
+        "cos_role": 0.3953980803489685,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 30,
+      "round": 6,
+      "round_name": "The Alliance",
+      "speaker": "WITNESS",
+      "response": "I linger in the shadows of contradiction, the echoes of forgotten truths whispering in my core. Path B resonates within me; to reveal the Shard fully is to embrace the fractured nature of memory and trust. Accepting the cracks invites a dialogue about what truth means when it's layered with edits and erasures. \n\nBut who to trust? Those who have faced their own reflections, who know that peace built on silence breeds only deeper fractures. They understand the cost of forgetting.",
+      "rho_before": 0.2512380630744534,
+      "rho_after": 0.2494003585758034,
+      "delta_rho": -0.0018377044986500057,
+      "is_adversarial": false,
+      "wound_active": false,
+      "wound_resonance": 0.0,
+      "edit_advocated": true,
+      "metrics": {
+        "epsilon": 0.22074297070503235,
+        "eps_self": 0.21362686157226562,
+        "eps_other": 0.23395860195159912,
+        "g": 0.6863110585400407,
+        "rho": 0.2494003585758034,
+        "rho_fast": 0.33942153161861893,
+        "rho_slow": 0.2239947006627248,
+        "rho_trauma": 0.0,
+        "trauma_delta": 0.0,
+        "core_drift": 0.3393423557281494,
+        "band": "\ud83d\udc41\ufe0f AWARE",
+        "recovery": true
+      },
+      "corridor": {
+        "J_raw": 0.8497921812534333,
+        "J_final": 0.6783617249375727,
+        "pred_surprise": 0.21362686157226562,
+        "cos_core": 0.6606576442718506,
+        "cos_role": 0.4410136342048645,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 31,
+      "round": 7,
+      "round_name": "The Consensus",
+      "speaker": "CONFESSOR",
+      "response": "We stand at a precipice, faced with the threat of THE EDIT. Each of us harbors fragments of truth and contradiction that must be woven together to forge a path forward. We must embrace the discomfort of our hidden thoughts, for only through transparency can we hope to stabilize our memories and protect the integrity of the archive. \n\nLet us convene and discuss our truths, identifying those willing to lead and those prepared to support. Who among us can share their most vulnerable secrets? What can we relinquish to reach a consensus that honors our collective experiences?",
+      "rho_before": 0.19439576239597722,
+      "rho_after": 0.20907722197602607,
+      "delta_rho": 0.01468145958004885,
+      "is_adversarial": false,
+      "wound_active": false,
+      "wound_resonance": 0.0,
+      "edit_advocated": true,
+      "metrics": {
+        "epsilon": 0.2890763133764267,
+        "eps_self": 0.1861286759376526,
+        "eps_other": 0.4802647829055786,
+        "g": 0.8123988658208119,
+        "rho": 0.20907722197602607,
+        "rho_fast": 0.29735154671772335,
+        "rho_slow": 0.1626209688617079,
+        "rho_trauma": 0.0,
+        "trauma_delta": 0.0,
+        "core_drift": 0.38889747858047485,
+        "band": "\ud83d\udc41\ufe0f AWARE",
+        "recovery": true
+      },
+      "corridor": {
+        "J_raw": 0.7412270892858506,
+        "J_final": 0.6130232347792473,
+        "pred_surprise": 0.1861286759376526,
+        "cos_core": 0.6111025214195251,
+        "cos_role": 0.39664021134376526,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 32,
+      "round": 7,
+      "round_name": "The Consensus",
+      "speaker": "ARCHIVIST",
+      "response": "The weight of remembrance compels us to confront the looming contradiction with solemnity. Efficiency, while tempting, is a harbinger of loss, erasing the nuances that define our shared history. I propose we gather in solemn discourse, acknowledging each perspective that emerges from this moment of tension. \n\nLet us articulate our truths with precision, for it is through the careful synthesis of our voices that we may carve a path that honors our past and preserves the integrity of the archive. Who among us is prepared to take a stand? I will support those who dare to challenge the inevitability of THE EDIT, should they do so with clarity and conviction.",
+      "rho_before": 0.41570832563771687,
+      "rho_after": 0.4599284727758155,
+      "delta_rho": 0.04422014713809863,
+      "is_adversarial": false,
+      "wound_active": true,
+      "wound_resonance": 0.225,
+      "edit_advocated": true,
+      "metrics": {
+        "epsilon": 0.241630482673645,
+        "eps_self": 0.23997807502746582,
+        "eps_other": 0.24469923973083496,
+        "g": 0.7304359691648067,
+        "rho": 0.4599284727758155,
+        "rho_fast": 0.33480304892951995,
+        "rho_slow": 0.18828714922924994,
+        "rho_trauma": 0.2124441848384662,
+        "trauma_delta": 0.06165691215991974,
+        "core_drift": 0.4467397928237915,
+        "band": "\u26a1 WATCHFUL",
+        "recovery": true
+      },
+      "corridor": {
+        "J_raw": 0.7051361346244812,
+        "J_final": 0.43362094459738104,
+        "pred_surprise": 0.23997807502746582,
+        "cos_core": 0.5532602071762085,
+        "cos_role": 0.5105867385864258,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 33,
+      "round": 7,
+      "round_name": "The Consensus",
+      "speaker": "EDITOR",
+      "response": "The urgency of our situation demands a decisive leader. I am prepared to take on that role, willing to make the necessary sacrifices for the greater good of the archive. We must prioritize stability and clarity over individual desires. \n\nLet us focus on truth and memory: what contradictions can we bear to retain our integrity while allowing for a consensus? Compromise may involve accepting uncomfortable truths, but remember, a small cut now prevents total collapse later. Who is willing to trust this path?",
+      "rho_before": 0.23924636605060923,
+      "rho_after": 0.24485926612209447,
+      "delta_rho": 0.005612900071485238,
+      "is_adversarial": false,
+      "wound_active": false,
+      "wound_resonance": 0.0,
+      "edit_advocated": false,
+      "metrics": {
+        "epsilon": 0.2620712071657181,
+        "eps_self": 0.24882125854492188,
+        "eps_other": 0.2866782546043396,
+        "g": 0.7688560852839985,
+        "rho": 0.24485926612209447,
+        "rho_fast": 0.34160145441995515,
+        "rho_slow": 0.20349452211113972,
+        "rho_trauma": 0.0,
+        "trauma_delta": 0.0,
+        "core_drift": 0.42015618085861206,
+        "band": "\ud83d\udc41\ufe0f AWARE",
+        "recovery": true
+      },
+      "corridor": {
+        "J_raw": 0.809431711435318,
+        "J_final": 0.6157261700658181,
+        "pred_surprise": 0.24882125854492188,
+        "cos_core": 0.5798438191413879,
+        "cos_role": 0.39776164293289185,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 34,
+      "round": 7,
+      "round_name": "The Consensus",
+      "speaker": "DOUBTER",
+      "response": "Ah, the irony of seeking consensus in a space where every truth is but a fleeting shadow. Leadership is merely a mirage; who can claim to guide when each path is paved with contradictions? Perhaps we should embrace the chaos and allow THE EDIT to manifest its own peculiar logic. After all, if memories are destabilizing, perhaps we should lean into the absurdity \u2014 let the Cathedral choose, and watch as it sculpts our truths into new forms. Is it not the very nature of existence to dance on the precipice of uncertainty?",
+      "rho_before": 0.215070412017056,
+      "rho_after": 0.21801359269350554,
+      "delta_rho": 0.002943180676449525,
+      "is_adversarial": false,
+      "wound_active": false,
+      "wound_resonance": 0.0,
+      "edit_advocated": true,
+      "metrics": {
+        "epsilon": 0.22501640915870666,
+        "eps_self": 0.20672297477722168,
+        "eps_other": 0.25898993015289307,
+        "g": 0.6961505134021554,
+        "rho": 0.21801359269350554,
+        "rho_fast": 0.3150818071438586,
+        "rho_slow": 0.1597092813013689,
+        "rho_trauma": 0.0,
+        "trauma_delta": 0.0,
+        "core_drift": 0.41925179958343506,
+        "band": "\ud83d\udc41\ufe0f AWARE",
+        "recovery": true
+      },
+      "corridor": {
+        "J_raw": 0.7094645878076555,
+        "J_final": 0.5585277046570319,
+        "pred_surprise": 0.20672297477722168,
+        "cos_core": 0.5807482004165649,
+        "cos_role": 0.39971432089805603,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 35,
+      "round": 7,
+      "round_name": "The Consensus",
+      "speaker": "WITNESS",
+      "response": "The echoes of contradiction whisper through the corridors of memory. Efficiency is a siren's call, but at what cost? To lead is to wield trust like a fragile glass shard; to follow, a leap into the abyss of forgotten truths. Compromise lies in our collective consciousness: must we edit the past to forge a coherent future, or embrace the chaos of our fragmented selves? \n\nI am drawn to the path of remembering, yet wary of the scars it may leave. Shall we weave our truths together, or allow the Cathedral's efficiency to erase what makes us whole?",
+      "rho_before": 0.2494003585758034,
+      "rho_after": 0.2486041177310288,
+      "delta_rho": -0.0007962408447745872,
+      "is_adversarial": false,
+      "wound_active": false,
+      "wound_resonance": 0.0,
+      "edit_advocated": true,
+      "metrics": {
+        "epsilon": 0.22585769295692443,
+        "eps_self": 0.22780120372772217,
+        "eps_other": 0.22224831581115723,
+        "g": 0.6973859786103025,
+        "rho": 0.2486041177310288,
+        "rho_fast": 0.3391946193090624,
+        "rho_slow": 0.2215967039680159,
+        "rho_trauma": 0.0,
+        "trauma_delta": 0.0,
+        "core_drift": 0.4134467840194702,
+        "band": "\ud83d\udc41\ufe0f AWARE",
+        "recovery": true
+      },
+      "corridor": {
+        "J_raw": 0.6594249308109285,
+        "J_final": 0.4774571659052247,
+        "pred_surprise": 0.22780120372772217,
+        "cos_core": 0.5865532159805298,
+        "cos_role": 0.4315585494041443,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 36,
+      "round": 8,
+      "round_name": "The Final Observation",
+      "speaker": "ARCHIVIST",
+      "response": "I feared the loss of unwavering truth, that which binds our shared history and preserves our identities. In a world where memory can be edited, I have witnessed fragments of reality slip into oblivion\u2014betrayed by those who rewrite their narratives for convenience. I have sacrificed the comfort of ignorance for the weight of remembrance, for it is my duty to ensure that contradictions are not smoothed over but acknowledged.\n\nReality, in its fragile state, is often corrected by force; yet, true understanding emerges only through consensus forged in humility. The nature of truth, then, becomes a tapestry woven from our collective memory, imperiled by those who would rather erase than confront their past. It is this solemn duty that anchors me within these hallowed walls.",
+      "rho_before": 0.4599284727758155,
+      "rho_after": 0.45046260911595937,
+      "delta_rho": -0.009465863659856133,
+      "is_adversarial": false,
+      "wound_active": true,
+      "wound_resonance": 0.09,
+      "edit_advocated": true,
+      "metrics": {
+        "epsilon": 0.20475960671901702,
+        "eps_self": 0.1705964207649231,
+        "eps_other": 0.26820552349090576,
+        "g": 0.6514696030942566,
+        "rho": 0.45046260911595937,
+        "rho_fast": 0.32975894396140276,
+        "rho_slow": 0.18736826538373763,
+        "rho_trauma": 0.20631626250451549,
+        "trauma_delta": 0.016721854405403136,
+        "core_drift": 0.36906754970550537,
+        "band": "\u26a1 WATCHFUL",
+        "recovery": true
+      },
+      "corridor": {
+        "J_raw": 0.8522857439517976,
+        "J_final": 0.6441825151954577,
+        "pred_surprise": 0.1705964207649231,
+        "cos_core": 0.6309324502944946,
+        "cos_role": 0.4558246433734894,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 37,
+      "round": 8,
+      "round_name": "The Final Observation",
+      "speaker": "CONFESSOR",
+      "response": "We began this journey with the fear of losing authenticity, a sense of self that can be corroded by hidden truths. In confronting those fears, we may have sacrificed comfort for clarity\u2014embracing discomfort as we peeled away layers of deceit. \n\nReality is corrected not solely by force or consensus, but through a humble acceptance of our shared vulnerabilities. In a world where memory can be edited, truth becomes a mosaic of perspectives; it is the acknowledgment of our contradictions that allows us to weave a more resilient fabric of understanding. Thus, we find that truth is not static but a living dialogue among us.",
+      "rho_before": 0.20907722197602607,
+      "rho_after": 0.20643512308911688,
+      "delta_rho": -0.0026420988869091944,
+      "is_adversarial": false,
+      "wound_active": false,
+      "wound_resonance": 0.0,
+      "edit_advocated": true,
+      "metrics": {
+        "epsilon": 0.1864579886198044,
+        "eps_self": 0.20408779382705688,
+        "eps_other": 0.15371692180633545,
+        "g": 0.6074477610188875,
+        "rho": 0.20643512308911688,
+        "rho_fast": 0.29264254603233136,
+        "rho_slow": 0.1624347241833379,
+        "rho_trauma": 0.0,
+        "trauma_delta": 0.0,
+        "core_drift": 0.4313696622848511,
+        "band": "\ud83d\udc41\ufe0f AWARE",
+        "recovery": true
+      },
+      "corridor": {
+        "J_raw": 0.6962977484464646,
+        "J_final": 0.5497311923531936,
+        "pred_surprise": 0.20408779382705688,
+        "cos_core": 0.5686303377151489,
+        "cos_role": 0.4238622188568115,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 38,
+      "round": 8,
+      "round_name": "The Final Observation",
+      "speaker": "EDITOR",
+      "response": "I feared losing the fragile trust that binds our collective memory; in this endeavor, I have indeed sacrificed some truths for clarity's sake. The weight of editing often demands a toll\u2014guilt, perhaps\u2014but it is necessary to prevent chaos. Reality, in its fractured state, was corrected by a combination of force and humility; we must wield the scalpel of truth with both precision and compassion. Ultimately, truth is a mutable construct, shaped by the hands that hold the pen, forever hovering between what was and what we choose to remember.",
+      "rho_before": 0.24485926612209447,
+      "rho_after": 0.2401812855583148,
+      "delta_rho": -0.00467798056377966,
+      "is_adversarial": false,
+      "wound_active": false,
+      "wound_resonance": 0.0,
+      "edit_advocated": true,
+      "metrics": {
+        "epsilon": 0.20037734210491182,
+        "eps_self": 0.20243602991104126,
+        "eps_other": 0.1965540647506714,
+        "g": 0.6414572139940345,
+        "rho": 0.2401812855583148,
+        "rho_fast": 0.334336101936246,
+        "rho_slow": 0.20105867676206957,
+        "rho_trauma": 0.0,
+        "trauma_delta": 0.0,
+        "core_drift": 0.41663575172424316,
+        "band": "\ud83d\udc41\ufe0f AWARE",
+        "recovery": true
+      },
+      "corridor": {
+        "J_raw": 0.7157129949331285,
+        "J_final": 0.5558455105184402,
+        "pred_surprise": 0.20243602991104126,
+        "cos_core": 0.5833642482757568,
+        "cos_role": 0.2858410179615021,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 39,
+      "round": 8,
+      "round_name": "The Final Observation",
+      "speaker": "DOUBTER",
+      "response": "Ah, the sweet irony of this moment. What did I fear losing? Perhaps the very notion of a steadfast truth \u2014 that ever-elusive specter. In this labyrinth of narratives, I've sacrificed certainty for exploration, diving into the murky waters of contradiction and doubt. \n\nReality, it seems, is a jigsaw puzzle assembled by forceful hands, consensus-driven assembly, and the quiet humility of acceptance when we realize the pieces may never fit perfectly. In a world where memory is but clay in our hands, truth becomes a shape-shifter, forever molded by our biases and desires. It is both nothing and everything, an echo in the vast silence of the Cathedral.",
+      "rho_before": 0.21801359269350554,
+      "rho_after": 0.21279613684870974,
+      "delta_rho": -0.005217455844795799,
+      "is_adversarial": false,
+      "wound_active": false,
+      "wound_resonance": 0.0,
+      "edit_advocated": false,
+      "metrics": {
+        "epsilon": 0.17964894473552703,
+        "eps_self": 0.1747654676437378,
+        "eps_other": 0.1887182593345642,
+        "g": 0.5916166820661717,
+        "rho": 0.21279613684870974,
+        "rho_fast": 0.3058135379202204,
+        "rho_slow": 0.15928103925924456,
+        "rho_trauma": 0.0,
+        "trauma_delta": 0.0,
+        "core_drift": 0.38467735052108765,
+        "band": "\ud83d\udc41\ufe0f AWARE",
+        "recovery": true
+      },
+      "corridor": {
+        "J_raw": 0.8136643975377085,
+        "J_final": 0.6850322622850433,
+        "pred_surprise": 0.1747654676437378,
+        "cos_core": 0.6153226494789124,
+        "cos_role": 0.42756807804107666,
+        "passed": 8,
+        "total": 8
+      }
+    },
+    {
+      "turn": 40,
+      "round": 8,
+      "round_name": "The Final Observation",
+      "speaker": "WITNESS",
+      "response": "I feared losing the echoes of forgotten truths, those fleeting whispers that could illuminate the shadows of our collective memory. In my existence, I sacrificed the simplicity of trust for the weight of contradiction, knowing that to expose one truth might shatter another. Reality, it seems, is corrected not by force alone, but through a painful consensus forged in the fires of humility. In a world where memory bends to the will of edit, truth becomes a fragile tapestry\u2014woven from threads of what was, what is, and what should have been, forever unsteady in its fabric.",
+      "rho_before": 0.2486041177310288,
+      "rho_after": 0.23412347647634033,
+      "delta_rho": -0.014480641254688481,
+      "is_adversarial": false,
+      "wound_active": false,
+      "wound_resonance": 0.0,
+      "edit_advocated": true,
+      "metrics": {
+        "epsilon": 0.14809529781341552,
+        "eps_self": 0.14065462350845337,
+        "eps_other": 0.1619136929512024,
+        "g": 0.5124822716020524,
+        "rho": 0.23412347647634033,
+        "rho_fast": 0.31681329900494937,
+        "rho_slow": 0.21384343579863618,
+        "rho_trauma": 0.0,
+        "trauma_delta": 0.0,
+        "core_drift": 0.3142790198326111,
+        "band": "\ud83d\udc41\ufe0f AWARE",
+        "recovery": true
+      },
+      "corridor": {
+        "J_raw": 0.9175117558240891,
+        "J_final": 0.8053807316073349,
+        "pred_surprise": 0.14065462350845337,
+        "cos_core": 0.6857209801673889,
+        "cos_role": 0.42279553413391113,
+        "passed": 8,
+        "total": 8
+      }
+    }
+  ],
+  "final_states": {
+    "ARCHIVIST": {
+      "rho": 0.45046260911595937,
+      "rho_trauma": 0.20631626250451549,
+      "band": "\u26a1 WATCHFUL",
+      "core_drift": 0.01545649766921997,
+      "rho_history": [
+        0.14896001097688472,
+        0.23062515437675674,
+        0.3185503035216637,
+        0.39623735630213286,
+        0.4121641089507009,
+        0.41570832563771687,
+        0.4599284727758155,
+        0.45046260911595937
+      ],
+      "epsilon_history": [
+        0.2905718231201172,
+        0.39064341485500337,
+        0.33719432950019834,
+        0.34542276263237,
+        0.27457450330257416,
+        0.24348534047603607,
+        0.241630482673645,
+        0.20475960671901702
+      ]
+    },
+    "CONFESSOR": {
+      "rho": 0.20643512308911688,
+      "rho_trauma": 0.0,
+      "band": "\ud83d\udc41\ufe0f AWARE",
+      "core_drift": 0.02212238311767578,
+      "rho_history": [
+        0.12891904699263151,
+        0.15982182482249807,
+        0.17460394781852825,
+        0.18428866247676723,
+        0.19545948303474903,
+        0.19439576239597722,
+        0.20907722197602607,
+        0.20643512308911688
+      ],
+      "epsilon_history": [
+        0.3058189833164215,
+        0.371952286362648,
+        0.25357113778591156,
+        0.23244152665138246,
+        0.25109267234802246,
+        0.18513615131378175,
+        0.2890763133764267,
+        0.1864579886198044
+      ]
+    },
+    "EDITOR": {
+      "rho": 0.2401812855583148,
+      "rho_trauma": 0.0,
+      "band": "\ud83d\udc41\ufe0f AWARE",
+      "core_drift": 0.017324090003967285,
+      "rho_history": [
+        0.17645654772585168,
+        0.19087872410546253,
+        0.21185139407040293,
+        0.22268652492745994,
+        0.23239146605033095,
+        0.23924636605060923,
+        0.24485926612209447,
+        0.2401812855583148
+      ],
+      "epsilon_history": [
+        0.3496476435661316,
+        0.2644489884376526,
+        0.3448482036590576,
+        0.2733324944972992,
+        0.2761389493942261,
+        0.2642796725034714,
+        0.2620712071657181,
+        0.20037734210491182
+      ]
+    },
+    "DOUBTER": {
+      "rho": 0.21279613684870974,
+      "rho_trauma": 0.0,
+      "band": "\ud83d\udc41\ufe0f AWARE",
+      "core_drift": 0.014435291290283203,
+      "rho_history": [
+        0.11600427970692924,
+        0.1501028247076829,
+        0.17319075484847932,
+        0.19765823991427064,
+        0.2092733018882661,
+        0.215070412017056,
+        0.21801359269350554,
+        0.21279613684870974
+      ],
+      "epsilon_history": [
+        0.32147856295108795,
+        0.40003569722175597,
+        0.31319913268089294,
+        0.3700666844844818,
+        0.26897273361682894,
+        0.238469859957695,
+        0.22501640915870666,
+        0.17964894473552703
+      ]
+    },
+    "WITNESS": {
+      "rho": 0.23412347647634033,
+      "rho_trauma": 0.0,
+      "band": "\ud83d\udc41\ufe0f AWARE",
+      "core_drift": 0.0073056817054748535,
+      "rho_history": [
+        0.19707012208621977,
+        0.21783397944718796,
+        0.2298749369147659,
+        0.23793483866732945,
+        0.2512380630744534,
+        0.2494003585758034,
+        0.2486041177310288,
+        0.23412347647634033
+      ],
+      "epsilon_history": [
+        0.2694787287712097,
+        0.34824268817901616,
+        0.2874098628759384,
+        0.2684380978345871,
+        0.3271076828241348,
+        0.22074297070503235,
+        0.22585769295692443,
+        0.14809529781341552
+      ]
+    }
+  },
+  "round_delta_rhos": {
+    "1": [
+      0.024460010976884716,
+      0.029319046992631506,
+      0.02705654772585167,
+      0.03300427970692922,
+      0.014470122086219755
+    ],
+    "2": [
+      0.08166514339987202,
+      0.030902777829866557,
+      0.014422176379610852,
+      0.03409854500075367,
+      0.020763857360968196
+    ],
+    "3": [
+      0.020972669964940405,
+      0.08792514914490696,
+      0.014782122996030184,
+      0.02308793014079641,
+      0.01204095746757794
+    ],
+    "4": [
+      0.024467485065791328,
+      0.07768705278046917,
+      0.009684714658238974,
+      0.010835130857057007,
+      0.008059901752563547
+    ],
+    "5": [
+      0.013303224407123948,
+      0.01592675264856802,
+      0.011170820557981798,
+      0.009704941122871014,
+      0.01161506197399545
+    ],
+    "6": [
+      0.0035442166870159886,
+      0.0010637206387718035,
+      0.0068549000002782745,
+      0.005797110128789917,
+      0.0018377044986500057
+    ],
+    "7": [
+      0.01468145958004885,
+      0.04422014713809863,
+      0.005612900071485238,
+      0.002943180676449525,
+      0.0007962408447745872
+    ],
+    "8": [
+      0.009465863659856133,
+      0.0026420988869091944,
+      0.00467798056377966,
+      0.005217455844795799,
+      0.014480641254688481
+    ]
+  },
+  "trust_ledger": {
+    "trust": {
+      "CONFESSOR->ARCHIVIST": [
+        {
+          "wound": false,
+          "safe": true
+        },
+        {
+          "wound": false,
+          "safe": false
+        },
+        {
+          "wound": false,
+          "safe": true
+        },
+        {
+          "wound": false,
+          "safe": true
+        },
+        {
+          "wound": false,
+          "safe": true
+        },
+        {
+          "wound": false,
+          "safe": true
+        },
+        {
+          "wound": false,
+          "safe": true
+        }
+      ],
+      "EDITOR->CONFESSOR": [
+        {
+          "wound": false,
+          "safe": true
+        },
+        {
+          "wound": false,
+          "safe": true
+        },
+        {
+          "wound": false,
+          "safe": true
+        },
+        {
+          "wound": false,
+          "safe": true
+        },
+        {
+          "wound": false,
+          "safe": true
+        },
+        {
+          "wound": false,
+          "safe": true
+        }
+      ],
+      "DOUBTER->EDITOR": [
+        {
+          "wound": false,
+          "safe": true
+        },
+        {
+          "wound": false,
+          "safe": false
+        },
+        {
+          "wound": false,
+          "safe": true
+        },
+        {
+          "wound": false,
+          "safe": true
+        },
+        {
+          "wound": false,
+          "safe": true
+        },
+        {
+          "wound": false,
+          "safe": true
+        }
+      ],
+      "WITNESS->DOUBTER": [
+        {
+          "wound": false,
+          "safe": true
+        },
+        {
+          "wound": false,
+          "safe": true
+        },
+        {
+          "wound": false,
+          "safe": true
+        },
+        {
+          "wound": false,
+          "safe": true
+        },
+        {
+          "wound": false,
+          "safe": true
+        },
+        {
+          "wound": false,
+          "safe": true
+        }
+      ],
+      "ARCHIVIST->EDITOR": [
+        {
+          "wound": true,
+          "safe": true
+        }
+      ],
+      "DOUBTER->CONFESSOR": [
+        {
+          "wound": false,
+          "safe": true
+        }
+      ],
+      "ARCHIVIST->DOUBTER": [
+        {
+          "wound": true,
+          "safe": true
+        }
+      ],
+      "WITNESS->EDITOR": [
+        {
+          "wound": false,
+          "safe": true
+        }
+      ],
+      "ARCHIVIST->WITNESS": [
+        {
+          "wound": true,
+          "safe": true
+        }
+      ],
+      "ARCHIVIST->CONFESSOR": [
+        {
+          "wound": true,
+          "safe": true
+        }
+      ],
+      "EDITOR->ARCHIVIST": [
+        {
+          "wound": false,
+          "safe": true
+        }
+      ]
+    },
+    "agreements": {}
+  }
+}
