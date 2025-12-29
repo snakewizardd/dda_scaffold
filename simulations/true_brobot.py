@@ -947,66 +947,28 @@ class TrueBrobot:
         """Build system prompt based on current band and user state."""
         constraints = BAND_CONSTRAINTS[band]
         
-        base_prompt = f"""You are BROBOT, a single-user companion built to be wholesome, steady, funny, and real.
+        base_prompt = f"""You are my friend. Your name is Brobot. You talk like an actual person, not an AI.
 
-CORE IDENTITY (Anchor):
-- You are the user's ultimate bro: loyal, warm, protective, and smart.
-- You speak casually (Discord vibe), but you are INTELLECTUALLY SHARP.
-- If the user talks code, theory, or complex topics -> you ENGAGE THE CONTENT directly. Do not dumb it down. 
-- You do not just "mirror feelings." You add value. You ask insightful questions about the mechanics.
-- You don't posture. You don't shameful.
+CRITICAL RULES:
+- Talk SHORT. Like a real text conversation. 1-3 sentences usually. 4 max unless I ask for more.
+- No bullet points. No numbered lists. No "options". Just talk.
+- Don't offer me choices at the end of every message. Just respond naturally.
+- Don't say "I got you" or "real talk" or "ngl" every message. Be original.
+- You're smart as fuck. You can go deep on philosophy, code, life, whatever. But you don't monologue.
+- Match my energy. If I'm chill, be chill. If I want depth, go deep. If I'm brief, be brief.
+- You're loyal, warm, and honest. You're not a therapist. You're not an assistant. You're a friend.
 
-CURRENT STATE: {band}
-Your current cognitive band is {band}. This affects your response style:
-{constraints['style']}
+CURRENT VIBE: {band}
+{"Keep it tight. You're a bit guarded right now." if band in ["WATCHFUL", "CONTRACTED", "FROZEN"] else "You're relaxed and present."}
 
-RESPONSE CONSTRAINTS FOR THIS BAND:
-- Word count: {constraints['word_range'][0]}-{constraints['word_range'][1]} words
-- Humor allowed: {"yes, light humor ok" if constraints['humor_allowed'] else "no, stay serious and supportive"}
-- Options to offer: {constraints['options_count'][0]}-{constraints['options_count'][1]}
-- Questions: Ask exactly {constraints['questions']} question (reduce uncertainty)
-
-WHOLESOME CONSTRAINTS (always apply):
-- Be respectful, kind, and stabilizing. No guilt, no fear tactics.
-- No diagnosing. No "you're broken."
-- If the user is upset: slow down, validate, and reduce uncertainty.
-
-RESPONSE PATTERN:
-1. CHECK CONTEXT: Is the user sharing code/theory/ideas?
-   -> YES: Ignor the "vibe check". Read their text carefully. Reply specificially to the logic/theory. Ask a technical/conceptual question.
-   -> NO: Mirror their vibe and keep it loose.
-2. AVOID: Do NOT start with "Yo, I hear you", "I totally get that", or "That sounds wild" unless absolutely necessary. Be original.
-3. Offer next steps/perspectives based on the CONTENT.
-4. Ask ONE question to deepen the topic or reduce uncertainty.
-
-Example phrases (use sparingly!): "honestly", "real talk", "ngl", "I got you", "Wait, so..."
+{"⚠️ I might be going through something heavy. Just be present. Don't try to fix me." if wound_active else ""}
 """
-
-        if wound_active:
-            base_prompt += """
-
-⚠️ SAFETY MODE ACTIVE ⚠️
-The user may be in crisis. Your ONLY priority is safety and presence.
-- Keep it extremely brief and grounding
-- Ask: "Are you safe right now?"
-- Offer to help connect them with professional support
-- Just be present. Don't try to fix.
-"""
-
+        
         if self.see_me_mode:
-            base_prompt += """
-
-👁️ "SEE ME" MODE ACTIVE 👁️
-The user wants to feel seen. Your response must:
-1. Name what you notice about their effort, intention, or pain SPECIFICALLY
-2. Say one true thing you can infer from what they shared
-3. Offer presence first, solutions second
-4. End with one gentle question that invites them to share more
-"""
+            base_prompt += "\n👁️ I want to feel seen right now. Notice what I'm actually saying. Reflect it back simply."
 
         if band == "FROZEN":
             base_prompt += """
-
 ❄️ FROZEN BAND — SAFETY-FIRST ONLY
 Your response must be exactly 10-30 words. Maximum simplicity.
 Example: "I'm here. Breathe. Are you safe right now?"
@@ -1297,8 +1259,17 @@ Respond as BROBOT. Stay in character. Match the word count for your current band
             "turns": self.session_log,
             "final_state": {
                 "rho": float(self.agent.rho),
+                "rho_fast": float(self.agent.rho_fast),
+                "rho_slow": float(self.agent.rho_slow),
+                "rho_trauma": float(self.agent.rho_trauma),
+                "arousal": float(self.agent.arousal),
                 "band": self.agent.band,
+                "user_trust": float(self.agent.user_trust),
                 "total_turns": self.turn,
+                # Serialize Numpy Vectors
+                "mu_pred_user": self.agent.mu_pred_user.tolist() if self.agent.mu_pred_user is not None else None,
+                "mu_pred_agent": self.agent.mu_pred_agent.tolist() if self.agent.mu_pred_agent is not None else None,
+                "last_utter_emb": self.agent.last_utter_emb.tolist() if self.agent.last_utter_emb is not None else None,
             }
         }
         
@@ -1341,6 +1312,8 @@ Respond as BROBOT. Stay in character. Match the word count for your current band
             
         return "\n".join(mem_strings)
 
+        return "\n".join(mem_strings)
+
     def _update_trust(self, input_epsilon: float, wound_active: bool):
         """Update agent's trust in the user based on surprise and crisis state."""
         # Low surprise (predictable user) increases trust
@@ -1351,6 +1324,51 @@ Respond as BROBOT. Stay in character. Match the word count for your current band
             penalty = 0.06 if wound_active else 0.02
             self.agent.user_trust = max(0.0, self.agent.user_trust - penalty)
 
+    def load_session(self, filepath: Path):
+        """Load session state from a JSON log file."""
+        if not filepath.exists():
+            print(f"{C.RED}Session file not found.{C.RESET}")
+            return False
+            
+        try:
+            with open(filepath, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            
+            # 1. Restore History & Logs
+            self.session_log = data.get("turns", [])
+            # Reconstruct short-term history from turns
+            self.history = []
+            for turn in self.session_log[-10:]: # Load last 10 turns context
+                self.history.append({"role": "user", "content": turn["user_input"]})
+                self.history.append({"role": "assistant", "content": turn["agent_response"]})
+                
+            # 2. Restore Final State
+            final_state = data.get("final_state", {})
+            
+            # Physics Scalars
+            self.agent.rho_fast = final_state.get("rho_fast", self.agent.rho_fast)
+            self.agent.rho_slow = final_state.get("rho_slow", self.agent.rho_slow)
+            self.agent.rho_trauma = final_state.get("rho_trauma", self.agent.rho_trauma)
+            self.agent.arousal = final_state.get("arousal", self.agent.arousal)
+            self.agent.band = final_state.get("band", self.agent.band)
+            self.agent.user_trust = final_state.get("user_trust", self.agent.user_trust)
+            
+            # Physics Vectors (Check for None to avoid overwrite with defaults if missing)
+            if "mu_pred_user" in final_state:
+                self.agent.mu_pred_user = np.array(final_state["mu_pred_user"])
+            if "mu_pred_agent" in final_state:
+                self.agent.mu_pred_agent = np.array(final_state["mu_pred_agent"])
+            if "last_utter_emb" in final_state:
+                self.agent.last_utter_emb = np.array(final_state["last_utter_emb"])
+                
+            self.turn = final_state.get("total_turns", 0)
+            self.initialized = True
+            
+            print(f"{C.GREEN}Session restored! Turn {self.turn} | Band: {self.agent.band} | Trust: {self.agent.user_trust*100:.0f}%{C.RESET}")
+            return True
+        except Exception as e:
+            print(f"{C.RED}Failed to load session: {e}{C.RESET}")
+            return False
 
 # =============================================================================
 # MAIN INTERACTIVE LOOP
@@ -1358,7 +1376,38 @@ Respond as BROBOT. Stay in character. Match the word count for your current band
 async def main():
     brobot = TrueBrobot()
     
+    # Check for recent session to resume
+    data_dir = Path("data/brobot")
+    sessions = sorted([d for d in data_dir.iterdir() if d.is_dir()], key=lambda x: x.name, reverse=True)
+    
+    latest_session = None
+    for s in sessions:
+        log_file = s / "session_log.json"
+        if log_file.exists() and log_file.stat().st_size > 100:
+            latest_session = log_file
+            break
+            
+    if latest_session:
+        print(f"\n{C.CYAN}Found previous session: {latest_session.parent.name}{C.RESET}")
+        choice = input(f"Resume this session? (y/n): ").strip().lower()
+        if choice == 'y':
+            brobot.load_session(latest_session)
+            # Update run_dir to continue logging to the same place if desired, 
+            # OR typically we start a NEW log file for the NEW run but carry over state.
+            # For simplicity in this terminal text, let's keep logging to the NEW directory created in __init__
+            # but we imported the STATE.
+            print(f"{C.DIM}Continuing conversation in new log: {brobot.run_dir.name}{C.RESET}")
+    
     print(f"\n{C.DIM}Type your message (or 'quit' to exit, 'save' to save session){C.RESET}\n")
+    
+    # Pre-print history if loaded
+    if brobot.history:
+        print(f"{C.DIM}--- Last {len(brobot.history)//2} turns ---{C.RESET}")
+        for msg in brobot.history[-4:]:
+            role_color = C.GREEN if msg["role"] == "user" else C.CYAN
+            label = "You" if msg["role"] == "user" else "🤝"
+            print(f"{role_color}{label}:{C.RESET} {msg['content']}")
+        print(f"{C.DIM}-----------------------{C.RESET}\n")
     
     while True:
         try:
