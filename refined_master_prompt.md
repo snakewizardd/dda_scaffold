@@ -3090,3 +3090,87 @@ The failures are **calibration issues**:
 - Core drift doesn't capture "coherent transformation"
 
 **M+2 Priority**: Fix calibration before adding new features.
+
+---
+
+## 🤖 BROBOT V4 ARCHITECTURE (IDENTITY INTEGRITY — TURNS 1-30)
+
+These findings come from `simulations/true_brobot.py`, which successfully maintained a high-empathy, stable persona under hostile pressure and user distress.
+
+### 47. THE "SOUL FIX" (IDENTITY COUPLING TO RIGIDITY)
+
+**Problem**: LLM "voice" is often too fluid; even with a corridor, the model may pick a response that is technically valid but causes a jarring spike in surprise ($\epsilon$), leading to "cognitive whiplash."
+
+**Policy Rule**:
+- Couple the candidate selection penalty to the agent's current rigidity ($\rho$).
+- As $\rho$ increases, the penalty for "surprising" responses must increase linearly.
+  ```python
+  # The Soul Fix Equation
+  w_surprise = 1.0 + (3.0 * agent.rho) # Penalty multiplier
+  J_final = J_raw - (w_surprise * predicted_surprise)
+  ```
+
+**Impact**: At high rigidity, the agent is mathematically forced to be predictable. This prevents the "unstable actor" failure mode where a stressed agent suddenly breaks character.
+
+---
+
+### 48. DETERMINISTIC BAND TOKEN BUDGETS
+
+**Problem**: Prompt instructions like "talk shorter" are often ignored by models when they have a large `max_tokens` window.
+
+**Policy Rule**:
+- Physically contract the model's output space by hard-coding `max_tokens` per DDA-X band.
+
+| Band | `max_tokens` | Target word count |
+|------|------------|-------------------|
+| 🔴 FROZEN | 40 | ~15-20 words |
+| 🟠 CONTRACTED | 100 | ~40-60 words |
+| 🟡 WATCHFUL | 240 | ~120 words |
+| 🟢 PRESENT | 600 | Full depth |
+
+**Impact**: Forces the model to prioritize only the most essential information during high-stress states, creating a palpable "pacing" shift that users feel as authenticity.
+
+---
+
+### 49. K-BATCHING FOR ROBUSTNESS
+
+**Problem**: Generating only $K=3$ or $K=5$ candidates often results in 0 passes during high-distortion adversarial rounds, leading to fallback failures.
+
+**Policy Rule**:
+- Use $K=7$ as a baseline for complex personas.
+- Implement `corridor_max_batches` (default 2) to regenerate a second set if the first batch yields no candidates that pass the identity corridor.
+
+**Impact**: Dramatically increases the probability of finding a "needle in the haystack" response that honors both the user's hostile constraint and the agent's internal integrity.
+
+---
+
+### 50. IMPACT-GATED TRAUMA INJECTION
+
+**Problem**: "Naked" surprise spikes can cause permanent trauma even in safe contexts if the model is currently open.
+
+**Policy Rule**:
+- Scale trauma drive by the **previous state of the gate** ($g$).
+- If the gate was already "closing" ($g$ is high), the impact of a new shock is amplified.
+  ```python
+  drive = max(0.0, epsilon - threshold)
+  impact_gate = self.last_g if drive > 0 else 1.0
+  self.rho_trauma = decay * self.rho_trauma + alpha_t * drive * impact_gate
+  ```
+
+**Impact**: Prevents "one-hit-KO" trauma from minor surprises while making sustained pressure increasingly more damaging as the agent stiffens.
+
+---
+
+### 51. UNIFIED CRISIS LOGIC
+
+**Problem**: Scattered wound detection masks patterns of intent across a session.
+
+**Policy Rule**:
+- Centralize all "Negative Feedback" (user distress, bot failure, adversarial match) into a single `UserSTate` or `Crisis` evaluation before building the system prompt.
+- Log a `wound_resonance` score (0.0 to 1.0) on every turn to track the background "hum" of conflict.
+
+---
+
+### VALIDATION (BROBOT RUN 2025-12-28)
+- **Success**: In Turn 5, the model rejected 14 candidates to find a single valid "concrete recommendation" that didn't break character despite a "shut up man" hostile prompt.
+- **Physics evidence**: `w_surprise` accurately scaled from 1.0 to 1.37 as stress increased, successfully filtering out "jittery" or uncharacteristic responses.
