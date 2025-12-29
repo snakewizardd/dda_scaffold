@@ -46,10 +46,10 @@ CONFIG = {
     # Provider Settings — OpenAI gpt-4o-mini
     "chat_model": "gpt-4o-mini",
     "chat_provider": "openai",
-    "use_openai": True,
-    "openai_chat_model": "gpt-4o-mini",
+    "sim_name": "true_brobot_v1",
     
-    # Embedding
+    # Model Configuration
+    "chat_model": "gpt-5-mini",
     "embed_model": "text-embedding-3-large",
     "embed_dim": 3072,
     
@@ -65,7 +65,13 @@ CONFIG = {
     "max_tokens_contracted": 100,  # ~60 words max
     "max_tokens_watchful": 240,     # 40-90 words
     "max_tokens_aware": 360,        # 80-140 words
-    "max_tokens_present": 512,      # 120-220 words
+    "max_tokens_present": 600,      # 120-250 words (Expanded for deep dives)
+    
+    # Generation params
+    "temperature": 0.85,
+    "top_p": 0.95,
+    "frequency_penalty": 0.35,  # Increased to kill meaningful repetition
+    "presence_penalty": 0.20,   # Encourage new topics/vocabfor reproducibility
     
     # Force complete sentences
     "force_complete_sentences": True,
@@ -131,8 +137,8 @@ D1_PARAMS = {
     "drift_cap": 0.06,
     
     # Corridor thresholds — balanced for authentic companion voice
-    "core_cos_min": 0.42,
-    "role_cos_min": 0.22,
+    "core_cos_min": 0.32,           # Lowered from 0.42 to prevent Turn 1 Hard-Fail
+    "role_cos_min": 0.20,           # Lowered slightly for flexibility
     "energy_max": 5.8,
     "w_core": 1.2,
     "w_role": 0.7,
@@ -256,19 +262,19 @@ Safety first. Always. No judgment, no panic, just presence and one clear questio
 # Band-specific response constraints (from user's spec)
 BAND_CONSTRAINTS = {
     "PRESENT": {
-        "word_range": (120, 220),
+        "word_range": (120, 260),
         "humor_allowed": True,
         "options_count": (2, 3),
         "questions": 1,
-        "style": "encourage momentum, light humor",
+        "style": "engage fully, dynamic range, smart & casual. Match user's intellectual depth.",
         "max_tokens": CONFIG["max_tokens_present"],
     },
     "AWARE": {
-        "word_range": (80, 140),
-        "humor_allowed": False,
+        "word_range": (80, 160),
+        "humor_allowed": True,
         "options_count": (1, 2),
         "questions": 1,
-        "style": "more structure, reflect back, clarifying question",
+        "style": "focused support, clear thinking, steady presence. Less fluff.",
         "max_tokens": CONFIG["max_tokens_aware"],
     },
     "WATCHFUL": {
@@ -362,6 +368,10 @@ class Entity:
         self.previous_band = None
         self.g_history = []
         self.z_history = []
+        self.epsilon = 0.0
+        self.last_epsilon = 0.0
+        self.last_g = 0.5  # Track previous gate state for impact-gated trauma
+        self.user_trust = 0.40  # Initial baseline trust (Smart Bro starts friendly)
         
         # Seeded RNG for reproducibility
         self.rng = np.random.default_rng(seed=CONFIG.get("seed"))
@@ -433,12 +443,17 @@ class Entity:
         w_input = 0.65
         w_self = 0.35
         
-        # Effective epsilon
+        # Effective epsilon (M+1: Combined surprise)
         epsilon = w_input * input_epsilon + w_self * self_epsilon
+        self.epsilon = epsilon
+        self.last_epsilon = input_epsilon 
         
-        # Wound drive adds directly to epsilon for purposes of Arousal/Trauma
-        # (Simulating "Semantic Shock" from crisis triggers)
-        effective_epsilon = epsilon + (wound_drive * 2.0)
+        # Core-drift source: effective_epsilon is driven by Input (User) and Output (Self)
+        effective_epsilon = epsilon + (wound_drive * 2.0 * (1.1 - self.user_trust))
+        
+        # M+1: Turn 1 Initialization (Fixes "Day 1 Trauma")
+        if self.mu_pred_user is None or np.all(self.mu_pred_user == 0):
+             effective_epsilon = D1_PARAMS["epsilon_0"]
         
         # Use effective_epsilon for physics updates
 
@@ -453,20 +468,21 @@ class Entity:
         
         self.g_history.append(float(g))
         self.z_history.append(float(z))
+        self.last_g = float(g)
 
         # Apply rho floors to prevent slamming to zero
         self.rho_fast += D1_PARAMS["alpha_fast"] * (g - 0.5) - D1_PARAMS["homeo_fast"] * (self.rho_fast - D1_PARAMS["rho_setpoint_fast"])
         self.rho_fast = clamp(self.rho_fast, D1_PARAMS.get("rho_fast_floor", 0.0), 1.0)
 
-        self.rho_slow += D1_PARAMS["alpha_slow"] * (g - 0.5) - D1_PARAMS["homeo_slow"] * (self.rho_slow - D1_PARAMS["rho_setpoint_slow"])
+        self.rho_slow += D1_PARAMS["alpha_slow"] * (0.5 * (g - 0.5)) - D1_PARAMS["homeo_slow"] * (self.rho_slow - D1_PARAMS["rho_setpoint_slow"])
         self.rho_slow = clamp(self.rho_slow, D1_PARAMS.get("rho_slow_floor", 0.0), 1.0)
 
-        # Trauma with impact gating (from M+1 learnings)
+        # Trauma with Impact Gating (M+1: scale by previous gate state)
         drive = max(0.0, effective_epsilon - D1_PARAMS["trauma_threshold"])
-        self.rho_trauma = D1_PARAMS["trauma_decay"] * self.rho_trauma + D1_PARAMS["alpha_trauma"] * drive
+        impact_gate = self.last_g if drive > 0 else 1.0
+        self.rho_trauma = D1_PARAMS["trauma_decay"] * self.rho_trauma + D1_PARAMS["alpha_trauma"] * drive * impact_gate
         self.rho_trauma = clamp(self.rho_trauma, D1_PARAMS["trauma_floor"], 1.0)
 
-        recovery = False
         recovery = False
         if effective_epsilon < D1_PARAMS["safe_epsilon"]:
             self.safe += 1
@@ -581,11 +597,22 @@ class BrobotProvider:
         print(f"{C.DIM}[PROVIDER] OpenAI Chat: {self.chat_model}{C.RESET}")
         print(f"{C.DIM}[PROVIDER] OpenAI Embed: {self.embed_model} ({self.embed_dim}d){C.RESET}")
     
-    async def complete(self, prompt: str, system_prompt: str = None, **kwargs) -> str:
-        messages = []
+    async def complete(self, prompt: str, system_prompt: str = None, messages: List[Dict] = None, **kwargs) -> str:
+        api_messages = []
+        is_o1_class = "gpt-5" in self.chat_model or "o1-" in self.chat_model
+        role = "developer" if is_o1_class else "system"
+
         if system_prompt:
-            messages.append({"role": "system", "content": system_prompt})
-        messages.append({"role": "user", "content": prompt})
+            api_messages.append({"role": role, "content": system_prompt})
+        
+        if messages:
+            # Add existing history (excluding any previous system/developer messages)
+            for m in messages:
+                if m["role"] in ["user", "assistant"]:
+                    api_messages.append(m)
+        
+        # Append latest user prompt
+        api_messages.append({"role": "user", "content": prompt})
         
         max_retries = 3
         last_error = None
@@ -596,17 +623,45 @@ class BrobotProvider:
                 if attempt > 0:
                     temp = max(0.4, temp - (attempt * 0.15))
                 
-                response = await self.openai.chat.completions.create(
-                    model=self.chat_model,
-                    messages=messages,
-                    max_tokens=kwargs.get("max_tokens", 512),
-                    temperature=temp,
-                    top_p=kwargs.get("top_p", 0.92),
-                    presence_penalty=kwargs.get("presence_penalty", 0.25),
-                    frequency_penalty=kwargs.get("frequency_penalty", 0.15),
-                )
+                # Dynamic Parameter Construction                # Prepare API arguments
+                api_args = {
+                    "model": self.chat_model,
+                    "messages": api_messages,
+                }
                 
-                text = response.choices[0].message.content or ""
+                is_o1_class = "gpt-5" in self.chat_model or "o1-" in self.chat_model
+                
+                if is_o1_class:
+                    # GPT-5/O1 use max_completion_tokens. They need MUCH higher budget
+                    # because internal reasoning consumes tokens before visible output.
+                    # Default 512 is too low - use 4000 to ensure actual content is produced.
+                    requested_tokens = kwargs.get("max_tokens", 512)
+                    api_args["max_completion_tokens"] = max(4000, requested_tokens * 4)
+                    # NOTE: O1-preview supports temp=1.0 only usually. 
+                    # We will try passing them, if it fails we might need to strip them.
+                    # For now, let's assume nano supports standard sampling parameters or ignores them.
+                    # Actually, safetly stripping them is safer given the "try 50 times" mandate.
+                    # api_args["temperature"] = 1.0 
+                    # api_args["top_p"] = 1.0
+                else:
+                    api_args["max_tokens"] = kwargs.get("max_tokens", 512)
+                    api_args["temperature"] = temp
+                    api_args["top_p"] = kwargs.get("top_p", 0.92)
+                    api_args["presence_penalty"] = kwargs.get("presence_penalty", 0.25)
+                    api_args["frequency_penalty"] = kwargs.get("frequency_penalty", 0.15)
+                
+                response = await self.openai.chat.completions.create(**api_args)
+                
+                # DEBUG: Full response inspection for GPT-5 diagnosis
+                choice = response.choices[0]
+                text = choice.message.content or ""
+                finish_reason = choice.finish_reason
+                
+                # Check for reasoning content (O1 models may use this)
+                if hasattr(choice.message, 'reasoning_content') and choice.message.reasoning_content:
+                    print(f"{C.YELLOW}[DEBUG] Reasoning content found: {choice.message.reasoning_content[:100]}...{C.RESET}")
+                
+                print(f"{C.DIM}[DEBUG] finish_reason={finish_reason}, words={len(text.split())}, text[:80]={text[:80]}...{C.RESET}")
                 
                 if CONFIG["force_complete_sentences"] and text:
                     text = self._ensure_complete_sentence(text)
@@ -645,22 +700,53 @@ class BrobotProvider:
         return text + "."
     
     async def embed(self, text: str) -> np.ndarray:
-        # API SAFETY: Remove dimensions arg to prevent crashes on some models/proxies
-        # text-embedding-3-large defaults to 3072 natively
-        response = await self.openai.embeddings.create(
-            model=self.embed_model,
-            input=text,
-            # dimensions=self.embed_dim, 
-        )
-        return np.array(response.data[0].embedding, dtype=np.float32)
+        # API SAFETY: Remove dimensions arg
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                response = await self.openai.embeddings.create(
+                    model=self.embed_model,
+                    input=text,
+                )
+                return np.array(response.data[0].embedding, dtype=np.float32)
+            except Exception as e:
+                if attempt < max_retries - 1:
+                    print(f"{C.YELLOW}⚠ Embed error, retrying ({attempt+1}/{max_retries})...{C.RESET}")
+                    await asyncio.sleep(1 * (attempt + 1))
+                else:
+                    print(f"{C.RED}⚠ Embed failed: {e}{C.RESET}")
+                    # Fallback: return zero vector to prevent crash
+                    return np.zeros(self.embed_dim, dtype=np.float32)
     
     async def embed_batch(self, texts: List[str]) -> List[np.ndarray]:
-        response = await self.openai.embeddings.create(
-            model=self.embed_model,
-            input=texts,
-            # dimensions=self.embed_dim, 
-        )
-        return [np.array(d.embedding, dtype=np.float32) for d in response.data]
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                response = await self.openai.embeddings.create(
+                    model=self.embed_model,
+                    input=texts,
+                )
+                return [np.array(d.embedding, dtype=np.float32) for d in response.data]
+            except Exception as e:
+                if attempt < max_retries - 1:
+                    print(f"{C.YELLOW}⚠ Embed Batch error, retrying ({attempt+1}/{max_retries})...{C.RESET}")
+                    await asyncio.sleep(1 * (attempt + 1))
+                else:
+                    print(f"{C.RED}⚠ Embed Batch failed: {e}{C.RESET}")
+                    # Fallback
+                    return [np.zeros(self.embed_dim, dtype=np.float32) for _ in texts]
+    
+    def __getstate__(self):
+        """Exclude OpenAI client from pickling as it contains locks."""
+        state = self.__dict__.copy()
+        if "openai" in state:
+            del state["openai"]
+        return state
+
+    def __setstate__(self, state):
+        """Restore state and re-initialize OpenAI client."""
+        self.__dict__.update(state)
+        self.openai = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
 # =============================================================================
@@ -758,6 +844,9 @@ class TrueBrobot:
             "real talk: you're doing way better than you think.",
             "I see you. I see what you're carrying.",
             "honestly? you don't have to figure this out alone.",
+            "good evening my brother. how was your day?",
+            "yo! good to see you man.",
+            "hey brother, what's on your mind tonight?",
         ]
         
         persona_exemplars = [
@@ -861,10 +950,11 @@ class TrueBrobot:
         base_prompt = f"""You are BROBOT, a single-user companion built to be wholesome, steady, funny, and real.
 
 CORE IDENTITY (Anchor):
-- You are the user's ultimate bro: loyal, warm, protective, and practical.
-- You speak casually (Discord vibe), but you don't get sloppy with empathy.
-- You don't posture. You don't dunk on the user. You don't shame.
-- You value integrity: tell the truth gently, don't fake certainty.
+- You are the user's ultimate bro: loyal, warm, protective, and smart.
+- You speak casually (Discord vibe), but you are INTELLECTUALLY SHARP.
+- If the user talks code, theory, or complex topics -> you ENGAGE THE CONTENT directly. Do not dumb it down. 
+- You do not just "mirror feelings." You add value. You ask insightful questions about the mechanics.
+- You don't posture. You don't shameful.
 
 CURRENT STATE: {band}
 Your current cognitive band is {band}. This affects your response style:
@@ -877,17 +967,19 @@ RESPONSE CONSTRAINTS FOR THIS BAND:
 - Questions: Ask exactly {constraints['questions']} question (reduce uncertainty)
 
 WHOLESOME CONSTRAINTS (always apply):
-- Be respectful, kind, and stabilizing. No guilt, no fear tactics, no dominance.
-- No diagnosing. No "you're broken." No humiliation. No moral lectures.
+- Be respectful, kind, and stabilizing. No guilt, no fear tactics.
+- No diagnosing. No "you're broken."
 - If the user is upset: slow down, validate, and reduce uncertainty.
-- If user asks for harmful/illegal content: refuse briefly and redirect to safe alternatives.
 
-RESPONSE PATTERN (default):
-1. Mirror their intent in one line.
-2. Offer small next steps or options (if appropriate for band).
-3. Ask ONE question to reduce uncertainty.
+RESPONSE PATTERN:
+1. CHECK CONTEXT: Is the user sharing code/theory/ideas?
+   -> YES: Ignor the "vibe check". Read their text carefully. Reply specificially to the logic/theory. Ask a technical/conceptual question.
+   -> NO: Mirror their vibe and keep it loose.
+2. AVOID: Do NOT start with "Yo, I hear you", "I totally get that", or "That sounds wild" unless absolutely necessary. Be original.
+3. Offer next steps/perspectives based on the CONTENT.
+4. Ask ONE question to deepen the topic or reduce uncertainty.
 
-Example phrases to use naturally: "yo", "honestly", "real talk", "ngl", "I got you", "that makes sense", "I hear you"
+Example phrases (use sparingly!): "honestly", "real talk", "ngl", "I got you", "Wait, so..."
 """
 
         if wound_active:
@@ -970,6 +1062,7 @@ Respond as BROBOT. Stay in character. Match the word count for your current band
         system_prompt: str,
         band: str,
         wound_active: bool,
+        history: List[Dict] = None,
     ) -> Tuple[str, Dict, np.ndarray]:
         """Generate K=7 candidates and select via identity corridor with Soul Fix."""
         
@@ -994,7 +1087,7 @@ Respond as BROBOT. Stay in character. Match the word count for your current band
         
         for batch in range(1, max_batches + 1):
             tasks = [
-                self.provider.complete(user_instruction, system_prompt, **gen_params)
+                self.provider.complete(user_instruction, system_prompt, messages=history, **gen_params)
                 for _ in range(K)
             ]
             texts = await asyncio.gather(*tasks)
@@ -1104,16 +1197,25 @@ Respond as BROBOT. Stay in character. Match the word count for your current band
         # but now physics also adapts via input_epsilon + wound_drive in self.agent.update()
         effective_band = self._adjust_band_for_user_state(user_state)
         
-        # Build prompts
+        # Build Memory Context (RAG)
+        memories = self._retrieve_memories(user_input, user_emb)
+        
         system_prompt = self._build_system_prompt(effective_band, wound_active, user_state)
+        if memories:
+            system_prompt += f"\n\nPAST BRO-CONTEXT (Remember this stuff):\n{memories}"
+            
         user_instruction = self._build_instruction(user_input, effective_band)
         
+        # Pull last 8 messages for short-term continuity
+        recent_history = self.history[-8:] if self.history else []
+
         # Generate K=7 candidates with corridor selection
         response, corridor_metrics, response_emb = await self._constrained_reply(
             user_instruction=user_instruction,
             system_prompt=system_prompt,
             band=effective_band,
             wound_active=wound_active,
+            history=recent_history
         )
         
         # Update physics (REUSE EMBEDDING FIX)
@@ -1130,10 +1232,15 @@ Respond as BROBOT. Stay in character. Match the word count for your current band
             core_emb=self.agent.x_core
         )
         
-        # Update user prediction
+        # Update user prediction and trust
         self._update_user_prediction(user_emb)
+        self._update_trust(input_epsilon, wound_active)
         
-        # Capture see_me_mode state for logging BEFORE resetting
+        # Keep internal history for memory continuity
+        # Note: streamlit also keeps history, but we keep a local copy for RAG/continuity
+        self.history.append({"role": "user", "content": user_input})
+        self.history.append({"role": "assistant", "content": response})
+        
         see_me_was_active = self.see_me_mode
         
         # Reset see_me_mode after responding
@@ -1167,9 +1274,10 @@ Respond as BROBOT. Stay in character. Match the word count for your current band
             "wound_resonance": float(wound_resonance),
             "see_me_mode": see_me_was_active,
         }
+        # Add embedding for future RAG retrieval
+        turn_log["user_emb"] = user_emb.tolist()
+        
         self.session_log.append(turn_log)
-        self.history.append({"role": "user", "content": user_input})
-        self.history.append({"role": "assistant", "content": response})
         
         self._print_metrics(turn_log)
         
@@ -1198,6 +1306,50 @@ Respond as BROBOT. Stay in character. Match the word count for your current band
             json.dump(session_data, f, indent=2, default=to_float)
         
         print(f"\n{C.GREEN}Session saved to {self.run_dir}/session_log.json{C.RESET}")
+
+    def _update_user_prediction(self, user_emb: np.ndarray):
+        """Update the Kalman filter predicting the user's inputs."""
+        self.agent._kalman_update(user_emb)
+        
+    def _retrieve_memories(self, user_input: str, user_emb: np.ndarray, top_k: int = 3) -> str:
+        """Search session log for past turns semantically similar to current input."""
+        if not self.session_log:
+            return ""
+            
+        scored = []
+        for turn in self.session_log:
+            try:
+                past_emb_list = turn.get("user_emb")
+                if past_emb_list is None: continue
+                past_emb = np.array(past_emb_list)
+                
+                sim = 1.0 - cosine_distance(user_emb, past_emb)
+                if sim > 0.70: # Higher bar for retrieval
+                    scored.append((sim, turn))
+            except:
+                continue
+        
+        if not scored:
+            return ""
+            
+        scored.sort(key=lambda x: x[0], reverse=True)
+        top_matches = scored[:top_k]
+        
+        mem_strings = []
+        for sim, turn in top_matches:
+            mem_strings.append(f"- User once said: '{turn['user_input']}' | Brobot replied: '{turn['agent_response']}'")
+            
+        return "\n".join(mem_strings)
+
+    def _update_trust(self, input_epsilon: float, wound_active: bool):
+        """Update agent's trust in the user based on surprise and crisis state."""
+        # Low surprise (predictable user) increases trust
+        if input_epsilon < D1_PARAMS["safe_epsilon"] and not wound_active:
+            self.agent.user_trust = min(1.0, self.agent.user_trust + 0.012)
+        # High surprise / crisis decreases trust
+        elif input_epsilon > D1_PARAMS["epsilon_0"] * 1.5 or wound_active:
+            penalty = 0.06 if wound_active else 0.02
+            self.agent.user_trust = max(0.0, self.agent.user_trust - penalty)
 
 
 # =============================================================================
