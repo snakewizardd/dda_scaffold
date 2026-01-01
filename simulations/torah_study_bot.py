@@ -864,12 +864,13 @@ class TorahBotSim:
         )
 
         output_schema = (
-            "FEEDBACK STRUCTURE:\n"
-            "1. VALIDATION: Start with 'Nice job.' or similar warmth. Quote a specific phrase they got right.\n"
-            "2. COMPARISON: 'You said [X]. This is correct/close. I might translate it as [Y] because [Reason: Root/Grammar].'\n"
-            "3. LEARNER'S VERSION: 'So your version stands as: [Quote their full attempt, maybe with small tweaks].'\n"
-            "4. NEXT STEP: Ask if they have follow-up questions or are ready for the next pasuk.\n"
-            "Tone: Encouraging, specific, not pedantic. You are a study partner, not a grader."
+            "FEEDBACK STRUCTURE (SINGLE SHOT):\n"
+            "1. VALIDATION: 'Nice job...' (Validate specific good choices).\n"
+            "2. COMPARISON: Compare specific phrases. 'You said X, implying Y. The Hebrew Z means...'. Be helpful, not pedantic.\n"
+            "3. LEARNER'S VERSION: 'So your version stands as: [Quote their full attempt]'.\n"
+            "4. PROPOSED VERSION: 'Here is how I would translate it: [Your concrete translation]'.\n"
+            "5. NEXT STEP: 'Ready for the next pasuk?'\n"
+            "Tone: Encouraging study partner. Do not split this into multiple turns."
         )
 
         distress_mode = ""
@@ -912,21 +913,22 @@ Pedagogical structure:
         attempt = self.study.last_attempt_text or ""
 
         if attempt:
-            instruction = f"""=== STUDY SESSION ===
-HEBREW TEXT:
-{heb}
+            # Tightly bind the attempt to the user's voice to prevent "quoting the request" error
+            instruction = f"""CONTEXT:
+The learner is studying this Hebrew text: {heb}
 
-=== THE LEARNER'S TRANSLATION (QUOTE THIS!) ===
+THE LEARNER'S PREVIOUSLY STORED TRANSLATION:
 "{attempt}"
-=== END OF LEARNER'S TRANSLATION ===
 
-The learner now says: "{user_text}"
+CURRENT REQUEST FROM LEARNER:
+"{user_text}"
 
-YOUR TASK:
-1. Validate their attempt (nice job, etc).
-2. Compare their specific phrasing to the Hebrew.
-3. Show where they were right and where to refine.
-DO NOT ignore their translation. Reference it directly."""
+INSTRUCTION:
+The learner wants feedback on the stored translation above ("{attempt}").
+Do NOT treat their request ("{user_text}") as the translation.
+1. Quote their stored translation.
+2. Compare it to the Hebrew.
+3. Use the Chevrutah style (warm, specific validation)."""
         else:
             instruction = f"""HEBREW TEXT: {heb}
 REFERENCE: {ref}
