@@ -51,8 +51,8 @@ load_dotenv()
 
 CONFIG = {
     "sim_name": "torah_study_bot_v1",
-    "chat_provider": "openrouter",
-    "chat_model": "tngtech/deepseek-r1t2-chimera:free",
+    "chat_provider": "lm_studio",
+    "chat_model": "local-model",  # LM Studio usually accepts any string or specific model name
     "embed_provider": "ollama",
     "embed_model": "nomic-embed-text",
     "embed_dim": 768,
@@ -576,16 +576,12 @@ class Entity:
 
 class OpenAIProvider:
     def __init__(self):
-        # Use OpenRouter for chat, Ollama for embeddings
-        openrouter_key = os.getenv("OPENROUTER_API_KEY")
+        # LM Studio for chat, Ollama for embeddings
         
-        if not openrouter_key:
-            raise ValueError("Missing API key: set OPENROUTER_API_KEY")
-        
-        # OpenRouter client for chat completions
+        # LM Studio client (no API key needed usually, but we pass "lm-studio" to be safe)
         self.client = AsyncOpenAI(
-            api_key=openrouter_key,
-            base_url="https://openrouter.ai/api/v1"
+            api_key="lm-studio",
+            base_url="http://127.0.0.1:1234/v1"
         )
         
         # Ollama URL for embeddings
@@ -856,7 +852,9 @@ class TorahBotSim:
         )
 
         translation_scope = (
-            "If translation attempt is present, provide corrections and suggested revision. "
+            "If translation attempt is present, focus on helping the learner refine and correct THEIR attempt. "
+            "Compare their specific word choices to the Hebrew. Only provide general verse information if it directly "
+            "helps them understand where their translation needs adjustment. "
             "If translation attempt is absent, provide a micro-hint focused on one token or one grammar feature."
         )
 
@@ -866,13 +864,12 @@ class TorahBotSim:
         )
 
         output_schema = (
-            "Output format (keep concise in lower bands):\n"
-            "1) Anchor: quote the specific Hebrew token(s) under discussion.\n"
-            "2) Gloss: literal sense.\n"
-            "3) Morphology: prefix/root/suffix or binyan note.\n"
-            "4) One teaching point.\n"
-            "5) Suggested revision or next micro-step.\n"
-            "Limit: one main teaching point in AWARE; expanded optional section only in PRESENT."
+            "FEEDBACK STRUCTURE:\n"
+            "1. VALIDATION: Start with 'Nice job.' or similar warmth. Quote a specific phrase they got right.\n"
+            "2. COMPARISON: 'You said [X]. This is correct/close. I might translate it as [Y] because [Reason: Root/Grammar].'\n"
+            "3. LEARNER'S VERSION: 'So your version stands as: [Quote their full attempt, maybe with small tweaks].'\n"
+            "4. NEXT STEP: Ask if they have follow-up questions or are ready for the next pasuk.\n"
+            "Tone: Encouraging, specific, not pedantic. You are a study partner, not a grader."
         )
 
         distress_mode = ""
@@ -910,23 +907,35 @@ Pedagogical structure:
         return sys_prompt.strip()
 
     def _build_user_instruction(self, user_text: str, band: str) -> str:
-        # include study context in the prompt
-        ref = self.study.reference or "none"
+        ref = self.study.reference or "unknown verse"
         heb = self.study.hebrew_text or ""
         attempt = self.study.last_attempt_text or ""
 
-        ctx = (
-            f"Study reference: {ref}\n"
-            f"Hebrew text (supplied): {heb}\n"
-            f"Translation attempt (supplied): {attempt}\n"
-        )
+        if attempt:
+            instruction = f"""=== STUDY SESSION ===
+HEBREW TEXT:
+{heb}
 
-        # avoid second-person language
-        instruction = (
-            f"{ctx}\n"
-            f"New learner message: {user_text}\n"
-            f"Task: respond as TorahBot according to band constraints.\n"
-        )
+=== THE LEARNER'S TRANSLATION (QUOTE THIS!) ===
+"{attempt}"
+=== END OF LEARNER'S TRANSLATION ===
+
+The learner now says: "{user_text}"
+
+YOUR TASK:
+1. Validate their attempt (nice job, etc).
+2. Compare their specific phrasing to the Hebrew.
+3. Show where they were right and where to refine.
+DO NOT ignore their translation. Reference it directly."""
+        else:
+            instruction = f"""HEBREW TEXT: {heb}
+REFERENCE: {ref}
+No translation attempt yet.
+
+LEARNER'S MESSAGE: {user_text}
+
+Task: Help them get started."""
+        
         return instruction
 
     async def _constrained_reply(self, user_instruction: str, system_prompt: str, band: str,
