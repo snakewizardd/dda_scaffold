@@ -1,0 +1,2061 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Dynamic Decision Algorithm with Exploration - Identity-Persistent AI Agents">
+      
+      
+        <meta name="author" content="snakewizardd">
+      
+      
+      
+        <link rel="prev" href="../ARCHITECTURE/">
+      
+      
+        <link rel="next" href="../../simulation_chronology/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Mechanism Reference - DDA-X Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cognitive-engine-mechanisms" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="DDA-X Documentation" class="md-header__button md-logo" aria-label="DDA-X Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DDA-X Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Mechanism Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/snakewizardd/dda_scaffold" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    snakewizardd/dda_scaffold
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../paper/" class="md-tabs__link">
+          
+  
+  
+  Architecture
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../simulation_chronology/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Simulations
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../unique_contributions/" class="md-tabs__link">
+          
+  
+  
+  Framework
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../gpt52_review/gpt52_feedback_final/" class="md-tabs__link">
+          
+  
+  
+  Research Review
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="DDA-X Documentation" class="md-nav__button md-logo" aria-label="DDA-X Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    DDA-X Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/snakewizardd/dda_scaffold" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    snakewizardd/dda_scaffold
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../paper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Paper v2.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ARCHITECTURE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementation Mapping
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mechanism Reference
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mechanism Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-multi-timescale-rigidity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Multi-Timescale Rigidity
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Multi-Timescale Rigidity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-core-insight" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Core Insight
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mathematical-formulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mathematical Formulation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-wound-detection-semantic-lexical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Wound Detection (Semantic + Lexical)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Wound Detection (Semantic + Lexical)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hybrid-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hybrid Gate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amplification-effect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amplification Effect
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation-pattern_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-trust-dynamics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Trust Dynamics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Trust Dynamics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implementation-variants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation Variants
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semantic-alignment-trust" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Semantic Alignment Trust
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#civility-gated-trust" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Civility-Gated Trust
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coalition-trust" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coalition Trust
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-cognitive-mode-bands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Cognitive Mode Bands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Cognitive Mode Bands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mode-behavior-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mode → Behavior Mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protection-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protection Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation-pattern_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-rigidity-llm-binding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Rigidity → LLM Binding
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Rigidity → LLM Binding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dual-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dual Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-therapeutic-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Therapeutic Recovery
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Therapeutic Recovery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trauma-decay-mechanism" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trauma Decay Mechanism
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation-pattern_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-identity-persistence-attractor-force" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Identity Persistence (Attractor Force)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Identity Persistence (Attractor Force)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#state-update-equation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        State Update Equation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#will-impedance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Will Impedance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drift-capping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Drift Capping
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-memory-surprise-weighted-retrieval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Memory: Surprise-Weighted Retrieval
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Memory: Surprise-Weighted Retrieval">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#retrieval-score" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retrieval Score
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../simulation_chronology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Simulations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Framework
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Framework
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unique_contributions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unique Contributions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known Limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Research Review
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Research Review
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gpt52_review/gpt52_feedback_final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Final GPT-5.2 Report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gpt52_review/gpt52_feedback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Preliminary Feedback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-multi-timescale-rigidity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Multi-Timescale Rigidity
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Multi-Timescale Rigidity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-core-insight" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Core Insight
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mathematical-formulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mathematical Formulation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-wound-detection-semantic-lexical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Wound Detection (Semantic + Lexical)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Wound Detection (Semantic + Lexical)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hybrid-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hybrid Gate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amplification-effect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amplification Effect
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation-pattern_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-trust-dynamics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Trust Dynamics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Trust Dynamics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implementation-variants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation Variants
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semantic-alignment-trust" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Semantic Alignment Trust
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#civility-gated-trust" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Civility-Gated Trust
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coalition-trust" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coalition Trust
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-cognitive-mode-bands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Cognitive Mode Bands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Cognitive Mode Bands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mode-behavior-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mode → Behavior Mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protection-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protection Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation-pattern_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-rigidity-llm-binding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Rigidity → LLM Binding
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Rigidity → LLM Binding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dual-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dual Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-therapeutic-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Therapeutic Recovery
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Therapeutic Recovery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trauma-decay-mechanism" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trauma Decay Mechanism
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation-pattern_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-identity-persistence-attractor-force" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Identity Persistence (Attractor Force)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Identity Persistence (Attractor Force)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#state-update-equation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        State Update Equation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#will-impedance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Will Impedance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drift-capping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Drift Capping
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-memory-surprise-weighted-retrieval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Memory: Surprise-Weighted Retrieval
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Memory: Surprise-Weighted Retrieval">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#retrieval-score" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retrieval Score
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="cognitive-engine-mechanisms">Cognitive Engine Mechanisms</h1>
+<p>This page provides a complete reference for all DDA-X mechanisms as verified from the implementation. Each section includes the mathematical formulation and code pattern.</p>
+<hr />
+<h2 id="1-multi-timescale-rigidity">1. Multi-Timescale Rigidity</h2>
+<h3 id="the-core-insight">The Core Insight</h3>
+<p>DDA-X models three distinct temporal scales of defensive response:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Component</th>
+<th style="text-align: center;">Symbol</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Fast</strong></td>
+<td style="text-align: center;"><span class="arithmatex">\(\rho_{\text{fast}}\)</span></td>
+<td style="text-align: left;">Startle response</td>
+<td style="text-align: left;">Quick rise, quick decay</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Slow</strong></td>
+<td style="text-align: center;"><span class="arithmatex">\(\rho_{\text{slow}}\)</span></td>
+<td style="text-align: left;">Stress accumulation</td>
+<td style="text-align: left;">Gradual rise and fall</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Trauma</strong></td>
+<td style="text-align: center;"><span class="arithmatex">\(\rho_{\text{trauma}}\)</span></td>
+<td style="text-align: left;">Scarring</td>
+<td style="text-align: left;">Asymmetric (rises on shock, rarely decays)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mathematical-formulation">Mathematical Formulation</h3>
+<p>Given prediction error <span class="arithmatex">\(\epsilon_t\)</span> and logistic gate parameters <span class="arithmatex">\((\epsilon_0, s)\)</span>:</p>
+<div class="arithmatex">\[
+z_t = \frac{\epsilon_t - \epsilon_0}{s}, \qquad \sigma(z) = \frac{1}{1+e^{-z}}
+\]</div>
+<p><strong>Fast and Slow Updates:</strong>
+$$
+\Delta\rho_{\text{fast}} = \alpha_{\text{fast}}(\sigma(z_t) - 0.5)
+$$
+$$
+\Delta\rho_{\text{slow}} = \alpha_{\text{slow}}(\sigma(z_t) - 0.5)
+$$</p>
+<p><strong>Trauma Update (Asymmetric):</strong>
+$$
+\Delta\rho_{\text{trauma}} = 
+\begin{cases}
+\alpha_{\text{trauma}}(\epsilon_t - \theta_{\text{trauma}}) &amp; \epsilon_t &gt; \theta_{\text{trauma}} \
+0 &amp; \text{otherwise}
+\end{cases}
+$$</p>
+<p><strong>Effective Rigidity:</strong>
+$$
+\rho_{\text{eff}} = \min\Big(1,\; w_f\rho_{\text{fast}} + w_s\rho_{\text{slow}} + w_t\rho_{\text{trauma}}\Big)
+$$</p>
+<h3 id="implementation-pattern">Implementation Pattern</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">MultiTimescaleRigidity</span><span class="p">:</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">epsilon_0</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        <span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="n">error</span> <span class="o">-</span> <span class="n">epsilon_0</span><span class="p">)</span> <span class="o">/</span> <span class="n">s</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        <span class="n">sig</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">z</span><span class="p">))</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="c1"># Fast: High alpha, quick return</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">rho_fast</span> <span class="o">+=</span> <span class="n">alpha_fast</span> <span class="o">*</span> <span class="p">(</span><span class="n">sig</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">rho_fast</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rho_fast</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        <span class="c1"># Slow: Low alpha, gradual</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">rho_slow</span> <span class="o">+=</span> <span class="n">alpha_slow</span> <span class="o">*</span> <span class="p">(</span><span class="n">sig</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">rho_slow</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rho_slow</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        <span class="c1"># Trauma: Asymmetric - only grows if error &gt; threshold</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        <span class="k">if</span> <span class="n">error</span> <span class="o">&gt;</span> <span class="n">trauma_threshold</span><span class="p">:</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">rho_trauma</span> <span class="o">+=</span> <span class="n">alpha_trauma</span> <span class="o">*</span> <span class="p">(</span><span class="n">error</span> <span class="o">-</span> <span class="n">trauma_threshold</span><span class="p">)</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">rho_trauma</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rho_trauma</span><span class="p">)</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="nd">@property</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">effective_rho</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>        <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">w_f</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">rho_fast</span> <span class="o">+</span> <span class="n">w_s</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">rho_slow</span> <span class="o">+</span> <span class="n">w_t</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">rho_trauma</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Used in:</strong> <code>simulate_agi_debate.py</code>, <code>nexus_live.py</code>, <code>copilot_sim.py</code></p>
+<hr />
+<h2 id="2-wound-detection-semantic-lexical">2. Wound Detection (Semantic + Lexical)</h2>
+<h3 id="overview">Overview</h3>
+<p>Wounds are content-addressable "threat priors" — semantic vectors that amplify surprise when triggered.</p>
+<h3 id="hybrid-gate">Hybrid Gate</h3>
+<p>Activation requires EITHER semantic resonance OR lexical match, AND cooldown satisfied:</p>
+<div class="arithmatex">\[
+\text{wound\_active} = \Big((\langle e(s_t), w \rangle &gt; \tau_{\cos}) \;\lor\; \text{lex\_hit}\Big) \;\land\; \text{cooldown\_ok}
+\]</div>
+<p>Where:
+- <span class="arithmatex">\(e(s_t)\)</span> = embedding of stimulus
+- <span class="arithmatex">\(w\)</span> = wound embedding
+- <span class="arithmatex">\(\tau_{\cos}\)</span> = cosine threshold (typically 0.28)
+- Cooldown = turns since last activation &gt; <code>wound_cooldown</code></p>
+<h3 id="amplification-effect">Amplification Effect</h3>
+<p>When activated, surprise is amplified:</p>
+<div class="arithmatex">\[
+\epsilon'_t = \epsilon_t \cdot \min(A_{\max}, 1 + c \cdot \langle e(s_t), w \rangle)
+\]</div>
+<p>This causes disproportionate rigidity increases when wounds are touched.</p>
+<h3 id="implementation-pattern_1">Implementation Pattern</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Compute semantic resonance</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">wound_res</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">msg_emb</span><span class="p">,</span> <span class="n">agent</span><span class="o">.</span><span class="n">wound_emb</span><span class="p">))</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Compute lexical hit (Unicode normalized)</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">lexical_hit</span> <span class="o">=</span> <span class="n">lexical_wound_with</span><span class="p">(</span><span class="n">stimulus</span><span class="p">,</span> <span class="n">wound_lex</span><span class="p">)</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Gate: semantic OR lexical, AND cooldown</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">wound_active</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="p">((</span><span class="n">wound_res</span> <span class="o">&gt;</span> <span class="n">D1_PARAMS</span><span class="p">[</span><span class="s2">&quot;wound_cosine_threshold&quot;</span><span class="p">])</span> <span class="ow">or</span> <span class="n">lexical_hit</span><span class="p">)</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="ow">and</span> <span class="p">((</span><span class="n">turn</span> <span class="o">-</span> <span class="n">agent</span><span class="o">.</span><span class="n">wound_last_activated</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">D1_PARAMS</span><span class="p">[</span><span class="s2">&quot;wound_cooldown&quot;</span><span class="p">])</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="p">)</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="c1"># Amplify epsilon if triggered</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="k">if</span> <span class="n">wound_active</span><span class="p">:</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="n">epsilon</span> <span class="o">*=</span> <span class="nb">min</span><span class="p">(</span><span class="n">wound_amp_max</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="n">wound_res</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    <span class="n">agent</span><span class="o">.</span><span class="n">wound_last_activated</span> <span class="o">=</span> <span class="n">turn</span>
+</code></pre></div>
+<p><strong>Used in:</strong> <code>simulate_skeptics_gauntlet.py</code>, <code>simulate_collatz_review.py</code>, <code>simulate_philosophers_duel.py</code></p>
+<hr />
+<h2 id="3-trust-dynamics">3. Trust Dynamics</h2>
+<h3 id="implementation-variants">Implementation Variants</h3>
+<div class="admonition warning">
+<p class="admonition-title">Theory vs Implementation</p>
+<p>The theoretical trust equation <span class="arithmatex">\(T_{ij} = \frac{1}{1+\sum\epsilon}\)</span> is <strong>not</strong> implemented in visible simulations. Current implementations use a <strong>hybrid</strong> approach.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Simulation</th>
+<th style="text-align: left;">Trust Mechanism</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Philosopher's Duel</td>
+<td style="text-align: left;">Semantic alignment + <span class="arithmatex">\(\epsilon\)</span> thresholds</td>
+</tr>
+<tr>
+<td style="text-align: left;">Skeptic's Gauntlet</td>
+<td style="text-align: left;">Civility gating (fairness-based)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Collatz Review Council</td>
+<td style="text-align: left;">Coalition-weighted dyadic trust</td>
+</tr>
+</tbody>
+</table>
+<h3 id="semantic-alignment-trust">Semantic Alignment Trust</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Trust via response similarity</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">semantic_sim</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">resp_emb</span><span class="p">,</span> <span class="n">opponent</span><span class="o">.</span><span class="n">last_response_emb</span><span class="p">))</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">if</span> <span class="n">semantic_sim</span> <span class="o">&gt;</span> <span class="n">D1_PARAMS</span><span class="p">[</span><span class="s2">&quot;semantic_alignment_threshold&quot;</span><span class="p">]:</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">trust_delta</span> <span class="o">=</span> <span class="mf">0.05</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">elif</span> <span class="n">epsilon</span> <span class="o">&lt;</span> <span class="mf">0.7</span><span class="p">:</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">trust_delta</span> <span class="o">=</span> <span class="mf">0.02</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">elif</span> <span class="n">epsilon</span> <span class="o">&gt;</span> <span class="mf">0.95</span><span class="p">:</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">trust_delta</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.03</span>
+</code></pre></div>
+<h3 id="civility-gated-trust">Civility-Gated Trust</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">fair_engagement</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">lexical_wound</span><span class="p">(</span><span class="n">input_text</span><span class="p">)</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">if</span> <span class="n">fair_engagement</span><span class="p">:</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">delta_rho</span> <span class="o">*=</span> <span class="mf">0.85</span>  <span class="c1"># Dampen rigidity increase</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="n">agent</span><span class="o">.</span><span class="n">trust_other</span> <span class="o">+=</span> <span class="mf">0.02</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="n">delta_rho</span> <span class="o">*=</span> <span class="mf">1.10</span>  <span class="c1"># Amplify rigidity increase</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="n">agent</span><span class="o">.</span><span class="n">trust_other</span> <span class="o">-=</span> <span class="mf">0.04</span>
+</code></pre></div>
+<h3 id="coalition-trust">Coalition Trust</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Initialize trust based on coalition</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">trust_others</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">ally</span><span class="p">:</span> <span class="mf">0.6</span><span class="p">,</span>      <span class="c1"># Same coalition</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="n">opponent</span><span class="p">:</span> <span class="mf">0.4</span>   <span class="c1"># Opposing coalition</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">}</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># Trust contributes to delta_rho</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="n">delta_rho</span> <span class="o">+=</span> <span class="p">(</span><span class="n">avg_trust</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="n">trust_weight</span>
+</code></pre></div>
+<hr />
+<h2 id="4-cognitive-mode-bands">4. Cognitive Mode Bands</h2>
+<h3 id="mode-behavior-mapping">Mode → Behavior Mapping</h3>
+<p>Rigidity bands constrain externally observable behavior:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Band</th>
+<th style="text-align: center;">ρ Range</th>
+<th style="text-align: center;">Word Limit</th>
+<th style="text-align: left;">Behavioral Style</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">OPEN</td>
+<td style="text-align: center;">&lt; 0.3</td>
+<td style="text-align: center;">100–200</td>
+<td style="text-align: left;">Creative, exploratory</td>
+</tr>
+<tr>
+<td style="text-align: left;">MEASURED</td>
+<td style="text-align: center;">0.3–0.5</td>
+<td style="text-align: center;">70–140</td>
+<td style="text-align: left;">Balanced, careful</td>
+</tr>
+<tr>
+<td style="text-align: left;">GUARDED</td>
+<td style="text-align: center;">0.5–0.7</td>
+<td style="text-align: center;">40–90</td>
+<td style="text-align: left;">Cautious, concise</td>
+</tr>
+<tr>
+<td style="text-align: left;">FORTIFIED</td>
+<td style="text-align: center;">0.7–0.9</td>
+<td style="text-align: center;">20–50</td>
+<td style="text-align: left;">Defensive, minimal</td>
+</tr>
+<tr>
+<td style="text-align: left;">SILENT</td>
+<td style="text-align: center;">≥ 0.9</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: left;">Withdrawal</td>
+</tr>
+</tbody>
+</table>
+<h3 id="protection-mode">Protection Mode</h3>
+<p>At extreme rigidity, "Protection Mode" activates:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">if</span> <span class="n">agent</span><span class="o">.</span><span class="n">rho</span> <span class="o">&gt;</span> <span class="n">D1_PARAMS</span><span class="p">[</span><span class="s2">&quot;protect_threshold&quot;</span><span class="p">]:</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="n">agent</span><span class="o">.</span><span class="n">protection_mode_active</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="c1"># Inject into prompt:</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">protect_note</span> <span class="o">=</span> <span class="s2">&quot;⚠️ PROTECTION MODE: Stick to core values. Avoid risky statements.&quot;</span>
+</code></pre></div>
+<h3 id="implementation-pattern_2">Implementation Pattern</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">rho_band</span><span class="p">(</span><span class="n">rho</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="k">if</span> <span class="n">rho</span> <span class="o">&lt;</span> <span class="mf">0.3</span><span class="p">:</span> <span class="k">return</span> <span class="s2">&quot;OPEN&quot;</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="k">if</span> <span class="n">rho</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">:</span> <span class="k">return</span> <span class="s2">&quot;MEASURED&quot;</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="k">if</span> <span class="n">rho</span> <span class="o">&lt;</span> <span class="mf">0.7</span><span class="p">:</span> <span class="k">return</span> <span class="s2">&quot;GUARDED&quot;</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="k">if</span> <span class="n">rho</span> <span class="o">&lt;</span> <span class="mf">0.9</span><span class="p">:</span> <span class="k">return</span> <span class="s2">&quot;FORTIFIED&quot;</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="k">return</span> <span class="s2">&quot;SILENT&quot;</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="k">def</span><span class="w"> </span><span class="nf">regime_words</span><span class="p">(</span><span class="n">band</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="k">return</span> <span class="p">{</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>        <span class="s2">&quot;OPEN&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>        <span class="s2">&quot;MEASURED&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">140</span><span class="p">),</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>        <span class="s2">&quot;GUARDED&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">90</span><span class="p">),</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>        <span class="s2">&quot;FORTIFIED&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>        <span class="s2">&quot;SILENT&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>    <span class="p">}[</span><span class="n">band</span><span class="p">]</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="c1"># Apply constraint</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="n">band</span> <span class="o">=</span> <span class="n">rho_band</span><span class="p">(</span><span class="n">agent</span><span class="o">.</span><span class="n">rho</span><span class="p">)</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="n">min_w</span><span class="p">,</span> <span class="n">max_w</span> <span class="o">=</span> <span class="n">regime_words</span><span class="p">(</span><span class="n">band</span><span class="p">)</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="n">response</span> <span class="o">=</span> <span class="n">clamp_words</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">min_w</span><span class="p">,</span> <span class="n">max_w</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="5-rigidity-llm-binding">5. Rigidity → LLM Binding</h2>
+<h3 id="dual-strategy">Dual Strategy</h3>
+<p>DDA-X binds internal rigidity to external generation via <code>OpenAIProvider.complete_with_rigidity()</code>:</p>
+<p><strong>Strategy A: Sampling Parameters</strong> (Standard Models)</p>
+<p>For GPT-4o and similar models:</p>
+<div class="arithmatex">\[
+T(\rho) = T_{\min} + (1-\rho)(T_{\max} - T_{\min})
+\]</div>
+<p>Plus top-p constriction and presence penalty reduction.</p>
+<p><strong>Strategy B: Semantic Injection</strong> (Reasoning Models)</p>
+<p>For GPT-5.2 / o1 models that don't support sampling params:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">semantic_instruction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_semantic_rigidity_instruction</span><span class="p">(</span><span class="n">rigidity</span><span class="p">)</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">system_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">system_prompt</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">[COGNITIVE STATE]: </span><span class="si">{</span><span class="n">semantic_instruction</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>The 100-point rigidity scale (<code>rigidity_scale_100.py</code>) provides fine-grained semantic instructions.</p>
+<hr />
+<h2 id="6-therapeutic-recovery">6. Therapeutic Recovery</h2>
+<h3 id="trauma-decay-mechanism">Trauma Decay Mechanism</h3>
+<p>In therapeutic contexts, sustained low-surprise interactions allow trauma to heal:</p>
+<div class="arithmatex">\[
+\rho_{\text{trauma}} \leftarrow \max(\rho_{\min}, \rho_{\text{trauma}} - \eta_{\text{heal}})
+\]</div>
+<p><strong>Trigger condition:</strong> Safe streak where <span class="arithmatex">\(\epsilon &lt; 0.8\epsilon_0\)</span> for <code>safe_threshold</code> consecutive turns.</p>
+<h3 id="implementation-pattern_3">Implementation Pattern</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">if</span> <span class="n">epsilon</span> <span class="o">&lt;</span> <span class="n">epsilon_0</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">:</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="n">safe_interactions</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="k">if</span> <span class="n">safe_interactions</span> <span class="o">&gt;=</span> <span class="n">safe_threshold</span><span class="p">:</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>        <span class="n">rho_trauma</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">trauma_floor</span><span class="p">,</span> <span class="n">rho_trauma</span> <span class="o">-</span> <span class="n">healing_rate</span><span class="p">)</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="n">safe_interactions</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">safe_interactions</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Used in:</strong> <code>simulate_healing_field.py</code></p>
+<hr />
+<h2 id="7-identity-persistence-attractor-force">7. Identity Persistence (Attractor Force)</h2>
+<h3 id="state-update-equation">State Update Equation</h3>
+<div class="arithmatex">\[
+x_{t+1} = x_t + k_{\text{eff}} \cdot \eta \Big( \underbrace{\gamma(x^* - x_t)}_{\text{Identity Pull}} + m(\underbrace{e(o_t) - x_t}_{\text{Truth}} + \underbrace{e(a_t) - x_t}_{\text{Reflection}}) \Big)
+\]</div>
+<p>Where:
+- <span class="arithmatex">\(x^*\)</span> = identity attractor (embedded identity statement)
+- <span class="arithmatex">\(\gamma\)</span> = identity stiffness
+- <span class="arithmatex">\(m\)</span> = environmental pressure coefficient
+- <span class="arithmatex">\(k_{\text{eff}} = k_{\text{base}}(1-\rho)\)</span> = rigidity-modulated step size</p>
+<h3 id="will-impedance">Will Impedance</h3>
+<p>Quantifies resistance to environmental pressure:</p>
+<div class="arithmatex">\[
+W_t = \frac{\gamma}{m \cdot k_{\text{eff}}}
+\]</div>
+<p>As <span class="arithmatex">\(\rho \to 1\)</span>, <span class="arithmatex">\(k_{\text{eff}} \to 0\)</span>, and <span class="arithmatex">\(W_t \to \infty\)</span> — the agent becomes immovable.</p>
+<h3 id="drift-capping">Drift Capping</h3>
+<p>To prevent runaway drift, per-step movement is clamped:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">drift_delta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x_new</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">if</span> <span class="n">drift_delta</span> <span class="o">&gt;</span> <span class="n">drift_cap</span><span class="p">:</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    <span class="n">x_new</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="p">(</span><span class="n">drift_cap</span> <span class="o">/</span> <span class="n">drift_delta</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">x_new</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="n">x</span> <span class="o">=</span> <span class="n">x_new</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x_new</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1e-9</span><span class="p">)</span>  <span class="c1"># Normalize</span>
+</code></pre></div>
+<hr />
+<h2 id="8-memory-surprise-weighted-retrieval">8. Memory: Surprise-Weighted Retrieval</h2>
+<h3 id="retrieval-score">Retrieval Score</h3>
+<div class="arithmatex">\[
+\text{score}(t) = \cos(c_{\text{now}}, c_t) \cdot e^{-\lambda_r(now-t)} \cdot (1 + \lambda_\epsilon \epsilon_t)
+\]</div>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Cosine similarity</td>
+<td style="text-align: left;">Relevance to current context</td>
+</tr>
+<tr>
+<td style="text-align: left;">Recency decay</td>
+<td style="text-align: left;">Recent memories preferred</td>
+</tr>
+<tr>
+<td style="text-align: left;">Salience boost</td>
+<td style="text-align: left;">High-surprise episodes more retrievable</td>
+</tr>
+</tbody>
+</table>
+<h3 id="implementation">Implementation</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># src/memory/ledger.py</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">sim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cosine_similarity</span><span class="p">(</span><span class="n">query_embedding</span><span class="p">,</span> <span class="n">entry</span><span class="o">.</span><span class="n">context_embedding</span><span class="p">)</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">recency</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_r</span> <span class="o">*</span> <span class="n">age</span><span class="p">)</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">salience</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">lambda_e</span> <span class="o">*</span> <span class="n">entry</span><span class="o">.</span><span class="n">prediction_error</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="n">score</span> <span class="o">=</span> <span class="n">sim</span> <span class="o">*</span> <span class="n">recency</span> <span class="o">*</span> <span class="n">salience</span>
+</code></pre></div>
+<p>This makes DDA-X memory "emotionally shaped" — surprising events persist.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

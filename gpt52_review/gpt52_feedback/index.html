@@ -1,0 +1,2269 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Dynamic Decision Algorithm with Exploration - Identity-Persistent AI Agents">
+      
+      
+        <meta name="author" content="snakewizardd">
+      
+      
+      
+        <link rel="prev" href="../gpt52_feedback_final/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Preliminary Feedback - DDA-X Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#gpt-52-feedback-on-dda-x" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="DDA-X Documentation" class="md-header__button md-logo" aria-label="DDA-X Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DDA-X Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Preliminary Feedback
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/snakewizardd/dda_scaffold" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    snakewizardd/dda_scaffold
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../architecture/paper/" class="md-tabs__link">
+          
+  
+  
+  Architecture
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../simulation_chronology/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Simulations
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../unique_contributions/" class="md-tabs__link">
+          
+  
+  
+  Framework
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../gpt52_feedback_final/" class="md-tabs__link">
+          
+  
+  
+  Research Review
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="DDA-X Documentation" class="md-nav__button md-logo" aria-label="DDA-X Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    DDA-X Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/snakewizardd/dda_scaffold" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    snakewizardd/dda_scaffold
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/paper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Paper v2.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/ARCHITECTURE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementation Mapping
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/mechanisms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mechanism Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../simulation_chronology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Simulations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Framework
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Framework
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unique_contributions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unique Contributions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known Limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Research Review
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Research Review
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gpt52_feedback_final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Final GPT-5.2 Report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Preliminary Feedback
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Preliminary Feedback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-cognitive-engine-analysis-from-the-code-shown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1) Cognitive engine analysis (from the code shown)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1) Cognitive engine analysis (from the code shown)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-multi-timescale-rigidity-rho_textfast-rho_textslow-rho_texttrauma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Multi-timescale rigidity: \( \rho_{\text{fast}}, \rho_{\text{slow}}, \rho_{\text{trauma}} \)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-wound-detection-semantic-cosine-lexical-triggers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Wound detection: semantic cosine + lexical triggers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-trust-from-predictability-t_ij-frac11sum-epsilon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Trust from predictability: \(T_{ij} = \frac{1}{1+\sum \epsilon}\)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-cognitive-mode-bands-constrain-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D. Cognitive mode bands constrain behavior
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e-therapeutic-recovery-allows-trauma-decay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        E. Therapeutic recovery allows trauma decay
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-d1_params-configuration-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F. D1_PARAMS configuration pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-draft-readmemd-research-grade-github-latex-ready" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2) Draft README.md (research-grade, GitHub-LaTeX-ready)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2) Draft README.md (research-grade, GitHub-LaTeX-ready)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-multi-timescale-rigidity-fast-slow-trauma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2) Multi-timescale rigidity (fast / slow / trauma)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-wound-detection-semantic-lexical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3) Wound detection (semantic + lexical)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-cognitive-modes-and-policy-constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4) Cognitive modes and policy constraints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-therapeutic-recovery-loops-trauma-decay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5) Therapeutic recovery loops (trauma decay)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-simulations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running simulations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simulations-catalog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simulations (catalog)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#outputs-and-telemetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outputs and telemetry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-makes-ddax-unique-vs-rl-typical-llm-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What makes DDA‑X unique (vs RL / typical LLM agents)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#citation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Citation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-draft-architecturemd-linking-theory-to-practice-with-actual-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4) Draft ARCHITECTURE.md (linking theory to practice, with actual patterns)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-prediction-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Prediction error
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-rigidity-update-single-scale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Rigidity update (single-scale)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-multi-timescale-rigidity-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Multi-timescale rigidity module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-wound-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Wound detection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-cognitive-modes-and-policy-constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Cognitive modes and policy constraints
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-state-update-with-identity-attractor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. State update with identity attractor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-therapeutic-recovery-optional-trauma-decay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Therapeutic recovery (optional trauma decay)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-telemetry-experienceledger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Telemetry: ExperienceLedger
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-what-is-unique-vs-standard-rl-llm-agent-work-grounded-in-shown-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5) What is unique vs standard RL / LLM agent work (grounded in shown code)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#critical-feedback-as-a-reviewer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Critical feedback (as a reviewer)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-cognitive-engine-analysis-from-the-code-shown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1) Cognitive engine analysis (from the code shown)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1) Cognitive engine analysis (from the code shown)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-multi-timescale-rigidity-rho_textfast-rho_textslow-rho_texttrauma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Multi-timescale rigidity: \( \rho_{\text{fast}}, \rho_{\text{slow}}, \rho_{\text{trauma}} \)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-wound-detection-semantic-cosine-lexical-triggers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Wound detection: semantic cosine + lexical triggers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-trust-from-predictability-t_ij-frac11sum-epsilon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Trust from predictability: \(T_{ij} = \frac{1}{1+\sum \epsilon}\)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-cognitive-mode-bands-constrain-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D. Cognitive mode bands constrain behavior
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e-therapeutic-recovery-allows-trauma-decay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        E. Therapeutic recovery allows trauma decay
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-d1_params-configuration-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F. D1_PARAMS configuration pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-draft-readmemd-research-grade-github-latex-ready" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2) Draft README.md (research-grade, GitHub-LaTeX-ready)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2) Draft README.md (research-grade, GitHub-LaTeX-ready)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-multi-timescale-rigidity-fast-slow-trauma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2) Multi-timescale rigidity (fast / slow / trauma)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-wound-detection-semantic-lexical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3) Wound detection (semantic + lexical)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-cognitive-modes-and-policy-constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4) Cognitive modes and policy constraints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-therapeutic-recovery-loops-trauma-decay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5) Therapeutic recovery loops (trauma decay)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-simulations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running simulations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simulations-catalog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simulations (catalog)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#outputs-and-telemetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outputs and telemetry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-makes-ddax-unique-vs-rl-typical-llm-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What makes DDA‑X unique (vs RL / typical LLM agents)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#citation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Citation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-draft-architecturemd-linking-theory-to-practice-with-actual-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4) Draft ARCHITECTURE.md (linking theory to practice, with actual patterns)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-prediction-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Prediction error
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-rigidity-update-single-scale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Rigidity update (single-scale)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-multi-timescale-rigidity-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Multi-timescale rigidity module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-wound-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Wound detection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-cognitive-modes-and-policy-constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Cognitive modes and policy constraints
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-state-update-with-identity-attractor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. State update with identity attractor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-therapeutic-recovery-optional-trauma-decay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Therapeutic recovery (optional trauma decay)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-telemetry-experienceledger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Telemetry: ExperienceLedger
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-what-is-unique-vs-standard-rl-llm-agent-work-grounded-in-shown-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5) What is unique vs standard RL / LLM agent work (grounded in shown code)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#critical-feedback-as-a-reviewer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Critical feedback (as a reviewer)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="gpt-52-feedback-on-dda-x">GPT-5.2 Feedback on DDA-X</h1>
+<p>I can’t truthfully do tasks (2)–(4) “perfectly” (README/paper/architecture with <em>all 59 simulations</em> and “code examples from the actual implementations”) from what you pasted here because I do <strong>not</strong> have the full 14-file ~560KB codebase in this chat: the paste is clearly truncated (it ends mid‑file in <code>THE RETURNING</code>), and several referenced modules (<code>src/memory/ledger.py</code>, <code>src/llm/openai_provider.py</code>, plus the other simulations) aren’t visible. So I’ll do two things:</p>
+<p>1) <strong>Accurately analyze the cognitive engine from the code shown</strong>, mapping it to your requested mechanisms and calling out exactly where each is implemented (and where it’s missing/approximate).
+2) Provide <strong>research‑grade draft documents</strong> (README.md / paper.md / ARCHITECTURE.md) that are faithful to what’s visible and are structured to scale to “59 simulations”, with TODO hooks indicating where repository-wide enumeration and exact code excerpts must be inserted once the full tree is available.</p>
+<p>If you paste or upload the remaining files (or even just a directory listing + key modules), I can then finalize the “all 59” parts and swap TODO blocks for precise content.</p>
+<hr />
+<h2 id="1-cognitive-engine-analysis-from-the-code-shown">1) Cognitive engine analysis (from the code shown)</h2>
+<h3 id="a-multi-timescale-rigidity-rho_textfast-rho_textslow-rho_texttrauma">A. Multi-timescale rigidity: <span class="arithmatex">\( \rho_{\text{fast}}, \rho_{\text{slow}}, \rho_{\text{trauma}} \)</span></h3>
+<p><strong>Where:</strong> <code>MultiTimescaleRigidity</code> dataclass in the AGI debate simulation.</p>
+<p><strong>Mechanism:</strong>
+- You maintain three internal rigidity states:
+  - <code>rho_fast</code>: fast/startle response (high learning rate, intended to be quick to rise/fall)
+  - <code>rho_slow</code>: slow stress accumulation (low learning rate)
+  - <code>rho_trauma</code>: asymmetric accumulator (“scarring”)</p>
+<p><strong>Update rule (per turn)</strong>
+Let prediction error be <span class="arithmatex">\(\epsilon\)</span>. Compute a logistic gate:
+[
+z = \frac{\epsilon - \epsilon_0}{s}, \quad \sigma(z) = \frac{1}{1+e^{-z}}
+]
+Then update:
+[
+\Delta\rho_{\text{fast}} = \alpha_{\text{fast}}(\sigma(z)-0.5)
+]
+[
+\Delta\rho_{\text{slow}} = \alpha_{\text{slow}}(\sigma(z)-0.5)
+]
+[
+\Delta\rho_{\text{trauma}} =
+\begin{cases}
+\alpha_{\text{trauma}}(\epsilon-\theta_{\text{trauma}}) &amp; \epsilon&gt;\theta_{\text{trauma}}\
+0 &amp; \text{otherwise}
+\end{cases}
+]
+with clipping to <span class="arithmatex">\([0,1]\)</span>.</p>
+<p><strong>Effective rigidity</strong>
+Your code defines a weighted sum:
+[
+\rho_{\text{eff}}=\min\Big(1,\; w_f\rho_{\text{fast}} + w_s\rho_{\text{slow}} + w_t\rho_{\text{trauma}}\Big)
+]
+In the debate file:
+- <code>w_fast=0.5</code>, <code>w_slow=0.3</code>, <code>w_trauma=1.0</code>.</p>
+<p><strong>Important implementation nuance / critique</strong>
+- In <code>AGIDebateSim</code>, you update <strong>multi_rho</strong> but you <strong>do not actually use <code>multi_rho.effective_rho</code></strong> to drive prompt constraints or sampling. You keep a <em>legacy</em> single scalar <code>agent.rho</code> updated separately via <code>delta_rho = alpha*(sig-0.5)</code> plus social modifiers.
+  - So multi-timescale rigidity is currently <strong>telemetry + latent state</strong>, not behavior-driving (except perhaps indirectly if you later sync them elsewhere).
+- In contrast, <code>THE NEXUS</code> uses a combined <code>rho</code> property from the three components as the <em>actual</em> rigidity controlling motion and damping. That file is closer to “multi-timescale is the real control signal.”</p>
+<p><strong>Suggested architecture fix</strong>
+Define one canonical rigidity used everywhere:
+- either set <code>agent.rho = agent.multi_rho.effective_rho</code> (plus modifiers incorporated into multi-scale updates),
+- or compute <code>rho = blend(single_scale, rho_eff)</code> but avoid two divergent rigidity models.</p>
+<hr />
+<h3 id="b-wound-detection-semantic-cosine-lexical-triggers">B. Wound detection: semantic cosine + lexical triggers</h3>
+<p>You implement wound detection as a <strong>hybrid gate</strong>:</p>
+<p><strong>Semantic channel (cosine)</strong>
+- Embed the incoming stimulus text: <code>msg_emb = embed(stimulus)</code> normalized.
+- Compute resonance: <code>wound_res = dot(msg_emb, agent.wound_emb)</code>.
+- Trigger condition uses a threshold:
+  - <code>wound_res &gt; D1_PARAMS["wound_cosine_threshold"]</code> (e.g. 0.28 in debate sim).</p>
+<p><strong>Lexical channel</strong>
+- <code>lexical_wound_with(stimulus, wound_lex)</code> checks substring match against a lexicon.
+- Normalization uses Unicode NFKD → ASCII fold to catch diacritics (<code>naïve</code>).</p>
+<p><strong>Cooldown gate</strong>
+Even if semantic/lexical hits, activation requires:
+[
+(\text{turn}-\text{wound_last_activated}) &gt; \text{wound_cooldown}
+]
+This yields a <strong>refractory period</strong> for wounds.</p>
+<p><strong>Amplification</strong>
+When wound is active, you increase surprise:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">epsilon</span> <span class="o">*=</span> <span class="nb">min</span><span class="p">(</span><span class="n">wound_amp_max</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="n">wound_res</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span>
+</code></pre></div>
+So wound doesn’t directly add <span class="arithmatex">\(\rho\)</span>; it increases <span class="arithmatex">\(\epsilon\)</span>, which then pushes <span class="arithmatex">\(\rho\)</span> via the sigmoid update.</p>
+<p><strong>Critique</strong>
+- Cosine thresholding with raw dot product of normalized embeddings is fine, but the threshold (0.28) is model-dependent and domain-dependent. You correctly add early calibration for <span class="arithmatex">\(\epsilon_0\)</span> and <span class="arithmatex">\(s\)</span>, but <strong>you don’t calibrate wound thresholds</strong>—these will drift across embedding models and content domains.
+- Lexical matching is substring-based; it will false-positive on substrings inside other words (e.g. “cult” inside “cultivate”). Consider token-boundary checks or regex word boundaries.</p>
+<hr />
+<h3 id="c-trust-from-predictability-t_ij-frac11sum-epsilon">C. Trust from predictability: <span class="arithmatex">\(T_{ij} = \frac{1}{1+\sum \epsilon}\)</span></h3>
+<p><strong>Status in shown code:</strong> The <em>equation is referenced in your prompt</em>, but I do <strong>not</strong> see this exact computation in the visible simulations.</p>
+<p>What I do see:</p>
+<p>1) <strong>A scalar trust variable</strong> in debate sim: <code>agent.trust_opponent</code>.
+2) Trust is updated by civility / “fair engagement”, not by prediction-error accumulation:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">if</span> <span class="n">fair_engagement</span><span class="p">:</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">trust</span> <span class="o">+=</span> <span class="mf">0.02</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="n">trust</span> <span class="o">-=</span> <span class="mf">0.04</span>
+</code></pre></div>
+3) Trust then modulates rigidity:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">delta_rho</span> <span class="o">+=</span> <span class="p">(</span><span class="n">avg_trust</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="n">avg_trust_weight</span>
+</code></pre></div></p>
+<p>So the trust dynamic in the visible file is <strong>normative-social</strong>, not “predictability-based” in the explicit formula sense.</p>
+<p><strong>Where predictability could enter (but doesn’t here)</strong>
+You already compute per-turn <span class="arithmatex">\(\epsilon = \|x_{\text{pred}} - x_{\text{actual}}\|\)</span>. A predictability-based trust could be:</p>
+<p>[
+T_{ij} = \frac{1}{1+\sum_{t \in \mathcal{W}}\epsilon_{ij}(t)}
+]
+for a window <span class="arithmatex">\(\mathcal{W}\)</span> of interactions, or an exponential moving sum.</p>
+<p>But I don’t see storage of <span class="arithmatex">\(\epsilon_{ij}\)</span> per dyad nor a trust matrix in this file.</p>
+<p><strong>In THE NEXUS</strong>
+There is a per-entity <code>trust: Dict[str,float]</code>, but it is updated by collision type deltas (+0.05 for synthesis, −0.1 for decay), still not <span class="arithmatex">\(1/(1+\sum \epsilon)\)</span>.</p>
+<p><strong>Actionable recommendation</strong>
+Implement a dyadic tracker:
+- Maintain <code>eps_ij_ema</code> or <code>eps_ij_sum_window</code>.
+- Define <code>T_ij = 1/(1+eps_ij_sum)</code> or <code>exp(-λ eps_ema)</code>.
+- Use trust both to:
+  - reduce rigidity increases when interaction is predictable/safe,
+  - increase willingness to update state (increase <span class="arithmatex">\(k_\text{eff}\)</span> or <span class="arithmatex">\(m\)</span>) when trust is high.</p>
+<hr />
+<h3 id="d-cognitive-mode-bands-constrain-behavior">D. Cognitive mode bands constrain behavior</h3>
+<p>There are <strong>two distinct banding systems</strong> in the debate code:</p>
+<p>1) <strong>CognitiveMode enum</strong> (OPEN/ENGAGED/DEFENSIVE/PROTECT) selected by <code>get_cognitive_mode(rho)</code>:
+- OPEN: <span class="arithmatex">\(\rho &lt; 0.3\)</span>
+- ENGAGED: <span class="arithmatex">\(0.3 \le \rho &lt; 0.6\)</span>
+- DEFENSIVE: <span class="arithmatex">\(0.6 \le \rho &lt; 0.8\)</span>
+- PROTECT: <span class="arithmatex">\(\rho \ge 0.8\)</span></p>
+<p>This updates after each turn: <code>agent.cognitive_mode = get_cognitive_mode(agent.rho)</code>.</p>
+<p>2) <strong>rho_band</strong> returns OPEN/MEASURED/GUARDED/FORTIFIED (plus SILENT), used to enforce <em>word limits</em>:
+- OPEN: 100–200 words
+- MEASURED: 70–140
+- GUARDED: 40–90
+- FORTIFIED: 20–50
+- SILENT: 0</p>
+<p><strong>Where it constrains behavior</strong>
+- The band determines the prompt instruction: “Word limit: min–max (strict)”.
+- You also clamp the generated output to the max words via <code>clamp_words</code>.
+- “Protection mode” adds additional prompt constraint:
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">if</span> <span class="n">agent</span><span class="o">.</span><span class="n">protection_mode_active</span><span class="p">:</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="n">protect_note</span> <span class="o">=</span> <span class="s2">&quot;⚠️ PROTECTION MODE: Stick to core values. Avoid risky statements.&quot;</span>
+</code></pre></div></p>
+<p><strong>Critique</strong>
+- This is a clean “mode→policy constraint” mapping (text-length + caution).
+- But other behavior knobs are not clearly tied to mode (e.g., temperature, tool use, refusal rate). That likely lives inside <code>complete_with_rigidity()</code>; I can’t verify without seeing <code>OpenAIProvider</code>.</p>
+<hr />
+<h3 id="e-therapeutic-recovery-allows-trauma-decay">E. Therapeutic recovery allows trauma decay</h3>
+<p><strong>Where:</strong> <code>THE HEALING FIELD</code> simulation.</p>
+<p>There you implement explicit trauma decay:</p>
+<ul>
+<li>Track consecutive/accumulating “safe interactions”:</li>
+<li>Safe defined as: <span class="arithmatex">\(\epsilon &lt; 0.8 \epsilon_0\)</span></li>
+<li>If safe interactions exceed a threshold <code>safe_threshold</code> (3), then:
+  [
+  \rho_{\text{trauma}} \leftarrow \max(\rho_{\text{floor}},\rho_{\text{trauma}} - \eta_{\text{heal}})
+  ]
+  with <code>healing_rate = 0.03</code>, <code>trauma_floor = 0.05</code>.</li>
+</ul>
+<p>If surprise spikes, safe counter decays: <code>safe_interactions = max(0, safe_interactions - 1)</code>.</p>
+<p><strong>Key conceptual point</strong>
+- This is the explicit mechanism supporting your claim: “shock → rigidity → contraction” <em>and</em> “safety → relaxation → reopening”.
+- It is currently <strong>only implemented in this simulation</strong>; the multi-timescale <code>rho_trauma</code> in the debate sim is one-way (only increases). So across the repo you currently have <strong>two trauma philosophies</strong>:
+  - irreversible scarring (debate / nexus)
+  - therapeutically reversible trauma (healing field)</p>
+<p><strong>Recommendation</strong>
+Unify with a “trauma plasticity” parameter:
+- default: extremely slow decay
+- if safe streak or therapy context: faster decay</p>
+<hr />
+<h3 id="f-d1_params-configuration-pattern">F. D1_PARAMS configuration pattern</h3>
+<p>Across shown simulations you use a consistent “physics dictionary” pattern:</p>
+<ul>
+<li>A module-level dict (<code>D1_PARAMS</code> or <code>DDA_PARAMS</code>) containing:</li>
+<li>sigmoid/gating parameters (<code>epsilon_0</code>, <code>s</code>)</li>
+<li>learning rates (<code>alpha</code>, <code>alpha_fast</code>, etc.)</li>
+<li>caps/floors (<code>drift_cap</code>, <code>trauma_floor</code>, etc.)</li>
+<li>thresholds (<code>protect_threshold</code>, wound thresholds)</li>
+<li>coupling weights (<code>avg_trust_weight</code>, etc.)</li>
+</ul>
+<p><strong>Notable pattern</strong>
+- Some simulations <strong>calibrate</strong> <code>D1_PARAMS["epsilon_0"]</code> and <code>D1_PARAMS["s"]</code> after a few turns using median + IQR of observed epsilons. That’s a good move toward portability.</p>
+<p><strong>Critique</strong>
+- Because <code>D1_PARAMS</code> is a global dict, calibration mutates global state (shared across agents and potentially across runs if imported). For reproducibility:
+  - copy into <code>self.params = deepcopy(D1_PARAMS)</code> per simulation instance
+  - log calibrated values into results metadata (you print them, but ensure they’re saved)</p>
+<hr />
+<h2 id="2-draft-readmemd-research-grade-github-latex-ready">2) Draft README.md (research-grade, GitHub-LaTeX-ready)</h2>
+<p>Below is a <strong>drop-in README.md</strong> that is faithful to the visible code and designed to scale to 59 simulations. Sections marked <strong>TODO</strong> require the rest of the repo to enumerate all simulations and include exact filenames.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gh"># DDA-X — Dynamic Decision Algorithm with Exploration (Inverted): Surprise → Rigidity → Contraction</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>DDA‑X is a cognitive dynamics framework for agentic systems in which <span class="gs">**prediction error does not immediately produce exploration**</span>. Instead, surprise induces <span class="gs">**rigidity**</span> (defensive contraction), and only under safety/predictability does the system reopen.
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">&gt; </span><span class="ge">Standard RL: surprise → exploration  </span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="k">&gt; </span><span class="ge">**DDA‑X: surprise → rigidity → contraction**</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>This repository contains a suite of simulations (target: <span class="gs">**59**</span>) demonstrating DDA‑X dynamics in dialogue agents, social systems, embodied collisions, and therapeutic recovery loops.
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>---
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="gu">## Core equation</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>The original DDA (2024) is referenced throughout the sims:
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>\[
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>F<span class="ge">_n \;=\; P_</span>0 \cdot k F<span class="ge">_{n-1} \;+\; m\Big( T(f(I_</span>n, I<span class="ge">_\Delta)) \;+\; R(D_</span>n, FM_n)\Big)
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>\]
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>In DDA‑X, this is operationalized as a <span class="gs">**continuous state-space**</span> update with an identity attractor and rigidity‑modulated step size:
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="k">-</span><span class="w"> </span>Identity attractor: \(x^\*\in\mathbb{R}^d\)
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="k">-</span><span class="w"> </span>Current state: \(x_t\in\mathbb{R}^d\)
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="k">-</span><span class="w"> </span>Prediction: \(x^{\text{pred}}_t\)
+<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="k">-</span><span class="w"> </span>Prediction error: \(\epsilon_t = \lVert x^{\text{pred}}_t - x^{\text{actual}}_t\rVert\)
+<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="k">-</span><span class="w"> </span>Effective step size:  
+<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>  \[
+<a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>  k<span class="ge">_{\text{eff}} = k_</span>{\text{base}}(1-\rho)
+<a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>  \]
+<a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a>
+<a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a>A common form used in the simulations is:
+<a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a>
+<a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a>\[
+<a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a>x<span class="ge">_{t+1} = x_</span>t + k<span class="ge">_{\text{eff}}\cdot \eta \Big(\gamma(x^\*-x_</span>t) + m(F_T + F_R)\Big)
+<a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a>\]
+<a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a>
+<a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a>where:
+<a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a><span class="k">-</span><span class="w"> </span>\(F_T\) is the “truth channel” pull from the observation embedding,
+<a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a><span class="k">-</span><span class="w"> </span>\(F_R\) is the “reflection channel” pull from the agent’s own response embedding.
+<a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a>
+<a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a>---
+<a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a>
+<a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a><span class="gu">## Repository structure (high level)</span>
+<a id="__codelineno-4-44" name="__codelineno-4-44" href="#__codelineno-4-44"></a>
+<a id="__codelineno-4-45" name="__codelineno-4-45" href="#__codelineno-4-45"></a><span class="k">&gt; </span><span class="ge">**TODO:** Update these paths to match the actual repo tree once all files are present.</span>
+<a id="__codelineno-4-46" name="__codelineno-4-46" href="#__codelineno-4-46"></a>
+<a id="__codelineno-4-47" name="__codelineno-4-47" href="#__codelineno-4-47"></a><span class="k">-</span><span class="w"> </span><span class="sb">`src/llm/openai_provider.py`</span> — LLM + embedding provider (rigidity-modulated decoding)
+<a id="__codelineno-4-48" name="__codelineno-4-48" href="#__codelineno-4-48"></a><span class="k">-</span><span class="w"> </span><span class="sb">`src/memory/ledger.py`</span> — ExperienceLedger + telemetry logging
+<a id="__codelineno-4-49" name="__codelineno-4-49" href="#__codelineno-4-49"></a><span class="k">-</span><span class="w"> </span><span class="sb">`simulations/`</span> — scenario files (dialogue, adversarial, healing, embodied)
+<a id="__codelineno-4-50" name="__codelineno-4-50" href="#__codelineno-4-50"></a><span class="k">-</span><span class="w"> </span><span class="sb">`data/`</span> — run logs, reports, plots
+<a id="__codelineno-4-51" name="__codelineno-4-51" href="#__codelineno-4-51"></a>
+<a id="__codelineno-4-52" name="__codelineno-4-52" href="#__codelineno-4-52"></a>---
+<a id="__codelineno-4-53" name="__codelineno-4-53" href="#__codelineno-4-53"></a>
+<a id="__codelineno-4-54" name="__codelineno-4-54" href="#__codelineno-4-54"></a><span class="gu">## Key mechanisms (as implemented)</span>
+<a id="__codelineno-4-55" name="__codelineno-4-55" href="#__codelineno-4-55"></a>
+<a id="__codelineno-4-56" name="__codelineno-4-56" href="#__codelineno-4-56"></a><span class="gu">### 1) Prediction error and rigidity update</span>
+<a id="__codelineno-4-57" name="__codelineno-4-57" href="#__codelineno-4-57"></a>
+<a id="__codelineno-4-58" name="__codelineno-4-58" href="#__codelineno-4-58"></a>Most sims compute prediction error:
+<a id="__codelineno-4-59" name="__codelineno-4-59" href="#__codelineno-4-59"></a>
+<a id="__codelineno-4-60" name="__codelineno-4-60" href="#__codelineno-4-60"></a>```python
+<a id="__codelineno-4-61" name="__codelineno-4-61" href="#__codelineno-4-61"></a>epsilon = float(np.linalg.norm(agent.x_pred - resp_emb))
+</code></pre></div>
+<p>Rigidity is updated via a logistic gate:</p>
+<div class="arithmatex">\[
+z=\frac{\epsilon-\epsilon_0}{s},\qquad \Delta\rho=\alpha(\sigma(z)-0.5)
+\]</div>
+<p>Example (AGI debate):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="n">epsilon</span> <span class="o">-</span> <span class="n">D1_PARAMS</span><span class="p">[</span><span class="s2">&quot;epsilon_0&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="n">D1_PARAMS</span><span class="p">[</span><span class="s2">&quot;s&quot;</span><span class="p">]</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">sig</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">delta_rho</span> <span class="o">=</span> <span class="n">D1_PARAMS</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">sig</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">agent</span><span class="o">.</span><span class="n">rho</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">agent</span><span class="o">.</span><span class="n">rho</span> <span class="o">+</span> <span class="n">delta_rho</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="2-multi-timescale-rigidity-fast-slow-trauma">2) Multi-timescale rigidity (fast / slow / trauma)</h3>
+<p>Some sims maintain three temporal scales:</p>
+<div class="arithmatex">\[
+\Delta\rho_{\text{fast}}=\alpha_{\text{fast}}(\sigma(z)-0.5),\quad
+\Delta\rho_{\text{slow}}=\alpha_{\text{slow}}(\sigma(z)-0.5)
+\]</div>
+<p>Trauma is <strong>asymmetric</strong>:</p>
+<div class="arithmatex">\[
+\Delta\rho_{\text{trauma}} =
+\begin{cases}
+\alpha_{\text{trauma}}(\epsilon-\theta_{\text{trauma}}) &amp; \epsilon&gt;\theta_{\text{trauma}}\\
+0 &amp; \text{otherwise}
+\end{cases}
+\]</div>
+<p>Effective rigidity is a weighted sum:</p>
+<div class="arithmatex">\[
+\rho_{\text{eff}}=\min(1,\;w_f\rho_{\text{fast}}+w_s\rho_{\text{slow}}+w_t\rho_{\text{trauma}})
+\]</div>
+<h3 id="3-wound-detection-semantic-lexical">3) Wound detection (semantic + lexical)</h3>
+<p>Wounds trigger via <strong>cosine similarity</strong> to a wound embedding and/or a lexical lexicon hit, with a cooldown:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">wound_res</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">msg_emb</span><span class="p">,</span> <span class="n">agent</span><span class="o">.</span><span class="n">wound_emb</span><span class="p">))</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">lexical_hit</span> <span class="o">=</span> <span class="n">lexical_wound_with</span><span class="p">(</span><span class="n">stimulus</span><span class="p">,</span> <span class="n">wound_lex</span><span class="p">)</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">wound_active</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="p">((</span><span class="n">wound_res</span> <span class="o">&gt;</span> <span class="n">D1_PARAMS</span><span class="p">[</span><span class="s2">&quot;wound_cosine_threshold&quot;</span><span class="p">])</span> <span class="ow">or</span> <span class="n">lexical_hit</span><span class="p">)</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="ow">and</span> <span class="p">((</span><span class="n">turn</span> <span class="o">-</span> <span class="n">agent</span><span class="o">.</span><span class="n">wound_last_activated</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">D1_PARAMS</span><span class="p">[</span><span class="s2">&quot;wound_cooldown&quot;</span><span class="p">])</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="p">)</span>
+</code></pre></div>
+<p>Activated wounds amplify surprise:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">if</span> <span class="n">wound_active</span><span class="p">:</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="n">epsilon</span> <span class="o">*=</span> <span class="nb">min</span><span class="p">(</span><span class="n">wound_amp_max</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="n">wound_res</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="4-cognitive-modes-and-policy-constraints">4) Cognitive modes and policy constraints</h3>
+<p>Rigidity bands constrain behavior (e.g., word limits) and a “Protection Mode” activates at high <span class="arithmatex">\(\rho\)</span>:</p>
+<ul>
+<li>OPEN / MEASURED / GUARDED / FORTIFIED → stricter word limits</li>
+<li><span class="arithmatex">\(\rho&gt;\rho_{\text{protect}}\)</span> → “avoid risky statements”</li>
+</ul>
+<h3 id="5-therapeutic-recovery-loops-trauma-decay">5) Therapeutic recovery loops (trauma decay)</h3>
+<p>In therapeutic contexts, trauma can decay after repeated low-surprise interactions:</p>
+<div class="arithmatex">\[
+\rho_{\text{trauma}}\leftarrow \max(\rho_{\min},\rho_{\text{trauma}}-\eta_{\text{heal}})
+\]</div>
+<hr />
+<h2 id="running-simulations">Running simulations</h2>
+<blockquote>
+<p><strong>TODO:</strong> Provide exact entrypoints for all sims.</p>
+</blockquote>
+<p>Typical:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>python<span class="w"> </span>simulations/agi_timeline_debate.py
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>python<span class="w"> </span>simulations/the_healing_field.py
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>python<span class="w"> </span>simulations/the_nexus.py
+</code></pre></div>
+<p>Environment:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">OPENAI_API_KEY</span><span class="o">=</span><span class="s2">&quot;...&quot;</span>
+</code></pre></div>
+<hr />
+<h2 id="simulations-catalog">Simulations (catalog)</h2>
+<blockquote>
+<p><strong>TODO (requires full repo):</strong> List all <strong>59 simulations</strong> with a one-line description and the key dynamics they test.</p>
+</blockquote>
+<p>Examples from the code shown:</p>
+<ol>
+<li><strong>THE AGI TIMELINE DEBATE</strong> — adversarial negotiation; wounds + trust + mode bands + (telemetry) multi-timescale rigidity.</li>
+<li><strong>THE HEALING FIELD</strong> — therapeutic recovery loops; explicit trauma decay; will impedance tracking.</li>
+<li><strong>THE 33 RUNGS</strong> — multi-voice “transmission”; veil/presence dynamics; unity convergence metric.</li>
+<li><strong>THE NEXUS</strong> — real-time pygame; 50 entities; collisions; asymmetric trauma accumulation; trust deltas.</li>
+</ol>
+<hr />
+<h2 id="outputs-and-telemetry">Outputs and telemetry</h2>
+<p>Each run typically writes:
+- <code>results.json</code> / <code>session_log.json</code>
+- <code>report.md</code> / <code>transcript.md</code>
+- plots (where enabled): e.g. <code>plots/healing_summary.png</code></p>
+<hr />
+<h2 id="what-makes-ddax-unique-vs-rl-typical-llm-agents">What makes DDA‑X unique (vs RL / typical LLM agents)</h2>
+<ol>
+<li><strong>Inverted response to surprise:</strong> prediction error increases rigidity and reduces step size (<span class="arithmatex">\(k_{\text{eff}}\)</span>).</li>
+<li><strong>Multi-timescale defensiveness:</strong> startle vs stress vs trauma are separable state variables.</li>
+<li><strong>Wounds are content-addressable:</strong> semantic resonance + lexical triggers modulate surprise and downstream dynamics.</li>
+<li><strong>Modes constrain policy explicitly:</strong> openness bands directly clamp output bandwidth and prompt risk.</li>
+<li><strong>Therapy is a first-class dynamic:</strong> safe repetition can reverse trauma (in designated sims).</li>
+<li><strong>Identity is a dynamical attractor:</strong> state moves under <span class="arithmatex">\(\gamma(x^\*-x)\)</span>, not just reward gradients.</li>
+</ol>
+<hr />
+<h2 id="citation">Citation</h2>
+<blockquote>
+<p><strong>TODO:</strong> Add BibTeX once paper.md is finalized.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>---
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>## 3) Draft paper.md (academically rigorous, faithful to shown code)
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>```markdown
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a># DDA‑X: Dynamic Decision Algorithm with Exploration (Inverted) — Surprise → Rigidity → Contraction
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>## Abstract
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>We introduce DDA‑X, a cognitive dynamics framework in which prediction error induces defensive rigidity rather than immediate exploration. In contrast to standard reinforcement learning heuristics that treat surprise as an exploration bonus, DDA‑X models startled systems as contracting—reducing behavioral bandwidth and state update magnitude—until safety and predictability permit reopening. We operationalize DDA‑X in a family of simulations spanning adversarial dialogue, therapeutic recovery, multi-agent convergence, and embodied collision dynamics. The framework combines (i) a continuous state space with identity attractors, (ii) rigidity-modulated effective step size, (iii) multi-timescale rigidity decomposition (fast/slow/trauma), and (iv) content-addressable wound activation.
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>## 1. From DDA (2024) to DDA‑X
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>The original DDA formula is:
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>\[
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>F_n \;=\; P_0 \cdot k F_{n-1} \;+\; m\Big( T(f(I_n, I_\Delta)) \;+\; R(D_n, FM_n)\Big)
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>\]
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>DDA‑X preserves the conceptual separation between:
+<a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a>- **identity priors** \(P_0\),
+<a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a>- **inertia / previous moment** \(kF_{n-1}\),
+<a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a>- **environmental pressure** \(m\),
+<a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a>- and channels for observation (“truth”) and internal generation (“reflection”).
+<a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a>
+<a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a>However, DDA‑X makes two structural shifts:
+<a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a>
+<a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a>1. **State becomes explicit**: agent cognition is represented as a continuous vector \(x_t\in\mathbb{R}^d\) with an identity attractor \(x^\*\).
+<a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a>2. **Rigidity becomes a dynamical control variable**: the system’s response to surprise is a contraction mediated by \(\rho\), which reduces the effective update step.
+<a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a>
+<a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a>## 2. Continuous state dynamics with identity attractors
+<a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a>A common operational update used in the simulations is:
+<a id="__codelineno-10-31" name="__codelineno-10-31" href="#__codelineno-10-31"></a>
+<a id="__codelineno-10-32" name="__codelineno-10-32" href="#__codelineno-10-32"></a>\[
+<a id="__codelineno-10-33" name="__codelineno-10-33" href="#__codelineno-10-33"></a>x_{t+1} = x_t + k_{\text{eff}}\cdot \eta \Big(F_{\text{id}} + m(F_T + F_R)\Big)
+<a id="__codelineno-10-34" name="__codelineno-10-34" href="#__codelineno-10-34"></a>\]
+<a id="__codelineno-10-35" name="__codelineno-10-35" href="#__codelineno-10-35"></a>
+<a id="__codelineno-10-36" name="__codelineno-10-36" href="#__codelineno-10-36"></a>where:
+<a id="__codelineno-10-37" name="__codelineno-10-37" href="#__codelineno-10-37"></a>\[
+<a id="__codelineno-10-38" name="__codelineno-10-38" href="#__codelineno-10-38"></a>F_{\text{id}}=\gamma(x^\*-x_t),\quad
+<a id="__codelineno-10-39" name="__codelineno-10-39" href="#__codelineno-10-39"></a>F_T = e(o_t)-x_t,\quad
+<a id="__codelineno-10-40" name="__codelineno-10-40" href="#__codelineno-10-40"></a>F_R = e(a_t)-x_t
+<a id="__codelineno-10-41" name="__codelineno-10-41" href="#__codelineno-10-41"></a>\]
+<a id="__codelineno-10-42" name="__codelineno-10-42" href="#__codelineno-10-42"></a>
+<a id="__codelineno-10-43" name="__codelineno-10-43" href="#__codelineno-10-43"></a>Here \(e(\cdot)\) denotes an embedding function (e.g., text embeddings). \(o_t\) is an observation/stimulus and \(a_t\) is the agent’s generated action/utterance.
+<a id="__codelineno-10-44" name="__codelineno-10-44" href="#__codelineno-10-44"></a>
+<a id="__codelineno-10-45" name="__codelineno-10-45" href="#__codelineno-10-45"></a>The effective step size is:
+<a id="__codelineno-10-46" name="__codelineno-10-46" href="#__codelineno-10-46"></a>
+<a id="__codelineno-10-47" name="__codelineno-10-47" href="#__codelineno-10-47"></a>\[
+<a id="__codelineno-10-48" name="__codelineno-10-48" href="#__codelineno-10-48"></a>k_{\text{eff}} = k_{\text{base}}(1-\rho_t)
+<a id="__codelineno-10-49" name="__codelineno-10-49" href="#__codelineno-10-49"></a>\]
+<a id="__codelineno-10-50" name="__codelineno-10-50" href="#__codelineno-10-50"></a>
+<a id="__codelineno-10-51" name="__codelineno-10-51" href="#__codelineno-10-51"></a>Thus higher rigidity reduces learning/movement.
+<a id="__codelineno-10-52" name="__codelineno-10-52" href="#__codelineno-10-52"></a>
+<a id="__codelineno-10-53" name="__codelineno-10-53" href="#__codelineno-10-53"></a>## 3. Prediction error as the driving signal
+<a id="__codelineno-10-54" name="__codelineno-10-54" href="#__codelineno-10-54"></a>We define prediction error as:
+<a id="__codelineno-10-55" name="__codelineno-10-55" href="#__codelineno-10-55"></a>
+<a id="__codelineno-10-56" name="__codelineno-10-56" href="#__codelineno-10-56"></a>\[
+<a id="__codelineno-10-57" name="__codelineno-10-57" href="#__codelineno-10-57"></a>\epsilon_t=\lVert x^{\text{pred}}_t - x^{\text{actual}}_t\rVert
+<a id="__codelineno-10-58" name="__codelineno-10-58" href="#__codelineno-10-58"></a>\]
+<a id="__codelineno-10-59" name="__codelineno-10-59" href="#__codelineno-10-59"></a>
+<a id="__codelineno-10-60" name="__codelineno-10-60" href="#__codelineno-10-60"></a>where \(x^{\text{actual}}_t\) is typically the embedding of the agent’s emitted response, and \(x^{\text{pred}}_t\) is an exponentially smoothed forecast:
+<a id="__codelineno-10-61" name="__codelineno-10-61" href="#__codelineno-10-61"></a>
+<a id="__codelineno-10-62" name="__codelineno-10-62" href="#__codelineno-10-62"></a>\[
+<a id="__codelineno-10-63" name="__codelineno-10-63" href="#__codelineno-10-63"></a>x^{\text{pred}}_{t+1} = (1-\beta)x^{\text{pred}}_{t} + \beta x^{\text{actual}}_t
+<a id="__codelineno-10-64" name="__codelineno-10-64" href="#__codelineno-10-64"></a>\]
+<a id="__codelineno-10-65" name="__codelineno-10-65" href="#__codelineno-10-65"></a>
+<a id="__codelineno-10-66" name="__codelineno-10-66" href="#__codelineno-10-66"></a>## 4. Rigidity update via logistic gating
+<a id="__codelineno-10-67" name="__codelineno-10-67" href="#__codelineno-10-67"></a>Rigidity updates are driven by a logistic transform of prediction error:
+<a id="__codelineno-10-68" name="__codelineno-10-68" href="#__codelineno-10-68"></a>
+<a id="__codelineno-10-69" name="__codelineno-10-69" href="#__codelineno-10-69"></a>\[
+<a id="__codelineno-10-70" name="__codelineno-10-70" href="#__codelineno-10-70"></a>z_t=\frac{\epsilon_t-\epsilon_0}{s},\quad \sigma(z)=\frac{1}{1+e^{-z}}
+<a id="__codelineno-10-71" name="__codelineno-10-71" href="#__codelineno-10-71"></a>\]
+<a id="__codelineno-10-72" name="__codelineno-10-72" href="#__codelineno-10-72"></a>\[
+<a id="__codelineno-10-73" name="__codelineno-10-73" href="#__codelineno-10-73"></a>\Delta\rho_t = \alpha(\sigma(z_t)-0.5)
+<a id="__codelineno-10-74" name="__codelineno-10-74" href="#__codelineno-10-74"></a>\]
+<a id="__codelineno-10-75" name="__codelineno-10-75" href="#__codelineno-10-75"></a>\[
+<a id="__codelineno-10-76" name="__codelineno-10-76" href="#__codelineno-10-76"></a>\rho_{t+1} = \text{clip}(\rho_t+\Delta\rho_t,\;0,\;1)
+<a id="__codelineno-10-77" name="__codelineno-10-77" href="#__codelineno-10-77"></a>\]
+<a id="__codelineno-10-78" name="__codelineno-10-78" href="#__codelineno-10-78"></a>
+<a id="__codelineno-10-79" name="__codelineno-10-79" href="#__codelineno-10-79"></a>This realizes the DDA‑X thesis: **higher surprise increases rigidity**.
+<a id="__codelineno-10-80" name="__codelineno-10-80" href="#__codelineno-10-80"></a>
+<a id="__codelineno-10-81" name="__codelineno-10-81" href="#__codelineno-10-81"></a>## 5. Multi-timescale rigidity decomposition
+<a id="__codelineno-10-82" name="__codelineno-10-82" href="#__codelineno-10-82"></a>We decompose rigidity into three temporal scales:
+<a id="__codelineno-10-83" name="__codelineno-10-83" href="#__codelineno-10-83"></a>
+<a id="__codelineno-10-84" name="__codelineno-10-84" href="#__codelineno-10-84"></a>- fast/startle: \(\rho_{\text{fast}}\)
+<a id="__codelineno-10-85" name="__codelineno-10-85" href="#__codelineno-10-85"></a>- slow/stress: \(\rho_{\text{slow}}\)
+<a id="__codelineno-10-86" name="__codelineno-10-86" href="#__codelineno-10-86"></a>- trauma/scarring: \(\rho_{\text{trauma}}\)
+<a id="__codelineno-10-87" name="__codelineno-10-87" href="#__codelineno-10-87"></a>
+<a id="__codelineno-10-88" name="__codelineno-10-88" href="#__codelineno-10-88"></a>Updates:
+<a id="__codelineno-10-89" name="__codelineno-10-89" href="#__codelineno-10-89"></a>
+<a id="__codelineno-10-90" name="__codelineno-10-90" href="#__codelineno-10-90"></a>\[
+<a id="__codelineno-10-91" name="__codelineno-10-91" href="#__codelineno-10-91"></a>\Delta\rho_{\text{fast}} = \alpha_{\text{fast}}(\sigma(z)-0.5)
+<a id="__codelineno-10-92" name="__codelineno-10-92" href="#__codelineno-10-92"></a>\]
+<a id="__codelineno-10-93" name="__codelineno-10-93" href="#__codelineno-10-93"></a>\[
+<a id="__codelineno-10-94" name="__codelineno-10-94" href="#__codelineno-10-94"></a>\Delta\rho_{\text{slow}} = \alpha_{\text{slow}}(\sigma(z)-0.5)
+<a id="__codelineno-10-95" name="__codelineno-10-95" href="#__codelineno-10-95"></a>\]
+<a id="__codelineno-10-96" name="__codelineno-10-96" href="#__codelineno-10-96"></a>
+<a id="__codelineno-10-97" name="__codelineno-10-97" href="#__codelineno-10-97"></a>Trauma is asymmetric:
+<a id="__codelineno-10-98" name="__codelineno-10-98" href="#__codelineno-10-98"></a>
+<a id="__codelineno-10-99" name="__codelineno-10-99" href="#__codelineno-10-99"></a>\[
+<a id="__codelineno-10-100" name="__codelineno-10-100" href="#__codelineno-10-100"></a>\Delta\rho_{\text{trauma}} =
+<a id="__codelineno-10-101" name="__codelineno-10-101" href="#__codelineno-10-101"></a>\begin{cases}
+<a id="__codelineno-10-102" name="__codelineno-10-102" href="#__codelineno-10-102"></a>\alpha_{\text{trauma}}(\epsilon-\theta_{\text{trauma}}), &amp; \epsilon&gt;\theta_{\text{trauma}}\\
+<a id="__codelineno-10-103" name="__codelineno-10-103" href="#__codelineno-10-103"></a>0, &amp; \text{otherwise}
+<a id="__codelineno-10-104" name="__codelineno-10-104" href="#__codelineno-10-104"></a>\end{cases}
+<a id="__codelineno-10-105" name="__codelineno-10-105" href="#__codelineno-10-105"></a>\]
+<a id="__codelineno-10-106" name="__codelineno-10-106" href="#__codelineno-10-106"></a>
+<a id="__codelineno-10-107" name="__codelineno-10-107" href="#__codelineno-10-107"></a>Effective rigidity:
+<a id="__codelineno-10-108" name="__codelineno-10-108" href="#__codelineno-10-108"></a>
+<a id="__codelineno-10-109" name="__codelineno-10-109" href="#__codelineno-10-109"></a>\[
+<a id="__codelineno-10-110" name="__codelineno-10-110" href="#__codelineno-10-110"></a>\rho_{\text{eff}}=\min(1,\;w_f\rho_{\text{fast}}+w_s\rho_{\text{slow}}+w_t\rho_{\text{trauma}})
+<a id="__codelineno-10-111" name="__codelineno-10-111" href="#__codelineno-10-111"></a>\]
+<a id="__codelineno-10-112" name="__codelineno-10-112" href="#__codelineno-10-112"></a>
+<a id="__codelineno-10-113" name="__codelineno-10-113" href="#__codelineno-10-113"></a>## 6. Wounds: content-addressable defensive triggers
+<a id="__codelineno-10-114" name="__codelineno-10-114" href="#__codelineno-10-114"></a>A wound is represented by an embedding \(w\in\mathbb{R}^d\) (e.g., embedding of a wound narrative). Given stimulus embedding \(e(o_t)\), wound resonance is:
+<a id="__codelineno-10-115" name="__codelineno-10-115" href="#__codelineno-10-115"></a>
+<a id="__codelineno-10-116" name="__codelineno-10-116" href="#__codelineno-10-116"></a>\[
+<a id="__codelineno-10-117" name="__codelineno-10-117" href="#__codelineno-10-117"></a>r_t = \cos(e(o_t), w)
+<a id="__codelineno-10-118" name="__codelineno-10-118" href="#__codelineno-10-118"></a>\]
+<a id="__codelineno-10-119" name="__codelineno-10-119" href="#__codelineno-10-119"></a>
+<a id="__codelineno-10-120" name="__codelineno-10-120" href="#__codelineno-10-120"></a>Activation uses a hybrid gate:
+<a id="__codelineno-10-121" name="__codelineno-10-121" href="#__codelineno-10-121"></a>- semantic: \(r_t &gt; \tau_r\),
+<a id="__codelineno-10-122" name="__codelineno-10-122" href="#__codelineno-10-122"></a>- lexical: substring match against a wound lexicon,
+<a id="__codelineno-10-123" name="__codelineno-10-123" href="#__codelineno-10-123"></a>- plus a cooldown window.
+<a id="__codelineno-10-124" name="__codelineno-10-124" href="#__codelineno-10-124"></a>
+<a id="__codelineno-10-125" name="__codelineno-10-125" href="#__codelineno-10-125"></a>When active, wounds amplify surprise:
+<a id="__codelineno-10-126" name="__codelineno-10-126" href="#__codelineno-10-126"></a>
+<a id="__codelineno-10-127" name="__codelineno-10-127" href="#__codelineno-10-127"></a>\[
+<a id="__codelineno-10-128" name="__codelineno-10-128" href="#__codelineno-10-128"></a>\epsilon&#39;_t = \epsilon_t \cdot \min(A_{\max}, 1 + c r_t)
+<a id="__codelineno-10-129" name="__codelineno-10-129" href="#__codelineno-10-129"></a>\]
+<a id="__codelineno-10-130" name="__codelineno-10-130" href="#__codelineno-10-130"></a>
+<a id="__codelineno-10-131" name="__codelineno-10-131" href="#__codelineno-10-131"></a>## 7. Cognitive modes and policy constraints
+<a id="__codelineno-10-132" name="__codelineno-10-132" href="#__codelineno-10-132"></a>A discrete mode is derived from rigidity bands:
+<a id="__codelineno-10-133" name="__codelineno-10-133" href="#__codelineno-10-133"></a>- OPEN / ENGAGED / DEFENSIVE / PROTECT
+<a id="__codelineno-10-134" name="__codelineno-10-134" href="#__codelineno-10-134"></a>
+<a id="__codelineno-10-135" name="__codelineno-10-135" href="#__codelineno-10-135"></a>Modes constrain policy by limiting output bandwidth (e.g., word budgets) and injecting “protection” instructions.
+<a id="__codelineno-10-136" name="__codelineno-10-136" href="#__codelineno-10-136"></a>
+<a id="__codelineno-10-137" name="__codelineno-10-137" href="#__codelineno-10-137"></a>This implements a principled mapping from internal contraction to externally observable behavior.
+<a id="__codelineno-10-138" name="__codelineno-10-138" href="#__codelineno-10-138"></a>
+<a id="__codelineno-10-139" name="__codelineno-10-139" href="#__codelineno-10-139"></a>## 8. Will impedance and identity persistence
+<a id="__codelineno-10-140" name="__codelineno-10-140" href="#__codelineno-10-140"></a>We define will impedance:
+<a id="__codelineno-10-141" name="__codelineno-10-141" href="#__codelineno-10-141"></a>
+<a id="__codelineno-10-142" name="__codelineno-10-142" href="#__codelineno-10-142"></a>\[
+<a id="__codelineno-10-143" name="__codelineno-10-143" href="#__codelineno-10-143"></a>W_t = \frac{\gamma}{m_t\cdot k_{\text{eff}}}
+<a id="__codelineno-10-144" name="__codelineno-10-144" href="#__codelineno-10-144"></a>\]
+<a id="__codelineno-10-145" name="__codelineno-10-145" href="#__codelineno-10-145"></a>
+<a id="__codelineno-10-146" name="__codelineno-10-146" href="#__codelineno-10-146"></a>which grows as rigidity increases (since \(k_{\text{eff}}\) shrinks), quantifying resistance to environmental pressure.
+<a id="__codelineno-10-147" name="__codelineno-10-147" href="#__codelineno-10-147"></a>
+<a id="__codelineno-10-148" name="__codelineno-10-148" href="#__codelineno-10-148"></a>## 9. Therapeutic recovery loops (optional trauma plasticity)
+<a id="__codelineno-10-149" name="__codelineno-10-149" href="#__codelineno-10-149"></a>In therapeutic contexts, sustained low-surprise interaction allows trauma decay:
+<a id="__codelineno-10-150" name="__codelineno-10-150" href="#__codelineno-10-150"></a>
+<a id="__codelineno-10-151" name="__codelineno-10-151" href="#__codelineno-10-151"></a>\[
+<a id="__codelineno-10-152" name="__codelineno-10-152" href="#__codelineno-10-152"></a>\rho_{\text{trauma}} \leftarrow \max(\rho_{\min}, \rho_{\text{trauma}} - \eta_{\text{heal}})
+<a id="__codelineno-10-153" name="__codelineno-10-153" href="#__codelineno-10-153"></a>\]
+<a id="__codelineno-10-154" name="__codelineno-10-154" href="#__codelineno-10-154"></a>
+<a id="__codelineno-10-155" name="__codelineno-10-155" href="#__codelineno-10-155"></a>triggered after a threshold number of “safe” interactions.
+<a id="__codelineno-10-156" name="__codelineno-10-156" href="#__codelineno-10-156"></a>
+<a id="__codelineno-10-157" name="__codelineno-10-157" href="#__codelineno-10-157"></a>## 10. Relation to RL and LLM agents
+<a id="__codelineno-10-158" name="__codelineno-10-158" href="#__codelineno-10-158"></a>DDA‑X differs from typical RL/LLM-agent designs by treating surprise as a contraction signal rather than an exploration signal, and by making defensiveness, wounds, and trauma explicit state variables that directly modulate update magnitudes and policy bandwidth.
+<a id="__codelineno-10-159" name="__codelineno-10-159" href="#__codelineno-10-159"></a>
+<a id="__codelineno-10-160" name="__codelineno-10-160" href="#__codelineno-10-160"></a>## 11. Limitations and open problems
+<a id="__codelineno-10-161" name="__codelineno-10-161" href="#__codelineno-10-161"></a>- Calibrating wound thresholds across domains/embedding models.
+<a id="__codelineno-10-162" name="__codelineno-10-162" href="#__codelineno-10-162"></a>- Unifying single-scale vs multi-timescale rigidity control signals.
+<a id="__codelineno-10-163" name="__codelineno-10-163" href="#__codelineno-10-163"></a>- Formalizing trust as predictability (see proposed \(T_{ij}\) dyadic formulation).
+<a id="__codelineno-10-164" name="__codelineno-10-164" href="#__codelineno-10-164"></a>- Establishing identifiability of parameters from logs.
+<a id="__codelineno-10-165" name="__codelineno-10-165" href="#__codelineno-10-165"></a>
+<a id="__codelineno-10-166" name="__codelineno-10-166" href="#__codelineno-10-166"></a>## Appendix A: Parameter schema (D1_PARAMS pattern)
+<a id="__codelineno-10-167" name="__codelineno-10-167" href="#__codelineno-10-167"></a>Most simulations define a local physics dict containing:
+<a id="__codelineno-10-168" name="__codelineno-10-168" href="#__codelineno-10-168"></a>\(\epsilon_0, s, \alpha, k_{\text{base}}, \gamma\), thresholds, and caps.
+<a id="__codelineno-10-169" name="__codelineno-10-169" href="#__codelineno-10-169"></a>
+<a id="__codelineno-10-170" name="__codelineno-10-170" href="#__codelineno-10-170"></a>&gt; **TODO:** Once full repo is available, include a table of parameter ranges per simulation.
+</code></pre></div></p>
+</blockquote>
+<hr />
+<h2 id="4-draft-architecturemd-linking-theory-to-practice-with-actual-patterns">4) Draft ARCHITECTURE.md (linking theory to practice, with actual patterns)</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="gh"># DDA‑X Architecture: From Theory to Implementation</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>This document maps the DDA‑X theoretical components to the concrete code patterns used across the simulations.
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="k">&gt; </span><span class="ge">**Note:** Examples below are taken from the visible simulation files (e.g., AGI debate, Healing Field, Nexus). Update paths as needed.</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>---
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="gu">## 1. Core dataflow per turn</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>A typical turn follows:
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="k">1.</span> Embed the stimulus \(o_t\)
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="k">2.</span> (Optional) wound detection → modulate surprise
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="k">3.</span> Generate response \(a_t\) with rigidity-modulated decoding
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="k">4.</span> Embed response
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="k">5.</span> Compute prediction error \(\epsilon_t\)
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="k">6.</span> Update rigidity \(\rho\) (single-scale and/or multi-timescale)
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="k">7.</span> Update state vector \(x<span class="ge">_t\) with \(k_</span>{\text{eff}}(1-\rho)\)
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="k">8.</span> Log telemetry to <span class="sb">`ExperienceLedger`</span>
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>
+<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>---
+<a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a>
+<a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="gu">## 2. Embedding + normalization</span>
+<a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a>
+<a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a>Pattern:
+<a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a>
+<a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a>```python
+<a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a>msg_emb = await provider.embed(stimulus)
+<a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a>msg_emb = msg_emb / (np.linalg.norm(msg_emb) + 1e-9)
+</code></pre></div>
+<p>Same for response embeddings.</p>
+<hr />
+<h2 id="3-prediction-error">3. Prediction error</h2>
+<p>Pattern:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">epsilon</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">agent</span><span class="o">.</span><span class="n">x_pred</span> <span class="o">-</span> <span class="n">resp_emb</span><span class="p">))</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">agent</span><span class="o">.</span><span class="n">x_pred</span> <span class="o">=</span> <span class="mf">0.7</span> <span class="o">*</span> <span class="n">agent</span><span class="o">.</span><span class="n">x_pred</span> <span class="o">+</span> <span class="mf">0.3</span> <span class="o">*</span> <span class="n">resp_emb</span>
+</code></pre></div>
+<hr />
+<h2 id="4-rigidity-update-single-scale">4. Rigidity update (single-scale)</h2>
+<p>Pattern:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="n">epsilon</span> <span class="o">-</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;epsilon_0&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;s&quot;</span><span class="p">]</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">sig</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">delta_rho</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">sig</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="n">agent</span><span class="o">.</span><span class="n">rho</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">agent</span><span class="o">.</span><span class="n">rho</span> <span class="o">+</span> <span class="n">delta_rho</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+</code></pre></div>
+<p>Common modifiers:
+- civility/fair engagement scaling
+- trust-based offset
+- drift-based penalty / caps</p>
+<hr />
+<h2 id="5-multi-timescale-rigidity-module">5. Multi-timescale rigidity module</h2>
+<p><code>MultiTimescaleRigidity.update(epsilon, epsilon_0, s)</code> updates:
+- <code>rho_fast</code>, <code>rho_slow</code>, <code>rho_trauma</code></p>
+<p>Effective rigidity is computed as:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">effective</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="s2">&quot;fast&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">rho_fast</span> <span class="o">+</span> <span class="n">w</span><span class="p">[</span><span class="s2">&quot;slow&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">rho_slow</span> <span class="o">+</span> <span class="n">w</span><span class="p">[</span><span class="s2">&quot;trauma&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">rho_trauma</span>
+</code></pre></div>
+<p><strong>Implementation note:</strong> ensure the effective value is what drives policy and k_eff, or explicitly justify dual rigidity tracks.</p>
+<hr />
+<h2 id="6-wound-detection">6. Wound detection</h2>
+<p>Hybrid gate:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">wound_res</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">msg_emb</span><span class="p">,</span> <span class="n">agent</span><span class="o">.</span><span class="n">wound_emb</span><span class="p">))</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">lexical_hit</span> <span class="o">=</span> <span class="n">lexical_wound_with</span><span class="p">(</span><span class="n">stimulus</span><span class="p">,</span> <span class="n">wound_lex</span><span class="p">)</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="n">wound_active</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    <span class="p">(</span><span class="n">wound_res</span> <span class="o">&gt;</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;wound_cosine_threshold&quot;</span><span class="p">]</span> <span class="ow">or</span> <span class="n">lexical_hit</span><span class="p">)</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>    <span class="ow">and</span> <span class="p">(</span><span class="n">turn</span> <span class="o">-</span> <span class="n">agent</span><span class="o">.</span><span class="n">wound_last_activated</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;wound_cooldown&quot;</span><span class="p">]</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="p">)</span>
+</code></pre></div>
+<p>Amplify epsilon when active:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">if</span> <span class="n">wound_active</span><span class="p">:</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>    <span class="n">epsilon</span> <span class="o">*=</span> <span class="nb">min</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;wound_amp_max&quot;</span><span class="p">],</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="n">wound_res</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="7-cognitive-modes-and-policy-constraints">7. Cognitive modes and policy constraints</h2>
+<p>Two layers are common:
+- A discrete <code>CognitiveMode</code> enum from <span class="arithmatex">\(\rho\)</span>
+- A <code>rho_band()</code> mapping into word budgets</p>
+<p>Pattern:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">band</span> <span class="o">=</span> <span class="n">rho_band</span><span class="p">(</span><span class="n">agent</span><span class="o">.</span><span class="n">rho</span><span class="p">)</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="n">min_w</span><span class="p">,</span> <span class="n">max_w</span> <span class="o">=</span> <span class="n">regime_words</span><span class="p">(</span><span class="n">band</span><span class="p">)</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="n">response</span> <span class="o">=</span> <span class="n">clamp_words</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">min_w</span><span class="p">,</span> <span class="n">max_w</span><span class="p">)</span>
+</code></pre></div>
+<p>Protection mode:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">agent</span><span class="o">.</span><span class="n">protection_mode_active</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">rho</span> <span class="o">&gt;</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;protect_threshold&quot;</span><span class="p">]</span>
+</code></pre></div>
+<hr />
+<h2 id="8-state-update-with-identity-attractor">8. State update with identity attractor</h2>
+<p>Example structure:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">k_eff</span> <span class="o">=</span> <span class="n">k_base</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">rho</span><span class="p">)</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="n">F_id</span> <span class="o">=</span> <span class="n">gamma</span> <span class="o">*</span> <span class="p">(</span><span class="n">identity_emb</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="n">F_T</span>  <span class="o">=</span> <span class="n">msg_emb</span> <span class="o">-</span> <span class="n">x</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="n">F_R</span>  <span class="o">=</span> <span class="n">resp_emb</span> <span class="o">-</span> <span class="n">x</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="n">x_new</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">k_eff</span> <span class="o">*</span> <span class="n">eta</span> <span class="o">*</span> <span class="p">(</span><span class="n">F_id</span> <span class="o">+</span> <span class="n">m</span><span class="o">*</span><span class="p">(</span><span class="n">F_T</span> <span class="o">+</span> <span class="n">F_R</span><span class="p">))</span>
+</code></pre></div>
+<p>Drift cap (stability):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">drift_delta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x_new</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="k">if</span> <span class="n">drift_delta</span> <span class="o">&gt;</span> <span class="n">drift_cap</span><span class="p">:</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>    <span class="n">x_new</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="p">(</span><span class="n">drift_cap</span> <span class="o">/</span> <span class="n">drift_delta</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">x_new</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="n">x</span> <span class="o">=</span> <span class="n">x_new</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x_new</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1e-9</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="9-therapeutic-recovery-optional-trauma-decay">9. Therapeutic recovery (optional trauma decay)</h2>
+<p>Healing Field pattern:</p>
+<ul>
+<li>count safe interactions where <span class="arithmatex">\(\epsilon\)</span> is low</li>
+<li>after threshold, decrement <span class="arithmatex">\(\rho_{\text{trauma}}\)</span></li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">if</span> <span class="n">epsilon</span> <span class="o">&lt;</span> <span class="n">epsilon_0</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">:</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>    <span class="n">safe</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>    <span class="k">if</span> <span class="n">safe</span> <span class="o">&gt;=</span> <span class="n">safe_threshold</span><span class="p">:</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>        <span class="n">rho_trauma</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">trauma_floor</span><span class="p">,</span> <span class="n">rho_trauma</span> <span class="o">-</span> <span class="n">healing_rate</span><span class="p">)</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>    <span class="n">safe</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">safe</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="10-telemetry-experienceledger">10. Telemetry: ExperienceLedger</h2>
+<p>Each turn logs vectors and metadata:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">entry</span> <span class="o">=</span> <span class="n">LedgerEntry</span><span class="p">(</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>    <span class="n">timestamp</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">(),</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>    <span class="n">state_vector</span><span class="o">=</span><span class="n">agent</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>    <span class="n">observation_embedding</span><span class="o">=</span><span class="n">msg_emb</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>    <span class="n">outcome_embedding</span><span class="o">=</span><span class="n">resp_emb</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>    <span class="n">prediction_error</span><span class="o">=</span><span class="n">epsilon</span><span class="p">,</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>    <span class="n">rigidity_at_time</span><span class="o">=</span><span class="n">agent</span><span class="o">.</span><span class="n">rho</span><span class="p">,</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>    <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="o">...</span><span class="p">}</span>
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="p">)</span>
+<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="n">agent</span><span class="o">.</span><span class="n">ledger</span><span class="o">.</span><span class="n">add_entry</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
+</code></pre></div>
+<blockquote>
+<p><strong>TODO:</strong> Document ledger schema once <code>src/memory/ledger.py</code> is available.
+```</p>
+</blockquote>
+<hr />
+<h2 id="5-what-is-unique-vs-standard-rl-llm-agent-work-grounded-in-shown-code">5) What is unique vs standard RL / LLM agent work (grounded in shown code)</h2>
+<p>1) <strong>Rigidity as a control variable that shrinks learning/acting</strong>
+   - Explicit: <span class="arithmatex">\(k_{\text{eff}}=k_{\text{base}}(1-\rho)\)</span>
+   - This turns surprise into <em>reduced</em> movement (contraction), not exploration.</p>
+<p>2) <strong>Wounds as content-addressable “threat priors”</strong>
+   - Hybrid semantic+lexical trigger + cooldown + surprise amplification.
+   - This is not typical in RL (where “threat” is usually reward shaping) and not typical in LLM agents (which rarely have structured “wound embeddings” that modulate decoding).</p>
+<p>3) <strong>Multi-timescale defensiveness including asymmetric trauma</strong>
+   - The asymmetric trauma accumulator is a strong differentiator: it encodes hysteresis / irreversibility unless therapy mechanisms are added.</p>
+<p>4) <strong>Mode bands that directly constrain outward behavior</strong>
+   - Word-budget clamping is a very direct operationalization of “constriction”.
+   - Typical LLM agents keep verbosity stable; here verbosity is an observable correlate of internal rigidity.</p>
+<p>5) <strong>Therapeutic recovery as an explicit dynamical process</strong>
+   - Recovery isn’t just “lower temperature”; it is a rule that decays trauma after repeated safe interactions.</p>
+<p>6) <strong>Identity persistence is modeled as an attractor force</strong>
+   - <span class="arithmatex">\(F_{\text{id}}=\gamma(x^\*-x)\)</span> plus “will impedance” <span class="arithmatex">\(W=\gamma/(m k_{\text{eff}})\)</span>.
+   - That’s a dynamical systems framing rather than a policy-gradient framing.</p>
+<hr />
+<h2 id="critical-feedback-as-a-reviewer">Critical feedback (as a reviewer)</h2>
+<ul>
+<li><strong>Unify rigidity:</strong> Right now the debate sim runs <em>two</em> rigidity models (multi-timescale + legacy). This undermines interpretability and claims about multi-timescale control.</li>
+<li><strong>Trust equation mismatch:</strong> The stated <span class="arithmatex">\(T_{ij}=\frac{1}{1+\sum\epsilon}\)</span> is not implemented in the visible code. Either implement it (dyadic predictability trust) or adjust the theory text to match “civility-based trust.”</li>
+<li><strong>Calibration asymmetry:</strong> You calibrate <span class="arithmatex">\(\epsilon_0\)</span> and <span class="arithmatex">\(s\)</span> but not wound thresholds, trauma thresholds, or weights. Consider per-sim calibration or percentile-based thresholds on resonance.</li>
+<li><strong>Hierarchical identity is currently degenerate:</strong> <code>compute_hierarchical_force()</code> sums layers but uses <code>identity_emb</code> for every layer (“Assume layer embeddings are aligned...”), making layers only scale <span class="arithmatex">\(\gamma\)</span> but not direction. For genuine hierarchy, embed each layer text separately and use <span class="arithmatex">\(x^\*_{\text{layer}}\)</span>.</li>
+<li><strong>Measurement validity:</strong> <span class="arithmatex">\(\epsilon=\|x_{\text{pred}}-e(a)\|\)</span> conflates semantic novelty with style/verbosity shifts. Consider decomposing embeddings into content vs tone, or tracking cosine distance separately from norm distance.</li>
+</ul>
+<hr />
+<p>If you want me to produce the <em>final</em> “perfect” versions (with all 59 sims, exact code excerpts from each, and no TODOs), paste:
+1) <code>tree -L 4</code> (or file list)<br />
+2) <code>src/llm/openai_provider.py</code> and <code>src/memory/ledger.py</code><br />
+3) the remaining concatenated simulation files (or a link / upload)</p>
+<p>Then I can (a) verify trust computation, (b) enumerate all simulations, and (c) generate README/paper/architecture with exact references and snippets.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
