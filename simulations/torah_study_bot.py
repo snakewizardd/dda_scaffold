@@ -51,13 +51,14 @@ load_dotenv()
 
 CONFIG = {
     "sim_name": "torah_study_bot_v1",
-    "chat_provider": "openai",
-    "chat_model": "gpt-5-mini",
-    "embed_model": "text-embedding-3-large",
-    "embed_dim": 3072,
+    "chat_provider": "openrouter",
+    "chat_model": "tngtech/deepseek-r1t2-chimera:free",
+    "embed_provider": "ollama",
+    "embed_model": "nomic-embed-text",
+    "embed_dim": 768,
 
     # K-sampling corridor logic
-    "gen_candidates": 7,
+    "gen_candidates": 3,
     "corridor_strict": True,
     "corridor_max_batches": 2,
     "constraint_penalty_weight": 2.0,
@@ -575,39 +576,61 @@ class Entity:
 
 class OpenAIProvider:
     def __init__(self):
-        api_key = os.getenv("OPENAI_API_KEY") or os.getenv("OAI_API_KEY")
-        if not api_key:
-            raise ValueError("Missing API key: set OPENAI_API_KEY or OAI_API_KEY")
-        self.client = AsyncOpenAI(api_key=api_key)
+        # Use OpenRouter for chat, Ollama for embeddings
+        openrouter_key = os.getenv("OPENROUTER_API_KEY")
+        
+        if not openrouter_key:
+            raise ValueError("Missing API key: set OPENROUTER_API_KEY")
+        
+        # OpenRouter client for chat completions
+        self.client = AsyncOpenAI(
+            api_key=openrouter_key,
+            base_url="https://openrouter.ai/api/v1"
+        )
+        
+        # Ollama URL for embeddings
+        self.ollama_url = "http://localhost:11434/api/embeddings"
+        
         self.chat_model = CONFIG["chat_model"]
         self.embed_model = CONFIG["embed_model"]
         self.embed_dim = CONFIG["embed_dim"]
 
-        print(f"{C.DIM}[PROVIDER] Chat: {self.chat_model}{C.RESET}")
-        print(f"{C.DIM}[PROVIDER] Embed: {self.embed_model} ({self.embed_dim}d){C.RESET}")
+        print(f"{C.DIM}[PROVIDER] Chat: {self.chat_model} (OpenRouter){C.RESET}")
+        print(f"{C.DIM}[PROVIDER] Embed: {self.embed_model} (Ollama){C.RESET}")
 
-    async def embed(self, text: str) -> np.ndarray:
+    async def _ollama_embed(self, text: str) -> np.ndarray:
+        """Call Ollama embeddings API."""
+        import aiohttp
         try:
-            resp = await self.client.embeddings.create(model=self.embed_model, input=text)
-            return np.array(resp.data[0].embedding, dtype=np.float32)
+            async with aiohttp.ClientSession() as session:
+                async with session.post(
+                    self.ollama_url,
+                    json={"model": self.embed_model, "prompt": text}
+                ) as resp:
+                    if resp.status == 200:
+                        data = await resp.json()
+                        return np.array(data["embedding"], dtype=np.float32)
+                    return np.zeros(self.embed_dim, dtype=np.float32)
         except Exception:
             return np.zeros(self.embed_dim, dtype=np.float32)
 
+    async def embed(self, text: str) -> np.ndarray:
+        return await self._ollama_embed(text)
+
     async def embed_batch(self, texts: List[str]) -> List[np.ndarray]:
-        try:
-            resp = await self.client.embeddings.create(model=self.embed_model, input=texts)
-            return [np.array(d.embedding, dtype=np.float32) for d in resp.data]
-        except Exception:
-            return [np.zeros(self.embed_dim, dtype=np.float32) for _ in texts]
+        # Ollama doesn't have batch API, call sequentially
+        results = []
+        for text in texts:
+            emb = await self._ollama_embed(text)
+            results.append(emb)
+        return results
 
     async def complete(self, prompt: str, system_prompt: Optional[str] = None,
                        messages: Optional[List[Dict[str, str]]] = None, **kwargs) -> str:
         api_messages: List[Dict[str, str]] = []
-        is_o1_class = ("gpt-5" in self.chat_model) or ("o1-" in self.chat_model)
-        sys_role = "developer" if is_o1_class else "system"
 
         if system_prompt:
-            api_messages.append({"role": sys_role, "content": system_prompt})
+            api_messages.append({"role": "system", "content": system_prompt})
 
         if messages:
             for m in messages:
@@ -617,16 +640,12 @@ class OpenAIProvider:
         api_messages.append({"role": "user", "content": prompt})
 
         try:
-            api_args: Dict[str, Any] = {"model": self.chat_model, "messages": api_messages}
-            if is_o1_class:
-                req = int(kwargs.get("max_tokens", 512))
-                api_args["max_completion_tokens"] = max(4000, req * 3)
-            else:
-                api_args["max_tokens"] = int(kwargs.get("max_tokens", 512))
-                api_args["temperature"] = float(kwargs.get("temperature", CONFIG["temperature"]))
-                api_args["top_p"] = float(kwargs.get("top_p", CONFIG["top_p"]))
-                api_args["presence_penalty"] = float(kwargs.get("presence_penalty", CONFIG["presence_penalty"]))
-                api_args["frequency_penalty"] = float(kwargs.get("frequency_penalty", CONFIG["frequency_penalty"]))
+            api_args: Dict[str, Any] = {
+                "model": self.chat_model,
+                "messages": api_messages,
+                "max_tokens": int(kwargs.get("max_tokens", 512)),
+                "temperature": float(kwargs.get("temperature", CONFIG["temperature"])),
+            }
 
             resp = await self.client.chat.completions.create(**api_args)
             text = resp.choices[0].message.content or ""
