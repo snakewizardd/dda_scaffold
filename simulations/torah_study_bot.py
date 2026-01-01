@@ -29,11 +29,13 @@ Outputs:
   data/torahbot/<timestamp>/transcript.md
 """
 
-import asyncio
 import json
 import math
 import os
 import re
+import sys
+import shutil
+import asyncio
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
@@ -364,6 +366,8 @@ class Entity:
 
         self.safe = 0
         self.arousal = 0.0
+        self.epsilon = D1_PARAMS["epsilon_0"]
+        self.last_epsilon = self.epsilon
 
         self.x = None
         self.x_core = None
@@ -443,6 +447,21 @@ class Entity:
         self.mu_pred_agent = (self.mu_pred_agent + K * innov).astype(np.float32)
         self.P = ((1.0 - K) * P_pred).astype(np.float32)
         self.mu_pred_agent = normalize(self.mu_pred_agent)
+
+    def update_identity(self, y: np.ndarray, turn: int) -> float:
+        """Update identity state: compute surprise, update Kalman filter, track history."""
+        # 1. Compute Surprise
+        eps = self.compute_surprise_self(y)
+        
+        # 2. Update State
+        self.last_epsilon = self.epsilon
+        self.epsilon = eps
+        self.epsilon_history.append((turn, eps))
+        
+        # 3. Kalman Update
+        self._kalman_update_self(y)
+        
+        return eps
 
     def update_user_prediction(self, user_emb: np.ndarray, beta: float = 0.22):
         user_emb = normalize(user_emb.astype(np.float32))
@@ -648,6 +667,35 @@ class OpenAIProvider:
             return ensure_complete_sentence(text) if CONFIG["force_complete_sentences"] else text
         except Exception:
             return "TorahBot is present. A retry can be attempted."
+
+    async def stream_complete(self, prompt: str, system_prompt: Optional[str] = None,
+                              messages: Optional[List[Dict[str, str]]] = None, **kwargs):
+        """Asynchronous generator for token-level streaming."""
+        api_messages: List[Dict[str, str]] = []
+        if system_prompt:
+            api_messages.append({"role": "system", "content": system_prompt})
+        if messages:
+            for m in messages:
+                if m.get("role") in ["user", "assistant"]:
+                    api_messages.append(m)
+        api_messages.append({"role": "user", "content": prompt})
+
+        try:
+            api_args: Dict[str, Any] = {
+                "model": self.chat_model,
+                "messages": api_messages,
+                "max_tokens": int(kwargs.get("max_tokens", 512)),
+                "temperature": float(kwargs.get("temperature", CONFIG["temperature"])),
+                "stream": True,
+            }
+
+            stream = await self.client.chat.completions.create(**api_args)
+            async for chunk in stream:
+                content = chunk.choices[0].delta.content or ""
+                if content:
+                    yield content
+        except Exception as e:
+            yield f"[Stream Error: {e}]"
 
 def ensure_complete_sentence(text: str) -> str:
     t = (text or "").strip()
@@ -907,6 +955,59 @@ Pedagogical structure:
             sys_prompt += "\nConstraint: no full translation output for the entire passage."
         return sys_prompt.strip()
 
+    def _render_dashboard(self, candidate_texts: List[str], j_scores: Optional[List[float]] = None):
+        """
+        Renders a real-time dashboard in the terminal for the K-candidates.
+        Uses ANSI escapes to overwrite the same block of lines.
+        """
+        K = len(candidate_texts)
+        term_width = shutil.get_terminal_size().columns
+        max_body_lines = 4
+        
+        lines = []
+        for i in range(K):
+            j_val = j_scores[i] if j_scores and i < len(j_scores) else None
+            j_str = f"(J={j_val:.3f})" if j_val is not None else f"{C.DIM}(streaming...){C.RESET}"
+            
+            header = f"{C.CYAN}[CANDIDATE {i+1}] {j_str}{C.RESET}"
+            sep = f"{C.DIM}{'-' * 40}{C.RESET}"
+            
+            lines.append(header)
+            lines.append(sep)
+            
+            # Wrap text manually
+            raw_text = candidate_texts[i].strip().replace("\n", " ")
+            wrap_at = max(10, term_width - 10)
+            wrapped = [raw_text[j:j+wrap_at] for j in range(0, len(raw_text), wrap_at)]
+            
+            visible = wrapped[-max_body_lines:] if len(wrapped) > max_body_lines else wrapped
+            for v in visible:
+                lines.append(f"    {v}")
+            for _ in range(max_body_lines - len(visible)):
+                lines.append("    ")
+            lines.append("") # spacer
+
+        # Draw
+        sys.stdout.write("\n".join(lines) + "\n")
+        sys.stdout.flush()
+        
+        # Move back up for next frame
+        # (1 header + 1 sep + 4 body + 1 spacer) = 7 lines per candidate
+        move_up = K * 7
+        sys.stdout.write(f"\033[{move_up}A")
+        sys.stdout.flush()
+
+    def _clear_dashboard(self, K: int):
+        """Clear the dashboard lines from terminal."""
+        move_up = K * 7
+        # Move to bottom of block
+        sys.stdout.write(f"\033[{move_up}B")
+        # Clear move_up lines
+        for _ in range(move_up):
+            sys.stdout.write("\033[F") # move up
+            sys.stdout.write("\033[K") # clear line
+        sys.stdout.flush()
+
     def _build_user_instruction(self, user_text: str, band: str) -> str:
         ref = self.study.reference or "unknown verse"
         heb = self.study.hebrew_text or ""
@@ -963,12 +1064,39 @@ Task: Help them get started."""
         corridor_failed = True
 
         for batch in range(1, (max_batches if strict else 1) + 1):
-            tasks = [
-                self.provider.complete(user_instruction, system_prompt=system_prompt, messages=history, **gen_params)
-                for _ in range(K)
-            ]
-            texts = await asyncio.gather(*tasks)
-            texts = [(t.strip() or "TorahBot is present. A short excerpt can be provided for study.") for t in texts]
+            # Concurrent Streaming Generation for The Dash
+            current_texts = ["" for _ in range(K)]
+            finished = [False for _ in range(K)]
+
+            async def consume_stream(idx):
+                try:
+                    async for token in self.provider.stream_complete(
+                        user_instruction, system_prompt=system_prompt, messages=history, **gen_params
+                    ):
+                        current_texts[idx] += token
+                except Exception as e:
+                    current_texts[idx] += f" [Error: {e}]"
+                finally:
+                    finished[idx] = True
+
+            # Launch all streams concurrently
+            stream_tasks = [asyncio.create_task(consume_stream(i)) for i in range(K)]
+            
+            # Real-time dashboard update loop
+            print(f"\n{C.BOLD}--- [DDA-X CORRIDOR DASHBOARD (BATCH {batch})] ---{C.RESET}")
+            # Initial render
+            self._render_dashboard(current_texts)
+            
+            while not all(finished):
+                await asyncio.sleep(0.12) # ~8 FPS dashboard
+                self._render_dashboard(current_texts)
+            
+            # Final render to snap to complete text
+            self._render_dashboard(current_texts)
+            # Clear dashboard so regular flow can print
+            self._clear_dashboard(K)
+            
+            texts = [ensure_complete_sentence(t.strip() or "...") for t in current_texts]
 
             embs = await self.provider.embed_batch(texts)
             embs = [normalize(e) for e in embs]
@@ -1014,6 +1142,15 @@ Task: Help them get started."""
                 "passed_count": 0,
                 "total_candidates": len(all_scored),
                 "J_final": None,
+                "candidates_debug": [
+                    {
+                        "text": s[1],
+                        "J_final": float(s[0]),
+                        "metrics": s[3],
+                        "is_chosen": False
+                    }
+                    for s in all_scored
+                ]
             }, y_fb
 
         chosen = passed[0] if passed else all_scored[0]
@@ -1031,6 +1168,15 @@ Task: Help them get started."""
             "predicted_surprise": float(chosen[3]["predicted_surprise"]),
             "w_surprise": float(chosen[3]["w_surprise"]),
             "c_penalty": float(chosen[3].get("c_penalty", 0.0)),
+            "candidates_debug": [
+                {
+                    "text": s[1],
+                    "J_final": float(s[0]),
+                    "metrics": s[3],
+                    "is_chosen": (s[1] == chosen[1])
+                }
+                for s in all_scored
+            ]
         }
         return chosen[1], metrics, chosen[2]
 
@@ -1069,7 +1215,7 @@ Task: Help them get started."""
             return "QUIT"
         return "Unknown command. Available: /setref, /settext, /attempt, /hint, /reset, /save, /quit"
 
-    async def process_turn(self, learner_text: str) -> str:
+    async def process_turn(self, learner_text: str) -> Dict[str, Any]:
         if not self.initialized:
             await self.initialize_embeddings()
 
@@ -1077,84 +1223,88 @@ Task: Help them get started."""
 
         cmd_resp = self._apply_commands(learner_text)
         if cmd_resp == "QUIT":
-            return "QUIT"
-        if cmd_resp is not None:
-            # command replies do not invoke model
+            return {"type": "quit", "text": "Session ending."}
+        if cmd_resp:
             self._log_turn(learner_text, cmd_resp, {}, {}, {}, used_model=False)
-            return cmd_resp
+            return {"type": "command", "text": cmd_resp}
 
-        # update study attempt heuristic if not explicitly set
+        # update study attempt heuristic
         if detect_attempt(learner_text):
             self.study.last_attempt_text = learner_text.strip()
             self.study.attempt_present = True
 
+        # 1. Detect user state
         user_state = self._detect_user_state(learner_text)
         wound_active = bool(user_state["wound_active"])
-        wound_res = float(user_state["wound_resonance"])
+        wound_res = user_state.get("wound_res", 0.0)
 
-        # Determine effective band override
+        # 2. Determine effective band (override if wound active)
         effective_band = self._override_band(user_state)
-
-        # Require Hebrew text for meaningful feedback
+        
+        # 3. Require Hebrew text
         if not (self.study.hebrew_text and has_hebrew(self.study.hebrew_text)):
-            # request text in a stable, non-technical way
             response = "A Hebrew excerpt is needed (one verse or phrase). Use /settext <hebrew>."
             self._log_turn(learner_text, response, {}, user_state, {"band": effective_band}, used_model=False)
-            return response
+            return {"type": "chat", "text": response, "metrics": None}
 
-        # attempt-first discipline is handled in system prompt (hard constraint)
-        system_prompt = self._build_system_prompt(
+        # 4. Build prompts
+        sys_prompt = self._build_system_prompt(
             band=effective_band,
             attempt_present=self.study.attempt_present,
             user_state=user_state
         )
-        user_instruction = self._build_user_instruction(learner_text, effective_band)
-
+        user_instr = self._build_user_instruction(learner_text, effective_band)
+        
         recent_history = self.history[-8:] if self.history else []
 
-        response, corridor_metrics, response_emb = await self._constrained_reply(
-            user_instruction=user_instruction,
-            system_prompt=system_prompt,
+        # 5. Generate constrained reply (candidates & selection)
+        resp_text, metrics, resp_emb = await self._constrained_reply(
+            user_instruction=user_instr,
+            system_prompt=sys_prompt,
             band=effective_band,
             wound_active=wound_active,
             history=recent_history
         )
 
-        # embed learner input and update predictions
+        # 6. Identity Update (Kalman)
+        surprise = self.agent.update_identity(resp_emb, self.turn)
+        metrics["actual_surprise"] = float(surprise)
+        
+        # User embedding update and surprise (Physics inputs)
         user_emb = normalize(await self.provider.embed(learner_text))
-        self.agent.update_user_prediction(user_emb)
-
-        # input surprise relative to predicted learner input
         input_eps = 0.0
         if self.agent.mu_pred_user is not None and np.linalg.norm(self.agent.mu_pred_user) > 1e-9:
             input_eps = float(cosine_distance(user_emb, self.agent.mu_pred_user))
+        self.agent.update_user_prediction(user_emb)
 
+        # 7. Physics update
         agent_metrics = self.agent.update_physics(
-            response_emb=response_emb,
+            response_emb=resp_emb,
             input_epsilon=input_eps,
             wound_drive=wound_res,
             core_emb=self.agent.x_core
         )
 
-        # update trust
+        # 8. Update trust
         if input_eps < D1_PARAMS["safe_epsilon"] and not wound_active:
             self.agent.user_trust = min(1.0, self.agent.user_trust + 0.010)
         elif input_eps > D1_PARAMS["epsilon_0"] * 1.4 or wound_active:
             self.agent.user_trust = max(0.0, self.agent.user_trust - (0.05 if wound_active else 0.02))
 
-        # short-term history for continuity
+        # 9. Log & History
         self.history.append({"role": "user", "content": learner_text})
-        self.history.append({"role": "assistant", "content": response})
+        self.history.append({"role": "assistant", "content": resp_text})
+        
+        extra = {"effective_band": effective_band, "input_epsilon": input_eps}
+        self._log_turn(learner_text, resp_text, metrics, user_state, agent_metrics, used_model=True, extra=extra)
+        
+        if self.turn % 5 == 0:
+            self.save_session()
 
-        self._log_turn(
-            learner_text, response,
-            corridor_metrics, user_state, agent_metrics,
-            used_model=True,
-            extra={"effective_band": effective_band, "input_epsilon": input_eps}
-        )
+        # Terminal feedback
+        self._print_metrics(agent_metrics, metrics, effective_band)
 
-        self._print_metrics(agent_metrics, corridor_metrics, effective_band)
-        return response
+        return {"type": "chat", "text": resp_text, "metrics": metrics}
 
     def _print_metrics(self, agent_metrics: Dict[str, Any], corridor_metrics: Dict[str, Any], effective_band: str):
         icon = {"PRESENT": "🟢", "AWARE": "🟡", "WATCHFUL": "⚡", "CONTRACTED": "🔸", "FROZEN": "❄️"}.get(effective_band, "•")
@@ -1254,12 +1404,42 @@ async def main():
             continue
 
         resp = await sim.process_turn(learner_text)
-        if resp == "QUIT":
+        
+        # 1. Handle Quit
+        if isinstance(resp, dict) and resp.get("type") == "quit":
             print(f"{C.CYAN}TorahBot:{C.RESET} Session ending. Saving logs.")
             sim.save_session()
             break
+        
+        # 2. Extract Text
+        if isinstance(resp, dict):
+            text_out = resp.get("text", "")
+            metrics = resp.get("metrics")
+        else:
+            text_out = str(resp)
+            metrics = None
 
-        print(f"{C.CYAN}TorahBot:{C.RESET} {resp}\n")
+        print(f"{C.CYAN}TorahBot:{C.RESET} {text_out}\n")
+        
+        # 3. Terminal Renderer for K-Candidates
+        if metrics and "candidates_debug" in metrics:
+            cands = metrics["candidates_debug"]
+            print(f"{C.DIM}    --- [DDA-X CANDIDATE CORRIDOR (K={len(cands)})] ---{C.RESET}")
+            for idx, c in enumerate(cands):
+                is_sel = c.get("is_chosen", False)
+                status = f"{C.GREEN}✅ SELECTED{C.RESET}" if is_sel else f"{C.DIM}❌ REJECTED{C.RESET}"
+                j_score = float(c.get("J_final", 0.0))
+                # Novelty/Energy if available
+                m = c.get("metrics", {})
+                stats = f"J={j_score:.3f} E={m.get('E',0):.2f} N={m.get('novelty',0):.2f}"
+                
+                # Wrap text slightly for terminal
+                raw_text = c.get("text", "").strip().replace("\n", " ")
+                preview = raw_text[:80] + "..." if len(raw_text) > 80 else raw_text
+                
+                print(f"    [{idx+1}] {status} | {stats}")
+                print(f"        {C.DIM}\"{preview}\"{C.RESET}")
+            print(f"{C.DIM}    --------------------------------------------------{C.RESET}\n")
 
 if __name__ == "__main__":
     asyncio.run(main())
